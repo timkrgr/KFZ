@@ -146,7 +146,11 @@ async function loadCards({ silent = false } = {}) {
 
 // --- Tabs ---
 
+const TAB_ORDER = ["tabHome", "tabStats", "tabSettings"];
+let activeTabIndex = 0;
+
 function switchTab(tabId) {
+  activeTabIndex = TAB_ORDER.indexOf(tabId);
   [els.tabHome, els.tabStats, els.tabSettings].forEach((el) => {
     el.hidden = el.id !== tabId;
   });
@@ -157,6 +161,28 @@ function switchTab(tabId) {
 els.tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => switchTab(btn.dataset.tab));
 });
+
+// Zwischen den Tabs wischen (wie zwischen iPhone-Homescreen-Seiten)
+const tabContent = document.getElementById("tabContent");
+let tabTouchStartX = null;
+let tabTouchStartY = null;
+
+tabContent.addEventListener("touchstart", (e) => {
+  if (!els.studyView.hidden) return;
+  tabTouchStartX = e.touches[0].clientX;
+  tabTouchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+tabContent.addEventListener("touchend", (e) => {
+  if (tabTouchStartX === null) return;
+  const dx = e.changedTouches[0].clientX - tabTouchStartX;
+  const dy = e.changedTouches[0].clientY - tabTouchStartY;
+  tabTouchStartX = null;
+  if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy)) {
+    if (dx < 0 && activeTabIndex < TAB_ORDER.length - 1) switchTab(TAB_ORDER[activeTabIndex + 1]);
+    else if (dx > 0 && activeTabIndex > 0) switchTab(TAB_ORDER[activeTabIndex - 1]);
+  }
+}, { passive: true });
 
 // --- Home ---
 
@@ -249,14 +275,45 @@ function renderStats() {
   els.statsList.innerHTML = "";
   categories().forEach((cat) => {
     const cardsInCat = allCards.filter((c) => (c.category || "Allgemein") === cat);
-    const knownInCat = cardsInCat.filter((c) => progress.known[c.id]).length;
-    const pctCat = cardsInCat.length ? Math.round((knownInCat / cardsInCat.length) * 100) : 0;
+    const knownInCat = cardsInCat.filter((c) => progress.known[c.id]);
+    const hardInCat = cardsInCat.filter((c) => progress.hard[c.id]);
+    const totalInCat = cardsInCat.length;
+    const openInCat = totalInCat - knownInCat.length - hardInCat.length;
+    const pctRight = totalInCat ? (knownInCat.length / totalInCat) * 100 : 0;
+    const pctWrong = totalInCat ? (hardInCat.length / totalInCat) * 100 : 0;
+
     const row = document.createElement("div");
     row.className = "stats-row";
     row.innerHTML = `
-      <div class="stats-row-top"><span class="name">${escapeHtml(cat)}</span><span class="count">${knownInCat}/${cardsInCat.length}</span></div>
-      <div class="topic-progress-track"><div class="topic-progress-fill" style="width:${pctCat}%"></div></div>
+      <div class="stats-row-top">
+        <span class="stats-icon">${iconForCategory(cat)}</span>
+        <span class="name">${escapeHtml(cat)}</span>
+        <span class="count">${knownInCat.length}/${totalInCat}</span>
+      </div>
+      <div class="stats-bar-segmented">
+        <span class="seg-right" style="width:${pctRight}%"></span>
+        <span class="seg-wrong" style="width:${pctWrong}%"></span>
+      </div>
+      <div class="stats-row-meta">
+        <span>✅ ${knownInCat.length} richtig</span>
+        <span>❌ ${hardInCat.length} falsch</span>
+        <span>◻️ ${openInCat} offen</span>
+      </div>
+      ${hardInCat.length ? `
+      <details class="stats-details">
+        <summary>Falsche Fragen anzeigen (${hardInCat.length})</summary>
+        <ul class="stats-wrong-list">
+          ${hardInCat.map((c) => `<li>${escapeHtml(c.question)}</li>`).join("")}
+        </ul>
+      </details>` : ""}
+      <div class="stats-reset-row">
+        <button type="button" class="btn btn-outline stats-reset-btn">↺ Antworten zurücksetzen (0 richtig, 0 falsch)</button>
+      </div>
     `;
+    row.querySelector(".stats-reset-btn").addEventListener("click", () => {
+      resetTopicProgress(cat);
+      renderStats();
+    });
     els.statsList.appendChild(row);
   });
 }
