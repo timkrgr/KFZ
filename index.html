@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=40">
+<link rel="stylesheet" href="style.css?v=41">
 </head>
 <body>
 <div class="app">
@@ -63,6 +63,17 @@
         </svg>
         <div class="ring-label"><span id="heroRingPct">0</span><small>%</small></div>
       </div>
+    </button>
+
+    <button id="examBtn" class="exam-card" type="button">
+      <div class="exam-left">
+        <span class="exam-icon">🎓</span>
+        <div>
+          <div class="exam-title">Prüfungssimulation</div>
+          <div class="exam-sub">40 zufällige Fragen aus allen Kategorien</div>
+        </div>
+      </div>
+      <span class="exam-arrow">›</span>
     </button>
 
     <button id="streakBtn" class="streak-card" type="button">
@@ -264,16 +275,6 @@
     <button id="mcNextBtn" class="btn">Weiter →</button>
   </div>
 
-  <!-- ===== Aktionsmenü für ein Thema ===== -->
-  <div id="sheetBackdrop" class="sheet-backdrop" hidden></div>
-  <div id="actionSheet" class="sheet" hidden>
-    <div class="sheet-title" id="sheetTitle">Thema</div>
-    <button id="sheetStudyBtn" class="sheet-btn">🚀 Üben</button>
-    <button id="sheetWrongBtn" class="sheet-btn">📋 Falsche Fragen üben</button>
-    <button id="sheetResetBtn" class="sheet-btn sheet-btn-danger">🗑️ Kategorie zurücksetzen</button>
-    <button id="sheetCancelBtn" class="sheet-btn sheet-btn-cancel">Abbrechen</button>
-  </div>
-
   <!-- ===== Erklärung eines Themengebiets (Overlay) ===== -->
   <section id="explainView" class="study-view" hidden>
     <div class="study-header">
@@ -285,6 +286,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=40"></script>
+<script src="app.js?v=41"></script>
 </body>
 </html>

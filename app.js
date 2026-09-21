@@ -1,4 +1,4 @@
-const APP_VERSION = "v40";
+const APP_VERSION = "v41";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const STREAK_KEY = "kfz_streak_v1";
@@ -151,13 +151,7 @@ const els = {
   resultRepeatBtn: document.getElementById("resultRepeatBtn"),
   resultHomeBtn: document.getElementById("resultHomeBtn"),
 
-  sheetBackdrop: document.getElementById("sheetBackdrop"),
-  actionSheet: document.getElementById("actionSheet"),
-  sheetTitle: document.getElementById("sheetTitle"),
-  sheetStudyBtn: document.getElementById("sheetStudyBtn"),
-  sheetWrongBtn: document.getElementById("sheetWrongBtn"),
-  sheetResetBtn: document.getElementById("sheetResetBtn"),
-  sheetCancelBtn: document.getElementById("sheetCancelBtn"),
+  examBtn: document.getElementById("examBtn"),
 
   toast: document.getElementById("toast"),
 };
@@ -168,8 +162,6 @@ els.profileGate.style.cssText =
   "position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;" +
   "z-index:999999;background:#000;display:flex;align-items:center;justify-content:center;" +
   "padding:24px;margin:0;box-sizing:border-box;";
-
-let sheetCategory = null;
 
 let allCards = [];
 let deck = [];
@@ -242,7 +234,43 @@ function claimStreak() {
   saveStreak();
   renderStreak();
   renderBattle();
+  playStreakClaimAnimation();
   showToast(`🔥 Tag ${streak.count} der Streak!`);
+}
+
+function playStreakClaimAnimation() {
+  const flame = els.streakFlame;
+  const card = els.streakBtn;
+  if (!flame || !card) return;
+
+  flame.classList.remove("streak-pop");
+  card.classList.remove("streak-burst");
+  void flame.offsetWidth; // Reflow, damit die Animation bei schnellem erneutem Abholen neu startet
+  flame.classList.add("streak-pop");
+  card.classList.add("streak-burst");
+  setTimeout(() => {
+    flame.classList.remove("streak-pop");
+    card.classList.remove("streak-burst");
+  }, 700);
+
+  const rect = flame.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const particleCount = 8;
+  for (let i = 0; i < particleCount; i++) {
+    const p = document.createElement("span");
+    p.className = "streak-particle";
+    p.textContent = "🔥";
+    const angle = (Math.PI * 2 * i) / particleCount + Math.random() * 0.4;
+    const dist = 40 + Math.random() * 24;
+    p.style.setProperty("--dx", `${Math.cos(angle) * dist}px`);
+    p.style.setProperty("--dy", `${Math.sin(angle) * dist}px`);
+    p.style.left = `${cx}px`;
+    p.style.top = `${cy}px`;
+    document.body.appendChild(p);
+    p.addEventListener("animationend", () => p.remove());
+    setTimeout(() => p.remove(), 900); // Sicherheitsnetz, falls animationend nicht feuert
+  }
 }
 
 // --- Cloud-Sync (Firebase Realtime Database) ---
@@ -527,6 +555,7 @@ function renderHome() {
   els.merkCount.textContent = hardCount;
   els.simBtn.hidden = total === 0;
   els.merkBtn.hidden = total === 0;
+  els.examBtn.hidden = total === 0;
 
   const cats = categories();
   els.noTopics.hidden = cats.length > 0;
@@ -538,9 +567,10 @@ function renderHome() {
     const totalInCat = cardsInCat.length;
     const pctCat = totalInCat ? Math.round((knownInCat / totalInCat) * 100) : 0;
 
-    const item = document.createElement("button");
-    item.type = "button";
+    const item = document.createElement("div");
     item.className = "topic-item topic-item-btn";
+    item.setAttribute("role", "button");
+    item.tabIndex = 0;
     item.innerHTML = `
       <div class="topic-item-row">
         <span class="topic-icon">${iconForCategory(cat)}</span>
@@ -548,13 +578,24 @@ function renderHome() {
           <div class="topic-name">${escapeHtml(cat)}</div>
           <div class="topic-count">${knownInCat} von ${totalInCat} beherrscht</div>
         </div>
+        <button type="button" class="topic-reset-btn" aria-label="Fortschritt für ${escapeHtml(cat)} zurücksetzen">✕</button>
       </div>
       <div class="topic-progress-row">
         <div class="topic-progress-track"><div class="topic-progress-fill" style="width:${pctCat}%"></div></div>
         <span class="topic-pct">${pctCat}%</span>
       </div>
     `;
-    item.addEventListener("click", () => openActionSheet(cat));
+    item.addEventListener("click", () => openTopic(cat, "all"));
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openTopic(cat, "all");
+      }
+    });
+    item.querySelector(".topic-reset-btn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      resetTopicProgress(cat);
+    });
     els.topicList.appendChild(item);
   });
 }
@@ -1148,40 +1189,6 @@ els.explainBackBtn.addEventListener("click", () => {
 
 // --- Aktionsmenü (Üben / Zurücksetzen / Falsche Fragen) ---
 
-function openActionSheet(cat) {
-  sheetCategory = cat;
-  els.sheetTitle.textContent = cat;
-  els.sheetBackdrop.hidden = false;
-  els.actionSheet.hidden = false;
-}
-
-function closeActionSheet() {
-  els.sheetBackdrop.hidden = true;
-  els.actionSheet.hidden = true;
-  sheetCategory = null;
-}
-
-els.sheetBackdrop.addEventListener("click", closeActionSheet);
-els.sheetCancelBtn.addEventListener("click", closeActionSheet);
-
-els.sheetStudyBtn.addEventListener("click", () => {
-  const cat = sheetCategory;
-  closeActionSheet();
-  if (cat) openTopic(cat, "all");
-});
-
-els.sheetResetBtn.addEventListener("click", () => {
-  const cat = sheetCategory;
-  closeActionSheet();
-  if (cat) resetTopicProgress(cat);
-});
-
-els.sheetWrongBtn.addEventListener("click", () => {
-  const cat = sheetCategory;
-  closeActionSheet();
-  if (cat) openTopic(cat, "hard");
-});
-
 // --- Study view: Themen-Lernmodus ---
 
 function openTopic(topic, filter) {
@@ -1444,11 +1451,14 @@ function shuffled(arr) {
   return copy;
 }
 
-function startSimulation() {
+let lastSimFixedCount = null; // merkt sich eine feste Fragenzahl (z. B. die 40er-Prüfungssimulation) fürs Wiederholen
+
+function startSimulation(fixedCount) {
   if (!allCards.length) return;
   sessionMode = "simulation";
   sessionResults = { right: 0, wrong: 0 };
-  const count = Math.min(getSimCount(), allCards.length);
+  lastSimFixedCount = fixedCount || null;
+  const count = Math.min(fixedCount || getSimCount(), allCards.length);
   deck = shuffled(allCards).slice(0, count);
   currentIndex = 0;
 
@@ -1524,11 +1534,12 @@ function endTopicSession() {
   showResult(sessionResults.right, sessionResults.wrong);
 }
 
-els.simBtn.addEventListener("click", startSimulation);
+els.simBtn.addEventListener("click", () => startSimulation());
+els.examBtn.addEventListener("click", () => startSimulation(40));
 
 els.resultRepeatBtn.addEventListener("click", () => {
   if (sessionEndKind === "simulation") {
-    startSimulation();
+    startSimulation(lastSimFixedCount);
   } else {
     clearTopicProgress(sessionEndTopic);
     openTopic(sessionEndTopic, "all");
