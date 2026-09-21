@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="style.css?v=19">
 </head>
 <body>
 <div class="app">
@@ -224,24 +224,14 @@
   <div id="actionSheet" class="sheet" hidden>
     <div class="sheet-title" id="sheetTitle">Thema</div>
     <button id="sheetStudyBtn" class="sheet-btn">🚀 Üben</button>
-    <button id="sheetWrongBtn" class="sheet-btn">📋 Falsche Fragen anzeigen</button>
+    <button id="sheetWrongBtn" class="sheet-btn">📋 Falsche Fragen üben</button>
     <button id="sheetResetBtn" class="sheet-btn sheet-btn-danger">🗑️ Kategorie zurücksetzen</button>
     <button id="sheetCancelBtn" class="sheet-btn sheet-btn-cancel">Abbrechen</button>
   </div>
 
-  <!-- ===== Liste der falschen Fragen eines Themas ===== -->
-  <section id="wrongListView" class="study-view" hidden>
-    <div class="study-header">
-      <button id="wrongBackBtn" class="back-btn">← Zurück</button>
-    </div>
-    <h1 class="page-title page-title-left" id="wrongListTitle">Falsche Fragen</h1>
-    <div id="wrongListEmpty" class="empty-hint" hidden>Keine falschen Fragen in diesem Thema 🎉</div>
-    <ul id="wrongList" class="wrong-list"></ul>
-  </section>
-
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=18"></script>
+<script src="app.js?v=19"></script>
 </body>
 </html>

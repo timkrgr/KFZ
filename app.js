@@ -1,4 +1,4 @@
-const APP_VERSION = "v18";
+const APP_VERSION = "v19";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -104,12 +104,6 @@ const els = {
   sheetWrongBtn: document.getElementById("sheetWrongBtn"),
   sheetResetBtn: document.getElementById("sheetResetBtn"),
   sheetCancelBtn: document.getElementById("sheetCancelBtn"),
-
-  wrongListView: document.getElementById("wrongListView"),
-  wrongBackBtn: document.getElementById("wrongBackBtn"),
-  wrongListTitle: document.getElementById("wrongListTitle"),
-  wrongList: document.getElementById("wrongList"),
-  wrongListEmpty: document.getElementById("wrongListEmpty"),
 
   toast: document.getElementById("toast"),
 };
@@ -429,11 +423,11 @@ function renderStats() {
         <span>◻️ ${openInCat} offen</span>
       </div>
       <div class="stats-reset-row">
-        <button type="button" class="btn btn-outline stats-wrong-btn">📋 Falsche Fragen anzeigen</button>
+        <button type="button" class="btn btn-outline stats-wrong-btn">📋 Falsche Fragen üben</button>
         <button type="button" class="btn btn-outline stats-reset-btn">↺ Antworten zurücksetzen (0 richtig, 0 falsch)</button>
       </div>
     `;
-    row.querySelector(".stats-wrong-btn").addEventListener("click", () => openWrongList(cat));
+    row.querySelector(".stats-wrong-btn").addEventListener("click", () => openTopic(cat, "hard"));
     row.querySelector(".stats-reset-btn").addEventListener("click", () => {
       resetTopicProgress(cat);
       renderStats();
@@ -475,21 +469,7 @@ els.sheetResetBtn.addEventListener("click", () => {
 els.sheetWrongBtn.addEventListener("click", () => {
   const cat = sheetCategory;
   closeActionSheet();
-  if (cat) openWrongList(cat);
-});
-
-// --- Liste der falschen Fragen ---
-
-function openWrongList(cat) {
-  const wrongCards = allCards.filter((c) => (c.category || "Allgemein") === cat && progress.hard[c.id]);
-  els.wrongListTitle.textContent = `Falsche Fragen · ${cat}`;
-  els.wrongListEmpty.hidden = wrongCards.length > 0;
-  els.wrongList.innerHTML = wrongCards.map((c) => `<li>${escapeHtml(c.question)}</li>`).join("");
-  els.wrongListView.hidden = false;
-}
-
-els.wrongBackBtn.addEventListener("click", () => {
-  els.wrongListView.hidden = true;
+  if (cat) openTopic(cat, "hard");
 });
 
 // --- Study view: Themen-Lernmodus ---
