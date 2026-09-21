@@ -1,13 +1,22 @@
 const STORAGE_KEY = "kfz_progress_v1";
+const ALL_TOPIC = "__all__";
 
 const els = {
   menuBtn: document.getElementById("menuBtn"),
   panel: document.getElementById("panel"),
-  categorySelect: document.getElementById("categorySelect"),
   filterSelect: document.getElementById("filterSelect"),
   shuffleBtn: document.getElementById("shuffleBtn"),
   resetBtn: document.getElementById("resetBtn"),
   reloadBtn: document.getElementById("reloadBtn"),
+
+  homeView: document.getElementById("homeView"),
+  allBtn: document.getElementById("allBtn"),
+  allCount: document.getElementById("allCount"),
+  topicGrid: document.getElementById("topicGrid"),
+  noTopics: document.getElementById("noTopics"),
+
+  studyView: document.getElementById("studyView"),
+  backBtn: document.getElementById("backBtn"),
   cardArea: document.getElementById("cardArea"),
   emptyState: document.getElementById("emptyState"),
   emptyResetBtn: document.getElementById("emptyResetBtn"),
@@ -26,6 +35,7 @@ const els = {
 let allCards = [];
 let deck = [];
 let currentIndex = 0;
+let currentTopic = ALL_TOPIC;
 let progress = loadProgress();
 
 function loadProgress() {
@@ -47,6 +57,10 @@ function showToast(msg, ms = 2000) {
   showToast._t = setTimeout(() => { els.toast.hidden = true; }, ms);
 }
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+}
+
 async function loadCards({ silent = false } = {}) {
   try {
     const res = await fetch(`cards.json?ts=${Date.now()}`, { cache: "no-store" });
@@ -54,8 +68,8 @@ async function loadCards({ silent = false } = {}) {
     const data = await res.json();
     const prevCount = allCards.length;
     allCards = data.cards || [];
-    populateCategories();
-    buildDeck();
+    renderHome();
+    if (currentTopic !== ALL_TOPIC || !els.studyView.hidden) buildDeck();
     if (!silent && prevCount && allCards.length !== prevCount) {
       showToast(`Karten aktualisiert (${allCards.length} insgesamt)`);
     } else if (!silent) {
@@ -67,8 +81,7 @@ async function loadCards({ silent = false } = {}) {
       const cached = localStorage.getItem("kfz_cards_cache");
       if (cached) {
         allCards = JSON.parse(cached).cards || [];
-        populateCategories();
-        buildDeck();
+        renderHome();
       }
     }
     return;
@@ -76,17 +89,7 @@ async function loadCards({ silent = false } = {}) {
   localStorage.setItem("kfz_cards_cache", JSON.stringify({ cards: allCards }));
 }
 
-function populateCategories() {
-  const cats = Array.from(new Set(allCards.map((c) => c.category || "Allgemein"))).sort();
-  const current = els.categorySelect.value;
-  els.categorySelect.innerHTML = '<option value="__all__">Alle Kategorien</option>' +
-    cats.map((c) => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
-  if (cats.includes(current)) els.categorySelect.value = current;
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
-}
+// --- Home / Themen-Übersicht ---
 
 function cardState(id) {
   if (progress.known[id]) return "known";
@@ -94,12 +97,54 @@ function cardState(id) {
   return "new";
 }
 
+function renderHome() {
+  const cats = Array.from(new Set(allCards.map((c) => c.category || "Allgemein"))).sort();
+
+  els.allCount.textContent = `${allCards.length} Karten insgesamt`;
+  els.allBtn.hidden = allCards.length === 0;
+
+  els.noTopics.hidden = cats.length > 0;
+  els.topicGrid.innerHTML = "";
+
+  cats.forEach((cat) => {
+    const cardsInCat = allCards.filter((c) => (c.category || "Allgemein") === cat);
+    const known = cardsInCat.filter((c) => progress.known[c.id]).length;
+    const total = cardsInCat.length;
+    const pct = total ? Math.round((known / total) * 100) : 0;
+
+    const btn = document.createElement("button");
+    btn.className = "topic-card";
+    btn.type = "button";
+    btn.innerHTML = `
+      <span class="topic-name">${escapeHtml(cat)}</span>
+      <span class="topic-count">${known} / ${total} gelernt</span>
+      <span class="topic-progress-track"><span class="topic-progress-fill" style="width:${pct}%"></span></span>
+    `;
+    btn.addEventListener("click", () => openTopic(cat));
+    els.topicGrid.appendChild(btn);
+  });
+}
+
+function openTopic(topic) {
+  currentTopic = topic;
+  els.homeView.hidden = true;
+  els.studyView.hidden = false;
+  buildDeck();
+}
+
+function goHome() {
+  els.studyView.hidden = true;
+  els.homeView.hidden = false;
+  renderHome();
+}
+
+// --- Lern-/Quizmodus ---
+
 function buildDeck() {
-  const cat = els.categorySelect.value || "__all__";
   const filter = els.filterSelect.value;
 
   deck = allCards.filter((c) => {
-    if (cat !== "__all__" && (c.category || "Allgemein") !== cat) return false;
+    if (currentTopic !== ALL_TOPIC && (c.category || "Allgemein") !== currentTopic) return false;
     const state = cardState(c.id);
     if (filter === "learning") return state !== "known";
     if (filter === "hard") return state === "hard";
@@ -135,10 +180,10 @@ function render() {
   els.questionText.textContent = card.question;
   els.answerText.textContent = card.answer;
 
-  const total = allCards.filter((c) => els.categorySelect.value === "__all__" || (c.category || "Allgemein") === els.categorySelect.value).length;
-  const knownCount = allCards.filter((c) => (els.categorySelect.value === "__all__" || (c.category || "Allgemein") === els.categorySelect.value) && progress.known[c.id]).length;
-  els.progressFill.style.width = total ? `${(knownCount / total) * 100}%` : "0%";
-  els.progressText.textContent = `${knownCount} / ${total} gelernt`;
+  const scope = allCards.filter((c) => currentTopic === ALL_TOPIC || (c.category || "Allgemein") === currentTopic);
+  const knownCount = scope.filter((c) => progress.known[c.id]).length;
+  els.progressFill.style.width = scope.length ? `${(knownCount / scope.length) * 100}%` : "0%";
+  els.progressText.textContent = `${knownCount} / ${scope.length} gelernt`;
 }
 
 function flip() {
@@ -164,14 +209,16 @@ function markCurrent(state) {
   saveProgress();
 
   const filter = els.filterSelect.value;
-  if ((filter === "learning" && state === "known") || (filter === "hard" && state === "known")) {
-    deck.splice(currentIndex, 1);
-    if (!deck.length) { render(); return; }
-    if (currentIndex >= deck.length) currentIndex = 0;
-    render();
-  } else {
-    nextCard();
+  if (filter === "learning" || filter === "hard") {
+    if (state === "known") {
+      deck.splice(currentIndex, 1);
+      if (!deck.length) { render(); return; }
+      if (currentIndex >= deck.length) currentIndex = 0;
+      render();
+      return;
+    }
   }
+  nextCard();
 }
 
 // --- Events ---
@@ -179,16 +226,23 @@ els.menuBtn.addEventListener("click", () => {
   els.panel.hidden = !els.panel.hidden;
 });
 
-els.categorySelect.addEventListener("change", buildDeck);
-els.filterSelect.addEventListener("change", buildDeck);
-els.shuffleBtn.addEventListener("click", shuffleDeck);
+els.allBtn.addEventListener("click", () => openTopic(ALL_TOPIC));
+els.backBtn.addEventListener("click", goHome);
+
+els.filterSelect.addEventListener("change", () => {
+  if (!els.studyView.hidden) buildDeck();
+});
+els.shuffleBtn.addEventListener("click", () => {
+  if (!els.studyView.hidden) shuffleDeck();
+});
 els.reloadBtn.addEventListener("click", () => loadCards());
 
 els.resetBtn.addEventListener("click", () => {
-  if (confirm("Gesamten Lernfortschritt zurücksetzen?")) {
+  if (confirm("Gesamten Lernfortschritt (alle Themen) zurücksetzen?")) {
     progress = { known: {}, hard: {} };
     saveProgress();
-    buildDeck();
+    if (!els.studyView.hidden) buildDeck();
+    renderHome();
     showToast("Fortschritt zurückgesetzt");
   }
 });

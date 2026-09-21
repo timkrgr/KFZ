@@ -24,11 +24,7 @@
 
   <div id="panel" class="panel" hidden>
     <div class="panel-row">
-      <label for="categorySelect">Kategorie</label>
-      <select id="categorySelect"></select>
-    </div>
-    <div class="panel-row">
-      <label for="filterSelect">Auswahl</label>
+      <label for="filterSelect">Auswahl innerhalb eines Themas</label>
       <select id="filterSelect">
         <option value="all">Alle Karten</option>
         <option value="learning">Nur die ich noch lerne</option>
@@ -37,7 +33,7 @@
     </div>
     <div class="panel-row buttons-row">
       <button id="shuffleBtn" class="btn">Mischen</button>
-      <button id="resetBtn" class="btn btn-outline">Fortschritt zurücksetzen</button>
+      <button id="resetBtn" class="btn btn-outline">Gesamten Fortschritt zurücksetzen</button>
     </div>
     <div class="panel-row">
       <button id="reloadBtn" class="btn btn-outline">Neue Karten laden</button>
@@ -46,39 +42,57 @@
   </div>
 
   <main id="main" class="main">
-    <div id="emptyState" class="empty-state" hidden>
-      <p>Keine Karten in dieser Auswahl 🎉</p>
-      <button id="emptyResetBtn" class="btn">Auswahl zurücksetzen</button>
-    </div>
 
-    <div id="cardArea" class="card-area">
-      <div class="progress-line">
-        <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
-        <span id="progressText" class="progress-text">0 / 0</span>
+    <!-- Themen-Übersicht -->
+    <section id="homeView">
+      <button id="allBtn" class="hero-btn">
+        <span class="hero-title">🚀 Alle Fragen am Stück üben</span>
+        <span class="hero-sub" id="allCount">0 Karten</span>
+      </button>
+
+      <h2 class="section-title">Themen</h2>
+      <div id="topicGrid" class="topic-grid"></div>
+      <p id="noTopics" class="empty-state" hidden>Noch keine Themen vorhanden.</p>
+    </section>
+
+    <!-- Lernmodus für ein Thema oder "alle Fragen" -->
+    <section id="studyView" hidden>
+      <button id="backBtn" class="back-btn">← Themen</button>
+
+      <div id="emptyState" class="empty-state" hidden>
+        <p>Keine Karten in dieser Auswahl 🎉</p>
+        <button id="emptyResetBtn" class="btn">Auswahl zurücksetzen</button>
       </div>
 
-      <div id="cardWrap" class="card-wrap">
-        <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="Karte umdrehen">
-          <div class="flashcard-inner">
-            <div class="face face-front">
-              <span id="categoryTag" class="category-tag"></span>
-              <p id="questionText" class="card-text"></p>
-              <span class="tap-hint">Antippen für Antwort</span>
-            </div>
-            <div class="face face-back">
-              <span id="categoryTagBack" class="category-tag"></span>
-              <p id="answerText" class="card-text"></p>
-              <span class="tap-hint">Antippen für Frage</span>
+      <div id="cardArea" class="card-area">
+        <div class="progress-line">
+          <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+          <span id="progressText" class="progress-text">0 / 0</span>
+        </div>
+
+        <div id="cardWrap" class="card-wrap">
+          <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="Karte umdrehen">
+            <div class="flashcard-inner">
+              <div class="face face-front">
+                <span id="categoryTag" class="category-tag"></span>
+                <p id="questionText" class="card-text"></p>
+                <span class="tap-hint">Antippen für Antwort</span>
+              </div>
+              <div class="face face-back">
+                <span id="categoryTagBack" class="category-tag"></span>
+                <p id="answerText" class="card-text"></p>
+                <span class="tap-hint">Antippen für Frage</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="action-row">
-        <button id="hardBtn" class="btn btn-hard">🔁 Nochmal üben</button>
-        <button id="knownBtn" class="btn btn-known">✅ Weiß ich</button>
+        <div class="action-row">
+          <button id="hardBtn" class="btn btn-hard">🔁 Nochmal üben</button>
+          <button id="knownBtn" class="btn btn-known">✅ Weiß ich</button>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <div id="toast" class="toast" hidden></div>
