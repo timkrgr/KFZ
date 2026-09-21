@@ -706,10 +706,33 @@ els.resetBtn.addEventListener("click", () => {
 
 // --- Profil ---
 
+const ACTIVE_PROFILE_KEY = "kfz_active_profile_v1";
+const ACTIVE_PROFILE_TTL_MS = 8 * 60 * 60 * 1000; // 8 Stunden "eingeloggt bleiben"
+
+function getRememberedProfile() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(ACTIVE_PROFILE_KEY));
+    if (!raw || !PROFILES[raw.id]) return null;
+    if (Date.now() - raw.ts > ACTIVE_PROFILE_TTL_MS) return null;
+    return raw.id;
+  } catch {
+    return null;
+  }
+}
+
+function rememberProfile(id) {
+  localStorage.setItem(ACTIVE_PROFILE_KEY, JSON.stringify({ id, ts: Date.now() }));
+}
+
+function forgetProfile() {
+  localStorage.removeItem(ACTIVE_PROFILE_KEY);
+}
+
 function selectProfile(id) {
   currentProfile = id;
   progress = loadProgress();
   els.simCountInput.value = getSimCount();
+  rememberProfile(id);
 
   const name = PROFILES[id].name;
   els.activeProfileBadge.textContent = name;
@@ -724,11 +747,15 @@ els.profileButtons.forEach((btn) => {
   btn.addEventListener("click", () => selectProfile(btn.dataset.profile));
 });
 
-// Profilwechsel lädt die App neu, damit kein Timer/Zustand des vorigen Profils übrig bleibt.
-els.activeProfileBadge.addEventListener("click", () => location.reload());
-els.switchProfileBtn.addEventListener("click", () => location.reload());
+// Profilwechsel lädt die App neu und vergisst das gemerkte Profil, damit die
+// Auswahl wieder erscheint (und kein Timer/Zustand des vorigen Profils übrig bleibt).
+els.activeProfileBadge.addEventListener("click", () => { forgetProfile(); location.reload(); });
+els.switchProfileBtn.addEventListener("click", () => { forgetProfile(); location.reload(); });
 
 // --- Init ---
+
+const rememberedProfile = getRememberedProfile();
+if (rememberedProfile) selectProfile(rememberedProfile);
 
 loadCards({ silent: true });
 
