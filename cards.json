@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "updated": "2026-09-21",
   "cards": [
     {
@@ -137,7 +137,7 @@
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Welche Aufgabe hat die Lambdasonde im Abgassystem?",
       "options": [
-        "Sie überwacht laufend den Öldruck im Motor",
+        "Sie erkennt eine drohende Verstopfung des Partikelfilters",
         "Sie misst den Restsauerstoffgehalt zur Regelung des Gemischs",
         "Sie filtert die Rußpartikel aus dem Abgasstrom heraus",
         "Sie misst die Abgastemperatur zur Steuerung des Turboladers"
@@ -231,7 +231,7 @@
         "Er misst laufend den aktuellen Kraftstofffüllstand",
         "Er erkennt Klopfen und löst eine Zündzeitpunktkorrektur aus",
         "Er misst ausschließlich die aktuelle Motordrehzahl",
-        "Er erkennt einen Reifenplatzer während der Fahrt"
+        "Er überwacht ausschließlich die aktuelle Kühlmitteltemperatur"
       ],
       "correct": 1,
       "answer": "Der Klopfsensor erfasst über Körperschall unkontrollierte, motorschädigende Verbrennungen. Erkennt das Steuergerät Klopfen, verstellt es den Zündzeitpunkt nach spät, um den Motor zu schützen."
@@ -241,10 +241,10 @@
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Welches Signal benötigt das Motorsteuergerät zwingend, um Einspritzung und Zündung synchron zum Arbeitsspiel auszulösen?",
       "options": [
-        "Das Signal des Regensensors an der Frontscheibe",
+        "Das Signal der Lambdasonde im Abgasstrang",
         "Das Signal des Kurbelwellensensors am Motorblock",
-        "Das Signal des Reifendrucksensors am Rad",
-        "Das Signal des Außentemperatursensors am Fahrzeug"
+        "Das Signal des Klopfsensors am Zylinderblock",
+        "Das Signal des Luftmassenmessers im Ansaugtrakt"
       ],
       "correct": 1,
       "answer": "Der Kurbelwellensensor liefert Drehzahl und Kurbelwellenstellung, meist ergänzt durch den Nockenwellensensor – beides ist nötig, um Einspritzung und Zündung exakt zum Arbeitsspiel zu timen."
@@ -254,9 +254,9 @@
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Wie erhöht ein Turbolader die Leistung eines Verbrennungsmotors?",
       "options": [
-        "Er erhöht unmittelbar die Zündspannung der Kerzen",
+        "Er verdichtet die Luft mechanisch, direkt von der Kurbelwelle angetrieben",
         "Er verringert gezielt die Verdichtung im Zylinder",
-        "Er speist zusätzlichen Kraftstoff direkt in den Auspuff",
+        "Er kühlt die angesaugte Luft und erhöht dadurch ihre Dichte",
         "Er presst über die Abgasenergie mehr Luft in die Zylinder"
       ],
       "correct": 3,
@@ -293,9 +293,9 @@
       "category": "Kraftübertragung",
       "question": "Welche Funktion erfüllt das Differenzial (Ausgleichsgetriebe)?",
       "options": [
-        "Es dient zusätzlich als weiterer Kraftstofftank",
-        "Es erhöht spürbar die maximale Motordrehzahl",
-        "Es verstärkt gezielt die Bremskraft der Hinterachse",
+        "Es überträgt das Motordrehmoment auf die Kardanwelle",
+        "Es verändert die Gesamtübersetzung zwischen Motor und Rädern",
+        "Es sperrt bei Schlupf grundsätzlich beide Achswellen komplett",
         "Es gleicht unterschiedliche Raddrehzahlen bei Kurvenfahrt aus"
       ],
       "correct": 3,
@@ -332,9 +332,9 @@
       "category": "Kraftübertragung",
       "question": "Welches Anzeichen deutet typischerweise auf eine verschlissene Kupplungsscheibe hin?",
       "options": [
-        "Der Kraftstoffverbrauch sinkt dabei spürbar ab",
+        "Die Kupplung lässt sich nur noch sehr schwer durchtreten",
         "Die Kupplung greift ungewöhnlich früh nach dem Loslassen",
-        "Das Fahrzeug lässt sich nicht mehr abstellen",
+        "Es ist beim Schalten ein deutliches Mahlen zu hören",
         "Der Motor dreht hoch, ohne dass das Fahrzeug entsprechend beschleunigt"
       ],
       "correct": 3,
@@ -566,7 +566,7 @@
       "category": "Bremsanlage",
       "question": "Was leistet das ESP (Elektronisches Stabilitätsprogramm) zusätzlich zum ABS?",
       "options": [
-        "Es erhöht bei Bedarf automatisch den Reifendruck",
+        "Es warnt den Fahrer nur akustisch vor Schleudergefahr",
         "Es ersetzt dabei vollständig die elektrische Servolenkung",
         "Es bremst gezielt einzelne Räder, um Schleudern zu verhindern",
         "Es verhindert ausschließlich das Blockieren der Räder"
@@ -592,9 +592,9 @@
       "category": "Bremsanlage",
       "question": "Warum muss Bremsflüssigkeit in regelmäßigen Intervallen gewechselt werden?",
       "options": [
-        "Sie erhöht sonst spürbar den Kraftstoffverbrauch",
+        "Sie verliert durch UV-Licht allmählich ihre Bremswirkung",
         "Sie verliert mit der Zeit lediglich ihre Farbe",
-        "Sie wandelt sich sonst allmählich in Motoröl um",
+        "Sie setzt sich chemisch in den Bremsleitungen ab",
         "Sie zieht Feuchtigkeit, wodurch ihr Siedepunkt deutlich sinkt"
       ],
       "correct": 3,
@@ -606,9 +606,9 @@
       "question": "Woran erkennt man häufig verschlissene Bremsbeläge?",
       "options": [
         "An einem Quietschgeräusch durch den Verschleißanzeiger",
-        "An einer spürbar höheren erreichbaren Höchstgeschwindigkeit",
+        "An einem spürbar härter werdenden Bremspedal",
         "An einer veränderten Stellung des Lenkrads",
-        "An einem deutlich sinkenden Motoröldruck"
+        "An einer sichtbar dünner werdenden Belagstärke am Sichtfenster"
       ],
       "correct": 0,
       "answer": "Viele Bremsbeläge besitzen einen akustischen Verschleißanzeiger, der bei dünnem Belag schleift und quietscht; zusätzlich melden elektronische Sensoren den Verschleiß oft im Kombiinstrument."
@@ -632,9 +632,9 @@
       "question": "Warum ist die Bremskraftverteilung meist so ausgelegt, dass die Vorderachse stärker bremst als die Hinterachse?",
       "options": [
         "Beim Bremsen verlagert sich die Last nach vorne, Haftung steigt dort",
-        "Weil die Hinterräder grundsätzlich keine Bremsen besitzen",
+        "Weil die Hinterachse grundsätzlich weniger Reibwert erzeugt",
         "Weil die Vorderräder aus Komfortgründen weicher gefedert sind",
-        "Weil die Vorderreifen aus anderem Gummi bestehen"
+        "Weil an der Hinterachse öfter ABS-Regelungen einsetzen"
       ],
       "correct": 0,
       "answer": "Beim Bremsen verlagert sich durch die Massenträgheit ein Teil der Fahrzeuglast von hinten nach vorne. Die Vorderräder haben dadurch mehr Haftung und können mehr Bremskraft übertragen."
@@ -645,9 +645,9 @@
       "question": "Worauf deutet ein spürbar 'schwammiges' Bremspedal häufig hin, und was ist meist die Abhilfe?",
       "options": [
         "Auf Luft im Bremssystem, Abhilfe ist das Entlüften der Anlage",
-        "Auf zu hohen Reifendruck, Abhilfe ist das Luftablassen",
-        "Auf einen leeren Kraftstofftank, Abhilfe ist das Nachtanken",
-        "Auf eine defekte Lichtmaschine, Abhilfe ist der Batterietausch"
+        "Auf verzogene Bremsscheiben, Abhilfe ist deren Austausch",
+        "Auf einen defekten Bremskraftverstärker, Abhilfe ist dessen Austausch",
+        "Auf verölte Bremsbeläge, Abhilfe ist deren Austausch"
       ],
       "correct": 0,
       "answer": "Luft ist im Gegensatz zu Bremsflüssigkeit komprimierbar. Befindet sich Luft im hydraulischen System, lässt sich das Pedal weich durchtreten, ohne dass sofort voller Bremsdruck aufgebaut wird. Abhilfe schafft das fachgerechte Entlüften."
@@ -749,7 +749,7 @@
       "question": "Was versteht man unter einem Kurzschluss?",
       "options": [
         "Eine ungewollte niederohmige Verbindung mit stark erhöhtem Strom",
-        "Einen deutlich zu hohen Reifendruck am Fahrzeug",
+        "Eine dauerhaft zu geringe Bordnetzspannung im Fahrzeug",
         "Das normale Abschalten eines Verbrauchers per Schalter",
         "Eine gewollte Unterbrechung des Kreises durch eine Sicherung"
       ],
@@ -826,10 +826,10 @@
       "category": "Bus-Systeme & Diagnose",
       "question": "Wozu dient das Auslesen des Fehlerspeichers mit einem Diagnosegerät?",
       "options": [
-        "Um die Fahrzeugfarbe im Steuergerät zu ändern",
+        "Um die Werkseinstellungen des Steuergeräts zurückzusetzen",
         "Um gespeicherte Fehlercodes auszulesen und Fehlersuche einzugrenzen",
         "Um ausschließlich den aktuellen Kilometerstand zu verändern",
-        "Um das Motoröl vollautomatisch zu wechseln"
+        "Um die Software des Steuergeräts automatisch zu aktualisieren"
       ],
       "correct": 1,
       "answer": "Das Diagnosegerät liest die im jeweiligen Steuergerät gespeicherten Fehlercodes sowie oft zusätzliche Umgebungsdaten zum Fehlerzeitpunkt aus. Das erleichtert die gezielte Eingrenzung der Fehlerursache erheblich."
@@ -852,10 +852,10 @@
       "category": "Bus-Systeme & Diagnose",
       "question": "Wofür wird ein Oszilloskop in der Kfz-Diagnose eingesetzt?",
       "options": [
-        "Um die Bremsflüssigkeit chemisch zu analysieren",
+        "Um den Isolationswiderstand eines Hochvoltsystems zu prüfen",
         "Um den zeitlichen Verlauf elektrischer Signale darzustellen",
-        "Um die gesamte Karosserie exakt zu vermessen",
-        "Um den aktuellen Reifendruck präzise zu messen"
+        "Um den Innenwiderstand einer Batterie zu bestimmen",
+        "Um den Ladezustand einer Batterie dauerhaft anzuzeigen"
       ],
       "correct": 1,
       "answer": "Ein Oszilloskop stellt Spannungssignale über die Zeit als Kurve dar. Damit lassen sich auch kurzzeitige Signalaussetzer oder Störungen erkennen, die ein einfaches Multimeter nicht sichtbar macht."
@@ -985,7 +985,7 @@
         "Geprüfte isolierende Handschuhe der passenden Schutzklasse",
         "Normale Arbeitshandschuhe aus einfacher Baumwolle",
         "Es ist dafür keinerlei besondere Schutzausrüstung nötig",
-        "Ausschließlich ein zusätzlicher Gehörschutz"
+        "Ausschließlich eine zusätzliche Warnweste"
       ],
       "correct": 0,
       "answer": "Bei Arbeiten an spannungsführenden HV-Teilen sind geprüfte, für die jeweilige Spannungsklasse zugelassene Isolierhandschuhe Pflicht, ergänzt um weitere Schutzausrüstung wie Schutzbrille und isoliertes Werkzeug."
@@ -1034,10 +1034,10 @@
       "category": "Hochvolt",
       "question": "Welchen Zweck hat die Isolationsüberwachung in einem Hochvoltfahrzeug?",
       "options": [
-        "Sie überwacht dabei ausschließlich die Innenraumtemperatur",
+        "Sie überwacht ausschließlich den Ladezustand der Hochvoltbatterie",
         "Sie erkennt Isolationsfehler zwischen Hochvoltsystem und Karosserie",
         "Sie steuert die Ladeleistung an öffentlichen Ladesäulen",
-        "Sie misst dabei nur den Reifendruck der Antriebsräder"
+        "Sie schaltet ausschließlich die Innenraumbeheizung im Winter"
       ],
       "correct": 1,
       "answer": "Die Isolationsüberwachung misst kontinuierlich den Widerstand zwischen dem Hochvolt-System und der Fahrzeugkarosserie. Sinkt dieser Widerstand zu stark ab, deutet das auf einen Isolationsfehler hin, bevor eine gefährliche Berührspannung entstehen kann."
@@ -1114,7 +1114,7 @@
       "options": [
         "Es steigt tendenziell durch die effizientere Verbrennung des Gemischs",
         "Es bleibt davon in jedem Fall vollkommen unbeeinflusst",
-        "Es hängt ausschließlich vom Reifendruck des Fahrzeugs ab",
+        "Es verändert sich ausschließlich mit der Getriebeübersetzung",
         "Es sinkt dabei immer unabhängig von anderen Einflüssen"
       ],
       "correct": 0,
@@ -1268,9 +1268,9 @@
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Was regelt im Wesentlichen die Euro-Abgasnormen für Kraftfahrzeuge in der EU?",
       "options": [
-        "Ausschließlich die Farbwahl bei Neuzulassungen von Fahrzeugen",
-        "Ausschließlich die maximal zulässige Höchstgeschwindigkeit",
-        "Ausschließlich die Größe der verbauten Bremsscheiben",
+        "Ausschließlich die durchschnittliche CO2-Flottenemission der Hersteller",
+        "Ausschließlich die zulässigen Geräusch- bzw. Lärmgrenzwerte",
+        "Ausschließlich die im WLTP-Zyklus ermittelten Verbrauchsangaben",
         "Grenzwerte für zulässige Schadstoffemissionen von Fahrzeugen"
       ],
       "correct": 3,
@@ -1372,9 +1372,9 @@
       "category": "Kraftübertragung",
       "question": "Woran lässt sich der Verschleiß einer mechanisch betätigten Kupplung häufig ohne Ausbau erkennen?",
       "options": [
-        "Ausschließlich am aktuellen Kilometerstand des Fahrzeugs",
-        "Ausschließlich an der Farbe der verwendeten Bremsflüssigkeit",
-        "Ausschließlich am Luftdruck der montierten Reifen",
+        "Ausschließlich an einer höheren erreichbaren Höchstgeschwindigkeit",
+        "Ausschließlich an der Farbe des sichtbaren Kupplungsstaubs",
+        "Ausschließlich am Geräusch beim Öffnen der Motorhaube",
         "Am veränderten Ausrückweg bzw. Anschlagpunkt des Kupplungspedals"
       ],
       "correct": 3,
@@ -1880,7 +1880,7 @@
       "question": "Wofür wird eine Stromzange (Wandlerzange) bei der elektrischen Fehlersuche eingesetzt?",
       "options": [
         "Zur berührungslosen Messung des Stroms in einer Leitung über das Magnetfeld",
-        "Ausschließlich zur Messung des Reifendrucks an allen vier Rädern",
+        "Ausschließlich zur Messung der Batteriespannung im Ruhezustand",
         "Zur Messung der Spannung, indem sie parallel zum Bauteil angeschlossen wird",
         "Ausschließlich zur mechanischen Befestigung loser Kabelbäume"
       ],
@@ -1934,7 +1934,7 @@
         "Ein Bauteil wird gezielt angesteuert, um seine Funktion direkt zu überprüfen",
         "Er dient ausschließlich zur Anzeige gespeicherter Fehlercodes im Klartext",
         "Er verändert dabei dauerhaft die Werkseinstellung des jeweiligen Steuergeräts",
-        "Es wird dabei ausschließlich der aktuelle Kilometerstand ausgelesen"
+        "Er löscht dabei automatisch alle gespeicherten Fehlercodes"
       ],
       "correct": 0,
       "answer": "Beim Aktor- oder Endstufentest steuert das Diagnosegerät gezielt einen Aktor (z. B. ein Magnetventil oder eine Lampe) an, damit der Prüfer durch Hören, Sehen oder Messen direkt kontrollieren kann, ob das Bauteil einwandfrei funktioniert."
@@ -1946,7 +1946,7 @@
       "options": [
         "Es steuert ausschließlich die Einspritzung des Verbrennungsmotors",
         "Es koordiniert zentral viele Komfort- und Karosseriefunktionen des Fahrzeugs",
-        "Es dient ausschließlich als zusätzlicher Kraftstofftank im Motorraum",
+        "Es übernimmt ausschließlich die Diagnose des Antriebsstrangs",
         "Es ersetzt dabei vollständig die vorhandene Starterbatterie"
       ],
       "correct": 1,
