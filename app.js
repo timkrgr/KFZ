@@ -1,4 +1,4 @@
-const APP_VERSION = "v24";
+const APP_VERSION = "v25";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -931,17 +931,19 @@ function openTopic(topic, filter) {
 }
 
 function buildDeck() {
-  deck = allCards.filter((c) => {
+  const filtered = allCards.filter((c) => {
     if (currentTopic !== ALL_TOPIC && (c.category || "Allgemein") !== currentTopic) return false;
     if (currentFilter === "hard") return cardState(c.id) === "hard";
     return true;
   });
+  deck = shuffled(filtered);
   currentIndex = 0;
   render();
 }
 
 const OPTION_LETTERS = ["A", "B", "C", "D", "E", "F"];
 let mcAnswered = false;
+let currentMcOrder = []; // Anzeigeposition -> ursprünglicher Options-Index
 
 function render() {
   const hasCards = deck.length > 0;
@@ -978,9 +980,16 @@ function render() {
     els.progressText.textContent = `${answered} / ${totalSim} beantwortet`;
   } else {
     const scope = allCards.filter((c) => currentTopic === ALL_TOPIC || (c.category || "Allgemein") === currentTopic);
-    const knownCount = scope.filter((c) => progress.known[c.id]).length;
-    els.progressFill.style.width = scope.length ? `${(knownCount / scope.length) * 100}%` : "0%";
-    els.progressText.textContent = `${knownCount} / ${scope.length} gelernt`;
+    // Im "Alle Fragen"-Durchlauf zählt jede beantwortete Frage (richtig oder
+    // falsch) als erledigt, da sie in diesem Durchlauf nicht wiederkommt.
+    // Beim Üben der "Falschen Fragen" bleibt es bei "richtig gelernt", da
+    // falsch beantwortete Karten dort erneut drankommen.
+    const doneCount =
+      currentFilter === "hard"
+        ? scope.filter((c) => progress.known[c.id]).length
+        : scope.filter((c) => progress.known[c.id] || progress.hard[c.id]).length;
+    els.progressFill.style.width = scope.length ? `${(doneCount / scope.length) * 100}%` : "0%";
+    els.progressText.textContent = `${doneCount} / ${scope.length} gelernt`;
   }
 }
 
@@ -999,13 +1008,17 @@ function renderMcCard(card) {
   els.mcArea.classList.remove("has-explain");
   els.mcNextBar.hidden = true;
 
+  // Reihenfolge der Antwortmöglichkeiten bei jeder Anzeige neu mischen,
+  // damit die richtige Antwort nicht immer an derselben Stelle steht.
+  currentMcOrder = shuffled(card.options.map((_, i) => i));
+
   els.mcOptions.innerHTML = "";
-  card.options.forEach((optionText, i) => {
+  currentMcOrder.forEach((origIndex, displayIndex) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "mc-option";
-    btn.innerHTML = `<span class="mc-option-letter">${OPTION_LETTERS[i] || i + 1}</span><span>${escapeHtml(optionText)}</span>`;
-    btn.addEventListener("click", () => selectMcOption(card, i));
+    btn.innerHTML = `<span class="mc-option-letter">${OPTION_LETTERS[displayIndex] || displayIndex + 1}</span><span>${escapeHtml(card.options[origIndex])}</span>`;
+    btn.addEventListener("click", () => selectMcOption(card, origIndex));
     els.mcOptions.appendChild(btn);
   });
 }
@@ -1015,10 +1028,11 @@ function selectMcOption(card, selectedIndex) {
   mcAnswered = true;
 
   const buttons = Array.from(els.mcOptions.children);
-  buttons.forEach((btn, i) => {
+  buttons.forEach((btn, displayIndex) => {
     btn.classList.add("disabled");
-    if (i === card.correct) btn.classList.add("correct");
-    else if (i === selectedIndex) btn.classList.add("wrong");
+    const origIndex = currentMcOrder[displayIndex];
+    if (origIndex === card.correct) btn.classList.add("correct");
+    else if (origIndex === selectedIndex) btn.classList.add("wrong");
   });
 
   const isCorrect = selectedIndex === card.correct;
