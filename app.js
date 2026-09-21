@@ -2,6 +2,12 @@ const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
 
+const PROFILES = {
+  tim: { name: "Tim", color: "var(--accent)" },
+  huseyn: { name: "Huseyn", color: "var(--merk)" },
+};
+let currentProfile = null;
+
 const ICONS = [
   [/brems|abs\b/i, "🛑"],
   [/getriebe|kupplung/i, "⚙️"],
@@ -23,6 +29,12 @@ function iconForCategory(name) {
 }
 
 const els = {
+  profileGate: document.getElementById("profileGate"),
+  profileButtons: document.querySelectorAll(".profile-btn"),
+  activeProfileBadge: document.getElementById("activeProfileBadge"),
+  settingsProfileName: document.getElementById("settingsProfileName"),
+  switchProfileBtn: document.getElementById("switchProfileBtn"),
+
   tabButtons: document.querySelectorAll(".tab-btn"),
   tabHome: document.getElementById("tabHome"),
   tabStats: document.getElementById("tabStats"),
@@ -97,18 +109,18 @@ let sessionMode = "topic"; // "topic" | "simulation"
 let sessionResults = { right: 0, wrong: 0 };
 let simInterval = null;
 let simRemaining = 0;
-let progress = loadProgress();
+let progress = { known: {}, hard: {} };
 
 function loadProgress() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { known: {}, hard: {} };
+    return JSON.parse(localStorage.getItem(`${STORAGE_KEY}_${currentProfile}`)) || { known: {}, hard: {} };
   } catch {
     return { known: {}, hard: {} };
   }
 }
 
 function saveProgress() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  localStorage.setItem(`${STORAGE_KEY}_${currentProfile}`, JSON.stringify(progress));
 }
 
 function showToast(msg, ms = 2000) {
@@ -502,15 +514,14 @@ wrap.addEventListener("touchend", (e) => {
 // --- Simulation (Prüfung auf Zeit) ---
 
 function getSimCount() {
-  const v = parseInt(localStorage.getItem(SIM_COUNT_KEY), 10);
+  const v = parseInt(localStorage.getItem(`${SIM_COUNT_KEY}_${currentProfile}`), 10);
   return Number.isFinite(v) && v > 0 ? v : 20;
 }
 
-els.simCountInput.value = getSimCount();
 els.simCountInput.addEventListener("change", () => {
   const v = Math.max(5, Math.min(200, parseInt(els.simCountInput.value, 10) || 20));
   els.simCountInput.value = v;
-  localStorage.setItem(SIM_COUNT_KEY, String(v));
+  localStorage.setItem(`${SIM_COUNT_KEY}_${currentProfile}`, String(v));
 });
 
 function shuffled(arr) {
@@ -586,7 +597,8 @@ els.resultHomeBtn.addEventListener("click", goHome);
 els.reloadBtn.addEventListener("click", () => loadCards());
 
 els.resetBtn.addEventListener("click", () => {
-  if (confirm("Gesamten Lernfortschritt (alle Themen) zurücksetzen?")) {
+  const name = PROFILES[currentProfile]?.name || "";
+  if (confirm(`Gesamten Lernfortschritt von ${name} (alle Themen) zurücksetzen?`)) {
     progress = { known: {}, hard: {} };
     saveProgress();
     renderHome();
@@ -594,6 +606,30 @@ els.resetBtn.addEventListener("click", () => {
     showToast("Fortschritt zurückgesetzt");
   }
 });
+
+// --- Profil ---
+
+function selectProfile(id) {
+  currentProfile = id;
+  progress = loadProgress();
+  els.simCountInput.value = getSimCount();
+
+  const name = PROFILES[id].name;
+  els.activeProfileBadge.textContent = name;
+  els.settingsProfileName.textContent = name;
+  els.profileGate.hidden = true;
+
+  renderHome();
+  renderStats();
+}
+
+els.profileButtons.forEach((btn) => {
+  btn.addEventListener("click", () => selectProfile(btn.dataset.profile));
+});
+
+// Profilwechsel lädt die App neu, damit kein Timer/Zustand des vorigen Profils übrig bleibt.
+els.activeProfileBadge.addEventListener("click", () => location.reload());
+els.switchProfileBtn.addEventListener("click", () => location.reload());
 
 // --- Init ---
 

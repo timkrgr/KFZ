@@ -17,12 +17,32 @@
 <body>
 <div class="app">
 
+  <!-- ===== Profil-Auswahl (vor der eigentlichen App) ===== -->
+  <div id="profileGate" class="profile-gate">
+    <div class="profile-gate-inner">
+      <div class="brand-badge brand-badge-lg">🔧<span class="brand-badge-sub">KFZ</span></div>
+      <h1 class="profile-gate-title">Wer lernt gerade?</h1>
+      <p class="profile-gate-sub">Jeder hat seinen eigenen Fortschritt</p>
+      <div class="profile-list">
+        <button type="button" class="profile-btn" data-profile="tim" data-color="var(--accent)">
+          <span class="profile-avatar" style="background:var(--accent)">T</span>
+          <span class="profile-name">Tim</span>
+        </button>
+        <button type="button" class="profile-btn" data-profile="huseyn" data-color="var(--merk)">
+          <span class="profile-avatar" style="background:var(--merk)">H</span>
+          <span class="profile-name">Huseyn</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="tabContent">
   <!-- ===== TAB: Kategorien (Home) ===== -->
   <section id="tabHome" class="tab-view">
     <header class="brand-header">
       <div class="brand-badge">🔧<span class="brand-badge-sub">KFZ</span></div>
       <div class="brand-word">LERNEN<span class="brand-bang">!</span></div>
+      <button id="activeProfileBadge" class="profile-badge" type="button"></button>
     </header>
     <h1 class="page-title">Kategorien</h1>
 
@@ -74,6 +94,15 @@
     <h1 class="page-title">Einstellungen</h1>
 
     <div class="settings-group">
+      <label class="settings-label">Aktuelles Profil</label>
+      <div class="settings-profile-row">
+        <span id="settingsProfileName" class="settings-profile-name">–</span>
+        <button id="switchProfileBtn" class="btn btn-outline">🔁 Profil wechseln</button>
+      </div>
+      <p class="panel-hint">Tim und Huseyn haben getrennte Fortschritte auf diesem Gerät – beim Profilwechsel wird nichts überschrieben.</p>
+    </div>
+
+    <div class="settings-group">
       <label class="settings-label" for="simCountInput">Fragen pro Simulation</label>
       <input id="simCountInput" class="settings-input" type="number" min="5" max="200" step="5" value="20">
     </div>
@@ -84,7 +113,7 @@
     </div>
 
     <div class="settings-group">
-      <button id="resetBtn" class="btn btn-danger">🗑️ Gesamten Lernfortschritt zurücksetzen</button>
+      <button id="resetBtn" class="btn btn-danger">🗑️ Gesamten Lernfortschritt dieses Profils zurücksetzen</button>
     </div>
   </section>
   </div>
