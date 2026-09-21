@@ -1,4 +1,4 @@
-const APP_VERSION = "v39";
+const APP_VERSION = "v40";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const STREAK_KEY = "kfz_streak_v1";

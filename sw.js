@@ -1,15 +1,16 @@
-const CACHE_VERSION = "v39";
+const CACHE_VERSION = "v40";
 const CACHE_NAME = `kfz-karteikarten-${CACHE_VERSION}`;
 
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./style.css?v=39",
-  "./app.js?v=39",
+  "./style.css?v=40",
+  "./app.js?v=40",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
+  "./icons/logo-round.png",
   "./icons/avatar-tim.jpg",
   "./icons/avatar-huseyn.jpg",
 ];
