@@ -1,4 +1,4 @@
-const APP_VERSION = "v15";
+const APP_VERSION = "v16";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -86,6 +86,7 @@ const els = {
   mcOptions: document.getElementById("mcOptions"),
   mcExplain: document.getElementById("mcExplain"),
   mcExplainText: document.getElementById("mcExplainText"),
+  mcNextBar: document.getElementById("mcNextBar"),
   mcNextBtn: document.getElementById("mcNextBtn"),
 
   resultView: document.getElementById("resultView"),
@@ -520,7 +521,10 @@ function render() {
   const hasCards = deck.length > 0;
   els.cardArea.hidden = !hasCards;
   els.emptyState.hidden = hasCards;
-  if (!hasCards) return;
+  if (!hasCards) {
+    els.mcNextBar.hidden = true;
+    return;
+  }
 
   if (currentIndex >= deck.length) currentIndex = 0;
   const card = deck[currentIndex];
@@ -533,6 +537,7 @@ function render() {
   if (isMc) {
     renderMcCard(card);
   } else {
+    els.mcNextBar.hidden = true;
     els.flashcard.classList.remove("flipped");
     els.categoryTag.textContent = card.category || "Allgemein";
     els.categoryTagBack.textContent = card.category || "Allgemein";
@@ -565,6 +570,8 @@ function renderMcCard(card) {
   els.mcQuestionText.textContent = card.question;
   els.mcExplain.hidden = true;
   els.mcExplainText.textContent = card.answer || "";
+  els.mcArea.classList.remove("has-explain");
+  els.mcNextBar.hidden = true;
 
   els.mcOptions.innerHTML = "";
   card.options.forEach((optionText, i) => {
@@ -592,6 +599,8 @@ function selectMcOption(card, selectedIndex) {
   recordAnswer(isCorrect ? "known" : "hard");
 
   els.mcExplain.hidden = false;
+  els.mcArea.classList.add("has-explain");
+  els.mcNextBar.hidden = false;
 }
 
 els.mcNextBtn.addEventListener("click", () => {
@@ -749,6 +758,7 @@ function endSimulation() {
   stopSimTimer();
   els.cardArea.hidden = true;
   els.emptyState.hidden = true;
+  els.mcNextBar.hidden = true;
   els.resultView.hidden = false;
 
   const { right, wrong } = sessionResults;
