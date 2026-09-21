@@ -69,8 +69,24 @@ const els = {
   resultRepeatBtn: document.getElementById("resultRepeatBtn"),
   resultHomeBtn: document.getElementById("resultHomeBtn"),
 
+  sheetBackdrop: document.getElementById("sheetBackdrop"),
+  actionSheet: document.getElementById("actionSheet"),
+  sheetTitle: document.getElementById("sheetTitle"),
+  sheetStudyBtn: document.getElementById("sheetStudyBtn"),
+  sheetWrongBtn: document.getElementById("sheetWrongBtn"),
+  sheetResetBtn: document.getElementById("sheetResetBtn"),
+  sheetCancelBtn: document.getElementById("sheetCancelBtn"),
+
+  wrongListView: document.getElementById("wrongListView"),
+  wrongBackBtn: document.getElementById("wrongBackBtn"),
+  wrongListTitle: document.getElementById("wrongListTitle"),
+  wrongList: document.getElementById("wrongList"),
+  wrongListEmpty: document.getElementById("wrongListEmpty"),
+
   toast: document.getElementById("toast"),
 };
+
+let sheetCategory = null;
 
 let allCards = [];
 let deck = [];
@@ -218,10 +234,10 @@ function renderHome() {
     const knownInCat = cardsInCat.filter((c) => progress.known[c.id]).length;
     const totalInCat = cardsInCat.length;
     const pctCat = totalInCat ? Math.round((knownInCat / totalInCat) * 100) : 0;
-    const hasProgress = knownInCat > 0 || cardsInCat.some((c) => progress.hard[c.id]);
 
-    const item = document.createElement("div");
-    item.className = "topic-item";
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "topic-item topic-item-btn";
     item.innerHTML = `
       <div class="topic-item-row">
         <span class="topic-icon">${iconForCategory(cat)}</span>
@@ -234,16 +250,8 @@ function renderHome() {
         <div class="topic-progress-track"><div class="topic-progress-fill" style="width:${pctCat}%"></div></div>
         <span class="topic-pct">${pctCat}%</span>
       </div>
-      <div class="topic-actions">
-        <button type="button" class="btn start-btn">${hasProgress ? "▶ Fortsetzen" : "⚡ Starten"}</button>
-        ${hasProgress ? '<button type="button" class="icon-reset-btn" title="Fortschritt zurücksetzen">↺</button>' : ""}
-      </div>
     `;
-    item.querySelector(".start-btn").addEventListener("click", () => openTopic(cat, "all"));
-    const resetBtn = item.querySelector(".icon-reset-btn");
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => resetTopicProgress(cat));
-    }
+    item.addEventListener("click", () => openActionSheet(cat));
     els.topicList.appendChild(item);
   });
 }
@@ -299,17 +307,12 @@ function renderStats() {
         <span>❌ ${hardInCat.length} falsch</span>
         <span>◻️ ${openInCat} offen</span>
       </div>
-      ${hardInCat.length ? `
-      <details class="stats-details">
-        <summary>Falsche Fragen anzeigen (${hardInCat.length})</summary>
-        <ul class="stats-wrong-list">
-          ${hardInCat.map((c) => `<li>${escapeHtml(c.question)}</li>`).join("")}
-        </ul>
-      </details>` : ""}
       <div class="stats-reset-row">
+        <button type="button" class="btn btn-outline stats-wrong-btn">📋 Falsche Fragen anzeigen</button>
         <button type="button" class="btn btn-outline stats-reset-btn">↺ Antworten zurücksetzen (0 richtig, 0 falsch)</button>
       </div>
     `;
+    row.querySelector(".stats-wrong-btn").addEventListener("click", () => openWrongList(cat));
     row.querySelector(".stats-reset-btn").addEventListener("click", () => {
       resetTopicProgress(cat);
       renderStats();
@@ -317,6 +320,56 @@ function renderStats() {
     els.statsList.appendChild(row);
   });
 }
+
+// --- Aktionsmenü (Üben / Zurücksetzen / Falsche Fragen) ---
+
+function openActionSheet(cat) {
+  sheetCategory = cat;
+  els.sheetTitle.textContent = cat;
+  els.sheetBackdrop.hidden = false;
+  els.actionSheet.hidden = false;
+}
+
+function closeActionSheet() {
+  els.sheetBackdrop.hidden = true;
+  els.actionSheet.hidden = true;
+  sheetCategory = null;
+}
+
+els.sheetBackdrop.addEventListener("click", closeActionSheet);
+els.sheetCancelBtn.addEventListener("click", closeActionSheet);
+
+els.sheetStudyBtn.addEventListener("click", () => {
+  const cat = sheetCategory;
+  closeActionSheet();
+  if (cat) openTopic(cat, "all");
+});
+
+els.sheetResetBtn.addEventListener("click", () => {
+  const cat = sheetCategory;
+  closeActionSheet();
+  if (cat) resetTopicProgress(cat);
+});
+
+els.sheetWrongBtn.addEventListener("click", () => {
+  const cat = sheetCategory;
+  closeActionSheet();
+  if (cat) openWrongList(cat);
+});
+
+// --- Liste der falschen Fragen ---
+
+function openWrongList(cat) {
+  const wrongCards = allCards.filter((c) => (c.category || "Allgemein") === cat && progress.hard[c.id]);
+  els.wrongListTitle.textContent = `Falsche Fragen · ${cat}`;
+  els.wrongListEmpty.hidden = wrongCards.length > 0;
+  els.wrongList.innerHTML = wrongCards.map((c) => `<li>${escapeHtml(c.question)}</li>`).join("");
+  els.wrongListView.hidden = false;
+}
+
+els.wrongBackBtn.addEventListener("click", () => {
+  els.wrongListView.hidden = true;
+});
 
 // --- Study view: Themen-Lernmodus ---
 
