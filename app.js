@@ -1,4 +1,4 @@
-const APP_VERSION = "v27";
+const APP_VERSION = "v28";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -933,12 +933,23 @@ function openTopic(topic, filter) {
 }
 
 function buildDeck() {
-  const filtered = allCards.filter((c) => {
-    if (currentTopic !== ALL_TOPIC && (c.category || "Allgemein") !== currentTopic) return false;
-    if (currentFilter === "hard") return cardState(c.id) === "hard";
-    return true;
-  });
-  deck = shuffled(filtered);
+  const categoryCards = allCards.filter(
+    (c) => currentTopic === ALL_TOPIC || (c.category || "Allgemein") === currentTopic
+  );
+
+  let pool;
+  if (currentFilter === "hard") {
+    pool = categoryCards.filter((c) => cardState(c.id) === "hard");
+  } else {
+    // Beim normalen Üben zuerst noch nie beantwortete Fragen zeigen, damit
+    // schon beantwortete nicht sofort wiederkommen. Erst wenn wirklich jede
+    // Frage im Thema mindestens einmal beantwortet wurde (oder das Thema
+    // zurückgesetzt wurde), startet ein neuer voller Durchlauf.
+    const unseen = categoryCards.filter((c) => cardState(c.id) === "new");
+    pool = unseen.length > 0 ? unseen : categoryCards;
+  }
+
+  deck = shuffled(pool);
   currentIndex = 0;
   render();
 }
