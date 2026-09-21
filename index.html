@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 <div class="app">
@@ -70,9 +70,9 @@
         <span class="mini-sub">Prüfung auf Zeit</span>
       </button>
       <button id="merkBtn" class="mini-card mini-merk">
-        <span class="mini-icon">🔖</span>
-        <span class="mini-title">Gemerkt</span>
-        <span class="mini-sub"><span id="merkCount">0</span> unsicher</span>
+        <span class="mini-icon">❌</span>
+        <span class="mini-title">Falsche Fragen</span>
+        <span class="mini-sub"><span id="merkCount">0</span> falsch</span>
       </button>
     </div>
 
@@ -92,8 +92,11 @@
       <div class="battle-winner" id="battleWinner"></div>
     </div>
 
-    <h2 class="section-title">Themen im Vergleich</h2>
-    <div id="battleTopics" class="battle-topics"></div>
+    <button id="battleTopicsToggle" class="collapse-toggle" type="button" aria-expanded="false">
+      <span>Themen im Vergleich</span>
+      <span class="collapse-chevron">▾</span>
+    </button>
+    <div id="battleTopics" class="battle-topics" hidden></div>
 
     <h2 class="section-title">Meine Statistik</h2>
     <div class="stats-summary" id="statsSummary"></div>
@@ -206,6 +209,10 @@
         </svg>
         <div class="result-ring-label"><span id="resultPct">0</span><small>%</small></div>
       </div>
+      <div class="result-grade" id="resultGrade">
+        <span class="result-grade-note">Note 1</span>
+        <span class="result-grade-label">Sehr gut</span>
+      </div>
       <p class="result-line"><span id="resultRight">0</span> richtig · <span id="resultWrong">0</span> falsch</p>
       <div class="result-actions">
         <button id="resultRepeatBtn" class="btn">🔁 Nochmal</button>
@@ -232,6 +239,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=19"></script>
+<script src="app.js?v=20"></script>
 </body>
 </html>

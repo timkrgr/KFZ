@@ -464,6 +464,32 @@ html, body {
   margin-bottom: 6px;
 }
 
+.collapse-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 22px 0 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.collapse-chevron {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.collapse-toggle[aria-expanded="true"] .collapse-chevron {
+  transform: rotate(180deg);
+}
+
 .battle-topic-row {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1055,6 +1081,30 @@ html, body {
 }
 
 .result-ring-label small { font-size: 1rem; margin-left: 2px; }
+
+.result-grade {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.result-grade-note {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.result-grade-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.result-grade.grade-good .result-grade-note { color: var(--right); }
+.result-grade.grade-mid .result-grade-note { color: var(--sim); }
+.result-grade.grade-bad .result-grade-note { color: var(--wrong); }
 
 .result-line {
   font-size: 1rem;

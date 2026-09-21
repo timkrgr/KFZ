@@ -1,4 +1,4 @@
-const APP_VERSION = "v19";
+const APP_VERSION = "v20";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -53,6 +53,7 @@ const els = {
   battleVersus: document.getElementById("battleVersus"),
   battleWinner: document.getElementById("battleWinner"),
   battleTopics: document.getElementById("battleTopics"),
+  battleTopicsToggle: document.getElementById("battleTopicsToggle"),
 
   statsSummary: document.getElementById("statsSummary"),
   statsList: document.getElementById("statsList"),
@@ -94,6 +95,7 @@ const els = {
   resultPct: document.getElementById("resultPct"),
   resultRight: document.getElementById("resultRight"),
   resultWrong: document.getElementById("resultWrong"),
+  resultGrade: document.getElementById("resultGrade"),
   resultRepeatBtn: document.getElementById("resultRepeatBtn"),
   resultHomeBtn: document.getElementById("resultHomeBtn"),
 
@@ -124,6 +126,9 @@ let currentTopic = ALL_TOPIC;
 let currentFilter = "all";
 let sessionMode = "topic"; // "topic" | "simulation"
 let sessionResults = { right: 0, wrong: 0 };
+let topicAnsweredCount = 0;
+let sessionEndKind = "topic"; // "topic" | "simulation" – welcher Modus gerade beendet wurde
+let sessionEndTopic = ALL_TOPIC;
 let simInterval = null;
 let simRemaining = 0;
 let progress = { known: {}, hard: {} };
@@ -207,6 +212,12 @@ els.tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => switchTab(btn.dataset.tab));
 });
 
+els.battleTopicsToggle.addEventListener("click", () => {
+  const expanded = els.battleTopicsToggle.getAttribute("aria-expanded") === "true";
+  els.battleTopicsToggle.setAttribute("aria-expanded", String(!expanded));
+  els.battleTopics.hidden = expanded;
+});
+
 // Zwischen den Tabs wischen (wie zwischen iPhone-Homescreen-Seiten)
 const tabContent = document.getElementById("tabContent");
 let tabTouchStartX = null;
@@ -285,13 +296,18 @@ function renderHome() {
   });
 }
 
-function resetTopicProgress(cat) {
-  if (!confirm(`Fortschritt für „${cat}“ zurücksetzen?`)) return;
-  allCards.filter((c) => (c.category || "Allgemein") === cat).forEach((c) => {
+function clearTopicProgress(cat) {
+  const cardsInScope = cat === ALL_TOPIC ? allCards : allCards.filter((c) => (c.category || "Allgemein") === cat);
+  cardsInScope.forEach((c) => {
     delete progress.known[c.id];
     delete progress.hard[c.id];
   });
   saveProgress();
+}
+
+function resetTopicProgress(cat) {
+  if (!confirm(`Fortschritt für „${cat}“ zurücksetzen?`)) return;
+  clearTopicProgress(cat);
   renderHome();
   showToast("Zurückgesetzt");
 }
@@ -478,6 +494,8 @@ function openTopic(topic, filter) {
   sessionMode = "topic";
   currentTopic = topic;
   currentFilter = filter;
+  sessionResults = { right: 0, wrong: 0 };
+  topicAnsweredCount = 0;
   els.studyView.hidden = false;
   els.simTimer.hidden = true;
   els.resultView.hidden = true;
@@ -621,6 +639,15 @@ function advanceAfterAnswer(state) {
     return;
   }
 
+  if (currentFilter === "all") {
+    sessionResults[state === "known" ? "right" : "wrong"] += 1;
+    topicAnsweredCount += 1;
+    if (topicAnsweredCount >= deck.length) {
+      endTopicSession();
+      return;
+    }
+  }
+
   currentIndex = (currentIndex + 1) % deck.length;
   render();
 }
@@ -734,25 +761,58 @@ function updateSimTimerText() {
   els.simTimerText.textContent = `${m}:${String(s).padStart(2, "0")}`;
 }
 
-function endSimulation() {
-  stopSimTimer();
+// Deutscher Notenspiegel (1 = sehr gut ... 6 = ungenügend)
+function gradeForPct(pct) {
+  if (pct >= 92) return { note: 1, label: "Sehr gut", cls: "grade-good" };
+  if (pct >= 81) return { note: 2, label: "Gut", cls: "grade-good" };
+  if (pct >= 67) return { note: 3, label: "Befriedigend", cls: "grade-mid" };
+  if (pct >= 50) return { note: 4, label: "Ausreichend", cls: "grade-mid" };
+  if (pct >= 30) return { note: 5, label: "Mangelhaft", cls: "grade-bad" };
+  return { note: 6, label: "Ungenügend", cls: "grade-bad" };
+}
+
+function showResult(right, wrong) {
   els.cardArea.hidden = true;
   els.emptyState.hidden = true;
   els.mcNextBar.hidden = true;
   els.resultView.hidden = false;
 
-  const { right, wrong } = sessionResults;
   const answered = right + wrong;
   const pct = answered ? Math.round((right / answered) * 100) : 0;
+  const grade = gradeForPct(pct);
 
   els.resultPct.textContent = pct;
   setRing(els.resultRingFill, 52, pct);
   els.resultRight.textContent = right;
   els.resultWrong.textContent = wrong;
+  els.resultGrade.className = `result-grade ${grade.cls}`;
+  els.resultGrade.querySelector(".result-grade-note").textContent = `Note ${grade.note}`;
+  els.resultGrade.querySelector(".result-grade-label").textContent = grade.label;
+}
+
+function endSimulation() {
+  stopSimTimer();
+  sessionEndKind = "simulation";
+  showResult(sessionResults.right, sessionResults.wrong);
+}
+
+function endTopicSession() {
+  sessionEndKind = "topic";
+  sessionEndTopic = currentTopic;
+  showResult(sessionResults.right, sessionResults.wrong);
 }
 
 els.simBtn.addEventListener("click", startSimulation);
-els.resultRepeatBtn.addEventListener("click", startSimulation);
+
+els.resultRepeatBtn.addEventListener("click", () => {
+  if (sessionEndKind === "simulation") {
+    startSimulation();
+  } else {
+    clearTopicProgress(sessionEndTopic);
+    openTopic(sessionEndTopic, "all");
+  }
+});
+
 els.resultHomeBtn.addEventListener("click", goHome);
 
 // --- Einstellungen ---
