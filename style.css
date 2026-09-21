@@ -306,6 +306,9 @@ html, body {
   flex-shrink: 0;
 }
 
+.cat-icon { width: 22px; height: 22px; display: block; }
+.stats-icon .cat-icon { width: 16px; height: 16px; }
+
 .topic-info { flex: 1; min-width: 0; }
 
 .topic-name {

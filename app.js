@@ -1,4 +1,4 @@
-const APP_VERSION = "v28";
+const APP_VERSION = "v29";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -11,24 +11,53 @@ const PROFILES = {
 };
 let currentProfile = null;
 
-const ICONS = [
-  [/brems|abs\b/i, "🛑"],
-  [/getriebe|kupplung/i, "⚙️"],
-  [/motor|antrieb|verbrennung|zylinder/i, "🏎️"],
-  [/elektr|bordnetz|start|lade|batterie/i, "⚡"],
-  [/klima|komfort/i, "❄️"],
-  [/sicherheit|airbag|unfall/i, "🛡️"],
-  [/fahrwerk|lenkung|feder|stoßdämpfer/i, "🛞"],
-  [/diagnose|fehler|obd/i, "🩺"],
-  [/wiso|sozial|wirtschaft|recht|kunde/i, "📘"],
-  [/hu\b|prüfung|abnahme/i, "✅"],
-  [/reifen|rad/i, "🛞"],
-  [/abgas|umwelt/i, "🌫️"],
-];
+// Handgezeichnete SVG-Icons statt generischer Emojis, damit jede Kategorie
+// ein thematisch passendes, gut erkennbares Symbol bekommt (z. B. eine
+// Bremsscheibe für Bremsanlage). currentColor + Farbe wird direkt am
+// <svg>-Element gesetzt, damit sich an den Aufrufstellen nichts ändern muss.
+const CATEGORY_ICONS = {
+  "Motor": {
+    color: "#ea580c",
+    svg: `<rect x="4" y="9" width="14" height="9" rx="1.5"/><rect x="7" y="4" width="3" height="5"/><rect x="12" y="4" width="3" height="5"/><circle cx="19" cy="14.5" r="2.3"/><line x1="7" y1="18" x2="7" y2="20"/><line x1="15" y1="18" x2="15" y2="20"/>`,
+  },
+  "Motormanagement & Abgasnachbehandlung": {
+    color: "#22c55e",
+    svg: `<path d="M2 13.5h11"/><rect x="13" y="10.5" width="6" height="6" rx="1.5"/><path d="M20.5 9c1 1 1 3 0 4"/><path d="M7.5 6c1 1 1 3 0 4"/><path d="M4.5 4c1 1 1 3 0 4"/>`,
+  },
+  "Kraftübertragung": {
+    color: "#94a3b8",
+    svg: `<circle cx="12" cy="12" r="3.1"/><path d="M12 3.2v3M12 17.8v3M3.2 12h3M17.8 12h3M5.8 5.8l2.1 2.1M16.1 16.1l2.1 2.1M18.2 5.8l-2.1 2.1M7.9 16.1l-2.1 2.1"/>`,
+  },
+  "Fahrwerk": {
+    color: "#3b82f6",
+    svg: `<path d="M8 2v2.4"/><path d="M8 4.4 5.8 6 10.2 7.6 5.8 9.2 10.2 10.8 5.8 12.4 10.2 14 8 15.6"/><path d="M8 15.6V21"/><line x1="16.5" y1="4" x2="16.5" y2="20"/><rect x="14.7" y="9.3" width="3.6" height="6.4" rx="1.2"/>`,
+  },
+  "Bremsanlage": {
+    color: "#ef4444",
+    svg: `<circle cx="12" cy="13" r="7.4"/><circle cx="12" cy="13" r="2.1"/><circle cx="12" cy="7.2" r="0.55" fill="currentColor" stroke="none"/><circle cx="16.8" cy="16.2" r="0.55" fill="currentColor" stroke="none"/><circle cx="7.2" cy="16.2" r="0.55" fill="currentColor" stroke="none"/><rect x="8.3" y="2.6" width="7.4" height="5.6" rx="1.3"/>`,
+  },
+  "Elektrik & Elektronik": {
+    color: "#eab308",
+    svg: `<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="currentColor" stroke="none"/>`,
+  },
+  "Bus-Systeme & Diagnose": {
+    color: "#a855f7",
+    svg: `<line x1="3" y1="12" x2="21" y2="12"/><line x1="6" y1="12" x2="6" y2="6.5"/><line x1="12" y1="12" x2="12" y2="17.5"/><line x1="18" y1="12" x2="18" y2="6.5"/><circle cx="6" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="2" fill="currentColor" stroke="none"/>`,
+  },
+  "Hochvolt": {
+    color: "#f59e0b",
+    svg: `<path d="M12 3 2 20h20L12 3Z"/><path d="M13.2 9l-4 6h3l-1 4 5-7h-3l1-3Z" fill="currentColor" stroke="none"/>`,
+  },
+};
+
+const DEFAULT_ICON = {
+  color: "#4c8dff",
+  svg: `<path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/>`,
+};
 
 function iconForCategory(name) {
-  const hit = ICONS.find(([re]) => re.test(name));
-  return hit ? hit[1] : "🔧";
+  const def = CATEGORY_ICONS[name] || DEFAULT_ICON;
+  return `<svg class="cat-icon" style="color:${def.color}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${def.svg}</svg>`;
 }
 
 const els = {
