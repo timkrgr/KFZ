@@ -1,7 +1,9 @@
-const APP_VERSION = "v22";
+const APP_VERSION = "v23";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
+const DB_URL = "https://kfz-lernen-default-rtdb.europe-west1.firebasedatabase.app";
+const CLOUD_SYNC_INTERVAL_MS = 2 * 60 * 1000; // alle 2 Minuten mit dem anderen Profil abgleichen
 
 const PROFILES = {
   tim: { name: "Tim", color: "var(--accent)", avatar: "icons/avatar-tim.jpg" },
@@ -149,6 +151,47 @@ function loadProgress() {
 
 function saveProgress() {
   localStorage.setItem(`${STORAGE_KEY}_${currentProfile}`, JSON.stringify(progress));
+  pushProgressToCloud();
+}
+
+// --- Cloud-Sync (Firebase Realtime Database) ---
+// Damit Tim & Huseyn auf getrennten Geräten den Fortschritt des anderen sehen:
+// eigene Änderungen werden sofort hochgeladen, der Stand des anderen Profils
+// wird regelmäßig im Hintergrund abgeholt und lokal gecacht.
+
+function pushProgressToCloud() {
+  if (!currentProfile) return;
+  fetch(`${DB_URL}/progress/${currentProfile}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(progress),
+  }).catch(() => {});
+}
+
+async function syncFromCloud() {
+  try {
+    const res = await fetch(`${DB_URL}/progress.json?ts=${Date.now()}`, { cache: "no-store" });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data) return;
+    let changed = false;
+    Object.keys(PROFILES).forEach((id) => {
+      if (id === currentProfile) return; // eigenes Profil bleibt lokal führend
+      if (data[id]) {
+        localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(data[id]));
+        changed = true;
+      }
+    });
+    if (changed) renderStats();
+  } catch {
+    // offline – nächster Sync-Versuch übernimmt
+  }
+}
+
+function startCloudSync() {
+  syncFromCloud();
+  clearInterval(startCloudSync._interval);
+  startCloudSync._interval = setInterval(syncFromCloud, CLOUD_SYNC_INTERVAL_MS);
 }
 
 function showToast(msg, ms = 2000) {
@@ -1217,6 +1260,7 @@ function selectProfile(id) {
 
   renderHome();
   renderStats();
+  startCloudSync();
 }
 
 els.profileButtons.forEach((btn) => {
@@ -1246,5 +1290,8 @@ if ("serviceWorker" in navigator) {
 }
 
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") loadCards({ silent: true });
+  if (document.visibilityState === "visible") {
+    loadCards({ silent: true });
+    if (currentProfile) syncFromCloud();
+  }
 });
