@@ -1,4 +1,4 @@
-const APP_VERSION = "v21";
+const APP_VERSION = "v22";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -39,7 +39,13 @@ const els = {
   tabButtons: document.querySelectorAll(".tab-btn"),
   tabHome: document.getElementById("tabHome"),
   tabStats: document.getElementById("tabStats"),
+  tabExplain: document.getElementById("tabExplain"),
   tabSettings: document.getElementById("tabSettings"),
+
+  explainList: document.getElementById("explainList"),
+  explainView: document.getElementById("explainView"),
+  explainBackBtn: document.getElementById("explainBackBtn"),
+  explainContent: document.getElementById("explainContent"),
 
   heroBtn: document.getElementById("heroBtn"),
   heroRingFill: document.getElementById("heroRingFill"),
@@ -196,16 +202,17 @@ async function loadCards({ silent = false } = {}) {
 
 // --- Tabs ---
 
-const TAB_ORDER = ["tabHome", "tabStats", "tabSettings"];
+const TAB_ORDER = ["tabHome", "tabStats", "tabExplain", "tabSettings"];
 let activeTabIndex = 0;
 
 function switchTab(tabId) {
   activeTabIndex = TAB_ORDER.indexOf(tabId);
-  [els.tabHome, els.tabStats, els.tabSettings].forEach((el) => {
+  [els.tabHome, els.tabStats, els.tabExplain, els.tabSettings].forEach((el) => {
     el.hidden = el.id !== tabId;
   });
   els.tabButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.tab === tabId));
   if (tabId === "tabStats") renderStats();
+  if (tabId === "tabExplain") renderExplainList();
 }
 
 els.tabButtons.forEach((btn) => {
@@ -451,6 +458,349 @@ function renderStats() {
     els.statsList.appendChild(row);
   });
 }
+
+// --- Erklärungen ---
+
+const EXPLANATIONS = {
+  "Motor": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Motor</h1>
+    <p class="explain-lead">Der Verbrennungsmotor wandelt die im Kraftstoff gespeicherte chemische Energie durch Verbrennung in mechanische Energie (Drehbewegung der Kurbelwelle) um. Fast alle Kfz-Motoren arbeiten nach dem Viertakt-Prinzip.</p>
+
+    <h2>Das Viertakt-Prinzip</h2>
+    <p>Ein Arbeitsspiel besteht aus vier Kolbenhüben (= zwei Kurbelwellenumdrehungen = 720°):</p>
+    <div class="explain-diagram">
+      <svg viewBox="0 0 400 120" width="100%">
+        <g font-family="sans-serif" font-size="11" fill="var(--text)">
+          <rect x="10" y="20" width="80" height="70" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="30" y1="30" x2="70" y2="30" stroke="var(--accent)" stroke-width="3"/>
+          <rect x="25" y="55" width="40" height="25" fill="var(--accent)" opacity="0.6"/>
+          <text x="50" y="105" text-anchor="middle">1. Ansaugen</text>
+
+          <rect x="110" y="20" width="80" height="70" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <rect x="125" y="35" width="40" height="25" fill="var(--accent)" opacity="0.6"/>
+          <text x="150" y="105" text-anchor="middle">2. Verdichten</text>
+
+          <rect x="210" y="20" width="80" height="70" rx="6" fill="none" stroke="var(--wrong)" stroke-width="2"/>
+          <circle cx="250" cy="40" r="6" fill="var(--wrong)"/>
+          <rect x="225" y="55" width="40" height="25" fill="var(--accent)" opacity="0.6"/>
+          <text x="250" y="105" text-anchor="middle">3. Arbeiten</text>
+
+          <rect x="310" y="20" width="80" height="70" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="330" y1="30" x2="370" y2="30" stroke="var(--right)" stroke-width="3"/>
+          <rect x="325" y="35" width="40" height="25" fill="var(--accent)" opacity="0.6"/>
+          <text x="350" y="105" text-anchor="middle">4. Ausstoßen</text>
+        </g>
+      </svg>
+      <figcaption>Die vier Takte: Ansaugen (Einlassventil offen) → Verdichten (beide Ventile zu) → Arbeiten (Zündung/Einspritzung, Kolben wird nach unten gedrückt) → Ausstoßen (Auslassventil offen).</figcaption>
+    </div>
+    <ol>
+      <li><strong>1. Takt – Ansaugen:</strong> Einlassventil öffnet, der Kolben bewegt sich vom oberen (OT) zum unteren Totpunkt (UT) und saugt Luft (Diesel) bzw. Luft-Kraftstoff-Gemisch (Benziner) an.</li>
+      <li><strong>2. Takt – Verdichten:</strong> Beide Ventile sind geschlossen, der Kolben bewegt sich nach OT und verdichtet das Gasgemisch stark (Ottomotor ca. 8-12:1, Diesel ca. 16-22:1). Dabei steigen Druck und Temperatur.</li>
+      <li><strong>3. Takt – Arbeiten (Verbrennung/Expansion):</strong> Beim Ottomotor zündet die Zündkerze das Gemisch, beim Dieselmotor entzündet sich der eingespritzte Kraftstoff durch die hohe Verdichtungswärme selbst (Selbstzündung). Der entstehende Druck drückt den Kolben nach UT – das ist der einzige Takt, der tatsächlich Arbeit verrichtet.</li>
+      <li><strong>4. Takt – Ausstoßen:</strong> Auslassventil öffnet, der Kolben schiebt die Abgase nach OT aus dem Zylinder.</li>
+    </ol>
+
+    <h2>Ottomotor vs. Dieselmotor</h2>
+    <p>Der <strong>Ottomotor</strong> saugt in der Regel ein Luft-Kraftstoff-Gemisch an (bei Direkteinspritzung nur Luft, Kraftstoff wird später eingespritzt) und benötigt zur Zündung eine Zündkerze (Fremdzündung). Der <strong>Dieselmotor</strong> saugt reine Luft an, verdichtet sie stark, wodurch sie sich auf über 700°C erhitzt, und der kurz vor OT eingespritzte Kraftstoff entzündet sich von selbst (Selbstzündung/Kompressionszündung).</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Bei einer Prüfungsfrage nach dem Zündverfahren gilt: Ottomotor = Fremdzündung durch Zündkerze, Dieselmotor = Selbstzündung durch Verdichtung. Merke: "Otto zündet, Diesel drückt".</div>
+
+    <h2>Kurbeltrieb</h2>
+    <p>Der Kurbeltrieb wandelt die geradlinige (oszillierende) Bewegung des Kolbens in eine Drehbewegung um. Er besteht aus Kolben, Kolbenbolzen, Pleuelstange (Pleuel) und Kurbelwelle. Die Kurbelwelle ist über Kurbelwellenlager im Motorblock gelagert und gibt das Drehmoment über das Schwungrad an den Antriebsstrang ab.</p>
+
+    <h2>Ventilsteuerung</h2>
+    <p>Die Nockenwelle öffnet und schließt die Ein- und Auslassventile im richtigen Takt. Sie wird über Zahnriemen, Steuerkette oder Zahnräder synchron zur Kurbelwelle angetrieben (bei einer vollen Kurbelwellenumdrehung dreht sich die Nockenwelle nur halb so schnell, da ein Arbeitsspiel zwei Kurbelwellenumdrehungen umfasst). Variable Ventilsteuerungen (z. B. VANOS, VVT-i) passen die Steuerzeiten an die Last an, um Verbrauch, Leistung und Emissionen zu optimieren.</p>
+
+    <h2>Schmierung und Kühlung</h2>
+    <p>Der <strong>Ölkreislauf</strong> schmiert bewegte Teile (Kurbelwellenlager, Nockenwelle, Kolben), reduziert Reibung und Verschleiß und transportiert zusätzlich Wärme ab. Die <strong>Kühlung</strong> (meist Wasserkühlung mit Kühlmittelkreislauf, Thermostat, Kühler und Wasserpumpe) hält den Motor im optimalen Betriebstemperaturbereich (ca. 90°C), da sowohl Über- als auch Unterhitzung Verschleiß und Wirkungsgrad negativ beeinflussen.</p>
+  `,
+
+  "Motormanagement & Abgasnachbehandlung": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Motormanagement &amp; Abgasnachbehandlung</h1>
+    <p class="explain-lead">Das Motorsteuergerät (ECU/Motorsteuergerät) berechnet anhand zahlreicher Sensordaten in Echtzeit Einspritzmenge, Einspritzzeitpunkt und Zündzeitpunkt – mit dem Ziel maximale Effizienz bei minimalen Schadstoffemissionen.</p>
+
+    <h2>Wichtige Sensoren</h2>
+    <ul>
+      <li><strong>Luftmassenmesser (LMM/HFM):</strong> misst die angesaugte Luftmasse – Grundlage für die richtige Kraftstoffmenge.</li>
+      <li><strong>Lambdasonde:</strong> misst den Restsauerstoffgehalt im Abgas und meldet, ob das Gemisch zu fett oder zu mager ist.</li>
+      <li><strong>Klopfsensor:</strong> erkennt unkontrollierte Selbstzündung (Klingeln) beim Ottomotor, worauf die Zündung zurückgenommen wird, um Motorschäden zu vermeiden.</li>
+      <li><strong>Nockenwellen-/Kurbelwellensensor:</strong> liefert die genaue Motorposition/-drehzahl für den korrekten Zünd- und Einspritzzeitpunkt.</li>
+      <li><strong>Ansauglufttemperatur- und Kühlmitteltemperatursensor:</strong> liefern Korrekturwerte, u. a. für die Kaltstartanreicherung.</li>
+    </ul>
+
+    <h2>Die Lambdasonde und der Lambda-Wert (λ)</h2>
+    <p>Lambda beschreibt das Verhältnis von tatsächlich zugeführter Luftmasse zum theoretischen Luftbedarf. <strong>λ = 1</strong> bedeutet ein stöchiometrisches Gemisch (ca. 14,7 kg Luft je 1 kg Kraftstoff) – optimal für die Funktion des Drei-Wege-Katalysators. λ &lt; 1 = fettes Gemisch (Kraftstoffüberschuss), λ &gt; 1 = mageres Gemisch (Luftüberschuss).</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Eine defekte Lambdasonde führt zu falscher Gemischregelung, dadurch steigt der Verbrauch und die Abgaswerte verschlechtern sich – die Motorkontrollleuchte leuchtet und im Fehlerspeicher steht ein Lambda-bezogener Fehlercode.</p>
+
+    <h2>Abgasnachbehandlung beim Ottomotor</h2>
+    <p>Der <strong>Drei-Wege-Katalysator</strong> wandelt gleichzeitig drei Schadstoffe um: Kohlenmonoxid (CO) und unverbrannte Kohlenwasserstoffe (HC) werden oxidiert (zu CO₂ und H₂O), Stickoxide (NOx) werden reduziert (zu N₂). Das funktioniert nur zuverlässig bei λ = 1, daher die enge Kopplung mit der Lambdaregelung.</p>
+
+    <h2>Abgasnachbehandlung beim Diesel</h2>
+    <p>Da Dieselmotoren mit Luftüberschuss (mager) arbeiten, reicht ein einfacher Katalysator nicht aus. Eingesetzt werden mehrere Systeme:</p>
+    <ul>
+      <li><strong>Oxidationskatalysator:</strong> oxidiert CO und HC.</li>
+      <li><strong>Dieselpartikelfilter (DPF):</strong> filtert Rußpartikel aus dem Abgas und verbrennt sie periodisch bei hoher Temperatur (Regeneration).</li>
+      <li><strong>SCR-Katalysator (Selective Catalytic Reduction):</strong> mittels Einspritzung von AdBlue (wässrige Harnstofflösung) werden Stickoxide (NOx) zu Wasser und Stickstoff reduziert.</li>
+      <li><strong>Abgasrückführung (AGR):</strong> ein Teil des Abgases wird zurück in den Ansaugtrakt geleitet, senkt die Verbrennungstemperatur und reduziert dadurch die NOx-Bildung.</li>
+    </ul>
+    <div class="explain-example"><strong>Beispiel:</strong> Leuchtet bei einem AdBlue-Fahrzeug die Warnleuchte "AdBlue nachfüllen" und der Tank wird nicht befüllt, verweigert das Steuergerät nach einer gewissen Anzahl an Startvorgängen den Motorstart – so wird sichergestellt, dass die Abgasgrenzwerte eingehalten werden.</div>
+
+    <h2>Euro-Abgasnormen</h2>
+    <p>Die europäischen Abgasnormen (aktuell Euro 6, in Stufen Euro 6d) legen Grenzwerte für CO, HC, NOx und Partikelmasse/-anzahl fest und werden mit jeder neuen Stufe strenger. Sie sind der wesentliche Treiber für die immer aufwendigere Abgasnachbehandlung.</p>
+  `,
+
+  "Kraftübertragung": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Kraftübertragung</h1>
+    <p class="explain-lead">Der Antriebsstrang überträgt das Motordrehmoment kontrolliert und mit passender Übersetzung auf die Antriebsräder – vom Motor über Kupplung, Getriebe, Wellen und Differential.</p>
+
+    <h2>Kupplung</h2>
+    <p>Die Kupplung trennt den Kraftfluss zwischen Motor und Getriebe temporär, damit geschaltet werden kann oder das Fahrzeug im Stand bei laufendem Motor steht. Bei der klassischen <strong>Einscheibentrockenkupplung</strong> presst eine Tellerfeder die Kupplungsscheibe gegen das Schwungrad; beim Treten des Kupplungspedals hebt das Ausrücklager die Anpresskraft auf und die Kupplungsscheibe wird frei.</p>
+
+    <h2>Schaltgetriebe</h2>
+    <p>Das Getriebe wandelt die Motordrehzahl/das Drehmoment über verschiedene Zahnradpaarungen (Gänge) in ein für die Fahrsituation passendes Verhältnis um – niedrige Gänge für hohes Drehmoment (Anfahren, Steigung), hohe Gänge für niedrigen Verbrauch bei hoher Geschwindigkeit.</p>
+    <ul>
+      <li><strong>Manuelles Schaltgetriebe:</strong> der Fahrer schaltet über Kupplungspedal und Schalthebel selbst.</li>
+      <li><strong>Automatikgetriebe (Wandlerautomatik):</strong> nutzt einen hydrodynamischen Drehmomentwandler statt einer mechanischen Kupplung und schaltet über Planetenradsätze automatisch.</li>
+      <li><strong>Doppelkupplungsgetriebe (DSG/DKG):</strong> besitzt zwei Teilgetriebe mit je einer eigenen Kupplung (für gerade und ungerade Gänge), wodurch nahezu unterbrechungsfrei geschaltet werden kann.</li>
+    </ul>
+    <div class="explain-example"><strong>Beispiel:</strong> Beim Doppelkupplungsgetriebe ist beim Fahren im 3. Gang der 4. Gang bereits "vorgewählt" und die zugehörige Kupplung eingekuppelt-bereit – beim Hochschalten öffnet einfach die eine Kupplung, während die andere schließt, fast ohne Zugkraftunterbrechung.</div>
+
+    <h2>Gelenkwellen und Differential</h2>
+    <p>Bei Front- oder Heckantrieb überträgt die <strong>Kardan-/Gelenkwelle</strong> das Drehmoment vom Getriebe zur Hinterachse (bei Standardantrieb) bzw. verbinden <strong>Antriebswellen (Gleichlaufgelenkwellen)</strong> das Getriebe mit den Rädern. Das <strong>Differential (Ausgleichsgetriebe)</strong> gleicht Drehzahlunterschiede zwischen dem kurveninneren und kurvenäußeren Rad aus, da das äußere Rad in der Kurve einen größeren Weg zurücklegt als das innere.</p>
+
+    <h2>Allradantrieb</h2>
+    <p>Beim Allradantrieb wird die Kraft auf alle vier Räder verteilt, meist über ein zusätzliches Mittendifferential oder eine elektronisch gesteuerte Kupplung (Haldex u. Ä.), die das Drehmoment je nach Traktionsbedarf variabel zwischen Vorder- und Hinterachse verteilt.</p>
+  `,
+
+  "Fahrwerk": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Fahrwerk</h1>
+    <p class="explain-lead">Das Fahrwerk umfasst Radaufhängung, Federung, Dämpfung und Lenkung. Es sorgt für Fahrsicherheit, Komfort und die richtige Kraftübertragung zwischen Reifen und Fahrbahn.</p>
+
+    <h2>Radaufhängung</h2>
+    <p>Die häufigsten Bauformen sind:</p>
+    <ul>
+      <li><strong>McPherson-Federbein:</strong> einfacher, kompakter Aufbau (ein Querlenker + Federbein), weit verbreitet an Vorderachsen.</li>
+      <li><strong>Doppelquerlenkerachse:</strong> zwei Querlenker pro Rad, ermöglicht präzisere Radführung und günstigeres Sturzverhalten beim Einfedern, aufwendiger und teurer.</li>
+      <li><strong>Mehrlenkerachse:</strong> mehrere einzelne Lenker, oft an Hinterachsen für optimalen Kompromiss aus Komfort, Fahrdynamik und Bauraum.</li>
+    </ul>
+
+    <h2>Achsvermessung: Sturz, Spur und Nachlauf</h2>
+    <div class="explain-diagram">
+      <svg viewBox="0 0 220 140" width="100%">
+        <g font-family="sans-serif" font-size="11" fill="var(--text)">
+          <line x1="110" y1="10" x2="110" y2="130" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="110" y1="15" x2="140" y2="120" stroke="var(--accent)" stroke-width="4"/>
+          <rect x="128" y="35" width="18" height="80" rx="7" fill="none" stroke="var(--accent)" stroke-width="2" transform="rotate(8 137 75)"/>
+          <text x="150" y="20" fill="var(--accent)">+</text>
+          <text x="20" y="30">Lot</text>
+          <path d="M110 40 A 30 30 0 0 1 132 45" fill="none" stroke="var(--wrong)" stroke-width="1.5"/>
+          <text x="150" y="45" fill="var(--wrong)">Sturzwinkel γ</text>
+        </g>
+      </svg>
+      <figcaption>Positiver Sturz: Das Rad neigt sich oben vom Fahrzeug weg (übertrieben dargestellt).</figcaption>
+    </div>
+    <ul>
+      <li><strong>Sturz (Camber):</strong> Neigung des Rades gegenüber der Senkrechten, von vorne betrachtet. Positiver Sturz = Radoberkante neigt sich nach außen, negativer Sturz = nach innen. Beeinflusst die Aufstandsfläche des Reifens, besonders in Kurven.</li>
+      <li><strong>Spur (Toe):</strong> Winkel der Räder zueinander, von oben betrachtet. Vorspur = Räder zeigen vorne leicht zueinander, Nachspur = Räder zeigen leicht auseinander. Beeinflusst Geradeauslauf und Reifenverschleiß.</li>
+      <li><strong>Nachlauf (Caster):</strong> Neigung der Lenkachse in Fahrtrichtung, sorgt für die Selbstzentrierung/Rückstellung der Lenkung (Spurstabilität) und das "Aufrichten" der Räder nach einer Kurvenfahrt.</li>
+    </ul>
+    <div class="explain-example"><strong>Beispiel:</strong> Falsch eingestellte Spur ist eine der häufigsten Ursachen für einseitigen, sägezahnartigen Reifenverschleiß – deshalb gehört die Achsvermessung zu den Standardprüfungen bei Fahrwerksarbeiten.</div>
+
+    <h2>Federung und Dämpfung</h2>
+    <p>Die <strong>Feder</strong> (meist Schraubenfeder) nimmt Stöße der Fahrbahn auf und hält die Aufbaumasse in Position. Der <strong>Stoßdämpfer</strong> wandelt die Federbewegung in Wärme um und verhindert ein unkontrolliertes Nachschwingen – ohne Dämpfer würde das Fahrzeug nach jeder Bodenwelle lange nachfedern und der Reifenkontakt zur Fahrbahn ginge verloren.</p>
+
+    <h2>Lenkung</h2>
+    <p>Die heute übliche <strong>Zahnstangenlenkung</strong> wandelt die Drehbewegung des Lenkrads über ein Ritzel in eine Linearbewegung der Zahnstange um, die die Spurstangen und damit die Räder bewegt. Eine <strong>elektrische Servolenkung (EPS)</strong> unterstützt den Fahrer über einen Elektromotor je nach Geschwindigkeit und Lenkkraft – bei Parkiergeschwindigkeit mit viel, bei hoher Geschwindigkeit mit wenig Unterstützung, für Komfort und Fahrsicherheit gleichermaßen.</p>
+  `,
+
+  "Bremsanlage": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Bremsanlage</h1>
+    <p class="explain-lead">Die Bremsanlage wandelt Bewegungsenergie in Wärme um und verzögert dadurch das Fahrzeug. Moderne Pkw nutzen an allen vier Rädern in der Regel Scheibenbremsen, teils vorne Scheiben- und hinten Trommelbremsen.</p>
+
+    <h2>Aufbau der Scheibenbremse</h2>
+    <div class="explain-diagram">
+      <svg viewBox="0 0 200 140" width="100%">
+        <g font-family="sans-serif" font-size="11" fill="var(--text)">
+          <circle cx="100" cy="70" r="55" fill="none" stroke="var(--muted)" stroke-width="6"/>
+          <circle cx="100" cy="70" r="55" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="2 4"/>
+          <rect x="70" y="25" width="60" height="26" rx="4" fill="var(--wrong)" opacity="0.85"/>
+          <rect x="76" y="30" width="10" height="16" fill="var(--bg,#111)"/>
+          <rect x="114" y="30" width="10" height="16" fill="var(--bg,#111)"/>
+          <text x="100" y="18" text-anchor="middle">Bremssattel mit Belägen</text>
+          <text x="100" y="135" text-anchor="middle">Bremsscheibe</text>
+        </g>
+      </svg>
+      <figcaption>Der Bremssattel presst zwei Bremsbeläge von beiden Seiten gegen die rotierende Bremsscheibe.</figcaption>
+    </div>
+    <p>Beim Bremsen presst der hydraulisch betätigte <strong>Bremssattel</strong> die <strong>Bremsbeläge</strong> gegen die mit dem Rad rotierende <strong>Bremsscheibe</strong>. Durch die entstehende Reibung wird die Bewegungsenergie in Wärme umgewandelt. Unterschieden wird zwischen Festsattel (Kolben auf beiden Seiten) und Schwimmsattel (Kolben nur auf einer Seite, der Sattel "schwimmt" und presst dadurch auch die gegenüberliegende Seite an).</p>
+
+    <h2>Hydraulisches Bremssystem</h2>
+    <p>Tritt der Fahrer das Bremspedal, wird über den <strong>Hauptbremszylinder</strong> Druck auf die Bremsflüssigkeit aufgebaut, die (nach dem Prinzip der Pascal'schen Hydraulik – Druck breitet sich in einer eingeschlossenen Flüssigkeit gleichmäßig aus) über Bremsleitungen zu den Radbremszylindern/Bremssätteln an allen vier Rädern übertragen wird. Der <strong>Bremskraftverstärker</strong> (meist unterdruck- oder elektromechanisch betätigt) verstärkt die Pedalkraft des Fahrers, damit nicht die volle Bremskraft allein durch Muskelkraft aufgebracht werden muss.</p>
+
+    <h2>ABS – Anti-Blockier-System</h2>
+    <p>Das ABS verhindert, dass die Räder beim starken Bremsen blockieren (durchrutschen). Drehzahlsensoren an jedem Rad erkennen ein bevorstehendes Blockieren, woraufhin das ABS-Steuergerät den Bremsdruck an diesem Rad kurzzeitig reduziert und wieder aufbaut (mehrmals pro Sekunde). Dadurch bleibt das Rad lenkfähig und der maximale Kraftschluss zur Fahrbahn bleibt erhalten – der Bremsweg wird i. d. R. kürzer, vor allem aber bleibt das Fahrzeug lenk- und kontrollierbar.</p>
+
+    <h2>ESP – Elektronisches Stabilitätsprogramm</h2>
+    <p>Das ESP erkennt über Sensoren (Lenkwinkel, Gierrate, Querbeschleunigung, Raddrehzahl) ein Schleudern oder Ausbrechen des Fahrzeugs und bremst gezielt einzelne Räder ab (und/oder reduziert die Motorleistung), um das Fahrzeug wieder auf die vom Fahrer über das Lenkrad vorgegebene Spur zu stabilisieren.</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Bricht das Heck in einer Kurve aus (Übersteuern), bremst das ESP gezielt das kurvenäußere Vorderrad ab, um ein stabilisierendes Gegenmoment zu erzeugen.</div>
+
+    <h2>Feststellbremse</h2>
+    <p>Die Feststellbremse (Handbremse) hält das Fahrzeug im Stand fest, wirkt meist mechanisch (über Seilzüge) oder heute zunehmend elektrisch (elektrische Parkbremse, EPB) auf die Hinterradbremsen.</p>
+  `,
+
+  "Elektrik & Elektronik": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Elektrik &amp; Elektronik</h1>
+    <p class="explain-lead">Grundlage jeder Fahrzeugelektrik ist der elektrische Stromkreis: eine Spannungsquelle treibt einen Strom durch einen Verbraucher, der Widerstand begrenzt die Stromstärke.</p>
+
+    <h2>Grundgrößen und das Ohmsche Gesetz</h2>
+    <div class="explain-diagram">
+      <svg viewBox="0 0 260 110" width="100%">
+        <g font-family="sans-serif" font-size="11" fill="none" stroke="var(--text)" stroke-width="2">
+          <line x1="20" y1="20" x2="20" y2="90"/>
+          <line x1="20" y1="90" x2="240" y2="90"/>
+          <line x1="240" y1="90" x2="240" y2="20"/>
+          <line x1="20" y1="20" x2="100" y2="20"/>
+          <line x1="160" y1="20" x2="240" y2="20"/>
+          <line x1="100" y1="10" x2="100" y2="30" stroke="var(--accent)" stroke-width="4"/>
+          <line x1="112" y1="5" x2="112" y2="35" stroke="var(--accent)" stroke-width="2"/>
+          <rect x="115" y="10" width="45" height="20" fill="none" stroke="var(--wrong)"/>
+          <circle cx="20" cy="55" r="4" fill="var(--right)" stroke="none"/>
+        </g>
+        <g font-family="sans-serif" font-size="11" fill="var(--text)">
+          <text x="70" y="45">+ Batterie −</text>
+          <text x="137" y="45" text-anchor="middle">Verbraucher (R)</text>
+          <text x="5" y="60" fill="var(--right)">S</text>
+        </g>
+      </svg>
+      <figcaption>Einfacher Stromkreis: Spannungsquelle (Batterie), Schalter (S) und Verbraucher (Widerstand R) in Reihe geschaltet.</figcaption>
+    </div>
+    <p>Das <strong>Ohmsche Gesetz</strong> beschreibt den Zusammenhang zwischen Spannung U (Volt), Stromstärke I (Ampere) und Widerstand R (Ohm):</p>
+    <p style="text-align:center;font-size:17px;font-weight:700;">U = R · I</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Eine Glühlampe mit 5 Ω Widerstand liegt an der 12-V-Bordnetzspannung. Der Strom beträgt I = U / R = 12 V / 5 Ω = 2,4 A.</div>
+
+    <h2>Bordnetz-Komponenten</h2>
+    <ul>
+      <li><strong>Batterie:</strong> speichert elektrische Energie chemisch, versorgt das Bordnetz bei stehendem Motor und liefert den hohen Anlasserstrom beim Start.</li>
+      <li><strong>Generator (Lichtmaschine):</strong> erzeugt bei laufendem Motor über elektromagnetische Induktion Strom, versorgt das Bordnetz und lädt die Batterie wieder auf.</li>
+      <li><strong>Starter (Anlasser):</strong> ein leistungsstarker Elektromotor, der über ein Ritzel kurzzeitig in den Zahnkranz des Schwungrads eingreift und den Verbrennungsmotor zum Anspringen durchdreht.</li>
+      <li><strong>Sicherungen:</strong> schützen Leitungen und Verbraucher vor Überstrom, indem ein dünner Schmelzleiter bei zu hohem Strom durchbrennt und den Stromkreis unterbricht.</li>
+      <li><strong>Relais:</strong> ein elektromagnetisch betätigter Schalter, mit dem ein kleiner Steuerstrom einen großen Laststrom schalten kann (z. B. für Scheinwerfer, Lüfter).</li>
+    </ul>
+
+    <h2>Reihen- und Parallelschaltung</h2>
+    <p>Bei einer <strong>Reihenschaltung</strong> addieren sich die Widerstände (R_ges = R1 + R2 + …), der Strom ist überall gleich groß, die Spannung teilt sich auf. Bei einer <strong>Parallelschaltung</strong> liegt an allen Verbrauchern die gleiche Spannung an, die Ströme addieren sich, der Gesamtwiderstand sinkt. Das Kfz-Bordnetz ist überwiegend eine Parallelschaltung, damit jeder Verbraucher (Licht, Radio, Sitzheizung …) unabhängig von den anderen mit voller Bordnetzspannung arbeitet.</p>
+  `,
+
+  "Bus-Systeme & Diagnose": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Bus-Systeme &amp; Diagnose</h1>
+    <p class="explain-lead">Moderne Fahrzeuge enthalten Dutzende Steuergeräte, die permanent Daten austauschen müssen. Anstatt jedes Gerät einzeln zu verkabeln, werden Bus-Systeme eingesetzt: alle Teilnehmer teilen sich gemeinsame Datenleitungen.</p>
+
+    <h2>CAN-Bus (Controller Area Network)</h2>
+    <div class="explain-diagram">
+      <svg viewBox="0 0 300 100" width="100%">
+        <g stroke="var(--accent)" stroke-width="3">
+          <line x1="20" y1="50" x2="280" y2="50"/>
+        </g>
+        <g font-family="sans-serif" font-size="10" fill="var(--text)">
+          <rect x="8" y="30" width="16" height="40" fill="var(--wrong)"/>
+          <text x="16" y="85" text-anchor="middle">120Ω</text>
+          <rect x="276" y="30" width="16" height="40" fill="var(--wrong)"/>
+          <text x="284" y="85" text-anchor="middle">120Ω</text>
+          <circle cx="80" cy="50" r="5" fill="var(--right)"/>
+          <text x="80" y="35" text-anchor="middle">Motor-SG</text>
+          <circle cx="150" cy="50" r="5" fill="var(--right)"/>
+          <text x="150" y="35" text-anchor="middle">ABS-SG</text>
+          <circle cx="220" cy="50" r="5" fill="var(--right)"/>
+          <text x="220" y="35" text-anchor="middle">Airbag-SG</text>
+        </g>
+      </svg>
+      <figcaption>Linienförmige CAN-Bus-Topologie: alle Steuergeräte (SG) hängen an einer verdrillten Zweidrahtleitung (CAN-High/CAN-Low), an beiden Enden sitzen 120-Ω-Abschlusswiderstände.</figcaption>
+    </div>
+    <p>Der CAN-Bus überträgt Daten differenziell über zwei verdrillte Leitungen (<strong>CAN-High</strong> und <strong>CAN-Low</strong>) – Störsignale wirken auf beide Leitungen gleich und heben sich beim Empfänger auf, was den Bus sehr störsicher macht. An beiden Enden der Busleitung sitzt je ein <strong>120-Ω-Abschlusswiderstand</strong>, der Signalreflexionen verhindert. Jede Nachricht besitzt eine Priorität (Identifier): Bei gleichzeitigem Senden setzt sich automatisch die Nachricht mit der höheren Priorität durch (z. B. haben sicherheitsrelevante Airbag-Daten Vorrang vor Komfortdaten wie Sitzheizung).</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Ist ein CAN-Abschlusswiderstand defekt oder eine Leitung unterbrochen, kommt es zu Signalreflexionen bzw. Kommunikationsausfällen – typische Folge sind mehrere gleichzeitig auftretende, scheinbar unzusammenhängende Fehlercodes in verschiedenen Steuergeräten.</div>
+
+    <h2>Weitere Bus-Systeme</h2>
+    <ul>
+      <li><strong>LIN-Bus (Local Interconnect Network):</strong> einfacher, günstiger Ein-Draht-Bus für weniger zeitkritische Komfortfunktionen (z. B. Fensterheber, Sitzverstellung), meist als Sub-Bus an ein CAN-Steuergerät angebunden.</li>
+      <li><strong>MOST-Bus (Media Oriented Systems Transport):</strong> Glasfaser-basiertes System für hohe Datenraten, genutzt für Infotainment (Navigation, Audio, Video).</li>
+      <li><strong>FlexRay:</strong> sehr schnelles, deterministisches (zeitgesteuertes) Bus-System für höchste Echtzeitanforderungen, z. B. bei Fahrwerksregelsystemen.</li>
+    </ul>
+
+    <h2>OBD-Diagnose</h2>
+    <p>Über die genormte <strong>OBD-Diagnosesteckdose</strong> (On-Board-Diagnose, meist im Fußraum unter dem Lenkrad) lässt sich mit einem Diagnosegerät der <strong>Fehlerspeicher</strong> aller angeschlossenen Steuergeräte auslesen. Gespeicherte Fehlercodes (DTCs) geben Hinweise auf die fehlerhafte Komponente oder den Systembereich und sind Ausgangspunkt jeder systematischen Fehlersuche – nie sollte allein aufgrund eines Fehlercodes ein Bauteil getauscht werden, ohne die eigentliche Ursache zu prüfen.</p>
+  `,
+
+  "Hochvolt": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Hochvolt</h1>
+    <p class="explain-lead">Hybrid- und Elektrofahrzeuge besitzen zusätzlich zum normalen 12-V-Bordnetz ein Hochvolt-System (meist 200–800 V), das lebensgefährlich sein kann. Arbeiten an HV-Systemen erfordern eine spezielle Qualifikation und strikte Sicherheitsregeln.</p>
+
+    <h2>Kennzeichnung von HV-Komponenten</h2>
+    <p>HV-Leitungen und -Stecker sind zur eindeutigen Erkennung <strong>orange</strong> gekennzeichnet. Warnschilder mit Blitzsymbol weisen auf Hochvolt-Gefahrenbereiche hin. Nur speziell geschultes Personal (mindestens "Fachkundige Person HV", HV-1/HV-2/HV-3 nach DGUV) darf an spannungsführenden HV-Komponenten arbeiten.</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Ein Servicetechniker ohne HV-Qualifikation darf zwar ein Fahrzeug mit HV-System bewegen oder Reifen wechseln, jedoch keinesfalls orange HV-Leitungen öffnen oder Steckverbindungen der Hochvoltbatterie trennen.</div>
+
+    <h2>Die 5 Sicherheitsregeln</h2>
+    <p>Vor Arbeiten an spannungsfreigeschalteten HV-Komponenten müssen diese fünf Schritte in genau dieser Reihenfolge eingehalten werden:</p>
+    <ol>
+      <li>Freischalten (Trennung von allen Spannungsquellen, z. B. Service-Stecker/Trennschalter ziehen)</li>
+      <li>Gegen Wiedereinschalten sichern</li>
+      <li>Spannungsfreiheit feststellen (mit geeignetem, geprüftem Messgerät)</li>
+      <li>Erden und Kurzschließen (je nach Vorgabe des Herstellers)</li>
+      <li>Benachbarte, unter Spannung stehende Teile abdecken oder abschranken</li>
+    </ol>
+
+    <h2>Personenschutz im HV-System</h2>
+    <p>Ein zentrales Sicherheitselement ist die <strong>Isolationsüberwachung</strong>: Ein Steuergerät überwacht laufend den Isolationswiderstand zwischen dem HV-System und der Fahrzeugkarosserie (Masse). Sinkt dieser Widerstand unter einen Grenzwert (Isolationsfehler, z. B. durch beschädigte Leitungsisolation), wird eine Warnung ausgegeben bzw. das System abgeschaltet, um einen gefährlichen Berührungsstrom über die Karosserie zu verhindern. Zusätzlich trennt bei einem Unfall (Crashsensor-Signal) die Pyrosicherung automatisch die Hochvoltbatterie vom restlichen System.</p>
+
+    <h2>Hochvoltbatterie</h2>
+    <p>Die HV-Batterie (meist Lithium-Ionen-Technologie) speichert die Antriebsenergie. Sie besteht aus vielen in Reihe/parallel geschalteten Zellen, die über ein <strong>Batteriemanagementsystem (BMS)</strong> überwacht werden (Zellspannung, Temperatur, Ladezustand), um Überladung, Tiefentladung und Überhitzung zu verhindern und die Lebensdauer zu maximieren.</p>
+
+    <h2>Ladesysteme</h2>
+    <ul>
+      <li><strong>AC-Laden (Wechselstrom):</strong> über den Typ-2-Stecker, das Fahrzeug wandelt den Wechselstrom intern über das Onboard-Ladegerät in Gleichstrom um – geeignet für Laden zu Hause/an der Wallbox, eher langsam.</li>
+      <li><strong>DC-Laden (Gleichstrom, Schnellladen):</strong> über CCS- (oder CHAdeMO-)Stecker liefert die Ladesäule direkt Gleichstrom an die HV-Batterie, das Onboard-Ladegerät wird umgangen – deutlich höhere Ladeleistung und kürzere Ladezeit.</li>
+    </ul>
+  `,
+};
+
+function renderExplainList() {
+  els.explainList.innerHTML = "";
+  const cats = categories();
+  cats.forEach((cat) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "topic-item topic-item-btn";
+    item.innerHTML = `
+      <div class="topic-item-row">
+        <span class="topic-icon">${iconForCategory(cat)}</span>
+        <div class="topic-info">
+          <div class="topic-name">${escapeHtml(cat)}</div>
+          <div class="topic-count">${EXPLANATIONS[cat] ? "Erklärung ansehen" : "Bald verfügbar"}</div>
+        </div>
+      </div>
+    `;
+    item.addEventListener("click", () => openExplain(cat));
+    els.explainList.appendChild(item);
+  });
+}
+
+function openExplain(cat) {
+  const html = EXPLANATIONS[cat];
+  if (!html) return;
+  els.explainContent.innerHTML = html;
+  els.explainView.hidden = false;
+  els.explainContent.scrollTop = 0;
+}
+
+els.explainBackBtn.addEventListener("click", () => {
+  els.explainView.hidden = true;
+});
 
 // --- Aktionsmenü (Üben / Zurücksetzen / Falsche Fragen) ---
 

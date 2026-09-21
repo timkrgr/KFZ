@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=21">
+<link rel="stylesheet" href="style.css?v=22">
 </head>
 <body>
 <div class="app">
@@ -104,6 +104,13 @@
     <div id="statsList" class="stats-list"></div>
   </section>
 
+  <!-- ===== TAB: Erklärungen ===== -->
+  <section id="tabExplain" class="tab-view" hidden>
+    <h1 class="page-title">Erklärungen</h1>
+    <p class="explain-intro">Ausführliche Grundlagen zu jedem Themengebiet – damit du jede Frage auch inhaltlich verstehst, nicht nur auswendig lernst.</p>
+    <div id="explainList" class="topic-list"></div>
+  </section>
+
   <!-- ===== TAB: Einstellungen ===== -->
   <section id="tabSettings" class="tab-view" hidden>
     <h1 class="page-title">Einstellungen</h1>
@@ -142,6 +149,9 @@
     </button>
     <button class="tab-btn" data-tab="tabStats" aria-label="Statistik">
       <span class="tab-icon">📊</span><span class="tab-label">Statistik</span>
+    </button>
+    <button class="tab-btn" data-tab="tabExplain" aria-label="Erklärungen">
+      <span class="tab-icon">📚</span><span class="tab-label">Erklärungen</span>
     </button>
     <button class="tab-btn" data-tab="tabSettings" aria-label="Einstellungen">
       <span class="tab-icon">⚙️</span><span class="tab-label">Einstellungen</span>
@@ -236,9 +246,17 @@
     <button id="sheetCancelBtn" class="sheet-btn sheet-btn-cancel">Abbrechen</button>
   </div>
 
+  <!-- ===== Erklärung eines Themengebiets (Overlay) ===== -->
+  <section id="explainView" class="study-view" hidden>
+    <div class="study-header">
+      <button id="explainBackBtn" class="back-btn">← Erklärungen</button>
+    </div>
+    <div id="explainContent" class="explain-content"></div>
+  </section>
+
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=21"></script>
+<script src="app.js?v=22"></script>
 </body>
 </html>
