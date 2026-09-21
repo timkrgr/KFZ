@@ -1,4 +1,4 @@
-const APP_VERSION = "v38";
+const APP_VERSION = "v39";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const STREAK_KEY = "kfz_streak_v1";
@@ -179,6 +179,7 @@ let currentFilter = "all";
 let sessionMode = "topic"; // "topic" | "simulation"
 let sessionResults = { right: 0, wrong: 0 };
 let topicAnsweredCount = 0;
+let hardSessionTotal = 0; // Anzahl "falscher" Karten zu Beginn der aktuellen Wiederholungsrunde
 let sessionEndKind = "topic"; // "topic" | "simulation" – welcher Modus gerade beendet wurde
 let sessionEndTopic = ALL_TOPIC;
 let simInterval = null;
@@ -1203,6 +1204,7 @@ function buildDeck() {
   let pool;
   if (currentFilter === "hard") {
     pool = categoryCards.filter((c) => cardState(c.id) === "hard");
+    hardSessionTotal = pool.length;
   } else {
     // Beim normalen Üben zuerst noch nie beantwortete Fragen zeigen, damit
     // schon beantwortete nicht sofort wiederkommen. Erst wenn wirklich jede
@@ -1254,16 +1256,18 @@ function render() {
     const totalSim = answered + deck.length;
     els.progressFill.style.width = totalSim ? `${(answered / totalSim) * 100}%` : "0%";
     els.progressText.textContent = `${answered} / ${totalSim} beantwortet`;
+  } else if (currentFilter === "hard") {
+    // Zeigt die Anzahl der falschen Fragen zu Beginn dieser Runde und wie
+    // viele davon schon wieder richtig beantwortet (und damit aus dem
+    // Deck entfernt) wurden - nicht den Fortschritt über alle Themenkarten.
+    const resolvedCount = Math.max(0, hardSessionTotal - deck.length);
+    els.progressFill.style.width = hardSessionTotal ? `${(resolvedCount / hardSessionTotal) * 100}%` : "0%";
+    els.progressText.textContent = `${resolvedCount} / ${hardSessionTotal} beantwortet`;
   } else {
-    const scope = allCards.filter((c) => currentTopic === ALL_TOPIC || (c.category || "Allgemein") === currentTopic);
     // Im "Alle Fragen"-Durchlauf zählt jede beantwortete Frage (richtig oder
     // falsch) als erledigt, da sie in diesem Durchlauf nicht wiederkommt.
-    // Beim Üben der "Falschen Fragen" bleibt es bei "richtig gelernt", da
-    // falsch beantwortete Karten dort erneut drankommen.
-    const doneCount =
-      currentFilter === "hard"
-        ? scope.filter((c) => progress.known[c.id]).length
-        : scope.filter((c) => progress.known[c.id] || progress.hard[c.id]).length;
+    const scope = allCards.filter((c) => currentTopic === ALL_TOPIC || (c.category || "Allgemein") === currentTopic);
+    const doneCount = scope.filter((c) => progress.known[c.id] || progress.hard[c.id]).length;
     els.progressFill.style.width = scope.length ? `${(doneCount / scope.length) * 100}%` : "0%";
     els.progressText.textContent = `${doneCount} / ${scope.length} gelernt`;
   }
