@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "updated": "2026-09-21",
+  "cards": [
+    {
+      "id": "beispiel-1",
+      "category": "Beispiel",
+      "question": "Das ist eine Beispiel-Frage. Wofür steht die Abkürzung OBD?",
+      "answer": "On-Board-Diagnose – das Diagnosesystem, das Fehlercodes im Fahrzeug erfasst und ausliest."
+    },
+    {
+      "id": "beispiel-2",
+      "category": "Beispiel",
+      "question": "Schick mir einfach deine echten Prüfungsfragen und Antworten – ich trage sie hier ein.",
+      "answer": "Diese Beispielkarten kannst du danach löschen lassen."
+    }
+  ]
+}

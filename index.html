@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>KFZ Karteikarten</title>
+<meta name="theme-color" content="#115ead">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KFZ Karten">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <h1>KFZ Karteikarten</h1>
+    <button id="menuBtn" class="icon-btn" aria-label="Einstellungen">⚙</button>
+  </header>
+
+  <div id="panel" class="panel" hidden>
+    <div class="panel-row">
+      <label for="categorySelect">Kategorie</label>
+      <select id="categorySelect"></select>
+    </div>
+    <div class="panel-row">
+      <label for="filterSelect">Auswahl</label>
+      <select id="filterSelect">
+        <option value="all">Alle Karten</option>
+        <option value="learning">Nur die ich noch lerne</option>
+        <option value="hard">Nur unsichere Karten</option>
+      </select>
+    </div>
+    <div class="panel-row buttons-row">
+      <button id="shuffleBtn" class="btn">Mischen</button>
+      <button id="resetBtn" class="btn btn-outline">Fortschritt zurücksetzen</button>
+    </div>
+    <div class="panel-row">
+      <button id="reloadBtn" class="btn btn-outline">Neue Karten laden</button>
+    </div>
+    <p class="panel-hint">Neue Fragen schickst du wie gewohnt an Claude – sie erscheinen hier, sobald du online bist und auf „Neue Karten laden“ tippst (oder die App neu öffnest).</p>
+  </div>
+
+  <main id="main" class="main">
+    <div id="emptyState" class="empty-state" hidden>
+      <p>Keine Karten in dieser Auswahl 🎉</p>
+      <button id="emptyResetBtn" class="btn">Auswahl zurücksetzen</button>
+    </div>
+
+    <div id="cardArea" class="card-area">
+      <div class="progress-line">
+        <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+        <span id="progressText" class="progress-text">0 / 0</span>
+      </div>
+
+      <div id="cardWrap" class="card-wrap">
+        <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="Karte umdrehen">
+          <div class="flashcard-inner">
+            <div class="face face-front">
+              <span id="categoryTag" class="category-tag"></span>
+              <p id="questionText" class="card-text"></p>
+              <span class="tap-hint">Antippen für Antwort</span>
+            </div>
+            <div class="face face-back">
+              <span id="categoryTagBack" class="category-tag"></span>
+              <p id="answerText" class="card-text"></p>
+              <span class="tap-hint">Antippen für Frage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button id="hardBtn" class="btn btn-hard">🔁 Nochmal üben</button>
+        <button id="knownBtn" class="btn btn-known">✅ Weiß ich</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
