@@ -362,6 +362,154 @@ html, body {
 
 /* Stats tab */
 
+/* Battle Mode */
+
+.battle-card {
+  background: linear-gradient(160deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 22px;
+}
+
+.battle-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.battle-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 2px 0 16px;
+}
+
+.battle-versus {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.battle-side {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.battle-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: white;
+  position: relative;
+}
+
+.battle-crown {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+}
+
+.battle-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.battle-pct {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.battle-detail {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.battle-vs {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.battle-winner {
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--right-bg);
+  color: var(--right);
+}
+
+.battle-winner.tie {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.battle-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.battle-topic-row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.battle-topic-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.battle-bar-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.battle-bar-line:last-child { margin-bottom: 0; }
+
+.battle-bar-name {
+  width: 56px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.battle-bar-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.battle-bar-fill { height: 100%; }
+
+.battle-bar-pct {
+  width: 34px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
 .stats-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

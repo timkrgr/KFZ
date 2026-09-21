@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 <div class="app">
@@ -84,8 +84,20 @@
   <!-- ===== TAB: Statistik ===== -->
   <section id="tabStats" class="tab-view" hidden>
     <h1 class="page-title">Statistik</h1>
+
+    <div class="battle-card">
+      <div class="battle-title">⚔️ Battle Mode</div>
+      <div class="battle-sub">Tim vs. Huseyn – wer hat mehr &amp; besser gelernt?</div>
+      <div class="battle-versus" id="battleVersus"></div>
+      <div class="battle-winner" id="battleWinner"></div>
+    </div>
+
+    <h2 class="section-title">Themen im Vergleich</h2>
+    <div id="battleTopics" class="battle-topics"></div>
+
+    <h2 class="section-title">Meine Statistik</h2>
     <div class="stats-summary" id="statsSummary"></div>
-    <h2 class="section-title">Nach Thema</h2>
+    <h2 class="section-title">Meine Themen</h2>
     <div id="statsList" class="stats-list"></div>
   </section>
 
@@ -212,6 +224,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=9"></script>
+<script src="app.js?v=10"></script>
 </body>
 </html>

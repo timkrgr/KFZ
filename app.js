@@ -49,6 +49,10 @@ const els = {
   topicList: document.getElementById("topicList"),
   noTopics: document.getElementById("noTopics"),
 
+  battleVersus: document.getElementById("battleVersus"),
+  battleWinner: document.getElementById("battleWinner"),
+  battleTopics: document.getElementById("battleTopics"),
+
   statsSummary: document.getElementById("statsSummary"),
   statsList: document.getElementById("statsList"),
 
@@ -286,9 +290,95 @@ function resetTopicProgress(cat) {
   showToast("Zurückgesetzt");
 }
 
+// --- Battle Mode (Tim vs. Huseyn) ---
+
+function loadProfileProgress(id) {
+  try {
+    return JSON.parse(localStorage.getItem(`${STORAGE_KEY}_${id}`)) || { known: {}, hard: {} };
+  } catch {
+    return { known: {}, hard: {} };
+  }
+}
+
+function profileStats(id, cardsSubset) {
+  const prog = loadProfileProgress(id);
+  const known = cardsSubset.filter((c) => prog.known[c.id]).length;
+  const hard = cardsSubset.filter((c) => prog.hard[c.id]).length;
+  const total = cardsSubset.length;
+  const pct = total ? Math.round((known / total) * 100) : 0;
+  return { known, hard, total, pct };
+}
+
+function battleSideHtml(id, stats, isWinner) {
+  return `
+    <div class="battle-side">
+      <div class="battle-avatar" style="background:${PROFILES[id].color}">
+        ${isWinner ? '<span class="battle-crown">👑</span>' : ""}
+        ${PROFILES[id].name[0]}
+      </div>
+      <div class="battle-name">${escapeHtml(PROFILES[id].name)}</div>
+      <div class="battle-pct">${stats.pct}%</div>
+      <div class="battle-detail">${stats.known} richtig · ${stats.hard} falsch</div>
+    </div>
+  `;
+}
+
+function renderBattle() {
+  const ids = Object.keys(PROFILES);
+  if (ids.length < 2) return;
+  const [a, b] = ids;
+  const statsA = profileStats(a, allCards);
+  const statsB = profileStats(b, allCards);
+
+  const winnerId = statsA.pct === statsB.pct ? null : (statsA.pct > statsB.pct ? a : b);
+
+  els.battleVersus.innerHTML =
+    battleSideHtml(a, statsA, winnerId === a) +
+    '<div class="battle-vs">VS</div>' +
+    battleSideHtml(b, statsB, winnerId === b);
+
+  if (!statsA.total) {
+    els.battleWinner.className = "battle-winner tie";
+    els.battleWinner.textContent = "Noch keine Karten zum Vergleichen";
+  } else if (winnerId === null) {
+    els.battleWinner.className = "battle-winner tie";
+    els.battleWinner.textContent = `🤝 Unentschieden – beide bei ${statsA.pct}%`;
+  } else {
+    const winnerStats = winnerId === a ? statsA : statsB;
+    const loserStats = winnerId === a ? statsB : statsA;
+    els.battleWinner.className = "battle-winner";
+    els.battleWinner.textContent = `🏆 ${PROFILES[winnerId].name} führt mit ${winnerStats.pct}% (vs. ${loserStats.pct}%)`;
+  }
+
+  els.battleTopics.innerHTML = "";
+  categories().forEach((cat) => {
+    const cardsInCat = allCards.filter((c) => (c.category || "Allgemein") === cat);
+    const sA = profileStats(a, cardsInCat);
+    const sB = profileStats(b, cardsInCat);
+    const row = document.createElement("div");
+    row.className = "battle-topic-row";
+    row.innerHTML = `
+      <div class="battle-topic-name">${escapeHtml(cat)}</div>
+      <div class="battle-bar-line">
+        <span class="battle-bar-name">${escapeHtml(PROFILES[a].name)}</span>
+        <div class="battle-bar-track"><div class="battle-bar-fill" style="width:${sA.pct}%;background:${PROFILES[a].color}"></div></div>
+        <span class="battle-bar-pct">${sA.pct}%</span>
+      </div>
+      <div class="battle-bar-line">
+        <span class="battle-bar-name">${escapeHtml(PROFILES[b].name)}</span>
+        <div class="battle-bar-track"><div class="battle-bar-fill" style="width:${sB.pct}%;background:${PROFILES[b].color}"></div></div>
+        <span class="battle-bar-pct">${sB.pct}%</span>
+      </div>
+    `;
+    els.battleTopics.appendChild(row);
+  });
+}
+
 // --- Statistik ---
 
 function renderStats() {
+  renderBattle();
+
   const total = allCards.length;
   const known = allCards.filter((c) => progress.known[c.id]).length;
   const hard = allCards.filter((c) => progress.hard[c.id]).length;
