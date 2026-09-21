@@ -298,6 +298,72 @@ html, body {
 .mini-title { font-weight: 700; font-size: 0.92rem; }
 .mini-sub { font-size: 0.75rem; color: var(--muted); }
 
+/* Streak card */
+
+.streak-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.streak-card:active { transform: scale(0.98); }
+
+.streak-card.is-ready {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 10px 26px rgba(249, 115, 22, 0.32);
+}
+
+.streak-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.streak-flame {
+  font-size: 1.8rem;
+  filter: grayscale(1) opacity(0.5);
+}
+
+.streak-card.is-ready .streak-flame,
+.streak-card.has-streak .streak-flame {
+  filter: none;
+}
+
+.streak-count { font-weight: 800; font-size: 0.98rem; }
+
+.streak-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.streak-card.is-ready .streak-sub { color: rgba(255, 255, 255, 0.85); }
+
+.streak-status {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.streak-card.is-ready .streak-status {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
 /* Topic list */
 
 .topic-list {
@@ -494,6 +560,31 @@ html, body {
   background: var(--surface-2);
   color: var(--muted);
 }
+
+.streak-versus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.streak-versus-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.streak-versus-item .streak-versus-flame {
+  font-size: 1.15rem;
+  filter: grayscale(1) opacity(0.5);
+}
+
+.streak-versus-item.has-streak .streak-versus-flame { filter: none; }
 
 .battle-topics {
   display: flex;

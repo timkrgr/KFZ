@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=37">
+<link rel="stylesheet" href="style.css?v=38">
 </head>
 <body>
 <div class="app">
@@ -65,6 +65,17 @@
       </div>
     </button>
 
+    <button id="streakBtn" class="streak-card" type="button">
+      <div class="streak-left">
+        <span class="streak-flame" id="streakFlame">🔥</span>
+        <div>
+          <div class="streak-count"><span id="streakCount">0</span> Tage Streak</div>
+          <div class="streak-sub" id="streakSub">Jetzt abholen</div>
+        </div>
+      </div>
+      <div class="streak-status" id="streakStatus">Abholen</div>
+    </button>
+
     <div class="mini-row">
       <button id="simBtn" class="mini-card mini-sim">
         <span class="mini-icon">⏱️</span>
@@ -99,6 +110,7 @@
       <div class="battle-sub">Tim vs. Huseyn – wer hat mehr &amp; besser gelernt?</div>
       <div class="battle-versus" id="battleVersus"></div>
       <div class="battle-winner" id="battleWinner"></div>
+      <div class="streak-versus" id="streakVersus"></div>
     </div>
 
     <button id="battleTopicsToggle" class="collapse-toggle" type="button" aria-expanded="false">
@@ -273,6 +285,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=37"></script>
+<script src="app.js?v=38"></script>
 </body>
 </html>

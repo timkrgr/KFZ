@@ -1,6 +1,9 @@
-const APP_VERSION = "v37";
+const APP_VERSION = "v38";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
+const STREAK_KEY = "kfz_streak_v1";
+const STREAK_MIN_GAP_MS = 24 * 60 * 60 * 1000; // frühestens 24h nach dem letzten Abholen wieder abholbar
+const STREAK_GRACE_MS = 48 * 60 * 60 * 1000; // innerhalb 48h nach dem letzten Abholen zählt die Streak weiter, sonst reißt sie ab
 const ALL_TOPIC = "__all__";
 const DB_URL = "https://kfz-lernen-default-rtdb.europe-west1.firebasedatabase.app";
 const CLOUD_SYNC_INTERVAL_MS = 2 * 60 * 1000; // alle 2 Minuten mit dem anderen Profil abgleichen
@@ -92,6 +95,13 @@ const els = {
   topicList: document.getElementById("topicList"),
   noTopics: document.getElementById("noTopics"),
 
+  streakBtn: document.getElementById("streakBtn"),
+  streakFlame: document.getElementById("streakFlame"),
+  streakCount: document.getElementById("streakCount"),
+  streakSub: document.getElementById("streakSub"),
+  streakStatus: document.getElementById("streakStatus"),
+  streakVersus: document.getElementById("streakVersus"),
+
   battleVersus: document.getElementById("battleVersus"),
   battleWinner: document.getElementById("battleWinner"),
   battleTopics: document.getElementById("battleTopics"),
@@ -174,6 +184,7 @@ let sessionEndTopic = ALL_TOPIC;
 let simInterval = null;
 let simRemaining = 0;
 let progress = { known: {}, hard: {} };
+let streak = { count: 0, lastClaim: 0 };
 
 function loadProgress() {
   try {
@@ -186,6 +197,51 @@ function loadProgress() {
 function saveProgress() {
   localStorage.setItem(`${STORAGE_KEY}_${currentProfile}`, JSON.stringify(progress));
   pushProgressToCloud();
+}
+
+// --- Streak-System ---
+// Einmal pro Tag (frühestens 24h nach dem letzten Mal) holt man sich eine
+// Flamme ab. Wird die 48h-Grenze seit dem letzten Abholen überschritten,
+// ist die Streak gerissen und beginnt wieder bei 1.
+
+function loadStreak() {
+  try {
+    return JSON.parse(localStorage.getItem(`${STREAK_KEY}_${currentProfile}`)) || { count: 0, lastClaim: 0 };
+  } catch {
+    return { count: 0, lastClaim: 0 };
+  }
+}
+
+function loadProfileStreak(id) {
+  try {
+    return JSON.parse(localStorage.getItem(`${STREAK_KEY}_${id}`)) || { count: 0, lastClaim: 0 };
+  } catch {
+    return { count: 0, lastClaim: 0 };
+  }
+}
+
+function saveStreak() {
+  localStorage.setItem(`${STREAK_KEY}_${currentProfile}`, JSON.stringify(streak));
+  pushStreakToCloud();
+}
+
+function canClaimStreak() {
+  return !streak.lastClaim || (Date.now() - streak.lastClaim) >= STREAK_MIN_GAP_MS;
+}
+
+function claimStreak() {
+  if (!canClaimStreak()) return;
+  const now = Date.now();
+  if (streak.lastClaim && (now - streak.lastClaim) <= STREAK_GRACE_MS) {
+    streak.count += 1;
+  } else {
+    streak.count = 1;
+  }
+  streak.lastClaim = now;
+  saveStreak();
+  renderStreak();
+  renderBattle();
+  showToast(`🔥 Tag ${streak.count} der Streak!`);
 }
 
 // --- Cloud-Sync (Firebase Realtime Database) ---
@@ -224,33 +280,71 @@ function pushProgressToCloud() {
   }).catch((e) => warnCloudSyncOnce(e.message || "Upload fehlgeschlagen"));
 }
 
+function pushStreakToCloud() {
+  if (!currentProfile) return;
+  fetch(`${DB_URL}/streak/${currentProfile}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(streak),
+  }).then((res) => {
+    if (!res.ok) warnCloudSyncOnce(`Upload HTTP ${res.status}`);
+  }).catch((e) => warnCloudSyncOnce(e.message || "Upload fehlgeschlagen"));
+}
+
 async function syncFromCloud() {
   try {
+    let changed = false;
+
     const res = await fetch(`${DB_URL}/progress.json?ts=${Date.now()}`, { cache: "no-store" });
     if (!res.ok) { warnCloudSyncOnce(`Download HTTP ${res.status}`); return; }
     const data = await res.json();
-    if (!data) return;
-    let changed = false;
 
-    Object.keys(PROFILES).forEach((id) => {
-      if (!data[id]) return;
-      if (id === currentProfile) {
-        const merged = mergeProgress(progress, data[id]);
-        if (JSON.stringify(merged) !== JSON.stringify(progress)) {
-          progress = merged;
-          localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(progress));
-          pushProgressToCloud(); // gemergten Stand auch wieder hochladen
+    if (data) {
+      Object.keys(PROFILES).forEach((id) => {
+        if (!data[id]) return;
+        if (id === currentProfile) {
+          const merged = mergeProgress(progress, data[id]);
+          if (JSON.stringify(merged) !== JSON.stringify(progress)) {
+            progress = merged;
+            localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(progress));
+            pushProgressToCloud(); // gemergten Stand auch wieder hochladen
+            changed = true;
+          }
+        } else {
+          localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(data[id]));
           changed = true;
         }
-      } else {
-        localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(data[id]));
-        changed = true;
+      });
+    }
+
+    // Streak: pro Profil gewinnt immer der Stand mit dem neueren "lastClaim" -
+    // das ist das Gerät, auf dem zuletzt tatsächlich abgeholt wurde.
+    const streakRes = await fetch(`${DB_URL}/streak.json?ts=${Date.now()}`, { cache: "no-store" });
+    if (streakRes.ok) {
+      const streakData = await streakRes.json();
+      if (streakData) {
+        Object.keys(PROFILES).forEach((id) => {
+          if (!streakData[id]) return;
+          if (id === currentProfile) {
+            if ((streakData[id].lastClaim || 0) > (streak.lastClaim || 0)) {
+              streak = streakData[id];
+              localStorage.setItem(`${STREAK_KEY}_${id}`, JSON.stringify(streak));
+              changed = true;
+            } else if ((streak.lastClaim || 0) > (streakData[id].lastClaim || 0)) {
+              pushStreakToCloud(); // lokaler Stand ist neuer, wieder hochladen
+            }
+          } else {
+            localStorage.setItem(`${STREAK_KEY}_${id}`, JSON.stringify(streakData[id]));
+            changed = true;
+          }
+        });
       }
-    });
+    }
 
     if (changed) {
       renderHome();
       renderStats();
+      renderStreak();
     }
   } catch (e) {
     warnCloudSyncOnce(e.message || "Offline");
@@ -464,6 +558,24 @@ function renderHome() {
   });
 }
 
+function renderStreak() {
+  if (!els.streakBtn) return;
+  els.streakCount.textContent = streak.count;
+  const ready = canClaimStreak();
+  els.streakBtn.classList.toggle("is-ready", ready);
+  els.streakBtn.classList.toggle("has-streak", streak.count > 0);
+
+  if (ready) {
+    els.streakSub.textContent = streak.count > 0 ? "Weiter geht's – jetzt abholen!" : "Starte deine Streak";
+    els.streakStatus.textContent = "Abholen";
+  } else {
+    const remainingMs = streak.lastClaim + STREAK_MIN_GAP_MS - Date.now();
+    const hours = Math.max(1, Math.ceil(remainingMs / (60 * 60 * 1000)));
+    els.streakSub.textContent = `Nächste Flamme in ${hours} Std.`;
+    els.streakStatus.textContent = "Erledigt ✓";
+  }
+}
+
 function clearTopicProgress(cat) {
   const cardsInScope = cat === ALL_TOPIC ? allCards : allCards.filter((c) => (c.category || "Allgemein") === cat);
   cardsInScope.forEach((c) => {
@@ -538,6 +650,17 @@ function renderBattle() {
     const loserStats = winnerId === a ? statsB : statsA;
     els.battleWinner.className = "battle-winner";
     els.battleWinner.textContent = `🏆 ${PROFILES[winnerId].name} führt mit ${winnerStats.pct}% (vs. ${loserStats.pct}%)`;
+  }
+
+  if (els.streakVersus) {
+    els.streakVersus.innerHTML = ids.map((id) => {
+      const s = loadProfileStreak(id);
+      return `
+        <div class="streak-versus-item${s.count > 0 ? " has-streak" : ""}">
+          <span class="streak-versus-flame">🔥</span>${escapeHtml(PROFILES[id].name)}: ${s.count}
+        </div>
+      `;
+    }).join("");
   }
 
   els.battleTopics.innerHTML = "";
@@ -1452,6 +1575,7 @@ function forgetProfile() {
 function selectProfile(id) {
   currentProfile = id;
   progress = loadProgress();
+  streak = loadStreak();
   els.simCountInput.value = getSimCount();
   rememberProfile(id);
 
@@ -1463,8 +1587,11 @@ function selectProfile(id) {
 
   renderHome();
   renderStats();
+  renderStreak();
   startCloudSync();
 }
+
+els.streakBtn.addEventListener("click", claimStreak);
 
 els.profileButtons.forEach((btn) => {
   btn.addEventListener("click", () => selectProfile(btn.dataset.profile));
@@ -1503,6 +1630,9 @@ if ("serviceWorker" in navigator) {
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") {
     loadCards({ silent: true });
-    if (currentProfile) syncFromCloud();
+    if (currentProfile) {
+      syncFromCloud();
+      renderStreak();
+    }
   }
 });
