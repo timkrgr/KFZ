@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "updated": "2026-09-21",
   "cards": [
     {
@@ -2081,6 +2081,1878 @@
       ],
       "correct": 2,
       "answer": "Die Hauptschütze verbinden oder trennen die Hochvoltbatterie kontrolliert vom übrigen Hochvoltsystem – etwa beim Start, Abstellen oder in einer erkannten Fehler- bzw. Unfallsituation, um das System sicher spannungsfrei zu schalten."
+    },
+    {
+      "id": "motor-21",
+      "category": "Motor",
+      "question": "Welche Aufgabe haben die Kolbenringe an einem Verbrennungsmotor?",
+      "options": [
+        "Sie dichten den Brennraum ab und leiten Wärme an die Zylinderwand ab",
+        "Sie steuern das Öffnen und Schließen der Ein- und Auslassventile",
+        "Sie wandeln die Kolbenbewegung direkt in eine Drehbewegung um",
+        "Sie erzeugen den nötigen Zünddruck für die Verbrennung"
+      ],
+      "answer": "Kolbenringe (Verdichtungsringe und Ölabstreifring) dichten den Brennraum gegenüber dem Kurbelgehäuse ab, verhindern das Durchblasen von Gasen (Blow-by), streifen überschüssiges Öl von der Zylinderwand ab und leiten Wärme vom Kolben an die Zylinderwand weiter.",
+      "correct": 0
+    },
+    {
+      "id": "motor-22",
+      "category": "Motor",
+      "question": "Was ist ein wesentliches Merkmal eines Boxermotors gegenüber einem Reihenmotor?",
+      "options": [
+        "Die gegenüberliegenden Zylinderpaare liegen flach und bewegen sich gegenläufig",
+        "Alle Zylinder sind senkrecht in einer einzigen Reihe übereinander angeordnet",
+        "Er besitzt grundsätzlich nur einen einzigen Zylinder pro Zylinderbank",
+        "Die Kurbelwelle steht dabei senkrecht zur eigentlichen Fahrtrichtung"
+      ],
+      "answer": "Beim Boxermotor liegen sich die Zylinder paarweise gegenüber und bewegen sich gleichzeitig nach außen bzw. innen. Das ergibt einen sehr niedrigen Schwerpunkt und einen laufruhigen Massenausgleich gegenüber dem Reihenmotor.",
+      "correct": 0
+    },
+    {
+      "id": "motor-23",
+      "category": "Motor",
+      "question": "Was bedeutet es, wenn ein Motor als 'überquadratisch' ausgelegt ist?",
+      "options": [
+        "Die Bohrung (Zylinderdurchmesser) ist größer als der Kolbenhub",
+        "Der Kolbenhub ist deutlich größer als die Bohrung des Zylinders",
+        "Bohrung und Hub sind bei diesem Motor exakt identisch groß",
+        "Der Motor besitzt grundsätzlich mehr Zylinder als Kurbelwellenlager"
+      ],
+      "answer": "Bei einem überquadratischen (kurzhubigen) Motor ist die Bohrung größer als der Hub. Das ermöglicht höhere Drehzahlen und größere Ventile, da die mittlere Kolbengeschwindigkeit bei gleicher Drehzahl geringer bleibt.",
+      "correct": 0
+    },
+    {
+      "id": "motor-24",
+      "category": "Motor",
+      "question": "Wozu dienen elastische Motorlager (Motoraufhängung) im Fahrzeug?",
+      "options": [
+        "Sie entkoppeln Motorvibrationen von der Karosserie und tragen das Motorgewicht",
+        "Sie leiten ausschließlich das Antriebsmoment auf die Räder weiter",
+        "Sie kühlen das Motoröl durch Luftumströmung im Fahrtwind",
+        "Sie steuern die Zündreihenfolge in Abhängigkeit von der Motorlast"
+      ],
+      "answer": "Motorlager tragen das Gewicht des Antriebs und dämpfen gleichzeitig Vibrationen und Bewegungen des Motors, sodass diese nur gedämpft an die Karosserie weitergegeben werden – das verbessert Laufkultur und Komfort.",
+      "correct": 0
+    },
+    {
+      "id": "motor-25",
+      "category": "Motor",
+      "question": "Wie wird die Kühlmittelpumpe bei den meisten klassischen Verbrennungsmotoren angetrieben?",
+      "options": [
+        "Mechanisch über Keilrippenriemen oder Zahnriemen vom Kurbelwellenrad",
+        "Ausschließlich durch einen separaten Elektromotor ohne jede Riemenverbindung",
+        "Über eine eigene, vom restlichen Motor komplett unabhängige Batterie",
+        "Durch den im Kühlmittel entstehenden Druck rein selbsttätig ohne Antrieb"
+      ],
+      "answer": "Klassisch wird die Kühlmittelpumpe über einen Riementrieb direkt von der Kurbelwelle mitgedreht. Zunehmend kommen aber auch elektrisch angetriebene, drehzahlunabhängig regelbare Kühlmittelpumpen zum Einsatz.",
+      "correct": 0
+    },
+    {
+      "id": "motor-26",
+      "category": "Motor",
+      "question": "Was unterscheidet ein Longlife-Ölwechselintervall von einem festen Ölwechselintervall?",
+      "options": [
+        "Beim Longlife-Intervall berechnet das Steuergerät den Wechsel je nach Nutzung",
+        "Longlife-Öl muss grundsätzlich nach jeder einzelnen Fahrt neu gewechselt werden",
+        "Ein festes Intervall passt sich automatisch an Fahrweise und Belastung an",
+        "Beide Verfahren führen in der Praxis zu exakt identischen Wechselzeitpunkten"
+      ],
+      "answer": "Beim Longlife-Konzept berechnet das Steuergerät anhand von Fahrweise, Motorlast und Betriebstemperaturen den optimalen Wechselzeitpunkt, während ein festes Intervall unabhängig von der tatsächlichen Beanspruchung nach fester Laufleistung oder Zeit wechselt.",
+      "correct": 0
+    },
+    {
+      "id": "motor-27",
+      "category": "Motor",
+      "question": "Wozu dient eine Kompressionsdruckprüfung am Verbrennungsmotor?",
+      "options": [
+        "Um den tatsächlichen Verdichtungsdruck je Zylinder zu ermitteln und zu vergleichen",
+        "Um ausschließlich die aktuelle Motoröltemperatur exakt zu bestimmen",
+        "Um die Füllstandshöhe des Kühlmittels im Ausgleichsbehälter zu prüfen",
+        "Um die Kapazität der verbauten Starterbatterie zu ermitteln"
+      ],
+      "answer": "Bei der Kompressionsdruckprüfung wird mit einem Kompressionstester je Zylinder der maximale Verdichtungsdruck gemessen. Große Abweichungen zwischen den Zylindern deuten auf Verschleiß an Kolbenringen, Ventilen oder der Zylinderkopfdichtung hin.",
+      "correct": 0
+    },
+    {
+      "id": "motor-28",
+      "category": "Motor",
+      "question": "Was ist ein wesentlicher Vorteil eines Piezo-Injektors gegenüber einem klassischen Magnetventil-Injektor?",
+      "options": [
+        "Deutlich kürzere Schaltzeiten ermöglichen präzisere Mehrfacheinspritzungen",
+        "Er benötigt im Gegensatz zum Magnetventil-Injektor keinerlei elektrische Ansteuerung",
+        "Er kann ausschließlich bei Ottomotoren mit Saugrohreinspritzung eingesetzt werden",
+        "Er arbeitet grundsätzlich rein mechanisch, ganz ohne jedes Steuergerät"
+      ],
+      "answer": "Piezo-Injektoren nutzen den piezoelektrischen Effekt und schalten dadurch deutlich schneller und präziser als klassische Magnetventil-Injektoren, was feinere und mehr Voreinspritzungen pro Arbeitsspiel ermöglicht.",
+      "correct": 0
+    },
+    {
+      "id": "motor-29",
+      "category": "Motor",
+      "question": "Wie funktioniert ein Start-Stopp-System im Grundprinzip?",
+      "options": [
+        "Der Motor wird im Stand automatisch abgeschaltet und bei Bedarf sofort neu gestartet",
+        "Es erhöht dauerhaft die Leerlaufdrehzahl, um Kaltstarts zu erleichtern",
+        "Es schaltet bei jedem Ampelstopp automatisch in den höchsten Gang",
+        "Es deaktiviert dauerhaft einzelne Zylinder, sobald das Fahrzeug steht"
+      ],
+      "answer": "Erkennt das System einen Stillstand (z. B. an der Ampel) bei erfüllten Bedingungen, schaltet es den Motor automatisch ab. Betätigt der Fahrer Kupplung oder Bremse löst, startet ein verstärkter Anlasser oder ein Startergenerator den Motor sehr schnell wieder.",
+      "correct": 0
+    },
+    {
+      "id": "motor-30",
+      "category": "Motor",
+      "question": "Welche Funktion hat ein hydraulischer Kettenspanner im Steuertrieb?",
+      "options": [
+        "Er hält die Steuerkette dauerhaft unter der passenden Spannung und dämpft Schwingungen",
+        "Er ersetzt bei Bedarf vollständig die Funktion der Nockenwelle",
+        "Er kühlt aktiv das im Steuertrieb zirkulierende Motoröl herunter",
+        "Er erzeugt zusätzlichen Öldruck für die Kurbelwellenlager"
+      ],
+      "answer": "Ein hydraulischer Kettenspanner gleicht über Öldruck und eine Feder den Längenverschleiß der Steuerkette automatisch aus und hält sie dauerhaft gespannt, um ein Überspringen oder Rasseln der Kette zu verhindern.",
+      "correct": 0
+    },
+    {
+      "id": "motor-31",
+      "category": "Motor",
+      "question": "Wodurch kann es bei Dieselmotoren zu einer gefährlichen Ölverdünnung durch Kraftstoff kommen?",
+      "options": [
+        "Wenn bei einer DPF-Regeneration unverbrannter Kraftstoff ins Motoröl gelangt",
+        "Wenn das Motoröl über die vorgeschriebene Wechselintervall-Kilometerzahl hinaus zu lange dunkel ist",
+        "Wenn ausschließlich zu hochwertiges, teureres Motoröl verwendet wird",
+        "Wenn der Reifendruck über einen längeren Zeitraum zu niedrig eingestellt ist"
+      ],
+      "answer": "Bei der aktiven Regeneration des Dieselpartikelfilters wird zusätzlicher Kraftstoff eingespritzt. Gelangt davon unverbrannter Kraftstoff an der Zylinderwand vorbei ins Kurbelgehäuse, verdünnt er das Motoröl und verschlechtert dessen Schmierfähigkeit.",
+      "correct": 0
+    },
+    {
+      "id": "motor-32",
+      "category": "Motor",
+      "question": "Wozu dient die Kurbelgehäuseentlüftung eines Verbrennungsmotors?",
+      "options": [
+        "Sie führt Blow-by-Gase kontrolliert ab und leitet sie zurück in den Ansaugtrakt",
+        "Sie kühlt aktiv die Kurbelwelle durch gezielt zugeführte Frischluft",
+        "Sie erhöht gezielt den Öldruck im gesamten Schmierkreislauf",
+        "Sie dient ausschließlich zur Entlüftung des Kühlmittelkreislaufs"
+      ],
+      "answer": "An den Kolbenringen vorbeiströmende Verbrennungsgase (Blow-by) würden das Kurbelgehäuse unter Druck setzen. Die Kurbelgehäuseentlüftung führt sie über einen Ölabscheider kontrolliert ab und meist zurück in den Ansaugtrakt, statt sie ungefiltert ins Freie zu leiten.",
+      "correct": 0
+    },
+    {
+      "id": "motor-33",
+      "category": "Motor",
+      "question": "Was unterscheidet einen DOHC- von einem SOHC-Ventiltrieb?",
+      "options": [
+        "DOHC besitzt zwei separate Nockenwellen je Zylinderkopf für Ein- und Auslass",
+        "SOHC kommt konstruktionsbedingt ausschließlich bei Dieselmotoren vor",
+        "DOHC benötigt grundsätzlich keine Ventile, sondern nur Schieber",
+        "Bei SOHC gibt es im Gegensatz zu DOHC gar keine Nockenwelle"
+      ],
+      "answer": "DOHC (Double Overhead Camshaft) besitzt zwei obenliegende Nockenwellen, eine für die Einlass- und eine für die Auslassventile, während bei SOHC (Single Overhead Camshaft) eine einzige Nockenwelle beide Ventilreihen über Kipp- oder Schlepphebel betätigt.",
+      "correct": 0
+    },
+    {
+      "id": "motor-34",
+      "category": "Motor",
+      "question": "Welchen Zweck erfüllt ein Nockenwellenversteller (z. B. VANOS, VVT)?",
+      "options": [
+        "Er verändert die Ventilsteuerzeiten abhängig von Last und Drehzahl",
+        "Er ersetzt dabei vollständig den kompletten mechanischen Ventiltrieb",
+        "Er erhöht dauerhaft die maximale Verdichtung des gesamten Motors",
+        "Er kühlt ausschließlich die Nockenwelle bei hoher Motorlast"
+      ],
+      "answer": "Ein Nockenwellenversteller dreht die Nockenwelle relativ zum Antriebsrad und verändert so die Ventilsteuerzeiten je nach Betriebspunkt, was Drehmoment, Verbrauch und Abgaswerte über einen weiten Drehzahlbereich verbessert.",
+      "correct": 0
+    },
+    {
+      "id": "motor-35",
+      "category": "Motor",
+      "question": "Wozu dient die Vorglühanlage mit Glühkerzen bei einem Dieselmotor?",
+      "options": [
+        "Sie erwärmt den Brennraum, damit der Kraftstoff im Kaltstart sicher zündet",
+        "Sie ersetzt dabei vollständig die eigentliche Kraftstoffeinspritzung",
+        "Sie kühlt gezielt den Brennraum vor einem Kaltstart im Winter herunter",
+        "Sie erhöht dauerhaft die maximale Leistung des Dieselmotors"
+      ],
+      "answer": "Da die Verdichtungswärme allein im kalten Zustand oft nicht ausreicht, erwärmen Glühkerzen den Brennraum vor und während des Kaltstarts, damit sich der eingespritzte Kraftstoff zuverlässig selbst entzündet.",
+      "correct": 0
+    },
+    {
+      "id": "motor-36",
+      "category": "Motor",
+      "question": "Woran erkennt man im Fahrbetrieb häufig einen Zündaussetzer an einem Zylinder?",
+      "options": [
+        "An einem spürbaren Ruckeln des Motors und ungleichmäßigem Motorlauf",
+        "An einer spürbar sinkenden Kühlmitteltemperatur im Kombiinstrument",
+        "An einem deutlich steigenden Reifendruck an allen vier Rädern",
+        "An einer merklich steigenden erreichbaren Höchstgeschwindigkeit"
+      ],
+      "answer": "Fehlt in einem Zylinder die Verbrennung, läuft der Motor unrund und ruckelt spürbar, da das Drehmoment dieses Arbeitsspiels fehlt. Das Steuergerät erkennt Zündaussetzer meist über die Kurbelwellendrehzahl und speichert einen entsprechenden Fehlercode.",
+      "correct": 0
+    },
+    {
+      "id": "motor-37",
+      "category": "Motor",
+      "question": "Worauf muss beim Prüfen des Ölstands mit dem Peilstab geachtet werden, damit der Wert stimmt?",
+      "options": [
+        "Das Fahrzeug muss eben stehen und der Motor kurz zuvor ausreichend abgestellt sein",
+        "Der Motor muss dafür grundsätzlich noch im Volllastbetrieb laufen",
+        "Das Fahrzeug muss sich dafür in einer engen Kurve befinden",
+        "Der Ölstand lässt sich ausschließlich bei laufender Klimaanlage korrekt messen"
+      ],
+      "answer": "Damit sich das Öl in der Ölwanne sammeln kann und der Wert nicht verfälscht wird, sollte das Fahrzeug eben stehen und der Motor einige Minuten vorher abgestellt worden sein, damit das im Motor verteilte Öl zurücklaufen konnte.",
+      "correct": 0
+    },
+    {
+      "id": "motor-38",
+      "category": "Motor",
+      "question": "Wie wird ein klassischer Kühlerlüfter mit Viscokupplung angesteuert, im Unterschied zu einem elektrischen Lüfter?",
+      "options": [
+        "Er koppelt temperaturabhängig über eine Flüssigkeitskupplung mechanisch an den Antrieb",
+        "Er wird dabei ausschließlich digital über den CAN-Bus mit Motordrehzahl geregelt",
+        "Er läuft grundsätzlich unabhängig vom Motor mit einer konstanten festen Drehzahl",
+        "Er wird ausschließlich manuell vom Fahrer über einen Schalter zugeschaltet"
+      ],
+      "answer": "Die Viscokupplung koppelt den Lüfter über eine temperaturabhängige Silikonflüssigkeit mechanisch an den Riementrieb: Bei steigender Temperatur wird mehr Drehmoment übertragen. Ein elektrischer Lüfter dagegen wird unabhängig vom Motorantrieb vom Steuergerät je nach Bedarf ein- oder ausgeschaltet.",
+      "correct": 0
+    },
+    {
+      "id": "motor-39",
+      "category": "Motor",
+      "question": "Welche Aufgabe hat das Druckregelventil in einem Common-Rail-System?",
+      "options": [
+        "Es hält den Raildruck auf dem vom Steuergerät vorgegebenen Sollwert",
+        "Es steuert ausschließlich den Zündzeitpunkt der einzelnen Zylinder",
+        "Es filtert grobe Partikel aus dem angesaugten Kraftstoff heraus",
+        "Es kühlt aktiv den unter hohem Druck stehenden Kraftstoff im Rail"
+      ],
+      "answer": "Das Druckregelventil (an der Hochdruckpumpe oder am Rail) regelt den tatsächlichen Kraftstoffdruck im Speicherrohr auf den vom Steuergerät berechneten Sollwert, indem es überschüssigen Kraftstoff zurück zum Tank ablässt.",
+      "correct": 0
+    },
+    {
+      "id": "motor-40",
+      "category": "Motor",
+      "question": "Was ermöglicht ein Kennfeldthermostat gegenüber einem klassischen, rein temperaturgesteuerten Thermostat?",
+      "options": [
+        "Das Steuergerät kann die Kühlmitteltemperatur last- und drehzahlabhängig anpassen",
+        "Es öffnet dabei grundsätzlich bereits ab einer Kühlmitteltemperatur von 0 Grad",
+        "Es ersetzt vollständig die Funktion der elektrischen Kühlmittelpumpe",
+        "Es funktioniert im Gegensatz zum klassischen Thermostat rein mechanisch ohne Steuergerät"
+      ],
+      "answer": "Ein elektrisch beheizbares Kennfeldthermostat wird vom Motorsteuergerät je nach Lastzustand aktiv angesteuert und kann die Öffnungstemperatur gezielt verschieben – etwa für schnelleres Warmlaufen oder gezielt höhere Temperaturen zur Verbrauchsoptimierung.",
+      "correct": 0
+    },
+    {
+      "id": "motor-41",
+      "category": "Motor",
+      "question": "Welche Funktion hatte ein klassisches Leerlaufregelventil (Bypasskanal um die Drosselklappe)?",
+      "options": [
+        "Es regelte im Leerlauf über einen Bypass die zugeführte Luftmenge und damit die Drehzahl",
+        "Es diente ausschließlich zur Kühlung der Zündkerzen im Leerlaufbetrieb",
+        "Es erhöhte dauerhaft die maximale Verdichtung im unteren Drehzahlbereich",
+        "Es steuerte ausschließlich die Einspritzmenge bei Volllast des Motors"
+      ],
+      "answer": "Bei geschlossener Drosselklappe regelte das Leerlaufregelventil über einen Bypasskanal die vorbeiströmende Luftmenge und hielt so die Leerlaufdrehzahl stabil, etwa auch beim Zuschalten der Klimaanlage. Heute übernimmt das meist die elektronische Drosselklappe selbst.",
+      "correct": 0
+    },
+    {
+      "id": "motor-42",
+      "category": "Motor",
+      "question": "Wozu wird eine Richtplatte beim Prüfen eines Zylinderkopfs verwendet?",
+      "options": [
+        "Um die Planheit der Dichtfläche auf Verzug durch Überhitzung zu prüfen",
+        "Um die exakte Motordrehzahl bei laufendem Motor zu bestimmen",
+        "Um den korrekten Reifendruck an allen vier Rädern einzustellen",
+        "Um die Kapazität der Starterbatterie messtechnisch zu ermitteln"
+      ],
+      "answer": "Mit einer Richtplatte und einer Fühlerlehre prüft man, ob sich die Dichtfläche des Zylinderkopfs – etwa durch Überhitzung – verzogen hat. Eine unebene Fläche kann zu Undichtigkeiten an der Zylinderkopfdichtung führen.",
+      "correct": 0
+    },
+    {
+      "id": "mm-21",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Welche Information liefert der Nockenwellensensor zusätzlich zum Kurbelwellensensor?",
+      "options": [
+        "Er unterscheidet, ob sich der Zylinder im Verdichtungs- oder Ausstoßtakt befindet",
+        "Er misst ausschließlich die aktuelle Kühlmitteltemperatur des Motors",
+        "Er ersetzt vollständig die Funktion des Kurbelwellensensors im System",
+        "Er erfasst ausschließlich den aktuellen Ladedruck im Saugrohr"
+      ],
+      "answer": "Da eine Kurbelwellenumdrehung allein nicht zeigt, ob ein Zylinder gerade verdichtet oder ausstößt, liefert der Nockenwellensensor die nötige Zusatzinformation zur eindeutigen Zuordnung des Arbeitstakts – wichtig etwa für die sequenzielle Einspritzung.",
+      "correct": 0
+    },
+    {
+      "id": "mm-22",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was ist das Grundprinzip eines elektronischen Gaspedals (E-Gas, Drive-by-Wire)?",
+      "options": [
+        "Ein Sensor erfasst die Pedalstellung, das Steuergerät stellt die Drosselklappe elektrisch",
+        "Das Gaspedal ist über ein mechanisches Seilzug direkt mit der Drosselklappe verbunden",
+        "Es steuert ausschließlich die Einspritzung, ganz ohne jede Drosselklappe im System",
+        "Es reguliert dabei ausschließlich den Ladedruck des vorhandenen Turboladers"
+      ],
+      "answer": "Beim E-Gas erfasst ein Pedalwertgeber die Fahrerwunsch-Stellung. Das Motorsteuergerät berechnet daraus unter Berücksichtigung weiterer Faktoren die optimale Drosselklappenstellung und steuert einen elektrischen Stellmotor an – ganz ohne mechanischen Seilzug.",
+      "correct": 0
+    },
+    {
+      "id": "mm-23",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Welche Aufgabe hat das Tankentlüftungsventil zusammen mit dem Aktivkohlefilter?",
+      "options": [
+        "Es leitet gespeicherte Kraftstoffdämpfe dosiert dem Ansaugtrakt zur Verbrennung zu",
+        "Es kühlt aktiv den Kraftstofftank bei hohen Außentemperaturen herunter",
+        "Es erhöht gezielt den Druck im Kraftstofftank beim Tankvorgang",
+        "Es filtert ausschließlich Rußpartikel aus dem regulären Abgasstrom heraus"
+      ],
+      "answer": "Kraftstoffdämpfe aus dem Tank werden zunächst im Aktivkohlefilter gebunden. Das Tankentlüftungsventil öffnet gesteuert vom Motorsteuergerät und lässt diese Dämpfe dosiert in den Ansaugtrakt strömen, wo sie mitverbrannt werden, statt in die Atmosphäre zu entweichen.",
+      "correct": 0
+    },
+    {
+      "id": "mm-24",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wozu dient der Kraftstoff-Hochdrucksensor direkt am Common-Rail?",
+      "options": [
+        "Er meldet dem Steuergerät den Ist-Druck zur exakten Regelung des Raildrucks",
+        "Er misst ausschließlich die Temperatur des angesaugten Kraftstoffs im Tank",
+        "Er ersetzt vollständig die Funktion der mechanischen Hochdruckpumpe",
+        "Er steuert ausschließlich den Zündzeitpunkt der einzelnen Zylinder"
+      ],
+      "answer": "Der Hochdrucksensor am Rail misst kontinuierlich den tatsächlichen Kraftstoffdruck. Das Steuergerät vergleicht diesen mit dem Sollwert und regelt über das Druckregelventil nach, damit die Einspritzmenge stets exakt berechnet werden kann.",
+      "correct": 0
+    },
+    {
+      "id": "mm-25",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Warum setzt man bei modernen Dieselmotoren häufig eine oder mehrere Voreinspritzungen vor der Haupteinspritzung ein?",
+      "options": [
+        "Sie senken Verbrennungsgeräusch und Stickoxidbildung durch sanfteren Druckanstieg",
+        "Sie erhöhen gezielt den mechanischen Verschleiß der Einspritzdüsen",
+        "Sie ersetzen dabei vollständig die eigentliche Haupteinspritzung",
+        "Sie dienen ausschließlich der Reinigung des Einspritzsystems"
+      ],
+      "answer": "Eine kleine Voreinspritzung zündet, bevor die Haupteinspritzung erfolgt, und sorgt für einen sanfteren Druckanstieg im Brennraum. Das reduziert den typischen 'Diesel-Nageln'-Klang und wirkt sich auch positiv auf die Stickoxidbildung aus.",
+      "correct": 0
+    },
+    {
+      "id": "mm-26",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was ist ein Vorteil von Einzelfunkenspulen gegenüber einem klassischen zentralen Verteiler?",
+      "options": [
+        "Jede Zündkerze wird individuell und unabhängig zum optimalen Zeitpunkt angesteuert",
+        "Sie benötigen im Gegensatz zum Verteiler keinerlei Ansteuerung durch das Steuergerät",
+        "Sie funktionieren ausschließlich bei Dieselmotoren ohne Selbstzündung",
+        "Sie ersetzen dabei vollständig die Funktion der Lambdasonde im System"
+      ],
+      "answer": "Bei Einzelfunkenspulen sitzt für jeden Zylinder eine eigene Zündspule direkt auf oder nahe der Zündkerze. Das Steuergerät kann Zündzeitpunkt und Energie je Zylinder individuell anpassen, ohne die Verluste und Verschleißteile eines mechanischen Verteilers.",
+      "correct": 0
+    },
+    {
+      "id": "mm-27",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was passiert bei einem Notlaufprogramm (Limp-Home-Modus) des Motorsteuergeräts?",
+      "options": [
+        "Leistung und Drehzahl werden begrenzt, um Folgeschäden bei einer Störung zu vermeiden",
+        "Der Motor wird dabei sofort und ohne Vorwarnung komplett abgeschaltet",
+        "Sämtliche Komfortfunktionen wie Radio und Klimaanlage werden dauerhaft deaktiviert",
+        "Das Steuergerät löscht automatisch alle bisher gespeicherten Fehlercodes"
+      ],
+      "answer": "Erkennt das Steuergerät eine schwerwiegende Störung, für die kein plausibler Ersatzwert vorliegt, schränkt es Leistung und Drehzahl gezielt ein, um Folgeschäden zu vermeiden – das Fahrzeug bleibt dabei meist noch eingeschränkt fahrbereit.",
+      "correct": 0
+    },
+    {
+      "id": "mm-28",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wofür stehen die OBD-Readiness-Codes bei einer Hauptuntersuchung?",
+      "options": [
+        "Sie zeigen, ob alle abgasrelevanten Überwachungen erfolgreich durchlaufen wurden",
+        "Sie geben ausschließlich den aktuellen Kilometerstand des Fahrzeugs an",
+        "Sie zeigen ausschließlich den Reifenzustand aller vier Räder an",
+        "Sie speichern ausschließlich die zuletzt gefahrene Höchstgeschwindigkeit"
+      ],
+      "answer": "Readiness-Codes zeigen, ob die abgasrelevanten Selbstüberwachungen des Motorsteuergeräts (z. B. für Katalysator, Lambdasonde, AGR) seit dem letzten Löschen des Fehlerspeichers vollständig durchlaufen wurden. Bei der Abgasuntersuchung werden sie mit geprüft.",
+      "correct": 0
+    },
+    {
+      "id": "mm-29",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wie unterscheidet sich die Regeneration eines Ottopartikelfilters (GPF) grundsätzlich von der eines Dieselpartikelfilters (DPF)?",
+      "options": [
+        "Beim Ottomotor läuft die Regeneration meist passiv durch die höheren Abgastemperaturen",
+        "Beim GPF ist grundsätzlich niemals eine Regeneration notwendig",
+        "Der GPF wird ausschließlich durch eine zusätzliche AdBlue-Einspritzung regeneriert",
+        "Der DPF benötigt im Gegensatz zum GPF keinerlei Regeneration"
+      ],
+      "answer": "Ottomotoren erreichen im Abgasstrang oft ausreichend hohe Temperaturen, sodass sich angesammelter Ruß im GPF häufig passiv im normalen Fahrbetrieb verbrennt, während beim DPF meist eine aktiv vom Steuergerät eingeleitete Regeneration mit erhöhter Abgastemperatur nötig ist.",
+      "correct": 0
+    },
+    {
+      "id": "mm-30",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Welche Aufgabe hat die AdBlue-Dosiereinheit im SCR-System?",
+      "options": [
+        "Sie spritzt die exakt berechnete AdBlue-Menge fein dosiert in den Abgasstrom ein",
+        "Sie erzeugt dabei den für die Einspritzung nötigen Kraftstoffdruck im Rail",
+        "Sie filtert ausschließlich grobe Partikel aus dem angesaugten AdBlue heraus",
+        "Sie kühlt aktiv den SCR-Katalysator bei hoher Abgastemperatur herunter"
+      ],
+      "answer": "Die Dosiereinheit spritzt die vom Steuergerät berechnete AdBlue-Menge fein vernebelt in den heißen Abgasstrom vor dem SCR-Katalysator ein, wo daraus Ammoniak entsteht, das die Stickoxide reduziert.",
+      "correct": 0
+    },
+    {
+      "id": "mm-31",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was unterscheidet einen NOx-Sensor grundsätzlich von einer klassischen Lambdasonde?",
+      "options": [
+        "Er misst zusätzlich zum Restsauerstoff auch die Stickoxidkonzentration im Abgas",
+        "Er wird ausschließlich vor dem Katalysator und niemals danach verbaut",
+        "Er ersetzt dabei grundsätzlich die Funktion des Luftmassenmessers",
+        "Er kann ausschließlich bei reinen Elektrofahrzeugen eingesetzt werden"
+      ],
+      "answer": "Ein NOx-Sensor misst neben dem Restsauerstoffgehalt auch die Stickoxidkonzentration im Abgas und wird meist nach dem SCR-Katalysator eingesetzt, um dessen Wirkungsgrad zu überwachen und die AdBlue-Dosierung zu regeln.",
+      "correct": 0
+    },
+    {
+      "id": "mm-32",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wozu dient ein Sekundärluftsystem in der Kaltstartphase eines Ottomotors?",
+      "options": [
+        "Es bläst zusätzliche Luft ins Abgas, damit der Katalysator schneller seine Temperatur erreicht",
+        "Es kühlt dabei aktiv den kalten Motor in der ersten Betriebsminute herunter",
+        "Es erhöht dauerhaft die Leerlaufdrehzahl während der gesamten Fahrt",
+        "Es filtert ausschließlich Rußpartikel aus dem noch kalten Abgasstrom"
+      ],
+      "answer": "Beim Kaltstart wird das Gemisch oft angereichert. Das Sekundärluftsystem bläst zusätzliche Luft in den noch heißen Abgastrakt, wodurch unverbrannte Bestandteile nachreagieren und den Katalysator zusätzlich aufheizen, damit er schneller seine Arbeitstemperatur erreicht.",
+      "correct": 0
+    },
+    {
+      "id": "mm-33",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Worauf ist bei der Verträglichkeit von E10-Kraftstoff mit älteren Fahrzeugen besonders zu achten?",
+      "options": [
+        "Manche älteren Dichtungen und Materialien sind nicht für den höheren Ethanolanteil freigegeben",
+        "E10 hat grundsätzlich eine deutlich höhere Oktanzahl als reines Superbenzin",
+        "E10 kann grundsätzlich in jedem beliebigen Dieselmotor bedenkenlos verwendet werden",
+        "E10 verringert dabei zuverlässig den Kraftstoffverbrauch aller Ottomotoren"
+      ],
+      "answer": "E10 enthält bis zu 10 % Ethanol. Bei manchen älteren Fahrzeugen sind Dichtungen, Schläuche oder Materialien im Kraftstoffsystem nicht für diesen höheren Ethanolanteil ausgelegt, weshalb der Hersteller die tatsächliche Freigabe bestätigen muss.",
+      "correct": 0
+    },
+    {
+      "id": "mm-34",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Welche Funktion hat ein motornaher Vorkatalysator zusätzlich zum Hauptkatalysator?",
+      "options": [
+        "Er erreicht durch seine Nähe zum Motor schneller seine Arbeitstemperatur nach dem Start",
+        "Er ersetzt dabei vollständig den weiter hinten verbauten Hauptkatalysator",
+        "Er filtert ausschließlich Stickoxide aus dem noch kalten Abgasstrom heraus",
+        "Er dient ausschließlich zur akustischen Dämpfung des Motorgeräuschs"
+      ],
+      "answer": "Da ein motornah verbauter Vorkatalysator schneller heiß wird als ein weiter hinten sitzender Hauptkatalysator, beginnt er unmittelbar nach dem Kaltstart mit der Schadstoffumwandlung, während der Hauptkatalysator die Feinarbeit übernimmt, sobald er seine Betriebstemperatur erreicht hat.",
+      "correct": 0
+    },
+    {
+      "id": "mm-35",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wozu dient der Differenzdrucksensor am Dieselpartikelfilter?",
+      "options": [
+        "Er erkennt anhand des Druckunterschieds vor und nach dem DPF dessen Beladungsgrad",
+        "Er misst ausschließlich die Temperatur des Kühlmittels am Motorausgang",
+        "Er steuert ausschließlich die Einspritzmenge der Haupteinspritzung",
+        "Er ersetzt dabei vollständig die Funktion der Lambdasonde im Abgassystem"
+      ],
+      "answer": "Der Differenzdrucksensor misst den Druckunterschied vor und nach dem Partikelfilter. Steigt dieser Wert deutlich an, deutet das auf eine zunehmende Beladung mit Ruß hin, worauf das Steuergerät eine Regeneration einleitet.",
+      "correct": 0
+    },
+    {
+      "id": "mm-36",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was wird bei der Diagnose von Verdunstungsemissionen (Tankleckdiagnose) im Wesentlichen geprüft?",
+      "options": [
+        "Ob das Kraftstoffsystem inklusive Tank ausreichend dicht gegenüber der Umgebung ist",
+        "Ob der aktuelle Kraftstoffverbrauch dem Herstellerdatenblatt genau entspricht",
+        "Ob die verbaute Zündkerze noch den korrekten Elektrodenabstand besitzt",
+        "Ob der Reifendruck an der Hinterachse den Vorgaben des Herstellers entspricht"
+      ],
+      "answer": "Bei der Tankleckdiagnose erzeugt das System einen leichten Unter- oder Überdruck im Kraftstoffsystem und prüft, ob dieser stabil bleibt. So werden auch kleinste Undichtigkeiten erkannt, durch die sonst Kraftstoffdämpfe in die Umgebung entweichen könnten.",
+      "correct": 0
+    },
+    {
+      "id": "mm-37",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wo sitzt bei den meisten modernen Einspritzsystemen die Niederdruck-Kraftstoffpumpe (Vorförderpumpe)?",
+      "options": [
+        "Meist direkt im Kraftstofftank, um die Hochdruckpumpe mit Vordruck zu versorgen",
+        "Ausschließlich direkt am Luftfilter im Ansaugtrakt des Motors",
+        "Ausschließlich direkt an der Zylinderkopfhaube des Motors",
+        "Ausschließlich außerhalb des Fahrzeugs an der Tankstellenzapfsäule"
+      ],
+      "answer": "Die elektrische Niederdruckpumpe sitzt bei den meisten Systemen im oder am Kraftstofftank und fördert den Kraftstoff mit moderatem Vordruck zur Hochdruckpumpe, die daraus erst den eigentlichen Einspritzdruck erzeugt.",
+      "correct": 0
+    },
+    {
+      "id": "mm-38",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Welchen Vorteil bietet eine Mehrfacheinspritzung pro Arbeitsspiel gegenüber einer einzigen Einspritzung?",
+      "options": [
+        "Feinere Dosierung verbessert Verbrennungsgeräusch, Emissionen und Kraftstoffverbrauch",
+        "Sie erhöht dabei ausschließlich den mechanischen Verschleiß der Einspritzdüsen",
+        "Sie ersetzt vollständig die Notwendigkeit einer Lambdaregelung im System",
+        "Sie funktioniert ausschließlich bei sehr niedrigen Motordrehzahlen im Stand"
+      ],
+      "answer": "Durch die Aufteilung der Einspritzmenge in mehrere kleine Portionen (Vor-, Haupt- und Nacheinspritzung) lässt sich der Verbrennungsverlauf feiner steuern, was Geräusch, Schadstoffbildung und Kraftstoffverbrauch gegenüber einer einzigen Einspritzung verbessert.",
+      "correct": 0
+    },
+    {
+      "id": "mm-39",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was bewirkt eine Zylinderabschaltung bei Teillastbetrieb eines Mehrzylindermotors?",
+      "options": [
+        "Einzelne Zylinder werden bei geringer Last deaktiviert, um Kraftstoff zu sparen",
+        "Der gesamte Motor wird dabei kurzzeitig vollständig abgeschaltet",
+        "Sie erhöht dauerhaft die Leistung im oberen Drehzahlbereich des Motors",
+        "Sie ersetzt dabei vollständig die Funktion des Start-Stopp-Systems"
+      ],
+      "answer": "Bei geringer Last schaltet das Steuergerät gezielt einzelne Zylinder ab (Ventile bleiben geschlossen, keine Einspritzung), da die verbleibenden Zylinder dann in einem effizienteren Lastbereich arbeiten – das spart in diesen Phasen Kraftstoff.",
+      "correct": 0
+    },
+    {
+      "id": "mm-40",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wie unterstützt ein 48-Volt-Mildhybridsystem den Verbrennungsmotor?",
+      "options": [
+        "Ein Startergenerator unterstützt beim Beschleunigen und rekuperiert beim Bremsen",
+        "Es ersetzt dabei vollständig den klassischen 12-Volt-Anlasser und die Lichtmaschine",
+        "Es ermöglicht dem Fahrzeug, dauerhaft rein elektrisch über 100 km/h zu fahren",
+        "Es dient ausschließlich zur Beheizung der Frontscheibe im Winter"
+      ],
+      "answer": "Ein riemengetriebener Startergenerator im 48-Volt-Bordnetz kann den Verbrennungsmotor beim Beschleunigen kurzzeitig elektrisch unterstützen (Boost) und beim Bremsen bzw. Schieben Energie zurückgewinnen (Rekuperation), was Verbrauch und Emissionen senkt.",
+      "correct": 0
+    },
+    {
+      "id": "mm-41",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wonach richtet sich beim Ottomotor der adaptive, klopfgeregelte Zündzeitpunkt?",
+      "options": [
+        "Er wird so früh wie möglich gewählt, aber bei erkanntem Klopfen automatisch nach spät korrigiert",
+        "Er bleibt unabhängig vom Klopfsensor-Signal während der gesamten Fahrt konstant",
+        "Er wird ausschließlich einmalig bei der Erstinbetriebnahme fest eingestellt",
+        "Er richtet sich ausschließlich nach dem aktuellen Reifendruck des Fahrzeugs"
+      ],
+      "answer": "Das Steuergerät wählt zunächst einen möglichst frühen, effizienten Zündzeitpunkt. Meldet der Klopfsensor unkontrollierte Verbrennung, wird der Zündzeitpunkt für den betroffenen Zylinder automatisch nach spät verstellt und bei Bedarf wieder schrittweise angenähert.",
+      "correct": 0
+    },
+    {
+      "id": "mm-42",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Warum wird das Kraftstoffgemisch in der Warmlaufphase nach einem Kaltstart oft angereichert?",
+      "options": [
+        "Kalter Kraftstoff verdampft schlechter, ein fetteres Gemisch sichert einen stabilen Motorlauf",
+        "Ein fettes Gemisch senkt dabei zuverlässig sofort die Abgastemperatur auf null",
+        "Es wird ausschließlich zur schnelleren Aufladung der Starterbatterie benötigt",
+        "Ein fettes Gemisch verlängert dabei gezielt die Lebensdauer der Zündkerzen"
+      ],
+      "answer": "Bei kaltem Motor verdampft der Kraftstoff schlechter und kondensiert teilweise an den kalten Zylinderwänden. Eine zeitweilige Anreicherung des Gemischs gleicht das aus und sorgt für einen stabilen, ruhigen Motorlauf, bis die Betriebstemperatur erreicht ist.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-21",
+      "category": "Kraftübertragung",
+      "question": "Welche Funktion hat der Torsionsdämpfer in der Kupplungsscheibe?",
+      "options": [
+        "Er dämpft Drehschwingungen des Motors und macht das Anfahren ruckfreier",
+        "Er erhöht gezielt die maximale Übertragungsfähigkeit der Kupplung",
+        "Er kühlt aktiv die Kupplungsscheibe bei starker Beanspruchung",
+        "Er ersetzt dabei vollständig die Funktion der Tellerfeder"
+      ],
+      "answer": "Federn und Reibelemente im Torsionsdämpfer der Kupplungsscheibe federn ungleichförmige Drehschwingungen des Verbrennungsmotors ab, bevor sie ans Getriebe weitergegeben werden – das macht Anfahren und Lastwechsel spürbar ruckfreier.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-22",
+      "category": "Kraftübertragung",
+      "question": "Welche Aufgabe hat das Ausrücklager beim Betätigen der Kupplung?",
+      "options": [
+        "Es überträgt die Betätigungskraft auf die rotierende Tellerfeder der Kupplung",
+        "Es gleicht dabei unterschiedliche Raddrehzahlen bei Kurvenfahrt aus",
+        "Es erzeugt den hydraulischen Druck für den Hauptbremszylinder",
+        "Es verbindet Kurbelwelle und Nockenwelle drehfest miteinander"
+      ],
+      "answer": "Beim Treten des Kupplungspedals drückt das Ausrücklager axial gegen die rotierende Tellerfeder der Kupplung und ermöglicht so, eine feststehende Betätigungskraft auf ein sich drehendes Bauteil zu übertragen.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-23",
+      "category": "Kraftübertragung",
+      "question": "Welchen Zweck erfüllt ein Doppelmassenschwungrad (DMS) im Antriebsstrang?",
+      "options": [
+        "Es filtert Drehschwingungen des Motors zusätzlich zum Torsionsdämpfer der Kupplung",
+        "Es ersetzt dabei vollständig die Kupplungsscheibe und deren Beläge",
+        "Es kühlt aktiv das Getriebeöl während der Fahrt herunter",
+        "Es erhöht dauerhaft die maximale Motordrehzahl im oberen Bereich"
+      ],
+      "answer": "Ein Doppelmassenschwungrad teilt die Schwungmasse in zwei über Federn gekoppelte Teile und dämpft dadurch Drehungleichförmigkeiten des Motors noch wirksamer als ein klassisches Schwungrad mit nur einem Torsionsdämpfer in der Kupplungsscheibe – für ruhigeren Lauf und weniger Getrieberasseln.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-24",
+      "category": "Kraftübertragung",
+      "question": "Wonach richtet sich bei modernen Schaltgetrieben meist das empfohlene Ölwechselintervall?",
+      "options": [
+        "Häufig gilt bei modernem Getriebeöl eine lange, an die Nutzung angepasste Laufleistung",
+        "Getriebeöl muss grundsätzlich bei jedem einzelnen Werkstattbesuch gewechselt werden",
+        "Es orientiert sich ausschließlich am Wechselintervall der Bremsflüssigkeit",
+        "Ein Wechsel ist bei modernen Schaltgetrieben grundsätzlich nie erforderlich"
+      ],
+      "answer": "Viele moderne Schaltgetriebe sind mit langlebigem Getriebeöl befüllt, dessen Wechselintervall der Hersteller je nach Einsatzbedingungen vorgibt – bei starker Beanspruchung wie häufigem Anhängerbetrieb oft deutlich früher als im reinen Normalbetrieb.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-25",
+      "category": "Kraftübertragung",
+      "question": "Welche Funktion hat die Vorgelegewelle in einem klassischen Schaltgetriebe?",
+      "options": [
+        "Über sie werden die Zahnradpaarungen der einzelnen Gänge zur Hauptwelle übersetzt",
+        "Sie dient ausschließlich der Kühlung des zirkulierenden Getriebeöls",
+        "Sie ersetzt dabei vollständig die Funktion des Differenzials",
+        "Sie überträgt das Antriebsmoment direkt und ungeteilt auf die Räder"
+      ],
+      "answer": "Die Vorgelegewelle läuft parallel zur Hauptwelle und trägt Zahnräder, die mit den Zahnrädern der Hauptwelle kämmen. Je nachdem, welches Zahnradpaar über die Schaltmuffe verbunden wird, ergibt sich die gewählte Gangübersetzung.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-26",
+      "category": "Kraftübertragung",
+      "question": "Wie funktioniert eine elektronisch geregelte Lamellenkupplung (z. B. Haldex) im Allradantrieb?",
+      "options": [
+        "Sie überträgt je nach Schlupf variabel Drehmoment auf die zweite Achse",
+        "Sie sperrt dabei grundsätzlich dauerhaft beide Achsen fest miteinander",
+        "Sie funktioniert ausschließlich rein mechanisch ganz ohne jede Steuerung",
+        "Sie wird ausschließlich beim Bremsvorgang zur Unterstützung aktiviert"
+      ],
+      "answer": "Eine elektronisch geregelte Lamellenkupplung presst je nach erkanntem Schlupf und Fahrsituation die Lamellen mehr oder weniger stark zusammen und leitet dadurch variabel Antriebsmoment auf die zweite, normalerweise nicht permanent angetriebene Achse.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-27",
+      "category": "Kraftübertragung",
+      "question": "Was bewirkt Torque Vectoring bei einem entsprechend ausgestatteten Fahrzeug?",
+      "options": [
+        "Das Antriebsmoment wird gezielt unterschiedlich auf einzelne Räder verteilt",
+        "Es verhindert dabei ausschließlich das Blockieren der Räder beim Bremsen",
+        "Es ersetzt dabei vollständig die Funktion des klassischen Differenzials",
+        "Es erhöht dauerhaft die Bodenfreiheit des Fahrzeugs in Kurven"
+      ],
+      "answer": "Beim Torque Vectoring wird das Antriebsmoment gezielt unterschiedlich auf die Räder einer Achse (oder auch zwischen den Achsen) verteilt, um das Kurvenverhalten zu verbessern – etwa mehr Moment auf das kurvenäußere Rad, um ein Eindrehen zu unterstützen.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-28",
+      "category": "Kraftübertragung",
+      "question": "Was kennzeichnet eine elektrische Antriebsachse (E-Achse) bei einem Hybrid- oder Elektrofahrzeug?",
+      "options": [
+        "E-Motor, Getriebe und Differenzial sind dabei kompakt in einer Baueinheit integriert",
+        "Sie besteht dabei ausschließlich aus einem klassischen Verbrennungsmotor mit Kupplung",
+        "Sie benötigt zwingend eine mechanische Kardanwelle zur gegenüberliegenden Achse",
+        "Sie kann grundsätzlich nur an der Vorderachse eines Fahrzeugs verbaut werden"
+      ],
+      "answer": "Eine E-Achse vereint Elektromotor, ein meist einstufiges Getriebe und das Differenzial in einer kompakten Baueinheit, die direkt an einer Achse verbaut wird – das spart Bauraum und ermöglicht z. B. einen zweiten, unabhängigen Antrieb an der anderen Achse.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-29",
+      "category": "Kraftübertragung",
+      "question": "Wozu dient der Kupplungspedal-Wegsensor bei modernen Fahrzeugen?",
+      "options": [
+        "Er meldet dem Steuergerät die genaue Pedalstellung, etwa für die Start-Stopp-Freigabe",
+        "Er erzeugt dabei den hydraulischen Druck für die eigentliche Kupplungsbetätigung",
+        "Er ersetzt dabei vollständig die Funktion des mechanischen Ausrücklagers",
+        "Er misst ausschließlich den aktuellen Verschleiß der Bremsbeläge"
+      ],
+      "answer": "Der Wegsensor erfasst die genaue Position des Kupplungspedals und liefert dieses Signal an verschiedene Steuergeräte, etwa um Start-Stopp-Funktionen freizugeben oder Schaltempfehlungen anzupassen.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-30",
+      "category": "Kraftübertragung",
+      "question": "Wozu dient ein Zentrifugalpendel an der Kurbelwelle bzw. im Antriebsstrang?",
+      "options": [
+        "Es tilgt drehzahlabhängig Drehschwingungen und verbessert so den Fahrkomfort",
+        "Es erhöht dabei gezielt die maximale Motorleistung im oberen Drehzahlbereich",
+        "Es ersetzt vollständig die Funktion des klassischen Schwungrads",
+        "Es kühlt aktiv das zirkulierende Kühlmittel im Motorkreislauf"
+      ],
+      "answer": "Ein Zentrifugalpendel besteht aus beweglichen Fliehgewichten, die sich drehzahlabhängig verlagern und dadurch Drehschwingungen des Motors zusätzlich tilgen – das ermöglicht z. B. niedrigere Leerlaufdrehzahlen bei gutem Komfort.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-31",
+      "category": "Kraftübertragung",
+      "question": "Wie funktioniert die nasslaufende Anfahrkupplung eines CVT-Getriebes grundsätzlich?",
+      "options": [
+        "Sie überträgt das Motordrehmoment über in Öl laufende Lamellen mit definiertem Schlupf",
+        "Sie funktioniert dabei rein hydrodynamisch, komplett ohne mechanischen Reibkontakt",
+        "Sie ersetzt dabei vollständig die verstellbaren Kegelscheiben des CVT-Getriebes",
+        "Sie wird ausschließlich beim Bremsen des Fahrzeugs eingesetzt"
+      ],
+      "answer": "Statt eines Drehmomentwandlers nutzen manche CVT-Getriebe eine nasslaufende Lamellenkupplung, die von Öl umspült wird und dadurch dosiert Schlupf zulässt, um ein weiches, ruckfreies Anfahren zu ermöglichen.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-32",
+      "category": "Kraftübertragung",
+      "question": "Welche Bauteile bilden bei einer hydraulisch betätigten Kupplung den Kraftweg vom Pedal zur Kupplung?",
+      "options": [
+        "Geberzylinder am Pedal und Nehmerzylinder an der Kupplung, verbunden über eine Leitung",
+        "Ausschließlich ein einzelner mechanischer Seilzug ohne jede Hydraulik",
+        "Ausschließlich ein elektrischer Stellmotor direkt an der Tellerfeder",
+        "Ausschließlich der Bremskraftverstärker, der die Kupplung mitbetätigt"
+      ],
+      "answer": "Beim Treten des Kupplungspedals erzeugt der Geberzylinder hydraulischen Druck, der über eine Leitung zum Nehmerzylinder an der Kupplung geleitet wird und dort über das Ausrücklager die Tellerfeder betätigt.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-33",
+      "category": "Kraftübertragung",
+      "question": "Was kann ein spürbares Spiel bzw. 'Losbrechmoment' beim Gaswechsel im Antriebsstrang verursachen?",
+      "options": [
+        "Verschlissene oder ausgeschlagene Gelenke und Lager im Antriebsstrang",
+        "Ausschließlich einen zu niedrigen Reifendruck an der Hinterachse",
+        "Ausschließlich eine zu geringe Ladung der Starterbatterie",
+        "Ausschließlich eine falsch eingestellte Zündkerze im Motor"
+      ],
+      "answer": "Ein spürbarer Ruck oder ein Klacken beim Wechsel zwischen Zug- und Schubbetrieb deutet häufig auf Spiel in verschlissenen Gelenken, Lagern oder Verzahnungen im Antriebsstrang hin, etwa an Gelenkwellen oder Differenzial.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-34",
+      "category": "Kraftübertragung",
+      "question": "Welche Sensoren benötigt ein Getriebesteuergerät typischerweise zur korrekten Schaltsteuerung?",
+      "options": [
+        "Drehzahlsensoren an Getriebeein- und -ausgang sowie einen Positionssensor der Schaltung",
+        "Ausschließlich einen einzelnen Sensor für den aktuellen Reifendruck",
+        "Ausschließlich einen Sensor für die Außentemperatur vor dem Fahrzeug",
+        "Ausschließlich den Lenkwinkelsensor der elektrischen Servolenkung"
+      ],
+      "answer": "Ein Getriebesteuergerät benötigt unter anderem die Drehzahlen an Getriebeeingang und -ausgang sowie die Stellung des Wählhebels bzw. der Schaltung, um Schaltpunkte, Kupplungsdruck und Gangwahl passend zur Fahrsituation zu berechnen.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-35",
+      "category": "Kraftübertragung",
+      "question": "Wie lässt sich Radlagerspiel bei einer Sichtprüfung ohne vollständigen Ausbau grob feststellen?",
+      "options": [
+        "Durch Rütteln am angehobenen Rad in 12-Uhr/6-Uhr-Richtung von Hand",
+        "Ausschließlich durch Messung des aktuellen Reifendrucks am Rad",
+        "Ausschließlich durch eine reine Sichtprüfung der Bremsscheibenfarbe",
+        "Ausschließlich durch Prüfung der Motoröltemperatur im Betrieb"
+      ],
+      "answer": "Bei angehobenem Rad lässt sich durch vorsichtiges Rütteln von oben nach unten (12-Uhr/6-Uhr-Position) ein spürbares Spiel im Radlager grob feststellen; für eine genaue Beurteilung folgt bei Verdacht meist eine Messung mit einer Messuhr.",
+      "correct": 0
+    },
+    {
+      "id": "kraft-36",
+      "category": "Kraftübertragung",
+      "question": "Welche Aufgabe hat die Gummimanschette (Faltenbalg) an einem Gleichlaufgelenk?",
+      "options": [
+        "Sie hält das Schmierfett im Gelenk und schützt es vor Schmutz und Feuchtigkeit",
+        "Sie überträgt dabei einen Teil des Antriebsmoments zusätzlich zum Gelenk",
+        "Sie ersetzt bei Verschleiß vollständig das eigentliche Gleichlaufgelenk",
+        "Sie kühlt aktiv das Gelenk bei hoher mechanischer Belastung"
+      ],
+      "answer": "Die Gummimanschette umschließt das Gleichlaufgelenk, hält das Spezialfett im Gelenk und verhindert das Eindringen von Schmutz und Feuchtigkeit. Ist sie beschädigt, tritt Fett aus und Schmutz dringt ein, was das Gelenk rasch verschleißen lässt.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-21",
+      "category": "Fahrwerk",
+      "question": "Wie überträgt eine Zahnstangenlenkung die Drehbewegung des Lenkrads in eine Radbewegung?",
+      "options": [
+        "Ein Ritzel an der Lenksäule bewegt eine Zahnstange, die über Spurstangen die Räder lenkt",
+        "Über einen hydraulischen Kreislauf ganz ohne jede mechanische Verbindung",
+        "Direkt über ein Getriebe, das mit dem Automatikgetriebe gekoppelt ist",
+        "Über eine reine Seilzugverbindung wie bei einer klassischen Handbremse"
+      ],
+      "answer": "Das Lenkrad dreht über die Lenksäule ein Ritzel, das in eine Zahnstange eingreift. Die lineare Bewegung der Zahnstange wird über die Spurstangen auf die Radträger übertragen und lenkt so die Räder ein.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-22",
+      "category": "Fahrwerk",
+      "question": "Wie hoch ist in Deutschland die gesetzlich vorgeschriebene Mindestprofiltiefe für Pkw-Reifen?",
+      "options": [
+        "1,6 Millimeter über die gesamte Lauffläche",
+        "0,5 Millimeter über die gesamte Lauffläche",
+        "4,0 Millimeter über die gesamte Lauffläche",
+        "Es gibt in Deutschland keine gesetzliche Mindestprofiltiefe"
+      ],
+      "answer": "Die StVZO schreibt eine Mindestprofiltiefe von 1,6 mm vor. Fachleute empfehlen aus Sicherheitsgründen aber deutlich früher zu wechseln, insbesondere bei Winterreifen, da die Nässe- und Schneetauglichkeit schon vorher merklich nachlässt.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-23",
+      "category": "Fahrwerk",
+      "question": "Was verrät die DOT-Nummer auf der Reifenflanke über einen Reifen?",
+      "options": [
+        "Das genaue Herstellungsdatum (Kalenderwoche und Jahr) des Reifens",
+        "Ausschließlich die maximal zulässige Zuladung des Fahrzeugs",
+        "Ausschließlich den vorgeschriebenen Reifendruck bei Volllast",
+        "Ausschließlich die Farbe der ursprünglichen Verpackung des Reifens"
+      ],
+      "answer": "Die letzten vier Ziffern der DOT-Nummer geben Kalenderwoche und Jahr der Herstellung an. Auch bei ausreichendem Profil altert Gummi durch Weichmacherverlust, weshalb das Reifenalter bei der Beurteilung eine wichtige Rolle spielt.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-24",
+      "category": "Fahrwerk",
+      "question": "Was unterscheidet ein direktes von einem indirekten Reifendruckkontrollsystem (RDKS)?",
+      "options": [
+        "Direkte Systeme messen den Druck über Sensoren im Rad, indirekte über ABS-Raddrehzahlen",
+        "Indirekte Systeme messen den Druck ausschließlich über eine Kamera im Radkasten",
+        "Direkte Systeme funktionieren ausschließlich ganz ohne jede Batterie im Rad",
+        "Beide Systemarten liefern grundsätzlich exakt denselben absoluten Druckwert"
+      ],
+      "answer": "Direkte RDKS-Systeme messen den Luftdruck über Sensoren direkt im Reifen bzw. an der Felge. Indirekte Systeme werten stattdessen die unterschiedlichen Raddrehzahlen über das ABS-System aus, da ein zu weicher Reifen einen leicht größeren Abrollumfang hat.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-25",
+      "category": "Fahrwerk",
+      "question": "Woran erkennt man häufig eine Unwucht an einem Rad während der Fahrt?",
+      "options": [
+        "An spürbaren Vibrationen im Lenkrad oder in der Karosserie ab bestimmten Geschwindigkeiten",
+        "An einem deutlich sinkenden Motoröldruck bei höherer Geschwindigkeit",
+        "An einer spürbar steigenden erreichbaren Höchstgeschwindigkeit",
+        "An einem deutlich geringeren Kraftstoffverbrauch bei gleicher Fahrweise"
+      ],
+      "answer": "Eine Unwucht führt zu ungleichmäßiger Kraftverteilung beim Abrollen und äußert sich typischerweise als Vibration im Lenkrad (Vorderachse) oder in Sitz und Karosserie (Hinterachse), meist verstärkt in einem bestimmten Geschwindigkeitsbereich.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-26",
+      "category": "Fahrwerk",
+      "question": "Welche Folge kann ein verschlissener Spurstangenkopf typischerweise haben?",
+      "options": [
+        "Ein spürbares Spiel in der Lenkung und ungenaues, klapperndes Lenkverhalten",
+        "Eine spürbar sinkende Kühlmitteltemperatur bei laufendem Motor",
+        "Eine deutlich verkürzte Lebensdauer der Zündkerzen im Motor",
+        "Ein spürbar steigender Öldruck im Kurbelwellenlager"
+      ],
+      "answer": "Verschlissene Spurstangenköpfe erzeugen Spiel in der Lenkgeometrie. Das äußert sich in ungenauer, klappernder Lenkung und kann zusätzlich zu einer unkontrollierten Veränderung der Spureinstellung mit entsprechendem Reifenverschleiß führen.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-27",
+      "category": "Fahrwerk",
+      "question": "Welche Funktion hat das Domlager an einem McPherson-Federbein?",
+      "options": [
+        "Es lagert das obere Ende des Federbeins drehbar in der Karosserie und dämpft Geräusche",
+        "Es überträgt dabei ausschließlich das Antriebsmoment auf das jeweilige Rad",
+        "Es filtert Rußpartikel aus dem in der Nähe vorbeiströmenden Abgas",
+        "Es ersetzt dabei vollständig die Funktion des unteren Querlenkers"
+      ],
+      "answer": "Das Domlager verbindet das obere Ende des Federbeins drehbar mit dem Karosseriedom, sodass sich das Federbein beim Lenken mitdrehen kann, und dämpft gleichzeitig Fahrbahngeräusche und Stöße gegenüber der Karosserie.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-28",
+      "category": "Fahrwerk",
+      "question": "Welchen fahrdynamischen Vorteil bietet ein leicht negativer Sturz bei sportlicher Kurvenfahrt?",
+      "options": [
+        "Die Reifenaufstandsfläche bleibt bei seitlicher Karosserieneigung großflächiger erhalten",
+        "Er verringert dabei zuverlässig den Kraftstoffverbrauch bei jeder Fahrsituation",
+        "Er erhöht dauerhaft die erreichbare Höchstgeschwindigkeit auf der Geraden",
+        "Er verlängert dabei grundsätzlich die Lebensdauer der Bremsbeläge"
+      ],
+      "answer": "Neigt sich die Karosserie in der Kurve, richtet ein leicht negativer Sturz das kurvenäußere, stärker belastete Rad auf und hält so mehr Reifenfläche in Kontakt mit der Fahrbahn, was mehr Seitenführung ermöglicht – allerdings auf Kosten des Geradeauslaufs und gleichmäßigen Verschleißes.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-29",
+      "category": "Fahrwerk",
+      "question": "Wie funktioniert eine hydropneumatische Niveauregulierung im Grundprinzip?",
+      "options": [
+        "Ein Gaspolster in Verbindung mit Hydraulikflüssigkeit trägt und federt, Ventile regeln das Niveau",
+        "Sie besteht ausschließlich aus klassischen Schraubenfedern ohne jede Regelung",
+        "Sie funktioniert ausschließlich rein mechanisch ganz ohne jede Flüssigkeit",
+        "Sie dient ausschließlich zur Kühlung der Bremsanlage bei Bergabfahrten"
+      ],
+      "answer": "Bei der hydropneumatischen Federung übernimmt ein komprimierbares Gaspolster die Federfunktion, während Hydraulikflüssigkeit Kräfte überträgt. Über Ventile lässt sich Flüssigkeit zu- oder abführen, wodurch sich das Fahrzeugniveau unabhängig von der Beladung automatisch regeln lässt.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-30",
+      "category": "Fahrwerk",
+      "question": "Wofür wird der Lenkwinkelsensor unter anderem im Zusammenspiel mit dem ESP benötigt?",
+      "options": [
+        "Er liefert den vom Fahrer gewünschten Lenkeinschlag als Vergleichswert für die Stabilitätsregelung",
+        "Er misst ausschließlich den aktuellen Reifendruck an der Vorderachse",
+        "Er ersetzt dabei vollständig die Funktion des Gierratensensors",
+        "Er steuert ausschließlich die Helligkeit der Instrumentenbeleuchtung"
+      ],
+      "answer": "Das ESP vergleicht den vom Lenkwinkelsensor erfassten, vom Fahrer gewünschten Kurs mit der tatsächlichen Fahrzeugbewegung (u. a. über Gierraten- und Querbeschleunigungssensor). Bei größerer Abweichung greift es durch gezielte Bremseingriffe stabilisierend ein.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-31",
+      "category": "Fahrwerk",
+      "question": "Warum dürfen an einer Achse grundsätzlich keine unterschiedlichen Reifenfabrikate oder stark abweichenden Profile gemischt werden?",
+      "options": [
+        "Unterschiedliches Grip- und Fahrverhalten kann zu unberechenbarem Fahrverhalten führen",
+        "Es ist ausschließlich aus rein optischen Gründen gesetzlich nicht erlaubt",
+        "Unterschiedliche Reifen erhöhen dabei zuverlässig den Kraftstoffverbrauch",
+        "Es hat auf das Fahrverhalten nachweislich überhaupt keinen Einfluss"
+      ],
+      "answer": "Reifen unterschiedlicher Bauart oder mit stark abweichendem Profil können sich in Grip, Verschleiß und Verhalten bei Nässe deutlich unterscheiden. An einer Achse gemischt kann das zu unberechenbarem, einseitigem Fahrverhalten führen, besonders bei Notbremsungen oder in Kurven.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-32",
+      "category": "Fahrwerk",
+      "question": "Was beschreibt das Ackermann-Prinzip bei der Auslegung der Lenkgeometrie?",
+      "options": [
+        "Das kurveninnere Rad wird stärker eingeschlagen als das kurvenäußere Rad",
+        "Beide Vorderräder werden bei jeder Kurvenfahrt immer exakt gleich stark eingeschlagen",
+        "Ausschließlich die Hinterräder werden entgegengesetzt zu den Vorderrädern eingeschlagen",
+        "Die Lenkgeometrie bleibt unabhängig vom Kurvenradius immer konstant"
+      ],
+      "answer": "Da das kurveninnere Rad in der Kurve auf einem kleineren Radius fährt als das kurvenäußere, sorgt die nach dem Ackermann-Prinzip ausgelegte Lenkgeometrie dafür, dass das innere Rad etwas stärker einschlägt als das äußere, damit beide Räder möglichst ohne Schräglaufwinkel abrollen.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-33",
+      "category": "Fahrwerk",
+      "question": "Welche Auswirkung kann eine deutliche Tieferlegung des Fahrwerks auf die Achsgeometrie haben?",
+      "options": [
+        "Sturz, Spur und Federweg können sich unerwünscht stark verändern",
+        "Sie hat auf Sturz, Spur und Federweg grundsätzlich keinerlei Einfluss",
+        "Sie verbessert dabei automatisch und garantiert die Achsvermessungswerte",
+        "Sie erhöht dabei ausschließlich die nutzbare Bodenfreiheit des Fahrzeugs"
+      ],
+      "answer": "Eine starke Tieferlegung verändert häufig die ursprünglich für die Serienfederwege ausgelegte Kinematik der Radaufhängung, wodurch sich Sturz, Spur und der nutzbare Federweg unerwünscht verändern können – eine erneute Achsvermessung ist danach meist erforderlich.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-34",
+      "category": "Fahrwerk",
+      "question": "Welches typische Symptom zeigt ein verschlissenes Kugelgelenk in der Radaufhängung?",
+      "options": [
+        "Ein spürbares Klopfen oder Poltern über Bodenwellen und Fahrbahnunebenheiten",
+        "Eine spürbar steigende Kühlmitteltemperatur im Kombiinstrument",
+        "Ein deutlich sinkender Kraftstoffverbrauch bei konstanter Geschwindigkeit",
+        "Eine spürbar verbesserte Bremswirkung bei einer Vollbremsung"
+      ],
+      "answer": "Verschlissene Kugelgelenke besitzen Spiel in der Radaufhängung und erzeugen dadurch typischerweise ein Klopf- oder Poltergeräusch beim Überfahren von Unebenheiten sowie eine ungenauere, klapprige Lenkung.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-35",
+      "category": "Fahrwerk",
+      "question": "Woran äußert sich häufig ein gealtertes, poröses Gummi-Metall-Lager (Buchse) im Fahrwerk?",
+      "options": [
+        "An Rissen im Gummi sowie an Knarz- oder Klappergeräuschen beim Einfedern",
+        "Ausschließlich an einer spürbar sinkenden Batteriespannung im Bordnetz",
+        "Ausschließlich an einer veränderten Farbe der Bremsflüssigkeit",
+        "Ausschließlich an einer spürbar höheren erreichbaren Höchstgeschwindigkeit"
+      ],
+      "answer": "Mit der Zeit wird das Gummi von Fahrwerksbuchsen spröde und kann reißen. Das äußert sich häufig durch Knarz- und Klappergeräusche beim Ein- und Ausfedern sowie durch ein zunehmend ungenaueres, indirekteres Fahrverhalten.",
+      "correct": 0
+    },
+    {
+      "id": "fahrwerk-36",
+      "category": "Fahrwerk",
+      "question": "Wie ermittelt ein optischer Achsmessstand üblicherweise die Fahrwerkswinkel eines Fahrzeugs?",
+      "options": [
+        "Über Kameras oder Messköpfe an den Rädern, die Sturz, Spur und Nachlauf berechnen",
+        "Ausschließlich durch manuelles Ablesen mit einer einfachen Wasserwaage",
+        "Ausschließlich durch Wiegen des Fahrzeugs auf einer Fahrzeugwaage",
+        "Ausschließlich durch eine Sichtprüfung der Reifenprofiltiefe"
+      ],
+      "answer": "Moderne Achsmessstände nutzen Kameras oder an den Rädern befestigte Messköpfe, die die genaue Radstellung erfassen. Ein Rechner ermittelt daraus Sturz, Spur, Nachlauf und Spreizung und vergleicht sie mit den Herstellervorgaben.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-21",
+      "category": "Bremsanlage",
+      "question": "Was regelt ein automatisch-lastabhängiger Bremskraftregler abhängig von der Beladung?",
+      "options": [
+        "Er passt den Bremsdruck an der Hinterachse an die aktuelle Achslast an",
+        "Er regelt dabei ausschließlich die Kühlmitteltemperatur des Motors",
+        "Er passt ausschließlich die Lenkkraftunterstützung an die Zuladung an",
+        "Er stellt ausschließlich die Sitzhöhe abhängig von der Beladung ein"
+      ],
+      "answer": "Da sich bei stärkerer Beladung die Achslastverteilung verschiebt, passt der lastabhängige Bremskraftregler den Bremsdruck an der Hinterachse entsprechend an, um ein vorzeitiges Blockieren bei leichter Beladung oder unzureichende Bremskraft bei voller Beladung zu vermeiden.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-22",
+      "category": "Bremsanlage",
+      "question": "Warum besitzen Bremsscheiben eine vom Hersteller vorgegebene Mindestdicke (Verschleißgrenze)?",
+      "options": [
+        "Unter dieser Dicke ist die Wärmeaufnahme und Stabilität der Scheibe nicht mehr gewährleistet",
+        "Ausschließlich aus optischen Gründen bei der Fahrzeugübergabe",
+        "Weil dünnere Scheiben grundsätzlich schneller rosten als dickere Scheiben",
+        "Weil dünnere Scheiben automatisch zu einem geringeren Kraftstoffverbrauch führen"
+      ],
+      "answer": "Die eingeprägte Mindestdicke gibt an, bis zu welchem Verschleiß die Bremsscheibe noch sicher Wärme aufnehmen und ableiten kann, ohne zu überhitzen, zu reißen oder ihre mechanische Stabilität zu verlieren. Wird sie unterschritten, muss die Scheibe getauscht werden.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-23",
+      "category": "Bremsanlage",
+      "question": "Aus welchen Hauptkomponenten besteht eine klassische Trommelbremse?",
+      "options": [
+        "Bremstrommel, Bremsbacken, Radbremszylinder und eine Nachstelleinrichtung",
+        "Ausschließlich Bremsscheibe und ein einzelner Bremssattel mit Kolben",
+        "Ausschließlich der Hauptbremszylinder direkt am jeweiligen Rad",
+        "Ausschließlich ein elektrischer Stellmotor ohne jede Hydraulik"
+      ],
+      "answer": "Bei der Trommelbremse presst der hydraulische Radbremszylinder zwei Bremsbacken von innen gegen die rotierende Bremstrommel. Eine Nachstelleinrichtung gleicht dabei den mit der Zeit entstehenden Verschleiß der Bremsbeläge automatisch aus.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-24",
+      "category": "Bremsanlage",
+      "question": "Was unterscheidet einen aktiven von einem passiven ABS-Raddrehzahlsensor?",
+      "options": [
+        "Der aktive Sensor benötigt eine eigene Spannungsversorgung und liefert auch im Stand ein Signal",
+        "Der passive Sensor benötigt zwingend eine eigene externe Spannungsversorgung",
+        "Beide Sensortypen liefern grundsätzlich bei jeder Drehzahl exakt dasselbe Signal",
+        "Der aktive Sensor funktioniert ausschließlich bei sehr hohen Geschwindigkeiten"
+      ],
+      "answer": "Passive (induktive) Sensoren erzeugen ihr Signal erst durch die Drehbewegung eines Polrads und liefern bei sehr niedriger Drehzahl ein schwaches Signal. Aktive Sensoren benötigen eine eigene Spannungsversorgung, arbeiten dafür aber auch bei sehr niedriger Geschwindigkeit bzw. im Stand zuverlässig.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-25",
+      "category": "Bremsanlage",
+      "question": "In welcher Reihenfolge wird eine Bremsanlage üblicherweise entlüftet?",
+      "options": [
+        "Beginnend am Rad mit der größten Entfernung zum Hauptbremszylinder",
+        "Beginnend grundsätzlich immer zuerst am Rad direkt neben dem Hauptbremszylinder",
+        "Die Reihenfolge der Räder spielt beim Entlüften grundsätzlich keine Rolle",
+        "Ausschließlich an der Vorderachse, die Hinterachse wird dabei nie entlüftet"
+      ],
+      "answer": "Üblich ist, mit dem Rad zu beginnen, das hydraulisch am weitesten vom Hauptbremszylinder entfernt liegt, und sich dann schrittweise dem nächstgelegenen Rad zu nähern, damit die Luft zuverlässig aus dem gesamten System entweicht.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-26",
+      "category": "Bremsanlage",
+      "question": "Wie verändert sich das Bremspedalgefühl typischerweise bei einem Ausfall des Bremskraftverstärkers?",
+      "options": [
+        "Das Pedal wird spürbar schwergängiger, die Bremswirkung ist mit reiner Muskelkraft geringer",
+        "Das Pedal lässt sich dann noch leichter treten als im Normalzustand",
+        "Das Pedal sinkt sofort und vollständig bis zum Bodenblech durch",
+        "Am Pedalgefühl ändert sich dabei grundsätzlich überhaupt nichts"
+      ],
+      "answer": "Fällt der Bremskraftverstärker aus, muss der Fahrer den nötigen Bremsdruck allein mit Muskelkraft aufbringen. Das Pedal wird spürbar schwergängiger und es ist deutlich mehr Kraft nötig, um dieselbe Verzögerung zu erreichen.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-27",
+      "category": "Bremsanlage",
+      "question": "Was kennzeichnet ein integriertes Brake-by-Wire-System (One-Box-Bremssystem)?",
+      "options": [
+        "Bremsbetätigung und Druckerzeugung sind in einer elektronisch gesteuerten Einheit vereint",
+        "Es kommt dabei grundsätzlich vollständig ohne jede Hydraulik im System aus",
+        "Es ersetzt dabei zwingend die vorhandene mechanische Feststellbremse",
+        "Es funktioniert ausschließlich bei Fahrzeugen ohne jede Rekuperation"
+      ],
+      "answer": "Bei einem One-Box-System sind Bremskraftverstärkung, Druckerzeugung und -verteilung sowie oft auch ABS/ESP-Funktionen in einer kompakten, elektronisch gesteuerten Einheit zusammengefasst – vorteilhaft u. a. für die feine Abstimmung mit der Rekuperation bei Elektrofahrzeugen.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-28",
+      "category": "Bremsanlage",
+      "question": "Welche Funktion haben die Führungsbolzen an einem Schwimmsattel?",
+      "options": [
+        "Sie ermöglichen dem Sattel, sich beim Bremsen seitlich zu verschieben",
+        "Sie erzeugen dabei den eigentlichen hydraulischen Bremsdruck im System",
+        "Sie ersetzen dabei vollständig die Funktion der Bremsbeläge",
+        "Sie dienen ausschließlich der Befestigung des Felgen-Radlagers"
+      ],
+      "answer": "Über die Führungsbolzen kann sich der Schwimmsattel bei Betätigung seitlich verschieben: Drückt der Kolben den inneren Belag gegen die Scheibe, zieht der gleitende Sattel gleichzeitig den äußeren Belag von der anderen Seite an.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-29",
+      "category": "Bremsanlage",
+      "question": "Was ist eine häufige Ursache für ein spürbares Rubbeln im Bremspedal beim Bremsen?",
+      "options": [
+        "Ungleichmäßig verschlissene oder verzogene Bremsscheiben (Scheibenschlag)",
+        "Ausschließlich ein zu geringer Reifendruck an der Hinterachse",
+        "Ausschließlich eine zu niedrige Kühlmitteltemperatur des Motors",
+        "Ausschließlich eine leere Scheibenwaschanlage der Frontscheibe"
+      ],
+      "answer": "Ungleichmäßiger Verschleiß oder thermischer Verzug der Bremsscheiben führt zu wechselnder Dicke über den Umfang. Das erzeugt beim Bremsen ein pulsierendes, rubbelndes Gefühl im Pedal, oft auch spürbar im Lenkrad.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-30",
+      "category": "Bremsanlage",
+      "question": "Wie funktioniert eine Auflaufbremse bei einem ungebremsten Anhänger im Grundprinzip?",
+      "options": [
+        "Beim Bremsen des Zugfahrzeugs schiebt sich der Anhänger auf und betätigt darüber die eigene Bremse",
+        "Sie wird ausschließlich elektrisch über den CAN-Bus des Zugfahrzeugs angesteuert",
+        "Sie funktioniert dabei komplett unabhängig von der Bremsung des Zugfahrzeugs",
+        "Sie nutzt ausschließlich die vom Zugfahrzeug übertragene Motorbremse"
+      ],
+      "answer": "Bremst das Zugfahrzeug, schiebt sich der Anhänger durch seine Massenträgheit geringfügig auf die Zugdeichsel auf. Diese Relativbewegung wird über ein Gestänge auf die Anhängerbremse übertragen und löst dort den Bremsvorgang aus – ganz ohne elektrische Ansteuerung.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-31",
+      "category": "Bremsanlage",
+      "question": "Welche Sensoren liefern dem ESP zusätzlich zu den Raddrehzahlen wichtige Informationen?",
+      "options": [
+        "Gierratensensor und Querbeschleunigungssensor zur Erkennung eines Schleudervorgangs",
+        "Ausschließlich der Sensor für den aktuellen Kraftstofffüllstand im Tank",
+        "Ausschließlich der Sensor für die Innenraumtemperatur der Klimaanlage",
+        "Ausschließlich der Sensor für den Ladezustand der Starterbatterie"
+      ],
+      "answer": "Der Gierratensensor erfasst die Drehbewegung des Fahrzeugs um die Hochachse, der Querbeschleunigungssensor die seitlich wirkenden Kräfte. Zusammen mit Lenkwinkel und Raddrehzahlen kann das ESP so erkennen, ob das Fahrzeug ins Schleudern gerät.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-32",
+      "category": "Bremsanlage",
+      "question": "Wozu dient die Hill-Hold-Funktion (Berganfahrhilfe)?",
+      "options": [
+        "Sie hält das Fahrzeug beim Anfahren an einer Steigung kurz automatisch fest",
+        "Sie ersetzt dabei vollständig die vorhandene Feststellbremse im Dauerbetrieb",
+        "Sie erhöht dauerhaft die maximale Zuladung des Fahrzeugs am Berg",
+        "Sie schaltet dabei automatisch in den niedrigsten verfügbaren Gang"
+      ],
+      "answer": "Beim Anfahren an einer Steigung hält die Hill-Hold-Funktion den zuvor aufgebauten Bremsdruck für kurze Zeit automatisch, bis der Fahrer genug Antriebsmoment aufgebaut hat, damit das Fahrzeug nicht zurückrollt.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-33",
+      "category": "Bremsanlage",
+      "question": "Welcher Hauptvorteil wird Carbon-Keramik-Bremsscheiben gegenüber klassischen Grauguss-Scheiben zugeschrieben?",
+      "options": [
+        "Deutlich geringere Fading-Neigung bei hoher thermischer Dauerbelastung und geringeres Gewicht",
+        "Ein spürbar geringerer Anschaffungspreis gegenüber klassischen Grauguss-Scheiben",
+        "Sie benötigen im Gegensatz zu Grauguss-Scheiben grundsätzlich keine Bremsbeläge",
+        "Sie funktionieren ausschließlich in Verbindung mit einer Trommelbremse hinten"
+      ],
+      "answer": "Carbon-Keramik-Bremsscheiben vertragen sehr hohe Temperaturen mit geringerer Fading-Neigung und sind deutlich leichter als vergleichbare Grauguss-Scheiben, was besonders bei sportlicher Fahrweise Vorteile bringt – bei allerdings deutlich höheren Kosten.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-34",
+      "category": "Bremsanlage",
+      "question": "Was versteht man unter 'Fading' bei einer Bremsanlage?",
+      "options": [
+        "Ein Nachlassen der Bremswirkung durch Überhitzung von Belägen bzw. Bremsflüssigkeit",
+        "Ein allmähliches Verblassen der Farbe der Bremsscheiben im Lauf der Zeit",
+        "Ein automatisches, gewolltes Nachlassen der Bremskraft bei niedriger Geschwindigkeit",
+        "Ein Fehler, der ausschließlich bei elektrischen Feststellbremsen auftreten kann"
+      ],
+      "answer": "Bei starker, andauernder Beanspruchung (z. B. lange Bergabfahrt) überhitzen Bremsbeläge und Bremsflüssigkeit. Das verschlechtert den Reibwert der Beläge bzw. kann zu Dampfblasen in der Flüssigkeit führen – die Bremswirkung lässt spürbar nach ('Fading').",
+      "correct": 0
+    },
+    {
+      "id": "bremse-35",
+      "category": "Bremsanlage",
+      "question": "Wie ist ein klassischer Tandem-Unterdruckbremskraftverstärker grundsätzlich aufgebaut?",
+      "options": [
+        "Zwei durch eine Membran getrennte Kammern nutzen eine Druckdifferenz zur Kraftverstärkung",
+        "Er besteht dabei ausschließlich aus einer einzigen massiven Stahlfeder ohne Membran",
+        "Er nutzt ausschließlich comprimierte Bremsflüssigkeit anstelle von Unterdruck",
+        "Er besteht dabei ausschließlich aus zwei unabhängigen, elektrischen Stellmotoren"
+      ],
+      "answer": "Im Tandem-Unterdruckverstärker trennt eine bewegliche Membran zwei Kammern. Beim Bremsen wird eine Kammer belüftet, während die andere unter Unterdruck bleibt – die entstehende Druckdifferenz unterstützt die Pedalkraft des Fahrers zusätzlich.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-36",
+      "category": "Bremsanlage",
+      "question": "Wofür steht EBD (elektronische Bremskraftverteilung) und wie ergänzt sie das ABS?",
+      "options": [
+        "Sie verteilt den Bremsdruck radindividuell, bevor ein ABS-Regeleingriff nötig wird",
+        "Sie ersetzt dabei vollständig die Funktion des klassischen ABS-Systems",
+        "Sie erhöht dabei ausschließlich den Bremsdruck an der Vorderachse dauerhaft",
+        "Sie funktioniert ausschließlich bei stehendem, nicht bei fahrendem Fahrzeug"
+      ],
+      "answer": "EBD nutzt die ABS-Hardware, um den Bremsdruck bereits im Normalbetrieb radindividuell und lastabhängig zu verteilen – etwa je nach Beladung zwischen Vorder- und Hinterachse –, sodass die eigentliche ABS-Regelung erst bei tatsächlich drohendem Blockieren eingreifen muss.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-37",
+      "category": "Bremsanlage",
+      "question": "Aus welchen zwei Teilstrecken setzt sich der Anhalteweg eines Fahrzeugs zusammen?",
+      "options": [
+        "Aus dem Reaktionsweg des Fahrers und dem eigentlichen Bremsweg des Fahrzeugs",
+        "Ausschließlich aus dem reinen Bremsweg, der Reaktionsweg zählt dabei nicht mit",
+        "Aus dem Anhalteweg der Vorderachse und dem separaten Anhalteweg der Hinterachse",
+        "Ausschließlich aus der zurückgelegten Strecke während des Schaltvorgangs"
+      ],
+      "answer": "Der Anhalteweg setzt sich aus dem Reaktionsweg (Strecke während der Reaktionszeit des Fahrers, bevor gebremst wird) und dem eigentlichen Bremsweg (Strecke ab Betätigen der Bremse bis zum Stillstand) zusammen.",
+      "correct": 0
+    },
+    {
+      "id": "bremse-38",
+      "category": "Bremsanlage",
+      "question": "Welche Aufgabe hat der Bremslichtschalter im Fahrzeug?",
+      "options": [
+        "Er erkennt die Betätigung des Bremspedals und schaltet die Bremsleuchten ein",
+        "Er erzeugt dabei den hydraulischen Druck für den Hauptbremszylinder",
+        "Er misst ausschließlich den aktuellen Verschleiß der Bremsbeläge",
+        "Er ersetzt dabei vollständig die Funktion des Bremskraftverstärkers"
+      ],
+      "answer": "Der Bremslichtschalter erkennt, sobald das Bremspedal betätigt wird, und schaltet die Bremsleuchten ein, um nachfolgende Verkehrsteilnehmer zu warnen. Sein Signal wird heute zusätzlich von vielen weiteren Systemen wie Bremsassistent oder Start-Stopp genutzt.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-21",
+      "category": "Elektrik & Elektronik",
+      "question": "Was besagt die Kirchhoffsche Maschenregel für elektrische Schaltungen?",
+      "options": [
+        "Die Summe aller Spannungen in einer geschlossenen Masche ergibt immer null",
+        "Die Summe der zufließenden Ströme an einem Knoten ist immer größer als null",
+        "Der Gesamtwiderstand einer Masche ist stets unabhängig von den Einzelwiderständen",
+        "An jedem Bauteil einer Masche liegt grundsätzlich dieselbe Stromstärke an"
+      ],
+      "answer": "Die Maschenregel besagt, dass die Summe aller Teilspannungen entlang einer geschlossenen Masche gleich der Summe der eingeprägten Spannungen ist – insgesamt ergibt die Umlaufsumme also null, wenn man Spannungsquellen und -abfälle vorzeichenrichtig addiert.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-22",
+      "category": "Elektrik & Elektronik",
+      "question": "Welche Grundfunktion hat ein Kondensator in einer elektrischen Schaltung?",
+      "options": [
+        "Er speichert elektrische Ladung und kann sie später wieder abgeben",
+        "Er unterbricht dabei dauerhaft und vollständig jeden Stromfluss im Kreis",
+        "Er wandelt Wechselspannung vollständig in mechanische Bewegung um",
+        "Er ersetzt dabei vollständig die Funktion einer klassischen Sicherung"
+      ],
+      "answer": "Ein Kondensator speichert elektrische Ladung zwischen zwei durch einen Isolator getrennten Elektroden und kann diese bei Bedarf wieder abgeben – genutzt z. B. zur Spannungsglättung oder zur kurzzeitigen Pufferung von Energie.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-23",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie funktioniert ein klassisches elektromagnetisches Relais im Grundprinzip?",
+      "options": [
+        "Ein kleiner Steuerstrom durch eine Spule schaltet über einen Anker einen größeren Laststrom",
+        "Es wandelt dabei Wechselspannung direkt in Gleichspannung um",
+        "Es funktioniert dabei rein mechanisch, komplett ohne jeden elektrischen Kontakt",
+        "Es speichert elektrische Energie wie eine kleine, wiederaufladbare Batterie"
+      ],
+      "answer": "Fließt Strom durch die Spule eines Relais, entsteht ein Magnetfeld, das einen Anker anzieht und dadurch einen oder mehrere Kontakte schaltet. So lässt sich mit einem kleinen Steuerstrom ein deutlich größerer Laststrom sicher schalten.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-24",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie wird ein Transistor häufig in der Kfz-Elektronik als elektronischer Schalter genutzt?",
+      "options": [
+        "Ein kleiner Steuerstrom an der Basis schaltet einen deutlich größeren Strom zwischen Kollektor und Emitter",
+        "Er funktioniert dabei ausschließlich als reiner mechanischer Kontaktschalter",
+        "Er speichert dabei elektrische Ladung wie ein klassischer Kondensator",
+        "Er wandelt dabei Gleichspannung direkt in Wechselspannung ohne Steuerung um"
+      ],
+      "answer": "Bei einem Bipolartransistor steuert ein kleiner Strom an der Basis, wie leitfähig die Strecke zwischen Kollektor und Emitter wird. Das ermöglicht, mit sehr kleinen Steuerströmen deutlich größere Ströme verschleißfrei und schnell zu schalten – ideal für elektronische Steuergeräte.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-25",
+      "category": "Elektrik & Elektronik",
+      "question": "Was ist ein wesentlicher Unterschied zwischen einer AGM-Batterie und einer klassischen Nassbatterie?",
+      "options": [
+        "Der Elektrolyt ist bei der AGM-Batterie in einem Glasfaservlies gebunden statt frei flüssig",
+        "Die AGM-Batterie besitzt grundsätzlich keinerlei flüssigen Elektrolyt im Inneren",
+        "Eine Nassbatterie liefert grundsätzlich einen deutlich höheren Startstrom als AGM",
+        "Beide Batterietypen sind hinsichtlich ihres Aufbaus vollständig identisch"
+      ],
+      "answer": "Bei der AGM-Batterie (Absorbent Glass Mat) ist der Elektrolyt in einem Glasfaservlies gebunden statt frei flüssig wie bei der klassischen Nassbatterie. Das macht sie robuster gegenüber Vibrationen und besser geeignet für häufige Start-Stopp-Zyklen.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-26",
+      "category": "Elektrik & Elektronik",
+      "question": "Worauf sollte beim Anschließen eines externen Erhaltungsladegeräts an die Starterbatterie geachtet werden?",
+      "options": [
+        "Auf die richtige Polung sowie ein für den Batterietyp geeignetes Ladegerät",
+        "Die Polarität spielt beim Anschließen eines Ladegeräts grundsätzlich keine Rolle",
+        "Es darf grundsätzlich nur bei laufendem Motor angeschlossen werden",
+        "Es muss dabei zwingend die komplette Fahrzeugelektrik demontiert werden"
+      ],
+      "answer": "Falsche Polung kann Ladegerät, Batterie oder Bordnetz beschädigen. Zusätzlich sollte das Ladegerät für den jeweiligen Batterietyp (z. B. AGM, EFB) geeignet sein, da ungeeignete Ladekennlinien die Batterie schädigen oder ihre Lebensdauer verkürzen können.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-27",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie lässt sich ein Massefehler im Bordnetz häufig mittels Spannungsabfallmessung eingrenzen?",
+      "options": [
+        "Ein ungewöhnlich hoher Spannungsabfall über einem Leitungsabschnitt deutet auf erhöhten Übergangswiderstand hin",
+        "Ein Massefehler zeigt sich dabei ausschließlich durch eine sichtbare Rauchentwicklung",
+        "Ein Massefehler lässt sich ausschließlich durch Wiegen des Bauteils feststellen",
+        "Spannungsabfallmessungen sind zur Fehlersuche im Bordnetz grundsätzlich ungeeignet"
+      ],
+      "answer": "Bei intaktem Massepfad sollte über eine Leitung kaum Spannung abfallen. Ein deutlich messbarer Spannungsabfall über einem bestimmten Abschnitt (z. B. an einer korrodierten Masseverbindung) zeigt einen erhöhten Übergangswiderstand und damit die Fehlerstelle an.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-28",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie funktioniert ein Hallsensor im Grundprinzip als Drehzahl- oder Positionssensor?",
+      "options": [
+        "Ein vorbeigeführtes Magnetfeld verändert eine Spannung über den stromdurchflossenen Halbleiter",
+        "Er erzeugt seine Spannung ausschließlich durch die Erwärmung eines Widerdrahts",
+        "Er misst dabei ausschließlich den aktuellen Luftdruck im Ansaugtrakt",
+        "Er funktioniert ausschließlich rein mechanisch über einen beweglichen Kontakthebel"
+      ],
+      "answer": "Fließt Strom durch ein stromdurchflossenes Halbleiterplättchen im Magnetfeld eines vorbeigeführten Signalgebers (z. B. Zahnrad mit Magneten), entsteht quer zur Stromrichtung eine messbare Hallspannung. Aus deren Verlauf lassen sich Drehzahl oder Position bestimmen – auch im Stillstand.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-29",
+      "category": "Elektrik & Elektronik",
+      "question": "Worauf beruht die Signalerzeugung eines induktiven Drehzahlsensors?",
+      "options": [
+        "Vorbeilaufende Zähne eines Polrads verändern ein Magnetfeld und induzieren eine Wechselspannung",
+        "Er benötigt dafür zwingend eine externe Spannungsversorgung durch das Steuergerät",
+        "Er misst dabei ausschließlich die Temperatur des vorbeilaufenden Bauteils",
+        "Er funktioniert ausschließlich bei vollkommen konstanter, gleichbleibender Drehzahl"
+      ],
+      "answer": "Ein induktiver Sensor nutzt eine Spule mit Dauermagnet. Laufen die Zähne eines Polrads daran vorbei, ändert sich der magnetische Fluss, wodurch eine drehzahlabhängige Wechselspannung induziert wird – ganz ohne eigene Spannungsversorgung, dafür aber schwach bei sehr niedriger Drehzahl.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-30",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie wird ein Potentiometer häufig als Positionssensor im Fahrzeug genutzt?",
+      "options": [
+        "Ein beweglicher Schleifer verändert den abgegriffenen Widerstand und damit die Ausgangsspannung",
+        "Es misst dabei ausschließlich den aktuellen Ladezustand der Starterbatterie",
+        "Es funktioniert ausschließlich als reiner Ein-/Aus-Schalter ohne Zwischenwerte",
+        "Es wandelt dabei Wechselspannung direkt in Gleichspannung um"
+      ],
+      "answer": "Bei einem Potentiometer bewegt sich ein Schleifer über eine Widerstandsbahn. Je nach Position teilt er die anliegende Spannung unterschiedlich, sodass sich aus der abgegriffenen Spannung die genaue mechanische Position ableiten lässt, etwa bei einem Pedalwertgeber.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-31",
+      "category": "Elektrik & Elektronik",
+      "question": "Warum überwachen moderne Bordnetzsteuergeräte den Ruhestrom (Standby-Verbrauch) im abgestellten Fahrzeug?",
+      "options": [
+        "Ein zu hoher Ruhestrom kann die Batterie im Stand ungewollt entladen",
+        "Der Ruhestrom hat auf den Ladezustand der Batterie grundsätzlich keinen Einfluss",
+        "Ein hoher Ruhestrom verlängert dabei automatisch die Lebensdauer der Batterie",
+        "Die Überwachung dient ausschließlich der Regelung der Innenraumtemperatur"
+      ],
+      "answer": "Auch bei abgestelltem Fahrzeug verbrauchen Steuergeräte im Standby einen geringen Ruhestrom. Ist dieser über das normale Maß hinaus erhöht (z. B. durch ein Steuergerät, das nicht in den Ruhemodus geht), kann sich die Batterie über einige Tage ungewollt entladen.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-32",
+      "category": "Elektrik & Elektronik",
+      "question": "Was ist ein wesentlicher technischer Unterschied zwischen LED- und Halogen-Scheinwerfern?",
+      "options": [
+        "LEDs erzeugen Licht über Halbleiter-Elektrolumineszenz statt über einen glühenden Draht",
+        "Halogenlampen benötigen im Gegensatz zu LEDs grundsätzlich keinerlei elektrische Energie",
+        "LEDs funktionieren dabei ausschließlich mit reiner Wechselspannung im Bordnetz",
+        "Beide Leuchtmittel erzeugen Licht nach exakt demselben physikalischen Prinzip"
+      ],
+      "answer": "Halogenlampen erzeugen Licht durch einen glühenden Wolframdraht, LEDs dagegen über Elektrolumineszenz in einem Halbleiter-Kristall, wenn Strom in Durchlassrichtung fließt. LEDs sind dadurch effizienter, langlebiger und reagieren nahezu ohne Einschaltverzögerung.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-33",
+      "category": "Elektrik & Elektronik",
+      "question": "Warum wird im modernen Kfz-Kabelbaum häufig gecrimpt statt gelötet?",
+      "options": [
+        "Crimpverbindungen bleiben elastisch und sind widerstandsfähiger gegen Vibrationen",
+        "Löten ist im Fahrzeugbau grundsätzlich technisch überhaupt nicht möglich",
+        "Gecrimpte Verbindungen leiten grundsätzlich deutlich schlechter als gelötete",
+        "Crimpen ist ausschließlich bei Hochvoltleitungen über 400 Volt zulässig"
+      ],
+      "answer": "Eine gelötete Verbindung wird im Übergangsbereich starr und kann bei ständigen Vibrationen im Fahrzeug leichter brechen (Kaltbruch). Fachgerecht gecrimpte Verbindungen bleiben elastischer und vertragen die mechanischen Belastungen im Fahrzeug in der Regel besser.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-34",
+      "category": "Elektrik & Elektronik",
+      "question": "Was ist der grundlegende Unterschied zwischen Wechselspannung und Gleichspannung?",
+      "options": [
+        "Wechselspannung ändert periodisch ihre Polarität, Gleichspannung behält sie konstant bei",
+        "Gleichspannung ändert periodisch ihre Polarität, Wechselspannung behält sie konstant bei",
+        "Beide Spannungsarten unterscheiden sich ausschließlich durch ihre Farbe im Schaltplan",
+        "Wechselspannung tritt ausschließlich in elektronischen Steuergeräten auf"
+      ],
+      "answer": "Bei Gleichspannung bleibt die Polarität über die Zeit konstant, wie z. B. bei der Fahrzeugbatterie. Wechselspannung ändert dagegen periodisch ihre Richtung, wie sie z. B. zunächst im Generator erzeugt und dann für das Bordnetz gleichgerichtet wird.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-35",
+      "category": "Elektrik & Elektronik",
+      "question": "Was beschreibt der Effektivwert einer Wechselspannung?",
+      "options": [
+        "Den Gleichspannungswert, der an einem Widerstand dieselbe Heizleistung erzeugen würde",
+        "Ausschließlich den höchsten kurzzeitig erreichten Spitzenwert der Spannung",
+        "Ausschließlich den Mittelwert der Spannung über eine volle Schwingungsperiode",
+        "Einen rein theoretischen Wert ohne jede praktische Bedeutung in der Elektrotechnik"
+      ],
+      "answer": "Der Effektivwert (RMS) einer Wechselspannung gibt an, welche gleichwertige Gleichspannung an einem ohmschen Widerstand dieselbe elektrische Leistung (Wärmewirkung) erzeugen würde. Er liegt unterhalb des Spitzenwerts der Wechselspannung.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-36",
+      "category": "Elektrik & Elektronik",
+      "question": "Was unterscheidet einen elektrischen Leiter grundsätzlich von einem Isolator?",
+      "options": [
+        "Ein Leiter besitzt frei bewegliche Ladungsträger, ein Isolator praktisch keine",
+        "Ein Isolator leitet elektrischen Strom grundsätzlich noch besser als jeder Leiter",
+        "Beide Materialarten leiten elektrischen Strom grundsätzlich exakt gleich gut",
+        "Ein Leiter besitzt grundsätzlich immer eine höhere Temperatur als ein Isolator"
+      ],
+      "answer": "In einem elektrischen Leiter (z. B. Kupfer) können sich Elektronen nahezu frei bewegen, wodurch Strom gut fließen kann. In einem Isolator (z. B. Kunststoff, Gummi) sind die Ladungsträger fest gebunden, sodass praktisch kein Strom fließt – wichtig für die Isolierung von Leitungen.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-37",
+      "category": "Elektrik & Elektronik",
+      "question": "Warum überwachen manche Steuergeräte ihr eigenes Energiemanagement, bevor sie in den Ruhezustand wechseln?",
+      "options": [
+        "Damit nicht mehr benötigte Verbraucher rechtzeitig abgeschaltet werden und die Batterie geschont wird",
+        "Damit das Steuergerät dauerhaft mit maximaler Rechenleistung weiterarbeiten kann",
+        "Damit die Lichtmaschine dauerhaft auch im abgestellten Fahrzeug weiterläuft",
+        "Damit sich die Zündkerzen automatisch im Stillstand selbst reinigen"
+      ],
+      "answer": "Steuergeräte prüfen vor dem Wechsel in den Ruhezustand, ob alle nicht mehr benötigten Funktionen und Kommunikationsverbindungen beendet sind, damit im abgestellten Fahrzeug kein unnötig hoher Ruhestrom fließt und die Batterie geschont wird.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-38",
+      "category": "Elektrik & Elektronik",
+      "question": "Was zeigt ein deutlicher Spannungsabfall entlang einer stromführenden Leitung typischerweise an?",
+      "options": [
+        "Einen erhöhten Widerstand durch Korrosion, einen losen Kontakt oder zu dünnen Querschnitt",
+        "Dass die angeschlossene Sicherung mit Sicherheit bereits ausgelöst hat",
+        "Dass an dieser Stelle grundsätzlich überhaupt kein Strom mehr fließen kann",
+        "Dass die Leitung an dieser Stelle vollkommen fehlerfrei funktioniert"
+      ],
+      "answer": "Ein unerwartet hoher Spannungsabfall über einem Leitungsabschnitt deutet auf einen erhöhten Widerstand hin, etwa durch Korrosion an einem Steckkontakt, einen losen Anschluss oder einen zu dünn dimensionierten Leitungsquerschnitt.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-39",
+      "category": "Elektrik & Elektronik",
+      "question": "Nach welchem Grundprinzip erzeugt eine Zündspule die Hochspannung für die Zündkerze?",
+      "options": [
+        "Nach dem Transformatorprinzip: Unterbrechen des Primärstroms induziert eine hohe Sekundärspannung",
+        "Sie speichert dabei chemische Energie wie eine kleine, separate Batterie",
+        "Sie erzeugt die Hochspannung ausschließlich durch mechanische Reibung im Inneren",
+        "Sie wandelt dabei ausschließlich Kühlmitteldruck direkt in elektrische Spannung um"
+      ],
+      "answer": "In der Zündspule fließt zunächst Strom durch die Primärwicklung und baut ein Magnetfeld auf. Wird dieser Stromfluss schlagartig unterbrochen, bricht das Magnetfeld zusammen und induziert in der Sekundärwicklung mit deutlich mehr Windungen eine sehr hohe Spannung für den Zündfunken.",
+      "correct": 0
+    },
+    {
+      "id": "elektrik-40",
+      "category": "Elektrik & Elektronik",
+      "question": "Wozu dient eine Freilaufdiode parallel zur Spule eines Relais?",
+      "options": [
+        "Sie leitet die beim Abschalten entstehende Induktionsspannung kontrolliert ab",
+        "Sie erhöht dabei gezielt die Schaltgeschwindigkeit des angeschlossenen Relais",
+        "Sie speichert dabei dauerhaft elektrische Energie wie ein kleiner Kondensator",
+        "Sie ersetzt dabei vollständig die Kontakte im Inneren des Relais"
+      ],
+      "answer": "Wird der Stromfluss durch eine Spule (z. B. im Relais) unterbrochen, entsteht kurzzeitig eine hohe Induktionsspannung, die empfindliche elektronische Bauteile beschädigen könnte. Die parallelgeschaltete Freilaufdiode leitet diesen Spannungsimpuls kontrolliert ab und schützt so die Schaltung.",
+      "correct": 0
+    },
+    {
+      "id": "bus-21",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür wird der MOST-Bus (Media Oriented Systems Transport) typischerweise im Fahrzeug eingesetzt?",
+      "options": [
+        "Für Infotainment-Anwendungen mit hohem Datenaufkommen, häufig über Glasfaser",
+        "Ausschließlich für sicherheitskritische Bremseingriffe des Fahrzeugs",
+        "Ausschließlich für die zentrale Steuerung des Verbrennungsmotors",
+        "Ausschließlich zur Übertragung der Hochvolt-Energie im Fahrzeug"
+      ],
+      "answer": "Der MOST-Bus überträgt große Datenmengen mit hoher Bandbreite, oft über Lichtwellenleiter, und wird deshalb hauptsächlich für Infotainmentsysteme wie Navigation, Audio und Video genutzt, wo klassische CAN-Bus-Datenraten nicht ausreichen würden.",
+      "correct": 0
+    },
+    {
+      "id": "bus-22",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Warum hält zunehmend Automotive Ethernet Einzug in moderne Fahrzeugnetzwerke?",
+      "options": [
+        "Es ermöglicht deutlich höhere Datenraten für Kamera-, Sensor- und Assistenzsysteme",
+        "Es ersetzt dabei ausschließlich die klassische 12-Volt-Bordnetzversorgung",
+        "Es funktioniert dabei nur bei stehendem, nicht bei fahrendem Fahrzeug",
+        "Es wird ausschließlich für die Steuerung der Fensterheber eingesetzt"
+      ],
+      "answer": "Moderne Fahrerassistenzsysteme, Kameras und Sensoren erzeugen große Datenmengen, die klassische Bussysteme wie CAN nicht mehr bewältigen können. Automotive Ethernet bietet die dafür nötige hohe Bandbreite bei vertretbarem Verkabelungsaufwand.",
+      "correct": 0
+    },
+    {
+      "id": "bus-23",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Was speichert ein Steuergerät typischerweise als Freeze-Frame-Daten zusammen mit einem Fehlercode?",
+      "options": [
+        "Die relevanten Betriebsbedingungen (z. B. Drehzahl, Temperatur) im Moment des Fehlers",
+        "Ausschließlich ein Foto der Fahrzeugumgebung zum Fehlerzeitpunkt",
+        "Ausschließlich den kompletten bisherigen Kilometerstand des Fahrzeugs",
+        "Ausschließlich die Adresse der Werkstatt, die zuletzt am Fahrzeug gearbeitet hat"
+      ],
+      "answer": "Freeze-Frame-Daten sind ein 'eingefrorenes' Abbild wichtiger Betriebsparameter (z. B. Drehzahl, Last, Temperatur, Geschwindigkeit) genau zu dem Zeitpunkt, an dem der Fehler erkannt wurde – das erleichtert später die Nachvollziehbarkeit der Fehlerursache.",
+      "correct": 0
+    },
+    {
+      "id": "bus-24",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür wird die Fahrgestellnummer (VIN) bei der Fahrzeugdiagnose unter anderem genutzt?",
+      "options": [
+        "Zur eindeutigen Identifikation des Fahrzeugs und passenden Steuergeräte-Datensätze",
+        "Ausschließlich zur Anzeige der aktuellen Reifengröße im Kombiinstrument",
+        "Ausschließlich zur Berechnung des aktuellen Kraftstoffverbrauchs",
+        "Ausschließlich zur Steuerung der Innenraumbeleuchtung des Fahrzeugs"
+      ],
+      "answer": "Über die eindeutige Fahrgestellnummer (VIN) kann das Diagnosegerät oder der Hersteller die exakte Fahrzeugausstattung und die passenden Steuergeräte-Datensätze bzw. Software-Stände zuordnen, was für Diagnose und Programmierung wichtig ist.",
+      "correct": 0
+    },
+    {
+      "id": "bus-25",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Mit welcher typischen Datenrate arbeitet ein klassischer High-Speed-CAN-Bus im Antriebsstrang?",
+      "options": [
+        "Meist 500 kbit/s",
+        "Meist nur 9,6 kbit/s",
+        "Meist etwa 1 kbit/s",
+        "Meist über 10 Gbit/s"
+      ],
+      "answer": "Der High-Speed-CAN-Bus, wie er häufig für antriebs- und sicherheitsrelevante Steuergeräte genutzt wird, arbeitet typischerweise mit 500 kbit/s, während der langsamere Komfort-CAN oft mit z. B. 125 kbit/s arbeitet.",
+      "correct": 0
+    },
+    {
+      "id": "bus-26",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür wird ein J2534-Pass-Thru-Diagnoseadapter typischerweise eingesetzt?",
+      "options": [
+        "Um mit Original-Hersteller-Software direkt über die OBD-Schnittstelle zu kommunizieren",
+        "Ausschließlich zur mechanischen Befestigung loser Kabelbäume im Motorraum",
+        "Ausschließlich zur Messung des aktuellen Reifendrucks aller vier Räder",
+        "Ausschließlich zur Reinigung des Dieselpartikelfilters im laufenden Betrieb"
+      ],
+      "answer": "Ein J2534-Pass-Thru-Adapter ist ein standardisiertes Schnittstellengerät, über das markenspezifische Hersteller-Diagnosesoftware direkt mit den Fahrzeugsteuergeräten kommunizieren kann, etwa für Programmierungen oder erweiterte Diagnosen.",
+      "correct": 0
+    },
+    {
+      "id": "bus-27",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür wird ein Kompressionstester in der Fehlersuche am Motor eingesetzt?",
+      "options": [
+        "Zur Messung des Verdichtungsdrucks der einzelnen Zylinder über die Zündkerzenbohrung",
+        "Ausschließlich zur Messung der Batteriespannung im Ruhezustand",
+        "Ausschließlich zur Prüfung der korrekten Zündfolge des Motors",
+        "Ausschließlich zur Messung des Reifendrucks an allen vier Rädern"
+      ],
+      "answer": "Der Kompressionstester wird anstelle der Zündkerze bzw. des Injektors eingeschraubt und misst während des Durchdrehens des Motors den maximal erreichten Verdichtungsdruck je Zylinder – ein wichtiger Hinweis auf den mechanischen Zustand des Motors.",
+      "correct": 0
+    },
+    {
+      "id": "bus-28",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür wird ein Rauchtestgerät (Leckage-Tester) bei der Fehlersuche am Ansaugtrakt eingesetzt?",
+      "options": [
+        "Um durch sichtbaren Rauch undichte Stellen im Ansaug- oder Unterdrucksystem aufzuspüren",
+        "Um ausschließlich die Innenraumluft auf Schadstoffe hin zu untersuchen",
+        "Um ausschließlich die Bremsflüssigkeit auf enthaltene Feuchtigkeit zu prüfen",
+        "Um ausschließlich die Batteriekapazität exakt zu bestimmen"
+      ],
+      "answer": "Ein Rauchtestgerät erzeugt sichtbaren, ungiftigen Nebel und leitet ihn unter leichtem Druck in den Ansaug- oder Unterdrucktrakt. An undichten Stellen tritt der Rauch sichtbar aus und zeigt so Leckagen, die sonst nur schwer zu finden wären.",
+      "correct": 0
+    },
+    {
+      "id": "bus-29",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Was misst ein Batterietester zusätzlich zur reinen Ruhespannung, um die Startfähigkeit zu beurteilen?",
+      "options": [
+        "Den Innenwiderstand bzw. den Kaltstartstrom der Batterie",
+        "Ausschließlich die Außentemperatur am Einbauort der Batterie",
+        "Ausschließlich das Gewicht der eingebauten Starterbatterie",
+        "Ausschließlich die Farbe der sichtbaren Batteriesäure"
+      ],
+      "answer": "Da eine Batterie auch mit normaler Ruhespannung bereits einen zu hohen Innenwiderstand haben kann, prüfen moderne Batterietester zusätzlich den Innenwiderstand bzw. simulieren den Kaltstartstrom, um die tatsächliche Startfähigkeit zuverlässig zu beurteilen.",
+      "correct": 0
+    },
+    {
+      "id": "bus-30",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wozu dient ein Freischaltcode (Security Access) beim Zugriff auf bestimmte Steuergerätefunktionen?",
+      "options": [
+        "Er schützt sicherheitsrelevante Funktionen vor unautorisiertem Zugriff und Manipulation",
+        "Er erhöht dabei ausschließlich die Übertragungsgeschwindigkeit des CAN-Bus",
+        "Er ersetzt dabei vollständig die Notwendigkeit eines Diagnosegeräts",
+        "Er dient ausschließlich der Anzeige des aktuellen Kraftstofffüllstands"
+      ],
+      "answer": "Für sicherheits- oder abgasrelevante Eingriffe wie das Programmieren neuer Schlüssel oder das Verändern von Kalibrierdaten verlangen Steuergeräte häufig eine Freischaltung über einen berechneten Security-Access-Code, um unautorisierte Manipulationen zu verhindern.",
+      "correct": 0
+    },
+    {
+      "id": "bus-31",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür wird ein Rollenprüfstand in der Kfz-Werkstatt hauptsächlich eingesetzt?",
+      "options": [
+        "Um Fahrzeugfunktionen wie Bremsen, Abgas oder Leistung unter realitätsnaher Last zu prüfen",
+        "Um ausschließlich den Reifendruck aller vier Räder exakt einzustellen",
+        "Um ausschließlich die Karosserie auf Unfallschäden hin zu vermessen",
+        "Um ausschließlich das Motoröl vollautomatisch zu wechseln"
+      ],
+      "answer": "Auf dem Rollenprüfstand können die Antriebsräder unter Last drehen, während das Fahrzeug selbst stillsteht. So lassen sich z. B. Bremswirkung, Abgaswerte oder Motorleistung unter realistischen, reproduzierbaren Bedingungen prüfen.",
+      "correct": 0
+    },
+    {
+      "id": "bus-32",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Warum ist eine Vergleichsmessung an einem bekannt guten Fahrzeug bei der Fehlersuche oft hilfreich?",
+      "options": [
+        "Sie zeigt, wie ein unauffälliges Signal aussieht, und erleichtert das Erkennen von Abweichungen",
+        "Sie ersetzt dabei vollständig das Auslesen des Fehlerspeichers am betroffenen Fahrzeug",
+        "Sie ist ausschließlich bei brandneuen Fahrzeugen ohne jede Laufleistung zulässig",
+        "Sie hat auf die eigentliche Fehlersuche grundsätzlich keinen praktischen Nutzen"
+      ],
+      "answer": "Besonders bei unklaren oder seltenen Signalverläufen hilft der Vergleich mit einem baugleichen, funktionierenden Fahrzeug: So lässt sich beurteilen, ob ein gemessener Signalverlauf normal ist oder tatsächlich auf einen Fehler hindeutet.",
+      "correct": 0
+    },
+    {
+      "id": "bus-33",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür stehen die Klemmenbezeichnungen 15, 30 und 50 im Kfz-Bordnetz?",
+      "options": [
+        "Klemme 30 Dauerplus, Klemme 15 geschaltetes Plus nach Zündung, Klemme 50 Anlasseransteuerung",
+        "Alle drei Klemmenbezeichnungen bezeichnen ein und denselben elektrischen Anschluss",
+        "Klemme 15 steht dabei ausschließlich für die Fahrzeugmasse (Minuspol)",
+        "Diese Klemmenbezeichnungen werden ausschließlich bei Hochvoltfahrzeugen verwendet"
+      ],
+      "answer": "Klemme 30 führt dauerhaft Batteriespannung, Klemme 15 wird erst nach Einschalten der Zündung mit Spannung versorgt und Klemme 50 steuert kurzzeitig den Anlasser beim Startvorgang an – eine genormte Klemmenbezeichnung erleichtert das Lesen von Schaltplänen.",
+      "correct": 0
+    },
+    {
+      "id": "bus-34",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wie kommuniziert ein Fahrzeugschlüssel bei einer klassischen Wegfahrsperre mit dem Steuergerät?",
+      "options": [
+        "Ein im Schlüssel eingebauter Transponder tauscht einen Code mit einer Antenne im Zündschloss aus",
+        "Ausschließlich über eine sichtbare Infrarot-Verbindung wie bei einer Fernbedienung",
+        "Ausschließlich über eine feste mechanische Kerbe, die rein optisch erkannt wird",
+        "Ausschließlich über den öffentlichen Mobilfunk mit einer festen Rufnummer"
+      ],
+      "answer": "Im Schlüssel ist ein passiver Transponder-Chip verbaut. Eine Antenne im oder um das Zündschloss fragt beim Startversuch einen verschlüsselten Code ab; stimmt dieser mit dem im Steuergerät hinterlegten Code überein, wird der Motorstart freigegeben.",
+      "correct": 0
+    },
+    {
+      "id": "bus-35",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Über welches Bussystem kommunizieren die Bedienelemente der Zentralverriegelung meist mit dem Bordnetzsteuergerät?",
+      "options": [
+        "Häufig über den Komfort-CAN oder LIN-Bus statt über direkte Einzelleitungen",
+        "Ausschließlich über eine direkte, separate mechanische Seilzugverbindung",
+        "Ausschließlich über den Hochvolt-Kreislauf des Fahrzeugs",
+        "Sie benötigen grundsätzlich überhaupt keine elektrische Verbindung"
+      ],
+      "answer": "Statt für jeden Türschalter eine eigene Leitung zum Bordnetzsteuergerät zu verlegen, werden Signale der Zentralverriegelung heute meist über ein Bussystem wie den Komfort-CAN oder LIN-Bus übertragen – das spart Verkabelungsaufwand erheblich.",
+      "correct": 0
+    },
+    {
+      "id": "bus-36",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Warum ist es bei modernen Fahrzeugen wichtig, dass das verwendete Diagnosetestgerät regelmäßig aktualisiert wird?",
+      "options": [
+        "Nur so werden neue Fahrzeugmodelle, Steuergeräte und Diagnoseumfänge korrekt unterstützt",
+        "Ein Update ist ausschließlich für die Anzeige der Uhrzeit im Diagnosegerät notwendig",
+        "Ohne Update funktioniert das Diagnosegerät grundsätzlich überhaupt nicht mehr",
+        "Ein Update betrifft ausschließlich das Design der Benutzeroberfläche des Geräts"
+      ],
+      "answer": "Hersteller bringen laufend neue Fahrzeugmodelle, Steuergeräte-Varianten und Diagnoseroutinen heraus. Nur mit einer aktuellen Software-Datenbank kann das Diagnosetestgerät diese korrekt erkennen, auslesen und sinnvoll interpretieren.",
+      "correct": 0
+    },
+    {
+      "id": "hv-21",
+      "category": "Hochvolt",
+      "question": "Was kennzeichnet die Qualifikationsstufe 'Fachkundige Person HV' (2S) gegenüber der Grundlagenqualifikation (1S)?",
+      "options": [
+        "Sie darf im spannungsfreien Zustand selbstständig an HV-Komponenten arbeiten",
+        "Sie darf grundsätzlich auch unter Spannung stehende HV-Bauteile berühren",
+        "Sie benötigt im Gegensatz zur Grundlagenqualifikation keinerlei Schulung",
+        "Sie ist ausschließlich für die Reinigung des Fahrzeugäußeren zuständig"
+      ],
+      "answer": "Die Qualifikationsstufe 2S ('Fachkundige Person HV') erlaubt, nach vorschriftsmäßiger Freischaltung eigenständig im spannungsfreien Zustand an Hochvoltkomponenten zu arbeiten – Arbeiten unter Spannung bleiben einer noch höheren Qualifikationsstufe vorbehalten.",
+      "correct": 0
+    },
+    {
+      "id": "hv-22",
+      "category": "Hochvolt",
+      "question": "Warum muss vor Arbeiten am Hochvoltsystem eine ausreichende Entladezeit des Zwischenkreises abgewartet werden?",
+      "options": [
+        "Kondensatoren im Zwischenkreis können auch nach dem Freischalten noch gefährliche Restspannung halten",
+        "Die Entladezeit dient ausschließlich der Abkühlung der Fahrzeugkarosserie",
+        "Ohne Wartezeit würde sich die Hochvoltbatterie sofort selbst entzünden",
+        "Die Entladezeit ist ausschließlich für den nachfolgenden Ladevorgang wichtig"
+      ],
+      "answer": "Auch nach dem Trennen der Hochvoltbatterie können Kondensatoren im Zwischenkreis der Leistungselektronik noch für kurze Zeit gefährliche Restspannung speichern. Erst nach Ablauf der vom Hersteller vorgegebenen Entladezeit gilt die Anlage als sicher spannungsfrei.",
+      "correct": 0
+    },
+    {
+      "id": "hv-23",
+      "category": "Hochvolt",
+      "question": "Welche Schutzfunktion hat ein Fehlerstromschutzschalter (RCD) beim AC-Laden eines Elektrofahrzeugs?",
+      "options": [
+        "Er unterbricht den Ladevorgang bei einem gefährlichen Fehlerstrom sehr schnell",
+        "Er erhöht dabei gezielt die maximal verfügbare Ladeleistung der Wallbox",
+        "Er ersetzt dabei vollständig den mechanischen Schutzkontaktstecker der Ladesäule",
+        "Er dient ausschließlich zur Anzeige des aktuellen Ladezustands am Display"
+      ],
+      "answer": "Tritt beim Laden ein gefährlicher Fehlerstrom auf, etwa durch einen Isolationsfehler, erkennt der Fehlerstromschutzschalter diesen und unterbricht den Ladevorgang innerhalb kürzester Zeit, um Personen vor einem gefährlichen Stromschlag zu schützen.",
+      "correct": 0
+    },
+    {
+      "id": "hv-24",
+      "category": "Hochvolt",
+      "question": "Aus welchen wesentlichen Kontaktarten besteht ein Typ-2-Ladestecker?",
+      "options": [
+        "Kontakte für Wechselstrom sowie zusätzliche Steuer- und Schutzkontakte (z. B. Pilotlinie)",
+        "Ausschließlich einem einzelnen Kontakt für die gesamte Energieübertragung",
+        "Ausschließlich Kontakte für reines DC-Schnellladen ohne jede AC-Funktion",
+        "Ausschließlich mechanische Kontakte ganz ohne jede elektrische Verbindung"
+      ],
+      "answer": "Der Typ-2-Stecker besitzt neben den Leistungskontakten für den Wechselstrom auch Steuerkontakte, unter anderem für die Pilotlinie (Control Pilot), über die Ladesäule und Fahrzeug den Ladevorgang kommunizieren und überwachen, sowie einen Schutzkontakt.",
+      "correct": 0
+    },
+    {
+      "id": "hv-25",
+      "category": "Hochvolt",
+      "question": "Was versteht man unter bidirektionalem Laden (z. B. Vehicle-to-Home) bei Elektrofahrzeugen?",
+      "options": [
+        "Die Fahrzeugbatterie kann nicht nur geladen werden, sondern auch Energie zurückspeisen",
+        "Das Fahrzeug kann dabei ausschließlich an zwei Ladesäulen gleichzeitig laden",
+        "Es beschreibt ausschließlich das gleichzeitige Laden von Front- und Heckbatterie",
+        "Es bedeutet, dass das Fahrzeug ausschließlich rückwärts fahrend geladen wird"
+      ],
+      "answer": "Beim bidirektionalen Laden kann Energie nicht nur von der Ladesäule ins Fahrzeug fließen, sondern bei Bedarf auch zurück – etwa um kurzzeitig das Hausnetz (Vehicle-to-Home) oder das Stromnetz (Vehicle-to-Grid) zu unterstützen.",
+      "correct": 0
+    },
+    {
+      "id": "hv-26",
+      "category": "Hochvolt",
+      "question": "Was ist ein wesentlicher Unterschied zwischen einem permanenterregten Synchronmotor und einem Asynchronmotor im E-Antrieb?",
+      "options": [
+        "Beim Synchronmotor läuft der Rotor mit Dauermagneten exakt synchron zum Drehfeld mit",
+        "Der Asynchronmotor benötigt grundsätzlich keinerlei elektrische Ansteuerung",
+        "Der Synchronmotor funktioniert dabei ausschließlich mit reiner Gleichspannung",
+        "Beide Motortypen erzeugen ihr Drehmoment nach exakt demselben physikalischen Prinzip ohne Unterschied"
+      ],
+      "answer": "Beim permanenterregten Synchronmotor sitzen Dauermagnete im Rotor, der dadurch exakt synchron mit dem rotierenden Statorfeld mitläuft. Beim Asynchronmotor entsteht das Rotorfeld erst durch Induktion, wodurch der Rotor immer etwas 'hinterherläuft' (Schlupf).",
+      "correct": 0
+    },
+    {
+      "id": "hv-27",
+      "category": "Hochvolt",
+      "question": "Welche Aufgabe hat die Leistungselektronik (Inverter) zwischen Hochvoltbatterie und E-Motor?",
+      "options": [
+        "Sie wandelt die Gleichspannung der Batterie in eine für den Motor nutzbare Wechselspannung um",
+        "Sie speichert dabei die gesamte Antriebsenergie anstelle der Hochvoltbatterie",
+        "Sie dient ausschließlich zur Kühlung der Fahrgastzelle im Sommerbetrieb",
+        "Sie ersetzt dabei vollständig die Funktion des Ladegeräts beim AC-Laden"
+      ],
+      "answer": "Da die Hochvoltbatterie Gleichspannung liefert, viele E-Motoren aber mit Drehstrom arbeiten, wandelt die Leistungselektronik (Inverter) die Gleichspannung in eine frequenz- und amplitudengeregelte Wechselspannung um und steuert damit Drehzahl und Drehmoment des Motors.",
+      "correct": 0
+    },
+    {
+      "id": "hv-28",
+      "category": "Hochvolt",
+      "question": "Wozu wird in einem Hochvoltfahrzeug trotzdem noch ein DC/DC-Wandler benötigt?",
+      "options": [
+        "Er versorgt das klassische 12-Volt-Bordnetz aus der Hochvoltbatterie heraus",
+        "Er wandelt dabei ausschließlich Wechselstrom aus der Ladesäule in Gleichstrom um",
+        "Er ersetzt dabei vollständig die Notwendigkeit einer 12-Volt-Starterbatterie",
+        "Er dient ausschließlich der Kühlung der Hochvoltbatteriezellen"
+      ],
+      "answer": "Klassische 12-Volt-Verbraucher wie Steuergeräte, Beleuchtung oder Infotainment gibt es auch im Elektrofahrzeug weiterhin. Der DC/DC-Wandler wandelt dafür die hohe Batteriespannung auf die benötigten 12 Volt herunter und versorgt so das klassische Bordnetz.",
+      "correct": 0
+    },
+    {
+      "id": "hv-29",
+      "category": "Hochvolt",
+      "question": "Welche Bauformen kommen bei den Einzelzellen von Hochvoltbatterien typischerweise vor?",
+      "options": [
+        "Rundzellen, Pouchzellen und prismatische Zellen",
+        "Ausschließlich klassische Blei-Säure-Zellen wie bei der Starterbatterie",
+        "Ausschließlich eine einzige, sehr große Zelle pro Fahrzeug",
+        "Ausschließlich Trockenbatterien wie bei einer handelsüblichen Fernbedienung"
+      ],
+      "answer": "Lithium-Ionen-Zellen für Hochvoltbatterien werden je nach Hersteller vor allem in drei Bauformen gefertigt: zylindrische Rundzellen, flache Pouchzellen in Folienverpackung und prismatische Zellen mit festem, rechteckigem Gehäuse.",
+      "correct": 0
+    },
+    {
+      "id": "hv-30",
+      "category": "Hochvolt",
+      "question": "Was versteht man unter 'Thermal Runaway' bei einer Lithium-Ionen-Hochvoltbatterie?",
+      "options": [
+        "Eine sich selbst verstärkende, unkontrollierte Erwärmung mit Brandgefahr",
+        "Ein normaler, geplanter Vorgang während der regulären Schnellladung",
+        "Ein kontrolliertes Abkühlen der Batterie nach Erreichen der Volladung",
+        "Ein reiner Softwarefehler ganz ohne jede thermische Auswirkung"
+      ],
+      "answer": "Bei einem Thermal Runaway führt eine Schädigung (z. B. durch Beschädigung oder Überladung) zu einer sich selbst verstärkenden chemischen Reaktion mit stark ansteigender Temperatur, die sich auf benachbarte Zellen ausbreiten und zu Brand führen kann – ein sicherheitskritisches Ereignis.",
+      "correct": 0
+    },
+    {
+      "id": "hv-31",
+      "category": "Hochvolt",
+      "question": "Was ist bei Abschleppen bzw. Bergung eines Hochvoltfahrzeugs besonders zu beachten?",
+      "options": [
+        "Herstellervorgaben zum sicheren Zustand des HV-Systems und zulässigen Transportarten beachten",
+        "Es gelten dabei exakt dieselben Regeln wie bei einem klassischen Verbrennerfahrzeug",
+        "Ein Hochvoltfahrzeug darf grundsätzlich niemals abgeschleppt werden",
+        "Die Hochvoltbatterie muss vor jedem Abschleppen vollständig ausgebaut werden"
+      ],
+      "answer": "Je nach Fahrzeug und Antriebsart (z. B. permanenter E-Antrieb an einer Achse) können unsachgemäßes Abschleppen oder Bergen Schäden am Antrieb oder Sicherheitsrisiken verursachen. Die Herstellervorgaben zu zulässigen Transportmethoden und zum sicheren Zustand des HV-Systems müssen daher unbedingt beachtet werden.",
+      "correct": 0
+    },
+    {
+      "id": "hv-32",
+      "category": "Hochvolt",
+      "question": "Wozu dient ein HV-Prüfprotokoll nach Arbeiten an einem Hochvoltfahrzeug?",
+      "options": [
+        "Es dokumentiert die durchgeführte Sicherheits- und Funktionsprüfung des HV-Systems",
+        "Es dient ausschließlich der Berechnung der fälligen Werkstattrechnung",
+        "Es ersetzt dabei vollständig die vorgeschriebene Hauptuntersuchung",
+        "Es wird ausschließlich bei der Erstzulassung eines Neufahrzeugs benötigt"
+      ],
+      "answer": "Nach Arbeiten am Hochvoltsystem wird üblicherweise mit einem HV-Prüfprotokoll dokumentiert, dass alle vorgeschriebenen Sicherheits- und Funktionsprüfungen (z. B. Isolationswiderstand) durchgeführt wurden und das Fahrzeug wieder sicher in Betrieb genommen werden kann.",
+      "correct": 0
+    },
+    {
+      "id": "hv-33",
+      "category": "Hochvolt",
+      "question": "Warum verriegelt sich der Ladestecker während des Ladevorgangs meist mechanisch in der Fahrzeugsteckdose?",
+      "options": [
+        "Damit der Stecker nicht versehentlich oder unbefugt während des Ladens gezogen werden kann",
+        "Damit sich der Ladevorgang dadurch automatisch beschleunigt",
+        "Damit die Fahrzeugtüren während des Ladens verriegelt bleiben",
+        "Die Verriegelung dient ausschließlich dem Diebstahlschutz des Ladekabels bei Tag"
+      ],
+      "answer": "Die Verriegelung verhindert, dass der Stecker während des Ladevorgangs unter Last gezogen wird, was zu gefährlichen Lichtbögen führen könnte, und schützt gleichzeitig vor unbefugtem Entwenden des Ladekabels während des Ladens.",
+      "correct": 0
+    },
+    {
+      "id": "hv-34",
+      "category": "Hochvolt",
+      "question": "Welchen Vorteil bietet eine Wärmepumpe gegenüber einer klassischen elektrischen Widerstandsheizung im Elektrofahrzeug?",
+      "options": [
+        "Sie erzeugt mehr Wärme pro eingesetzter elektrischer Energie und schont so die Reichweite",
+        "Sie erzeugt grundsätzlich weniger Wärme als eine elektrische Widerstandsheizung",
+        "Sie funktioniert ausschließlich bei Außentemperaturen über 30 Grad Celsius",
+        "Sie ersetzt dabei vollständig das Thermomanagement der Hochvoltbatterie"
+      ],
+      "answer": "Eine Wärmepumpe entzieht der Umgebung zusätzliche Wärmeenergie und benötigt dadurch pro erzeugter Wärmemenge deutlich weniger elektrische Energie als eine reine Widerstandsheizung. Das schont bei kaltem Wetter spürbar die Reichweite des Elektrofahrzeugs.",
+      "correct": 0
     }
   ]
 }
