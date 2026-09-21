@@ -1,4 +1,4 @@
-const APP_VERSION = "v34";
+const APP_VERSION = "v35";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -331,7 +331,6 @@ function switchTab(tabId, { remember = true } = {}) {
   if (tabId === "tabExplain") renderExplainList();
   if (remember) localStorage.setItem(ACTIVE_TAB_KEY, tabId);
   window.scrollTo(0, 0);
-  replayTitleDropIn(tabId);
 
   if (!isRealSwitch) {
     [els.tabHome, els.tabStats, els.tabExplain, els.tabSettings].forEach((el) => {
@@ -375,17 +374,6 @@ function slideTabs(fromEl, toEl, direction) {
     });
     tabContent.style.height = "";
   }, 340);
-}
-
-// --- Einmalige Eintritts-Animation: der Seitentitel taucht klein oben links
-// auf (neben dem Logo) und gleitet dann nach unten in seine normale Position. ---
-
-function replayTitleDropIn(tabId) {
-  const big = document.getElementById(`bigTitle${tabId.slice(3)}`);
-  if (!big) return;
-  big.classList.remove("title-drop-in");
-  void big.offsetWidth; // Reflow erzwingen, damit die Animation neu startet
-  big.classList.add("title-drop-in");
 }
 
 els.tabButtons.forEach((btn) => {
@@ -1476,7 +1464,6 @@ function selectProfile(id) {
   renderHome();
   renderStats();
   startCloudSync();
-  replayTitleDropIn(TAB_ORDER[activeTabIndex]);
 }
 
 els.profileButtons.forEach((btn) => {
