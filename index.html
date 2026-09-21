@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 <div class="app">
@@ -195,10 +195,6 @@
           <p id="mcExplainText"></p>
         </div>
       </div>
-
-      <div id="mcNextBar" class="mc-next-bar" hidden>
-        <button id="mcNextBtn" class="btn">Weiter →</button>
-      </div>
     </div>
 
     <!-- Ergebnis der Simulation -->
@@ -217,6 +213,11 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== Multiple-Choice: "Weiter"-Leiste (außerhalb des scrollbaren Bereichs) ===== -->
+  <div id="mcNextBar" class="mc-next-bar" hidden>
+    <button id="mcNextBtn" class="btn">Weiter →</button>
+  </div>
 
   <!-- ===== Aktionsmenü für ein Thema ===== -->
   <div id="sheetBackdrop" class="sheet-backdrop" hidden></div>
@@ -241,6 +242,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=16"></script>
+<script src="app.js?v=17"></script>
 </body>
 </html>
