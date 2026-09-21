@@ -1,4 +1,4 @@
-const APP_VERSION = "v26";
+const APP_VERSION = "v27";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -281,9 +281,10 @@ async function loadCards({ silent = false } = {}) {
 // --- Tabs ---
 
 const TAB_ORDER = ["tabHome", "tabStats", "tabExplain", "tabSettings"];
+const ACTIVE_TAB_KEY = "kfz_active_tab_v1";
 let activeTabIndex = 0;
 
-function switchTab(tabId) {
+function switchTab(tabId, { remember = true } = {}) {
   activeTabIndex = TAB_ORDER.indexOf(tabId);
   [els.tabHome, els.tabStats, els.tabExplain, els.tabSettings].forEach((el) => {
     el.hidden = el.id !== tabId;
@@ -291,6 +292,7 @@ function switchTab(tabId) {
   els.tabButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.tab === tabId));
   if (tabId === "tabStats") renderStats();
   if (tabId === "tabExplain") renderExplainList();
+  if (remember) localStorage.setItem(ACTIVE_TAB_KEY, tabId);
 }
 
 els.tabButtons.forEach((btn) => {
@@ -1326,7 +1328,13 @@ els.switchProfileBtn.addEventListener("click", () => { forgetProfile(); location
 document.getElementById("appVersion").textContent = APP_VERSION;
 
 const rememberedProfile = getRememberedProfile();
-if (rememberedProfile) selectProfile(rememberedProfile);
+if (rememberedProfile) {
+  selectProfile(rememberedProfile);
+  const rememberedTab = localStorage.getItem(ACTIVE_TAB_KEY);
+  if (rememberedTab && TAB_ORDER.includes(rememberedTab)) {
+    switchTab(rememberedTab, { remember: false });
+  }
+}
 
 loadCards({ silent: true });
 
