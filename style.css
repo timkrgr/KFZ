@@ -61,8 +61,7 @@ html, body {
 .profile-badge {
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: -6px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -687,6 +686,7 @@ html, body {
   display: flex;
   background: var(--surface);
   border-top: 1px solid var(--border);
+  border-radius: 20px 20px 0 0;
   padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
   z-index: 30;
 }
