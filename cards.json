@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 4,
   "updated": "2026-09-21",
   "cards": [
     {
@@ -7,1047 +7,1040 @@
       "category": "Motor",
       "question": "Wodurch unterscheidet sich die Zündung beim Ottomotor grundsätzlich von der beim Dieselmotor?",
       "options": [
-        "Der Ottomotor zündet durch Selbstzündung infolge hoher Verdichtung",
-        "Der Ottomotor zündet das Gemisch fremd mittels Zündkerze, der Diesel durch Selbstzündung",
-        "Beide Motoren zünden ausschließlich durch Selbstzündung",
-        "Beim Ottomotor gibt es keine Zündung, nur Verdampfung"
+        "Der Ottomotor zündet das Gemisch über den Turbolader",
+        "Der Ottomotor zündet das Gemisch durch hohe Verdichtung selbst",
+        "Der Ottomotor zündet das Gemisch fremd mit der Zündkerze",
+        "Der Ottomotor zündet das Gemisch mit einer Glühkerze vor"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Beim Ottomotor wird das Kraftstoff-Luft-Gemisch durch einen Zündfunken der Zündkerze fremdgezündet. Beim Dieselmotor entzündet sich der eingespritzte Kraftstoff durch die hohe Verdichtungstemperatur von selbst (Selbstzündung)."
+      "correct": 2,
+      "answer": "Beim Ottomotor wird das Kraftstoff-Luft-Gemisch durch einen Zündfunken der Zündkerze fremdgezündet. Beim Dieselmotor entzündet sich der eingespritzte Kraftstoff durch die hohe Verdichtungstemperatur von selbst."
     },
     {
       "id": "motor-02",
       "category": "Motor",
       "question": "Wie heißen die vier Takte eines Viertaktmotors in der richtigen Reihenfolge?",
       "options": [
-        "Ansaugen, Verdichten, Arbeiten, Ausstoßen",
         "Verdichten, Ansaugen, Ausstoßen, Arbeiten",
-        "Arbeiten, Ansaugen, Ausstoßen, Verdichten",
-        "Ansaugen, Ausstoßen, Verdichten, Arbeiten"
+        "Arbeiten, Ausstoßen, Ansaugen, Verdichten",
+        "Ansaugen, Ausstoßen, Verdichten, Arbeiten",
+        "Ansaugen, Verdichten, Arbeiten, Ausstoßen"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Die vier Takte laufen in der Reihenfolge Ansaugen (Kolben abwärts, Einlassventil offen), Verdichten (Kolben aufwärts, beide Ventile zu), Arbeiten/Verbrennen (Zündung/Einspritzung, Kolben abwärts) und Ausstoßen (Kolben aufwärts, Auslassventil offen) ab."
+      "correct": 3,
+      "answer": "Die vier Takte laufen in der Reihenfolge Ansaugen (Einlassventil offen, Kolben abwärts), Verdichten (beide Ventile zu, Kolben aufwärts), Arbeiten (Zündung, Kolben abwärts) und Ausstoßen (Auslassventil offen, Kolben aufwärts) ab."
     },
     {
       "id": "motor-03",
       "category": "Motor",
       "question": "Welche Aufgabe hat die Nockenwelle im Motor?",
       "options": [
-        "Sie wandelt die Hubbewegung der Kolben in eine Drehbewegung um",
-        "Sie steuert über Nocken das Öffnen und Schließen der Ventile zum richtigen Zeitpunkt",
-        "Sie kühlt den Zylinderkopf",
-        "Sie erzeugt die Zündspannung für die Zündkerzen"
+        "Sie wandelt die Kolbenbewegung in eine Drehbewegung um",
+        "Sie steuert das Öffnen und Schließen der Ventile",
+        "Sie leitet die Kühlung des Zylinderkopfs",
+        "Sie erzeugt die Hochspannung für die Zündkerzen"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Die Nockenwelle betätigt über ihre Nockenform zum passenden Zeitpunkt im Arbeitsspiel die Ein- und Auslassventile. Die Umwandlung der Kolben-Hubbewegung in eine Drehbewegung übernimmt dagegen die Kurbelwelle."
+      "answer": "Die Nockenwelle betätigt über ihre Nockenform zum passenden Zeitpunkt im Arbeitsspiel die Ein- und Auslassventile. Die Umwandlung der Hubbewegung in eine Drehbewegung übernimmt dagegen die Kurbelwelle."
     },
     {
       "id": "motor-04",
       "category": "Motor",
-      "question": "Welche Funktion hat der Ölkreislauf (Schmiersystem) eines Verbrennungsmotors in erster Linie?",
+      "question": "Welche Funktion hat der Ölkreislauf eines Verbrennungsmotors in erster Linie?",
       "options": [
-        "Kühlung des Kühlmittels im Kühler",
-        "Verringerung der Reibung und des Verschleißes an bewegten Bauteilen sowie Wärmeabfuhr",
-        "Erzeugung des Zünddrucks im Brennraum",
-        "Reinigung der Abgase vor dem Katalysator"
+        "Er reinigt die Abgase vor dem Katalysator",
+        "Er erzeugt den Zünddruck im Brennraum",
+        "Er verringert Reibung und Verschleiß an bewegten Teilen",
+        "Er kühlt das Kühlmittel im Kühler herunter"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Motoröl schmiert bewegte Teile wie Kurbelwelle, Nockenwelle und Kolben, reduziert dadurch Reibung und Verschleiß und trägt zusätzlich Wärme von den Bauteilen ab."
+      "correct": 2,
+      "answer": "Motoröl schmiert bewegte Teile wie Kurbelwelle, Nockenwelle und Kolben, reduziert dadurch Reibung und Verschleiß und trägt zusätzlich Wärme von den Bauteilen ab."
     },
     {
       "id": "motor-05",
       "category": "Motor",
-      "question": "Welches Bauteil im Kühlkreislauf regelt in Abhängigkeit von der Kühlmitteltemperatur, ob das Kühlmittel durch den Kühler oder im kleinen Kreislauf fließt?",
+      "question": "Welches Bauteil regelt in Abhängigkeit von der Kühlmitteltemperatur, ob das Kühlmittel durch den Kühler oder im kleinen Kreislauf fließt?",
       "options": [
-        "Die Wasserpumpe",
-        "Der Ausgleichsbehälter",
-        "Das Thermostat",
-        "Der Kühlerlüfter"
+        "Der Ausgleichsbehälter im Motorraum",
+        "Das Thermostat im Kühlmittelkreislauf",
+        "Die Wasserpumpe am Motorblock",
+        "Der Kühlerlüfter vor dem Kühler"
       ],
-      "correct": 2,
-      "answer": "Richtig ist C: Das Thermostat öffnet erst ab einer bestimmten Kühlmitteltemperatur den Weg zum großen Kreislauf über den Kühler. Bei kaltem Motor bleibt es geschlossen, damit der Motor schneller seine Betriebstemperatur erreicht."
+      "correct": 1,
+      "answer": "Das Thermostat öffnet erst ab einer bestimmten Kühlmitteltemperatur den Weg zum großen Kreislauf über den Kühler, damit der Motor schneller seine Betriebstemperatur erreicht."
     },
     {
       "id": "motor-06",
       "category": "Motor",
       "question": "Warum hat ein Dieselmotor ein deutlich höheres Verdichtungsverhältnis als ein Ottomotor?",
       "options": [
-        "Damit der Kraftstoff durch die entstehende Verdichtungswärme selbst zündet",
-        "Damit weniger Kraftstoff verbraucht wird, unabhängig von der Zündung",
-        "Um die Zündkerze vor Verschleiß zu schützen",
-        "Um den Turbolader zu entlasten"
+        "Damit dadurch die Einspritzdüsen weniger stark verschleißen",
+        "Damit dadurch der Turbolader spürbar entlastet wird",
+        "Damit sich der Kraftstoff durch die Verdichtungswärme selbst entzündet",
+        "Damit dadurch weniger Kraftstoff pro Arbeitsspiel verbraucht wird"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Beim Dieselmotor muss die Verdichtung hoch genug sein, damit sich die Luft im Zylinder so stark erhitzt, dass der eingespritzte Kraftstoff von selbst zündet (Selbstzündung) – eine Fremdzündung wie beim Ottomotor gibt es nicht."
+      "correct": 2,
+      "answer": "Beim Dieselmotor muss die Verdichtung hoch genug sein, damit sich die Luft im Zylinder so stark erhitzt, dass der eingespritzte Kraftstoff von selbst zündet – eine Fremdzündung wie beim Ottomotor gibt es nicht."
     },
     {
       "id": "motor-07",
       "category": "Motor",
       "question": "Was versteht man unter einem Common-Rail-Einspritzsystem beim Dieselmotor?",
       "options": [
-        "Jeder Injektor hat eine eigene, separate Kraftstoffpumpe",
-        "Ein gemeinsamer Hochdruckspeicher (Rail) versorgt alle Injektoren mit unter hohem Druck stehendem Kraftstoff",
-        "Der Kraftstoff wird ausschließlich mechanisch ohne Steuergerät zugeteilt",
-        "Es handelt sich um ein Saugrohreinspritzsystem für Ottomotoren"
+        "Jeder einzelne Injektor besitzt seine eigene separate Kraftstoffpumpe",
+        "Es handelt sich dabei um eine Saugrohreinspritzung für Ottomotoren",
+        "Der Kraftstoff wird rein mechanisch ohne jedes Steuergerät zugeteilt",
+        "Ein gemeinsamer Hochdruckspeicher versorgt alle Injektoren mit Kraftstoff"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Beim Common-Rail-System erzeugt eine Hochdruckpumpe den Einspritzdruck, der in einem gemeinsamen Speicherrohr (Rail) bereitgehalten wird. Das Motorsteuergerät steuert die Injektoren einzeln und unabhängig vom Motortakt an."
+      "correct": 3,
+      "answer": "Beim Common-Rail-System erzeugt eine Hochdruckpumpe den Einspritzdruck, der in einem gemeinsamen Speicherrohr bereitgehalten wird. Das Steuergerät steuert die Injektoren einzeln und unabhängig vom Motortakt an."
     },
     {
       "id": "motor-08",
       "category": "Motor",
       "question": "Welche Hauptaufgabe hat die Zylinderkopfdichtung?",
       "options": [
-        "Sie dichtet den Brennraum sowie Kühlmittel- und Ölkanäle zwischen Motorblock und Zylinderkopf ab",
-        "Sie dichtet die Ölwanne gegen den Motorblock ab",
-        "Sie verhindert das Eindringen von Abgasen in den Ansaugtrakt",
-        "Sie dämpft die Vibrationen der Kurbelwelle"
+        "Sie dämpft die auftretenden Vibrationen der Kurbelwelle",
+        "Sie dichtet Brennraum, Kühlmittel- und Ölkanäle gegeneinander ab",
+        "Sie hindert Abgase am Eindringen in den Ansaugtrakt",
+        "Sie dichtet die Ölwanne gegenüber dem Motorblock ab"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Die Zylinderkopfdichtung sitzt zwischen Motorblock und Zylinderkopf und dichtet gleichzeitig Brennraum, Kühlmittelkanäle und Ölkanäle gegeneinander und nach außen ab."
+      "correct": 1,
+      "answer": "Die Zylinderkopfdichtung sitzt zwischen Motorblock und Zylinderkopf und dichtet gleichzeitig Brennraum, Kühlmittelkanäle und Ölkanäle gegeneinander und nach außen ab."
     },
     {
       "id": "motor-09",
       "category": "Motor",
       "question": "Welches Bauteil wandelt die geradlinige Hubbewegung des Kolbens in eine Drehbewegung um?",
       "options": [
-        "Die Nockenwelle",
-        "Die Kurbelwelle mit Pleuelstange",
-        "Die Ausgleichswelle",
-        "Der Zahnriemen"
+        "Die Nockenwelle über den gesamten Ventiltrieb",
+        "Die Ausgleichswelle tief im Motorblock",
+        "Die Kurbelwelle zusammen mit der Pleuelstange",
+        "Der Zahnriemen am vorderen Steuertrieb"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Die Pleuelstange verbindet Kolben und Kurbelwelle; über den Kurbelzapfen wandelt die Kurbelwelle die Auf- und Abbewegung des Kolbens in eine Drehbewegung um, die letztlich den Antrieb ermöglicht."
+      "correct": 2,
+      "answer": "Die Pleuelstange verbindet Kolben und Kurbelwelle; über den Kurbelzapfen wandelt die Kurbelwelle die Auf- und Abbewegung des Kolbens in eine Drehbewegung um."
     },
     {
       "id": "motor-10",
       "category": "Motor",
       "question": "Wozu dient ein Ausgleichsbehälter im Kühlsystem?",
       "options": [
-        "Er speichert Motoröl für Nachfüllzwecke",
-        "Er nimmt das sich bei Erwärmung ausdehnende Kühlmittel auf und ermöglicht das Entlüften des Systems",
-        "Er kühlt die Bremsflüssigkeit",
-        "Er speichert überschüssigen Kraftstoff"
+        "Er speichert zusätzliches Motoröl für spätere Nachfüllzwecke",
+        "Er speichert überschüssigen Kraftstoff für die Rückführung",
+        "Er kühlt die Bremsflüssigkeit während des Fahrbetriebs",
+        "Er nimmt die Ausdehnung des Kühlmittels auf und ermöglicht Entlüften"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Da sich Kühlmittel bei Erwärmung ausdehnt, gleicht der Ausgleichsbehälter diese Volumenänderung aus und dient zugleich als Einfüll- und Entlüftungspunkt des Kühlsystems."
+      "correct": 3,
+      "answer": "Da sich Kühlmittel bei Erwärmung ausdehnt, gleicht der Ausgleichsbehälter diese Volumenänderung aus und dient zugleich als Einfüll- und Entlüftungspunkt des Kühlsystems."
     },
-
     {
       "id": "mm-01",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Welche Aufgabe hat die Lambdasonde im Abgassystem?",
       "options": [
-        "Sie misst die Abgastemperatur zur Turboladersteuerung",
-        "Sie misst den Restsauerstoffgehalt im Abgas, damit das Steuergerät das Kraftstoff-Luft-Gemisch optimal regeln kann",
-        "Sie filtert Rußpartikel aus dem Abgas",
-        "Sie misst den Öldruck im Motor"
+        "Sie überwacht laufend den Öldruck im Motor",
+        "Sie misst den Restsauerstoffgehalt zur Regelung des Gemischs",
+        "Sie filtert die Rußpartikel aus dem Abgasstrom heraus",
+        "Sie misst die Abgastemperatur zur Steuerung des Turboladers"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Die Lambdasonde erfasst den Restsauerstoffgehalt im Abgas. Anhand dieses Signals regelt das Motorsteuergerät die Einspritzmenge, um möglichst nah am idealen Verbrennungsverhältnis (Lambda = 1) zu arbeiten."
+      "answer": "Die Lambdasonde erfasst den Restsauerstoffgehalt im Abgas. Anhand dieses Signals regelt das Motorsteuergerät die Einspritzmenge, um möglichst nah am idealen Verbrennungsverhältnis zu arbeiten."
     },
     {
       "id": "mm-02",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Was ist die Hauptaufgabe eines Dreiwege-Katalysators beim Ottomotor?",
       "options": [
-        "Er reduziert gleichzeitig Kohlenwasserstoffe (HC), Kohlenmonoxid (CO) und Stickoxide (NOx)",
-        "Er filtert ausschließlich Rußpartikel",
-        "Er kühlt das Abgas vor dem Auspuff",
-        "Er erhöht den Kraftstoffdruck"
+        "Spürbares Erhöhen des Kraftstoffdrucks im Rail",
+        "Ausschließliches Herausfiltern der Rußpartikel aus dem Abgas",
+        "Deutliches Abkühlen des heißen Abgases vor dem Auspuff",
+        "Gleichzeitige Reduzierung der Schadstoffe HC, CO und NOx"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Der Dreiwegekatalysator wandelt bei stöchiometrischem Gemisch (Lambda = 1) gleichzeitig die drei Schadstoffe HC, CO und NOx durch Oxidation bzw. Reduktion in unschädlichere Stoffe wie CO2, H2O und N2 um."
+      "correct": 3,
+      "answer": "Der Dreiwegekatalysator wandelt bei stöchiometrischem Gemisch gleichzeitig die drei Schadstoffe HC, CO und NOx durch Oxidation bzw. Reduktion in unschädlichere Stoffe wie CO2, H2O und N2 um."
     },
     {
       "id": "mm-03",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Wofür wird der Dieselpartikelfilter (DPF) benötigt und wie wird er wieder gereinigt?",
       "options": [
-        "Er speichert Kraftstoff und wird beim Tanken geleert",
-        "Er filtert Rußpartikel aus dem Abgas; angesammelter Ruß wird durch Regeneration (kontrolliertes Abbrennen) entfernt",
-        "Er filtert Stickoxide und wird mit AdBlue gereinigt",
-        "Er kühlt das Abgas und muss nie gereinigt werden"
+        "Er kühlt das Abgas und benötigt keinerlei Reinigung",
+        "Er filtert Stickoxide und wird per AdBlue-Spülung gereinigt",
+        "Er filtert Ruß und wird durch eine Regeneration abgebrannt",
+        "Er speichert Kraftstoff und leert sich beim Tanken"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Der DPF hält Rußpartikel aus dem Dieselabgas zurück. Ab einer bestimmten Beladung löst das Steuergerät eine Regeneration aus, bei der die Abgastemperatur erhöht wird, sodass der Ruß kontrolliert verbrennt."
+      "correct": 2,
+      "answer": "Der DPF hält Rußpartikel aus dem Dieselabgas zurück. Ab einer bestimmten Beladung löst das Steuergerät eine Regeneration aus, bei der die Abgastemperatur erhöht wird, sodass der Ruß kontrolliert verbrennt."
     },
     {
       "id": "mm-04",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Welchen Zweck hat die Abgasrückführung (AGR)?",
       "options": [
-        "Sie erhöht die Verbrennungstemperatur zur Leistungssteigerung",
-        "Sie führt einen Teil des Abgases zurück in den Ansaugtrakt, um die Verbrennungstemperatur zu senken und dadurch die Stickoxidbildung zu reduzieren",
-        "Sie reinigt das Motoröl von Verbrennungsrückständen",
-        "Sie erhöht den Ladedruck des Turboladers"
+        "Sie erhöht gezielt die Verbrennungstemperatur zur Leistungssteigerung",
+        "Sie erhöht spürbar den Ladedruck des Turboladers",
+        "Sie senkt die Verbrennungstemperatur und reduziert dadurch Stickoxide",
+        "Sie reinigt das Motoröl von restlichen Verbrennungsrückständen"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Durch die Rückführung von Abgas in den Ansaugtrakt sinkt der Sauerstoffanteil und die Spitzentemperatur bei der Verbrennung, wodurch weniger Stickoxide (NOx) entstehen."
+      "correct": 2,
+      "answer": "Durch die Rückführung von Abgas in den Ansaugtrakt sinkt der Sauerstoffanteil und die Spitzentemperatur bei der Verbrennung, wodurch weniger Stickoxide entstehen."
     },
     {
       "id": "mm-05",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Was passiert im SCR-Katalysator mit Hilfe von AdBlue?",
       "options": [
-        "AdBlue schmiert die Einspritzdüsen",
-        "Aus AdBlue wird Ammoniak freigesetzt, das im SCR-Katalysator Stickoxide zu Stickstoff und Wasser reduziert",
-        "AdBlue erhöht den Kraftstoffdruck im Rail",
-        "AdBlue kühlt den Turbolader"
+        "AdBlue schmiert dauerhaft die feinen Einspritzdüsen des Motors",
+        "AdBlue kühlt aktiv den heißen Turbolader bei Volllast",
+        "AdBlue erhöht spürbar den Kraftstoffdruck im Common-Rail",
+        "Freigesetztes Ammoniak reduziert Stickoxide zu Stickstoff und Wasser"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: AdBlue (wässrige Harnstofflösung) wird in den Abgasstrom eingespritzt. Durch Hydrolyse entsteht Ammoniak, das im SCR-Katalysator gezielt mit Stickoxiden reagiert und diese zu unschädlichem Stickstoff und Wasser umwandelt."
+      "correct": 3,
+      "answer": "AdBlue wird in den Abgasstrom eingespritzt. Durch Hydrolyse entsteht Ammoniak, das im SCR-Katalysator gezielt mit Stickoxiden reagiert und diese zu unschädlichem Stickstoff und Wasser umwandelt."
     },
     {
       "id": "mm-06",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Was unterscheidet die Benzin-Direkteinspritzung von der Saugrohreinspritzung?",
       "options": [
-        "Bei der Direkteinspritzung wird der Kraftstoff unter hohem Druck direkt in den Brennraum eingespritzt statt ins Saugrohr",
-        "Bei der Direkteinspritzung gibt es keine Zündkerze mehr",
-        "Die Saugrohreinspritzung arbeitet nur bei Dieselmotoren",
-        "Beide Systeme sind technisch identisch"
+        "Der Kraftstoff wird direkt in den Brennraum eingespritzt",
+        "Bei ihr gibt es grundsätzlich keine Zündkerze mehr",
+        "Die Saugrohreinspritzung kommt nur bei Dieselmotoren vor",
+        "Beide Systeme sind technisch vollkommen identisch aufgebaut"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Bei der Direkteinspritzung spritzt der Injektor den Kraftstoff mit hohem Druck direkt in den Brennraum, während bei der Saugrohreinspritzung der Kraftstoff bereits vor dem Einlassventil ins Saugrohr eingespritzt wird."
+      "answer": "Bei der Direkteinspritzung spritzt der Injektor den Kraftstoff mit hohem Druck direkt in den Brennraum, bei der Saugrohreinspritzung dagegen bereits vor dem Einlassventil ins Saugrohr."
     },
     {
       "id": "mm-07",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Welche Funktion hat die Zündkerze im Ottomotor?",
       "options": [
-        "Sie erzeugt einen Zündfunken, der das verdichtete Kraftstoff-Luft-Gemisch entzündet",
-        "Sie misst die Verdichtung im Zylinder",
-        "Sie kühlt den Zylinderkopf",
-        "Sie steuert die Ventilzeiten"
+        "Sie erzeugt den Funken zum Entzünden des Gemischs",
+        "Sie kühlt aktiv den Zylinderkopf im Betrieb",
+        "Sie misst die tatsächliche Verdichtung im Zylinder",
+        "Sie steuert die exakten Ventilzeiten des Motors"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Die Zündspule erzeugt eine Hochspannung, die an der Zündkerze einen Funken erzeugt und damit das verdichtete Kraftstoff-Luft-Gemisch im richtigen Moment entzündet."
+      "answer": "Die Zündspule erzeugt eine Hochspannung, die an der Zündkerze einen Funken erzeugt und damit das verdichtete Kraftstoff-Luft-Gemisch im richtigen Moment entzündet."
     },
     {
       "id": "mm-08",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Wofür wird der Klopfsensor im Motorsteuergerät-System benötigt?",
       "options": [
-        "Er erkennt unkontrollierte Selbstzündungen (Klopfen) und veranlasst das Steuergerät, den Zündzeitpunkt anzupassen",
-        "Er misst die Motordrehzahl",
-        "Er erkennt einen Reifenplatzer",
-        "Er misst den Kraftstofffüllstand"
+        "Er misst laufend den aktuellen Kraftstofffüllstand",
+        "Er erkennt Klopfen und löst eine Zündzeitpunktkorrektur aus",
+        "Er misst ausschließlich die aktuelle Motordrehzahl",
+        "Er erkennt einen Reifenplatzer während der Fahrt"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Der Klopfsensor erfasst über Körperschall unkontrollierte, motorschädigende Verbrennungen (Klopfen). Erkennt das Steuergerät Klopfen, verstellt es den Zündzeitpunkt nach spät, um den Motor zu schützen."
+      "correct": 1,
+      "answer": "Der Klopfsensor erfasst über Körperschall unkontrollierte, motorschädigende Verbrennungen. Erkennt das Steuergerät Klopfen, verstellt es den Zündzeitpunkt nach spät, um den Motor zu schützen."
     },
     {
       "id": "mm-09",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Welches Signal benötigt das Motorsteuergerät zwingend, um Einspritzung und Zündung synchron zum Arbeitsspiel auszulösen?",
       "options": [
-        "Das Signal des Außentemperatursensors",
-        "Das Signal des Kurbelwellen- (und meist zusätzlich Nockenwellen-) Sensors",
-        "Das Signal des Reifendrucksensors",
-        "Das Signal des Regensensors"
+        "Das Signal des Regensensors an der Frontscheibe",
+        "Das Signal des Kurbelwellensensors am Motorblock",
+        "Das Signal des Reifendrucksensors am Rad",
+        "Das Signal des Außentemperatursensors am Fahrzeug"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Der Kurbelwellensensor liefert Drehzahl und Kurbelwellenstellung, der Nockenwellensensor zusätzlich die Information, in welchem Takt sich der jeweilige Zylinder befindet – beides ist nötig, um Einspritzung und Zündung exakt zu timen."
+      "answer": "Der Kurbelwellensensor liefert Drehzahl und Kurbelwellenstellung, meist ergänzt durch den Nockenwellensensor – beides ist nötig, um Einspritzung und Zündung exakt zum Arbeitsspiel zu timen."
     },
     {
       "id": "mm-10",
       "category": "Motormanagement & Abgasnachbehandlung",
       "question": "Wie erhöht ein Turbolader die Leistung eines Verbrennungsmotors?",
       "options": [
-        "Er verringert die Verdichtung im Zylinder",
-        "Er nutzt die Energie des Abgasstroms, um über ein Verdichterrad mehr Luft in die Zylinder zu pressen",
+        "Er erhöht unmittelbar die Zündspannung der Kerzen",
+        "Er verringert gezielt die Verdichtung im Zylinder",
         "Er speist zusätzlichen Kraftstoff direkt in den Auspuff",
-        "Er erhöht die Zündspannung"
+        "Er presst über die Abgasenergie mehr Luft in die Zylinder"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Das Abgas treibt die Turbine des Turboladers an, die über eine gemeinsame Welle ein Verdichterrad antreibt. Dieses presst mehr Luft in die Zylinder, wodurch mehr Kraftstoff verbrannt und mehr Leistung erzeugt werden kann."
+      "correct": 3,
+      "answer": "Das Abgas treibt die Turbine des Turboladers an, die über eine gemeinsame Welle ein Verdichterrad antreibt. Dieses presst mehr Luft in die Zylinder, sodass mehr Kraftstoff verbrannt werden kann."
     },
-
     {
       "id": "kraft-01",
       "category": "Kraftübertragung",
       "question": "Welche Hauptaufgabe hat die Kupplung im Antriebsstrang eines Schaltgetriebe-Fahrzeugs?",
       "options": [
-        "Sie verändert die Übersetzung zwischen Motor und Rädern",
-        "Sie trennt und verbindet den Kraftfluss zwischen Motor und Getriebe, z. B. zum Schalten oder Anfahren",
+        "Sie trennt und verbindet den Kraftfluss zwischen Motor und Getriebe",
         "Sie gleicht unterschiedliche Raddrehzahlen in der Kurve aus",
-        "Sie verstärkt die Bremskraft"
+        "Sie verändert die Übersetzung zwischen Motor und Rädern",
+        "Sie verstärkt die hydraulische Bremskraft am Pedal"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Die Kupplung ermöglicht das ruckfreie Trennen und wieder Verbinden von Motor und Getriebe, was zum Anfahren, Schalten und Anhalten notwendig ist."
+      "correct": 0,
+      "answer": "Die Kupplung ermöglicht das ruckfreie Trennen und wieder Verbinden von Motor und Getriebe, was zum Anfahren, Schalten und Anhalten notwendig ist."
     },
     {
       "id": "kraft-02",
       "category": "Kraftübertragung",
       "question": "Wozu dient die Übersetzung im Schaltgetriebe?",
       "options": [
-        "Sie passt Motordrehzahl und -drehmoment an die jeweilige Fahrsituation an (z. B. hohe Kraft beim Anfahren, niedrige Drehzahl bei hoher Geschwindigkeit)",
-        "Sie erzeugt die Zündspannung",
-        "Sie kühlt das Getriebeöl",
-        "Sie ersetzt die Kupplung vollständig"
+        "Sie erzeugt die nötige Zündspannung für die Kerzen",
+        "Sie passt Motordrehzahl und -drehmoment an die Fahrsituation an",
+        "Sie ersetzt dauerhaft die mechanische Kupplung",
+        "Sie kühlt aktiv das heiße Getriebeöl herunter"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Durch unterschiedliche Zahnradpaarungen (Gänge) wird das Verhältnis von Motordrehzahl zu Raddrehzahl verändert, sodass in jedem Fahrzustand ausreichend Drehmoment oder eine passende Geschwindigkeit zur Verfügung steht."
+      "correct": 1,
+      "answer": "Durch unterschiedliche Zahnradpaarungen wird das Verhältnis von Motordrehzahl zu Raddrehzahl verändert, sodass in jedem Fahrzustand ausreichend Drehmoment oder eine passende Geschwindigkeit zur Verfügung steht."
     },
     {
       "id": "kraft-03",
       "category": "Kraftübertragung",
       "question": "Welche Funktion erfüllt das Differenzial (Ausgleichsgetriebe)?",
       "options": [
-        "Es gleicht die unterschiedlichen Drehzahlen der Antriebsräder bei Kurvenfahrt aus",
-        "Es erhöht die maximale Motordrehzahl",
-        "Es verstärkt die Bremskraft an der Hinterachse",
-        "Es dient als zusätzlicher Kraftstofftank"
+        "Es dient zusätzlich als weiterer Kraftstofftank",
+        "Es erhöht spürbar die maximale Motordrehzahl",
+        "Es verstärkt gezielt die Bremskraft der Hinterachse",
+        "Es gleicht unterschiedliche Raddrehzahlen bei Kurvenfahrt aus"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: In der Kurve legt das kurvenäußere Rad einen längeren Weg zurück als das kurveninnere. Das Differenzial gleicht diese unterschiedlichen Raddrehzahlen aus und verhindert so Verspannungen im Antriebsstrang."
+      "correct": 3,
+      "answer": "In der Kurve legt das kurvenäußere Rad einen längeren Weg zurück als das kurveninnere. Das Differenzial gleicht diese unterschiedlichen Raddrehzahlen aus und verhindert Verspannungen im Antriebsstrang."
     },
     {
       "id": "kraft-04",
       "category": "Kraftübertragung",
       "question": "Welche Aufgabe hat der Drehmomentwandler in einem klassischen Automatikgetriebe?",
       "options": [
-        "Er ersetzt die mechanische Kupplung durch eine hydrodynamische Kraftübertragung zwischen Motor und Getriebe",
-        "Er filtert das Getriebeöl",
-        "Er steuert die Zündreihenfolge",
-        "Er kühlt die Bremsen"
+        "Er steuert die genaue Zündreihenfolge im laufenden Motor",
+        "Er überträgt die Motorleistung hydrodynamisch statt mechanisch",
+        "Er kühlt aktiv die Bremsscheiben bei starker Last",
+        "Er filtert das zirkulierende Getriebeöl von feinen Partikeln"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Der Drehmomentwandler überträgt die Motorleistung über Öl (hydrodynamisch) statt über eine mechanische Reibkupplung und ermöglicht dadurch ein sanftes, ruckfreies Anfahren ohne Kupplungspedal."
+      "correct": 1,
+      "answer": "Der Drehmomentwandler überträgt die Motorleistung über Öl statt über eine mechanische Reibkupplung und ermöglicht dadurch ein sanftes, ruckfreies Anfahren ohne Kupplungspedal."
     },
     {
       "id": "kraft-05",
       "category": "Kraftübertragung",
       "question": "Wozu dienen Kreuzgelenke in einer Gelenkwelle (z. B. an der Kardanwelle)?",
       "options": [
-        "Sie gleichen Winkeländerungen zwischen zwei Wellenabschnitten aus, die nicht fluchten",
-        "Sie erzeugen zusätzliches Drehmoment",
-        "Sie ersetzen das Differenzial",
-        "Sie dienen ausschließlich der Geräuschdämmung"
+        "Sie ersetzen komplett das mechanische Differenzial",
+        "Sie gleichen Winkeländerungen zwischen zwei Wellenabschnitten aus",
+        "Sie erzeugen zusätzliches Drehmoment im Antriebsstrang",
+        "Sie dienen ausschließlich der Dämmung von Fahrgeräuschen"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Kreuzgelenke übertragen Drehmoment auch dann, wenn die verbundenen Wellen einen Winkel zueinander haben oder sich dieser durch Federbewegungen ändert – wie es bei einer Kardanwelle zwischen Getriebe und Achse der Fall ist."
+      "correct": 1,
+      "answer": "Kreuzgelenke übertragen Drehmoment auch dann, wenn die verbundenen Wellen einen Winkel zueinander haben oder sich dieser durch Federbewegungen ändert – wie bei einer Kardanwelle zwischen Getriebe und Achse."
     },
     {
       "id": "kraft-06",
       "category": "Kraftübertragung",
       "question": "Welches Anzeichen deutet typischerweise auf eine verschlissene Kupplungsscheibe hin?",
       "options": [
-        "Die Kupplung greift sehr früh, direkt nach dem Loslassen des Pedals",
-        "Die Kupplung rutscht durch, der Motor dreht hoch, ohne dass das Fahrzeug entsprechend beschleunigt",
+        "Der Kraftstoffverbrauch sinkt dabei spürbar ab",
+        "Die Kupplung greift ungewöhnlich früh nach dem Loslassen",
         "Das Fahrzeug lässt sich nicht mehr abstellen",
-        "Der Kraftstoffverbrauch sinkt spürbar"
+        "Der Motor dreht hoch, ohne dass das Fahrzeug entsprechend beschleunigt"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Ist der Kupplungsbelag verschlissen, kann die Kupplung das Motordrehmoment nicht mehr vollständig übertragen – sie rutscht durch, die Drehzahl steigt, ohne dass die Beschleunigung entsprechend mitgeht."
+      "correct": 3,
+      "answer": "Ist der Kupplungsbelag verschlissen, kann die Kupplung das Motordrehmoment nicht mehr vollständig übertragen – sie rutscht durch, die Drehzahl steigt, ohne dass die Beschleunigung entsprechend mitgeht."
     },
     {
       "id": "kraft-07",
       "category": "Kraftübertragung",
       "question": "Was ist das Grundprinzip eines Allradantriebs?",
       "options": [
-        "Nur die Hinterräder werden angetrieben, die Vorderräder rollen frei mit",
-        "Die Antriebskraft wird auf Vorder- und Hinterachse verteilt, um die Traktion zu verbessern",
-        "Es handelt sich um ein reines Bremssystem",
-        "Nur bei Nässe wird automatisch auf Frontantrieb umgeschaltet"
+        "Die Antriebskraft wird auf Vorder- und Hinterachse verteilt",
+        "Es werden grundsätzlich nur die Hinterräder angetrieben",
+        "Bei Nässe schaltet er automatisch auf Frontantrieb um",
+        "Es handelt sich dabei um ein reines Bremssystem"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Beim Allradantrieb wird das Antriebsmoment – fest oder situationsabhängig variabel – auf Vorder- und Hinterachse verteilt, wodurch mehr Räder Kraft auf die Fahrbahn übertragen und die Traktion steigt."
+      "correct": 0,
+      "answer": "Beim Allradantrieb wird das Antriebsmoment – fest oder situationsabhängig variabel – auf Vorder- und Hinterachse verteilt, wodurch mehr Räder Kraft auf die Fahrbahn übertragen und die Traktion steigt."
     },
     {
       "id": "kraft-08",
       "category": "Kraftübertragung",
       "question": "Was ist ein wesentliches Merkmal eines Doppelkupplungsgetriebes (DKG)?",
       "options": [
-        "Es besitzt zwei separate Teilgetriebe mit je einer eigenen Kupplung für gerade und ungerade Gänge, wodurch nahezu unterbrechungsfreies Schalten möglich ist",
-        "Es hat keine Kupplung, sondern nur einen Drehmomentwandler",
-        "Es kann nur manuell ohne Steuergerät geschaltet werden",
-        "Es besitzt ausschließlich einen Gang"
+        "Zwei Teilgetriebe mit eigener Kupplung schalten fast unterbrechungsfrei",
+        "Es besitzt grundsätzlich keine Kupplung, sondern nur einen Wandler",
+        "Es kann ausschließlich rein manuell ohne Steuergerät geschaltet werden",
+        "Es besitzt konstruktionsbedingt nur einen einzigen festen Gang"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Ein Teilgetriebe hält die geraden, das andere die ungeraden Gänge bereit. Während ein Gang aktiv ist, wird der nächste bereits im anderen Teilgetriebe vorgewählt, sodass beim Schalten nur zwischen den beiden Kupplungen gewechselt wird – nahezu ohne Zugkraftunterbrechung."
+      "answer": "Ein Teilgetriebe hält die geraden, das andere die ungeraden Gänge bereit. Während ein Gang aktiv ist, wird der nächste im anderen Teilgetriebe vorgewählt – das Schalten erfolgt so fast ohne Zugkraftunterbrechung."
     },
     {
       "id": "kraft-09",
       "category": "Kraftübertragung",
       "question": "Welche Aufgabe hat ein Freilauf im Antriebsstrang?",
       "options": [
-        "Er sperrt die Drehrichtung in beide Richtungen komplett",
-        "Er überträgt Drehmoment nur in eine Richtung und lässt in die andere Richtung freies Durchdrehen zu",
-        "Er ersetzt die komplette Kupplung dauerhaft",
-        "Er kühlt das Getriebeöl aktiv"
+        "Er ersetzt dauerhaft die komplette mechanische Kupplung",
+        "Er sperrt die Drehrichtung konsequent in beide Richtungen",
+        "Er kühlt aktiv das zirkulierende Getriebeöl",
+        "Er überträgt das Drehmoment nur in eine Drehrichtung"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Ein Freilauf sperrt nur in einer Drehrichtung und überträgt dort das Drehmoment, während er in der Gegenrichtung frei durchdreht – etwa genutzt, damit ein Bauteil schneller drehen kann als der Antrieb es vorgibt."
+      "correct": 3,
+      "answer": "Ein Freilauf sperrt nur in einer Drehrichtung und überträgt dort das Drehmoment, während er in der Gegenrichtung frei durchdreht."
     },
     {
       "id": "kraft-10",
       "category": "Kraftübertragung",
       "question": "Wo werden Gleichlaufgelenke (VL-/Tripodegelenke) typischerweise eingesetzt?",
       "options": [
-        "Ausschließlich in der Lenksäule",
-        "An den Seitenwellen angetriebener, gelenkter Räder, um Dreh- und Lenkbewegungen bei gleichbleibender Winkelgeschwindigkeit zu übertragen",
-        "Ausschließlich im Automatikgetriebe-Gehäuse",
-        "Nur in der Handbremsmechanik"
+        "Ausschließlich innerhalb der Lenksäule des Fahrzeugs",
+        "An den Seitenwellen angetriebener, gleichzeitig gelenkter Räder",
+        "Nur im Gehäuse eines Automatikgetriebes",
+        "Ausschließlich in der Mechanik der Handbremse"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Gleichlaufgelenke übertragen das Antriebsmoment auf angetriebene und gleichzeitig gelenkte Räder (typisch bei Frontantrieb) und gleichen dabei Einfederungs- und Lenkbewegungen aus, ohne die Drehzahl ungleichmäßig zu verändern."
+      "answer": "Gleichlaufgelenke übertragen das Antriebsmoment auf angetriebene und gleichzeitig gelenkte Räder und gleichen dabei Einfederungs- und Lenkbewegungen aus, ohne die Drehzahl ungleichmäßig zu verändern."
     },
-
     {
       "id": "fahrwerk-01",
       "category": "Fahrwerk",
       "question": "Welche Aufgabe hat der Stoßdämpfer im Fahrwerk?",
       "options": [
-        "Er trägt das Fahrzeuggewicht dauerhaft und ersetzt die Feder",
-        "Er dämpft die Schwingbewegungen der Feder und sorgt für dauerhaften Fahrbahnkontakt der Reifen",
-        "Er verändert den Radsturz während der Fahrt",
-        "Er überträgt das Antriebsmoment auf die Räder"
+        "Er überträgt direkt das Antriebsmoment auf die Räder",
+        "Er trägt dauerhaft das Fahrzeuggewicht anstelle der Feder",
+        "Er verändert aktiv den Radsturz während der Fahrt",
+        "Er dämpft die Federschwingungen für dauerhaften Fahrbahnkontakt"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Ohne Dämpfung würde die Feder nach einer Anregung lange nachschwingen. Der Stoßdämpfer wandelt diese Schwingungsenergie in Wärme um und sorgt so für guten, dauerhaften Kontakt der Reifen zur Fahrbahn."
+      "correct": 3,
+      "answer": "Ohne Dämpfung würde die Feder nach einer Anregung lange nachschwingen. Der Stoßdämpfer wandelt diese Schwingungsenergie in Wärme um und sorgt so für dauerhaften Kontakt der Reifen zur Fahrbahn."
     },
     {
       "id": "fahrwerk-02",
       "category": "Fahrwerk",
       "question": "Was beschreibt der Radsturz (Sturz)?",
       "options": [
-        "Die Neigung der Radebene nach innen oder außen, von vorne betrachtet",
-        "Den Winkel zwischen Lenkachse und Fahrbahn von der Seite betrachtet",
-        "Den Abstand der Räder zur Karosserie",
-        "Die Differenz der Raddrehzahlen in der Kurve"
+        "Die Neigung der Radebene nach innen oder außen von vorne",
+        "Den seitlichen Abstand der Räder zur Karosserie",
+        "Den Winkel zwischen Lenkachse und Fahrbahn von der Seite",
+        "Die Differenz der Raddrehzahlen bei Kurvenfahrt"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Der Sturz ist die Neigung der Radebene gegenüber der Senkrechten, von vorne gesehen. Man unterscheidet negativen Sturz (Rad oben nach innen geneigt) und positiven Sturz (Rad oben nach außen geneigt)."
+      "answer": "Der Sturz ist die Neigung der Radebene gegenüber der Senkrechten, von vorne gesehen. Man unterscheidet negativen Sturz (oben nach innen) und positiven Sturz (oben nach außen)."
     },
     {
       "id": "fahrwerk-03",
       "category": "Fahrwerk",
       "question": "Was versteht man unter der Spur (Vorspur/Nachspur) eines Fahrzeugs?",
       "options": [
-        "Den Unterschied der Radstellung vorne und hinten zueinander, von oben betrachtet",
-        "Die Fahrbahnmarkierung, der das Fahrzeug folgt",
-        "Die Neigung der Lenkachse in Fahrtrichtung",
-        "Den Reifenluftdruck-Unterschied zwischen Vorder- und Hinterachse"
+        "Den Reifenluftdruck-Unterschied zwischen den beiden Achsen",
+        "Die Fahrbahnmarkierung, der das Fahrzeug automatisch folgt",
+        "Den Unterschied der Radstellung zueinander, von oben betrachtet",
+        "Die Neigung der Lenkachse entlang der Fahrtrichtung"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Die Spur beschreibt, ob die Räder einer Achse – von oben gesehen – vorne leicht zueinander (Vorspur) oder voneinander weg (Nachspur) zeigen. Sie beeinflusst Geradeauslauf, Reifenverschleiß und Lenkverhalten."
+      "correct": 2,
+      "answer": "Die Spur beschreibt, ob die Räder einer Achse – von oben gesehen – vorne leicht zueinander (Vorspur) oder voneinander weg (Nachspur) zeigen. Sie beeinflusst Geradeauslauf, Reifenverschleiß und Lenkverhalten."
     },
     {
       "id": "fahrwerk-04",
       "category": "Fahrwerk",
       "question": "Welchen Zweck erfüllt der Nachlauf (Lenkrollradius/Nachlaufwinkel) an der Lenkachse?",
       "options": [
-        "Er sorgt für die selbstständige Rückstellung der Räder in die Geradeausstellung und einen stabilen Geradeauslauf",
-        "Er verringert den Wendekreis auf null",
-        "Er erhöht ausschließlich den Kraftstoffverbrauch",
-        "Er ersetzt die Servolenkung"
+        "Er verringert deutlich den Wendekreis des Fahrzeugs",
+        "Er ersetzt vollständig die elektrische Servolenkung",
+        "Er sorgt für die selbstständige Rückstellung der Räder",
+        "Er erhöht spürbar den Kraftstoffverbrauch im Stand"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Durch den Nachlauf entsteht ein Rückstellmoment, das die gelenkten Räder nach dem Einlenken selbstständig wieder in Geradeausstellung bringt und für einen ruhigen, stabilen Geradeauslauf sorgt."
+      "correct": 2,
+      "answer": "Durch den Nachlauf entsteht ein Rückstellmoment, das die gelenkten Räder nach dem Einlenken selbstständig wieder in Geradeausstellung bringt und für einen stabilen Geradeauslauf sorgt."
     },
     {
       "id": "fahrwerk-05",
       "category": "Fahrwerk",
       "question": "Worin unterscheiden sich Schraubenfeder und Luftfeder grundsätzlich?",
       "options": [
-        "Die Schraubenfeder federt über verformten Stahl, die Luftfeder nutzt komprimierte Luft in einem Balg und ermöglicht dadurch eine einstellbare Niveauregulierung",
-        "Beide funktionieren nach exakt demselben Prinzip",
-        "Die Luftfeder ist ausschließlich an Motorrädern verbaut",
-        "Die Schraubenfeder benötigt eine externe Druckluftquelle"
+        "Beide Bauarten funktionieren nach exakt demselben Prinzip",
+        "Luftfedern sind ausschließlich an Motorrädern verbaut",
+        "Die Luftfeder nutzt Druckluft im Balg mit Niveauregulierung",
+        "Schraubenfedern benötigen zwingend eine externe Druckluftquelle"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Schraubenfedern speichern Energie über die elastische Verformung von Federstahl. Luftfedern nutzen ein komprimierbares Luftvolumen in einem Balg, wodurch sich zusätzlich das Fahrzeugniveau last- oder situationsabhängig regeln lässt."
+      "correct": 2,
+      "answer": "Schraubenfedern speichern Energie über die elastische Verformung von Federstahl. Luftfedern nutzen ein komprimierbares Luftvolumen in einem Balg, wodurch sich zusätzlich das Fahrzeugniveau regeln lässt."
     },
     {
       "id": "fahrwerk-06",
       "category": "Fahrwerk",
       "question": "Was ist der wesentliche Unterschied zwischen hydraulischer und elektrischer Servolenkung?",
       "options": [
-        "Die hydraulische Servolenkung erzeugt die Unterstützungskraft über eine motorgetriebene Hydraulikpumpe, die elektrische über einen Elektromotor – Letztere spart tendenziell Kraftstoff, da sie nur bei Bedarf Energie benötigt",
-        "Die elektrische Servolenkung funktioniert nur bei stehendem Motor",
-        "Beide Systeme benötigen zwingend Hydrauliköl",
-        "Die hydraulische Servolenkung ist ausschließlich bei Elektrofahrzeugen verbaut"
+        "Die elektrische Lenkung funktioniert nur bei stehendem Motor",
+        "Die hydraulische Lenkung ist nur bei E-Autos verbaut",
+        "Die elektrische Lenkung unterstützt nur bei Bedarf und spart Kraftstoff",
+        "Beide Systeme benötigen zwingend klassisches Hydrauliköl"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Die hydraulische Servolenkung wird meist vom Verbrennungsmotor über eine Pumpe permanent angetrieben, was Leistung kostet. Die elektrische Servolenkung unterstützt nur bei tatsächlichem Lenkbedarf über einen Elektromotor und ist dadurch effizienter."
+      "correct": 2,
+      "answer": "Die hydraulische Servolenkung wird meist permanent vom Verbrennungsmotor über eine Pumpe angetrieben, was Leistung kostet. Die elektrische Servolenkung unterstützt nur bei tatsächlichem Lenkbedarf und ist dadurch effizienter."
     },
     {
       "id": "fahrwerk-07",
       "category": "Fahrwerk",
       "question": "Welche Bauteile vereint ein McPherson-Federbein typischerweise in sich?",
       "options": [
-        "Nur die Bremsscheibe und den Bremssattel",
-        "Stoßdämpfer und Tragfeder (häufig zusätzlich das obere Lager) in einer kompakten Baueinheit, die gleichzeitig als Radführung dient",
-        "Nur das Differenzial und die Antriebswelle",
-        "Ausschließlich die Lenkstange"
+        "Es vereint Stoßdämpfer und Tragfeder in einer Baueinheit",
+        "Es besteht nur aus Differenzial und Antriebswelle",
+        "Es besteht nur aus Bremsscheibe und Bremssattel",
+        "Es besteht ausschließlich aus der Lenkstange"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Das McPherson-Federbein kombiniert Dämpfer und Feder in einer Einheit, die zugleich einen Teil der Radführung übernimmt – eine platzsparende und weit verbreitete Bauart, besonders an der Vorderachse."
+      "correct": 0,
+      "answer": "Das McPherson-Federbein kombiniert Dämpfer und Feder in einer Einheit, die zugleich einen Teil der Radführung übernimmt – eine platzsparende, weit verbreitete Bauart besonders an der Vorderachse."
     },
     {
       "id": "fahrwerk-08",
       "category": "Fahrwerk",
       "question": "Welche Funktion hat ein Radlager?",
       "options": [
+        "Es dämpft direkt die auftretenden Fahrbahnstöße",
         "Es überträgt das Antriebsmoment vom Differenzial auf das Rad",
-        "Es ermöglicht die reibungsarme Drehung des Rades gegenüber dem Achsschenkel/Radträger und nimmt dabei Radial- und Axialkräfte auf",
-        "Es dämpft die Fahrbahnstöße",
-        "Es kühlt die Bremsscheibe"
+        "Es kühlt aktiv die angrenzende Bremsscheibe",
+        "Es ermöglicht die reibungsarme Drehung und nimmt Kräfte auf"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Das Radlager lagert das Rad drehbar am Radträger, nimmt dabei sowohl senkrechte (Rad-)Lasten als auch seitliche Kräfte, z. B. in Kurven, auf und ermöglicht eine möglichst reibungsarme Drehung."
+      "correct": 3,
+      "answer": "Das Radlager lagert das Rad drehbar am Radträger, nimmt dabei senkrechte und seitliche Kräfte auf und ermöglicht eine möglichst reibungsarme Drehung."
     },
     {
       "id": "fahrwerk-09",
       "category": "Fahrwerk",
       "question": "Welche Aufgabe hat ein Querlenker in der Radaufhängung?",
       "options": [
-        "Er führt das Rad seitlich und nimmt Quer- sowie teilweise Längskräfte auf, verbindet Radträger und Karosserie/Hilfsrahmen",
-        "Er erzeugt den Antrieb der Räder",
-        "Er speichert Bremsenergie",
-        "Er verstärkt die Zündspannung"
+        "Er führt das Rad seitlich und leitet Kräfte in die Karosserie",
+        "Er erzeugt den Antrieb der angetriebenen Räder",
+        "Er speichert kurzzeitig die freiwerdende Bremsenergie",
+        "Er verstärkt zusätzlich die Zündspannung im Motor"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Querlenker verbinden den Radträger beweglich mit der Karosserie bzw. dem Hilfsrahmen, führen das Rad in seiner Bewegung und leiten dabei auftretende Quer- und Längskräfte in die Karosserie ein."
+      "answer": "Querlenker verbinden den Radträger beweglich mit der Karosserie bzw. dem Hilfsrahmen, führen das Rad in seiner Bewegung und leiten dabei Quer- und Längskräfte in die Karosserie ein."
     },
     {
       "id": "fahrwerk-10",
       "category": "Fahrwerk",
       "question": "In welchem Fall ist eine Achsvermessung in der Regel notwendig?",
       "options": [
-        "Nur beim jährlichen Ölwechsel",
-        "Nach Unfällen, Fahrwerksarbeiten (z. B. Spurstangenwechsel) oder bei einseitigem, ungewöhnlichem Reifenverschleiß bzw. Fahrzeug zieht zur Seite",
-        "Nur beim Austausch der Zündkerzen",
-        "Ausschließlich bei jedem Reifenwechsel im Frühjahr"
+        "Nach Unfällen, Fahrwerksarbeiten oder bei einseitigem Reifenverschleiß",
+        "Ausschließlich beim Austausch der vorhandenen Zündkerzen",
+        "Ausschließlich beim jährlichen Reifenwechsel im Frühjahr",
+        "Grundsätzlich nur beim jährlichen Ölwechsel des Fahrzeugs"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Eine Achsvermessung ist sinnvoll nach Unfällen oder Arbeiten am Fahrwerk (z. B. neue Spurstange, Querlenker), sowie wenn Symptome wie einseitiger Reifenverschleiß oder Ziehen zur Seite auf falsch eingestellte Achsgeometrie hindeuten."
+      "correct": 0,
+      "answer": "Eine Achsvermessung ist sinnvoll nach Unfällen oder Arbeiten am Fahrwerk sowie wenn Symptome wie einseitiger Reifenverschleiß oder Ziehen zur Seite auf falsch eingestellte Achsgeometrie hindeuten."
     },
-
     {
       "id": "bremse-01",
       "category": "Bremsanlage",
       "question": "Welche Funktion hat der Hauptbremszylinder?",
       "options": [
-        "Er wandelt die Pedalkraft in hydraulischen Druck um, der die Bremsflüssigkeit zu den Radbremsen leitet",
-        "Er verstärkt ausschließlich mechanisch die Handbremskraft",
-        "Er filtert die Bremsflüssigkeit",
-        "Er kühlt die Bremsscheiben"
+        "Er wandelt die Pedalkraft in hydraulischen Bremsdruck um",
+        "Er filtert die zirkulierende Bremsflüssigkeit im System",
+        "Er verstärkt rein mechanisch die vorhandene Handbremskraft",
+        "Er kühlt aktiv die heißen Bremsscheiben herunter"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Über das Bremspedal wird der Kolben im Hauptbremszylinder betätigt und erzeugt so den hydraulischen Druck, der über die Bremsleitungen an die Radbremszylinder bzw. Bremssättel weitergegeben wird."
+      "answer": "Über das Bremspedal wird der Kolben im Hauptbremszylinder betätigt und erzeugt so den hydraulischen Druck, der über die Bremsleitungen an die Radbremsen weitergegeben wird."
     },
     {
       "id": "bremse-02",
       "category": "Bremsanlage",
       "question": "Welche Aufgabe hat der Bremskraftverstärker?",
       "options": [
-        "Er ersetzt die Bremsflüssigkeit durch Druckluft",
-        "Er unterstützt die vom Fahrer aufgebrachte Pedalkraft, meist mittels Unterdruck oder elektrischem Antrieb, um den nötigen Bremsdruck leichter aufbauen zu können",
+        "Er regelt gezielt die Motordrehzahl beim Bremsen",
         "Er dient nur zur Betätigung der Feststellbremse",
-        "Er regelt ausschließlich die Motordrehzahl beim Bremsen"
+        "Er unterstützt die Pedalkraft für ausreichenden Bremsdruck",
+        "Er ersetzt die vorhandene Bremsflüssigkeit durch Druckluft"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Der Bremskraftverstärker verstärkt die vom Fahrer über das Pedal eingeleitete Kraft (klassisch über Unterdruck, zunehmend elektromechanisch), sodass mit geringerer Pedalkraft ausreichend Bremsdruck erzeugt werden kann."
+      "correct": 2,
+      "answer": "Der Bremskraftverstärker verstärkt die vom Fahrer über das Pedal eingeleitete Kraft, sodass mit geringerer Pedalkraft ausreichend Bremsdruck erzeugt werden kann."
     },
     {
       "id": "bremse-03",
       "category": "Bremsanlage",
       "question": "Wie funktioniert das ABS (Antiblockiersystem) im Grundprinzip?",
       "options": [
-        "Es erhöht bei Gefahr automatisch die Motorleistung",
-        "Es erkennt über Raddrehzahlsensoren ein drohendes Blockieren eines Rades und reduziert gezielt kurzzeitig den Bremsdruck an diesem Rad, um es wieder rollfähig und lenkbar zu halten",
-        "Es ersetzt komplett die hydraulische Bremsanlage durch eine elektrische",
-        "Es funktioniert nur bei Geschwindigkeiten über 100 km/h"
+        "Es funktioniert erst ab Geschwindigkeiten über 100 km/h",
+        "Es ersetzt die komplette hydraulische Bremsanlage elektrisch",
+        "Es reduziert kurzzeitig den Bremsdruck am blockierenden Rad",
+        "Es erhöht bei Gefahr automatisch die Motorleistung"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Raddrehzahlsensoren melden dem ABS-Steuergerät, wenn ein Rad im Vergleich zu den anderen zu blockieren droht. Das Steuergerät moduliert dann gezielt den Bremsdruck an diesem Rad, damit es weiter rollt und das Fahrzeug lenkbar bleibt."
+      "correct": 2,
+      "answer": "Raddrehzahlsensoren melden dem ABS-Steuergerät, wenn ein Rad im Vergleich zu den anderen zu blockieren droht. Das Steuergerät moduliert dann gezielt den Bremsdruck an diesem Rad, damit es lenkbar bleibt."
     },
     {
       "id": "bremse-04",
       "category": "Bremsanlage",
       "question": "Was leistet das ESP (Elektronisches Stabilitätsprogramm) zusätzlich zum ABS?",
       "options": [
-        "Es verhindert ausschließlich das Blockieren der Räder beim Bremsen",
-        "Es erkennt ein Schleudern oder Untersteuern des Fahrzeugs und bremst gezielt einzelne Räder ab, um das Fahrzeug in der vom Fahrer vorgegebenen Spur zu stabilisieren",
-        "Es erhöht automatisch den Reifendruck",
-        "Es ersetzt die Servolenkung komplett"
+        "Es erhöht bei Bedarf automatisch den Reifendruck",
+        "Es ersetzt dabei vollständig die elektrische Servolenkung",
+        "Es bremst gezielt einzelne Räder, um Schleudern zu verhindern",
+        "Es verhindert ausschließlich das Blockieren der Räder"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: ESP vergleicht über Sensoren (u. a. Gierrate, Lenkwinkel) die vom Fahrer gewollte mit der tatsächlichen Fahrzeugbewegung und bremst bei Abweichung – etwa beim Schleudern – gezielt einzelne Räder ab, um das Fahrzeug zu stabilisieren."
+      "correct": 2,
+      "answer": "ESP vergleicht die vom Fahrer gewollte mit der tatsächlichen Fahrzeugbewegung und bremst bei Abweichung – etwa beim Schleudern – gezielt einzelne Räder ab, um das Fahrzeug zu stabilisieren."
     },
     {
       "id": "bremse-05",
       "category": "Bremsanlage",
       "question": "Was ist ein wesentlicher Unterschied zwischen Scheiben- und Trommelbremse?",
       "options": [
-        "Bei der Scheibenbremse pressen Bremsbeläge von außen auf eine rotierende Scheibe, bei der Trommelbremse pressen Bremsbacken von innen gegen eine rotierende Trommel",
-        "Die Trommelbremse arbeitet grundsätzlich rein elektrisch",
-        "Die Scheibenbremse benötigt keine Bremsflüssigkeit",
-        "Beide Bauarten sind technisch identisch aufgebaut"
+        "Die Scheibe presst von außen, die Trommel presst von innen",
+        "Die Scheibenbremse benötigt hierfür keine Bremsflüssigkeit",
+        "Beide Bauarten sind technisch nahezu identisch aufgebaut",
+        "Die Trommelbremse arbeitet dabei grundsätzlich rein elektrisch"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Bei der Scheibenbremse drücken Beläge im Bremssattel von außen gegen eine offen liegende Bremsscheibe. Bei der Trommelbremse werden Bremsbacken innerhalb einer geschlossenen Trommel nach außen gegen deren Innenfläche gepresst."
+      "answer": "Bei der Scheibenbremse drücken Beläge im Bremssattel von außen gegen eine offen liegende Bremsscheibe. Bei der Trommelbremse werden Bremsbacken innerhalb einer geschlossenen Trommel nach außen gegen deren Innenfläche gepresst."
     },
     {
       "id": "bremse-06",
       "category": "Bremsanlage",
       "question": "Warum muss Bremsflüssigkeit in regelmäßigen Intervallen gewechselt werden?",
       "options": [
-        "Weil sie mit der Zeit ihre Farbe verliert und das optisch stört",
-        "Weil Bremsflüssigkeit hygroskopisch ist, also Wasser aus der Luft aufnimmt, wodurch sich ihr Siedepunkt senkt und die Gefahr von Dampfblasenbildung (Bremsausfall) steigt",
-        "Weil sie sonst den Kraftstoffverbrauch erhöht",
-        "Weil sie sich sonst in Motoröl umwandelt"
+        "Sie erhöht sonst spürbar den Kraftstoffverbrauch",
+        "Sie verliert mit der Zeit lediglich ihre Farbe",
+        "Sie wandelt sich sonst allmählich in Motoröl um",
+        "Sie zieht Feuchtigkeit, wodurch ihr Siedepunkt deutlich sinkt"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Bremsflüssigkeit zieht über die Zeit Feuchtigkeit aus der Umgebung. Dadurch sinkt ihr Siedepunkt, sodass bei starker Erhitzung (z. B. Bergabfahrt) Dampfblasen entstehen können, die zu einem gefährlichen Bremsdruckverlust führen."
+      "correct": 3,
+      "answer": "Bremsflüssigkeit zieht über die Zeit Feuchtigkeit aus der Umgebung. Dadurch sinkt ihr Siedepunkt, sodass bei starker Erhitzung Dampfblasen entstehen können, die zu gefährlichem Bremsdruckverlust führen."
     },
     {
       "id": "bremse-07",
       "category": "Bremsanlage",
       "question": "Woran erkennt man häufig verschlissene Bremsbeläge?",
       "options": [
-        "An einem quietschenden Warngeräusch durch den Verschleißanzeiger und/oder einer Verschleißanzeige im Kombiinstrument",
-        "Ausschließlich an einer höheren Höchstgeschwindigkeit",
-        "An einem sinkenden Motoröldruck",
-        "An einer Veränderung der Lenkradstellung"
+        "An einem Quietschgeräusch durch den Verschleißanzeiger",
+        "An einer spürbar höheren erreichbaren Höchstgeschwindigkeit",
+        "An einer veränderten Stellung des Lenkrads",
+        "An einem deutlich sinkenden Motoröldruck"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Viele Bremsbeläge besitzen einen akustischen Verschleißanzeiger, der bei dünnem Belag am Bremssattel oder an der Scheibe schleift und quietscht; zusätzlich melden elektronische Sensoren den Verschleiß oft im Kombiinstrument."
+      "answer": "Viele Bremsbeläge besitzen einen akustischen Verschleißanzeiger, der bei dünnem Belag schleift und quietscht; zusätzlich melden elektronische Sensoren den Verschleiß oft im Kombiinstrument."
     },
     {
       "id": "bremse-08",
       "category": "Bremsanlage",
       "question": "Welche Aufgabe hat die Feststellbremse (Handbremse)?",
       "options": [
-        "Sie ersetzt im Normalbetrieb die Betriebsbremse vollständig",
-        "Sie hält das abgestellte Fahrzeug unabhängig von der hydraulischen Betriebsbremse sicher fest, meist über die Hinterräder",
-        "Sie regelt den Bremsdruck beim ABS-Eingriff",
-        "Sie kühlt die Bremsscheiben im Stand"
+        "Sie kühlt gezielt die Bremsscheiben im Stand",
+        "Sie hält das Fahrzeug unabhängig von der Betriebsbremse fest",
+        "Sie regelt aktiv den Bremsdruck beim ABS-Eingriff",
+        "Sie ersetzt im Normalbetrieb komplett die Betriebsbremse"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Die Feststellbremse wirkt in der Regel mechanisch oder elektromechanisch auf die Hinterräder und hält das Fahrzeug im Stand sicher fest – unabhängig von der hydraulischen Betriebsbremsanlage, etwa auch bei deren Ausfall."
+      "answer": "Die Feststellbremse wirkt meist mechanisch oder elektromechanisch auf die Hinterräder und hält das Fahrzeug im Stand sicher fest – unabhängig von der hydraulischen Betriebsbremsanlage."
     },
     {
       "id": "bremse-09",
       "category": "Bremsanlage",
       "question": "Warum ist die Bremskraftverteilung meist so ausgelegt, dass die Vorderachse stärker bremst als die Hinterachse?",
       "options": [
-        "Weil die Hinterräder generell keine Bremsen besitzen",
-        "Weil sich beim Bremsen die Achslast durch die Verzögerung nach vorne verlagert, wodurch die Vorderräder mehr Bremskraft aufnehmen können, ohne zu blockieren",
+        "Beim Bremsen verlagert sich die Last nach vorne, Haftung steigt dort",
+        "Weil die Hinterräder grundsätzlich keine Bremsen besitzen",
         "Weil die Vorderräder aus Komfortgründen weicher gefedert sind",
-        "Weil Vorderreifen grundsätzlich aus anderem Gummi bestehen"
+        "Weil die Vorderreifen aus anderem Gummi bestehen"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Beim Bremsen verlagert sich durch die Massenträgheit ein Teil der Fahrzeuglast von hinten nach vorne (Nickbewegung). Die Vorderräder haben dadurch mehr Haftung zur Verfügung und können einen größeren Anteil der Bremskraft übertragen."
+      "correct": 0,
+      "answer": "Beim Bremsen verlagert sich durch die Massenträgheit ein Teil der Fahrzeuglast von hinten nach vorne. Die Vorderräder haben dadurch mehr Haftung und können mehr Bremskraft übertragen."
     },
     {
       "id": "bremse-10",
       "category": "Bremsanlage",
       "question": "Worauf deutet ein spürbar 'schwammiges' Bremspedal häufig hin, und was ist meist die Abhilfe?",
       "options": [
-        "Auf Luft im hydraulischen Bremssystem; Abhilfe ist in der Regel das Entlüften der Bremsanlage",
-        "Auf einen leeren Kraftstofftank; Abhilfe ist das Nachtanken",
-        "Auf zu hohen Reifendruck; Abhilfe ist das Ablassen von Luft",
-        "Auf eine defekte Lichtmaschine; Abhilfe ist der Austausch der Batterie"
+        "Auf Luft im Bremssystem, Abhilfe ist das Entlüften der Anlage",
+        "Auf zu hohen Reifendruck, Abhilfe ist das Luftablassen",
+        "Auf einen leeren Kraftstofftank, Abhilfe ist das Nachtanken",
+        "Auf eine defekte Lichtmaschine, Abhilfe ist der Batterietausch"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Luft ist im Gegensatz zu Bremsflüssigkeit komprimierbar. Befindet sich Luft im hydraulischen System, lässt sich das Pedal weich/schwammig durchtreten, ohne dass sofort voller Bremsdruck aufgebaut wird. Abhilfe schafft das fachgerechte Entlüften der Anlage."
+      "answer": "Luft ist im Gegensatz zu Bremsflüssigkeit komprimierbar. Befindet sich Luft im hydraulischen System, lässt sich das Pedal weich durchtreten, ohne dass sofort voller Bremsdruck aufgebaut wird. Abhilfe schafft das fachgerechte Entlüften."
     },
-
     {
       "id": "elektrik-01",
       "category": "Elektrik & Elektronik",
       "question": "Wie lautet das Ohmsche Gesetz zur Berechnung der elektrischen Spannung?",
       "options": [
-        "U = R / I",
-        "U = R × I",
+        "U = P × I",
         "U = I / R",
-        "U = P × I"
+        "U = R / I",
+        "U = R × I"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Nach dem Ohmschen Gesetz gilt U = R × I, also Spannung ist gleich Widerstand mal Stromstärke. Daraus lassen sich auch R = U/I und I = U/R ableiten."
+      "correct": 3,
+      "answer": "Nach dem Ohmschen Gesetz gilt U = R × I. Daraus lassen sich auch R = U/I und I = U/R ableiten."
     },
     {
       "id": "elektrik-02",
       "category": "Elektrik & Elektronik",
       "question": "Welche Hauptaufgabe hat die Starterbatterie im Fahrzeug?",
       "options": [
-        "Sie erzeugt dauerhaft die für den Betrieb aller Verbraucher nötige Energie",
-        "Sie liefert kurzzeitig hohe Ströme zum Starten des Motors und puffert das Bordnetz, z. B. bei stehendem Motor",
-        "Sie speichert ausschließlich Kraftstoff in elektrischer Form",
-        "Sie ersetzt die Lichtmaschine dauerhaft"
+        "Sie erzeugt dauerhaft die Energie aller Verbraucher",
+        "Sie speichert Kraftstoff in elektrischer Form",
+        "Sie ersetzt dauerhaft die vorhandene Lichtmaschine",
+        "Sie liefert hohe Startströme und puffert das Bordnetz"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Die Starterbatterie liefert den hohen Anlasserstrom beim Motorstart und versorgt bei stehendem oder niedertourigem Motor das Bordnetz, bis die Lichtmaschine ausreichend Energie liefert."
+      "correct": 3,
+      "answer": "Die Starterbatterie liefert den hohen Anlasserstrom beim Motorstart und versorgt bei stehendem oder niedertourigem Motor das Bordnetz, bis die Lichtmaschine genug Energie liefert."
     },
     {
       "id": "elektrik-03",
       "category": "Elektrik & Elektronik",
       "question": "Welche Funktion hat die Lichtmaschine (der Generator) im Fahrzeug?",
       "options": [
-        "Sie wandelt mechanische Energie des laufenden Motors in elektrische Energie um, versorgt die Verbraucher und lädt die Batterie",
-        "Sie startet den Motor",
-        "Sie speichert Bremsenergie beim Bremsen",
-        "Sie erzeugt Kraftstoffdruck"
+        "Sie speichert die frei werdende Bremsenergie beim Bremsen",
+        "Sie erzeugt Strom, versorgt Verbraucher und lädt die Batterie",
+        "Sie erzeugt den für die Einspritzung nötigen Kraftstoffdruck",
+        "Sie startet bei Bedarf den laufenden Verbrennungsmotor"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Angetrieben vom laufenden Motor (meist per Keilrippenriemen) erzeugt die Lichtmaschine elektrische Energie, versorgt die elektrischen Verbraucher im Fahrzeug und lädt die Batterie wieder auf."
+      "correct": 1,
+      "answer": "Angetrieben vom laufenden Motor erzeugt die Lichtmaschine elektrische Energie, versorgt die elektrischen Verbraucher im Fahrzeug und lädt die Batterie wieder auf."
     },
     {
       "id": "elektrik-04",
       "category": "Elektrik & Elektronik",
       "question": "Wie funktioniert der Anlasser (Starter) beim Motorstart im Grundprinzip?",
       "options": [
-        "Ein Elektromotor dreht über ein Ritzel den Zahnkranz des Schwungrads an und bringt so den Motor auf Startdrehzahl",
-        "Er entzündet direkt das Kraftstoff-Luft-Gemisch",
-        "Er erhöht den Öldruck vor dem Start",
-        "Er lädt die Batterie vor dem Start auf"
+        "Er erhöht gezielt den Öldruck vor dem Start",
+        "Er lädt die Batterie kurz vor dem Start auf",
+        "Er entzündet direkt das vorliegende Kraftstoff-Luft-Gemisch",
+        "Ein Elektromotor dreht über ein Ritzel das Schwungrad an"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Beim Startvorgang schiebt sich das Anlasserritzel in den Zahnkranz des Schwungrads und der Anlasser-Elektromotor dreht den Verbrennungsmotor an, bis dieser selbstständig läuft."
+      "correct": 3,
+      "answer": "Beim Startvorgang schiebt sich das Anlasserritzel in den Zahnkranz des Schwungrads und der Anlasser-Elektromotor dreht den Verbrennungsmotor an, bis dieser selbstständig läuft."
     },
     {
       "id": "elektrik-05",
       "category": "Elektrik & Elektronik",
       "question": "Was ist ein wesentliches Merkmal der Reihenschaltung mehrerer Widerstände?",
       "options": [
-        "Durch alle Widerstände fließt derselbe Strom, die Spannungen teilen sich entsprechend den Einzelwiderständen auf",
-        "An allen Widerständen liegt dieselbe Spannung an, der Strom teilt sich auf",
-        "Der Gesamtwiderstand ist immer kleiner als der kleinste Einzelwiderstand",
-        "Bei Ausfall eines Widerstands fließt der Strom unverändert weiter"
+        "Die Spannung ist überall gleich, der Strom teilt sich auf",
+        "Der Gesamtwiderstand ist kleiner als der kleinste Einzelwert",
+        "Ein Bauteilausfall ändert den Stromfluss dabei nicht",
+        "Der Strom ist überall gleich, die Spannung teilt sich auf"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: In der Reihenschaltung ist der Strom an jeder Stelle gleich groß, während sich die Gesamtspannung entsprechend der Größe der einzelnen Widerstände auf diese aufteilt. Fällt ein Bauteil aus (Unterbrechung), fließt gar kein Strom mehr."
+      "correct": 3,
+      "answer": "In der Reihenschaltung ist der Strom an jeder Stelle gleich groß, während sich die Gesamtspannung entsprechend der Größe der einzelnen Widerstände aufteilt. Fällt ein Bauteil aus, fließt gar kein Strom mehr."
     },
     {
       "id": "elektrik-06",
       "category": "Elektrik & Elektronik",
       "question": "Welche Aufgabe hat eine elektrische Sicherung im Bordnetz?",
       "options": [
-        "Sie erhöht bei Bedarf die Spannung im Stromkreis",
-        "Sie unterbricht bei zu hohem Stromfluss (z. B. Kurzschluss) automatisch den Stromkreis und schützt so Leitungen und Bauteile vor Überlastung/Brand",
         "Sie speichert elektrische Energie wie eine kleine Batterie",
-        "Sie wandelt Wechselspannung in Gleichspannung um"
+        "Sie wandelt Wechselspannung in Gleichspannung um",
+        "Sie erhöht bei Bedarf gezielt die Spannung",
+        "Sie unterbricht bei Überstrom automatisch den Stromkreis"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Eine Sicherung enthält einen dünnen Leiter, der bei Überschreiten eines bestimmten Stroms durchschmilzt und damit den Stromkreis unterbricht – das schützt Leitungen und Verbraucher vor Schäden durch zu hohen Stromfluss."
+      "correct": 3,
+      "answer": "Eine Sicherung enthält einen dünnen Leiter, der bei Überschreiten eines bestimmten Stroms durchschmilzt und damit den Stromkreis unterbricht – das schützt Leitungen und Verbraucher vor Schäden."
     },
     {
       "id": "elektrik-07",
       "category": "Elektrik & Elektronik",
       "question": "Wie wird mit einem Multimeter die Spannung an einem Verbraucher korrekt gemessen?",
       "options": [
-        "Das Messgerät wird in Reihe in den Stromkreis eingeschleift",
-        "Das Messgerät wird parallel zum Verbraucher angeschlossen",
-        "Das Messgerät muss dafür den Stromkreis auftrennen und ersetzt den Verbraucher",
-        "Spannungsmessung ist nur mit einem Oszilloskop möglich"
+        "Der Stromkreis wird dafür aufgetrennt und ersetzt",
+        "Das Messgerät wird dazu in Reihe eingeschleift",
+        "Spannungsmessung geht ausschließlich mit einem Oszilloskop",
+        "Das Messgerät wird parallel zum Verbraucher angeschlossen"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Zur Spannungsmessung wird das Multimeter parallel zum zu messenden Bauteil angeschlossen. Bei der Strommessung dagegen muss der Stromkreis aufgetrennt und das Messgerät in Reihe eingeschleift werden."
+      "correct": 3,
+      "answer": "Zur Spannungsmessung wird das Multimeter parallel zum zu messenden Bauteil angeschlossen. Bei der Strommessung dagegen muss der Stromkreis aufgetrennt und das Messgerät in Reihe eingeschleift werden."
     },
     {
       "id": "elektrik-08",
       "category": "Elektrik & Elektronik",
       "question": "Was versteht man unter einem Kurzschluss?",
       "options": [
-        "Eine gewollte Unterbrechung des Stromkreises durch eine Sicherung",
-        "Eine ungewollte, niederohmige Verbindung zwischen zwei Punkten unterschiedlichen Potenzials, wodurch ein sehr hoher Strom fließt",
+        "Eine ungewollte niederohmige Verbindung mit stark erhöhtem Strom",
+        "Einen deutlich zu hohen Reifendruck am Fahrzeug",
         "Das normale Abschalten eines Verbrauchers per Schalter",
-        "Ein zu hoher Reifendruck"
+        "Eine gewollte Unterbrechung des Kreises durch eine Sicherung"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Beim Kurzschluss entsteht eine ungewollte Verbindung mit sehr geringem Widerstand zwischen Plus und Minus bzw. zwei unterschiedlichen Potenzialen. Dadurch fließt ein stark erhöhter Strom, der Leitungen beschädigen oder Brände verursachen kann."
+      "correct": 0,
+      "answer": "Beim Kurzschluss entsteht eine ungewollte Verbindung mit sehr geringem Widerstand zwischen zwei unterschiedlichen Potenzialen. Dadurch fließt ein stark erhöhter Strom, der Leitungen beschädigen kann."
     },
     {
       "id": "elektrik-09",
       "category": "Elektrik & Elektronik",
       "question": "Welche Funktion hat die Karosseriemasse (Fahrzeugmasse) im Bordnetz?",
       "options": [
-        "Sie dient als gemeinsamer Rückleiter (Minuspol) für die meisten elektrischen Verbraucher und spart dadurch Leitungsmaterial",
+        "Sie dient als gemeinsamer Rückleiter für die meisten Verbraucher",
         "Sie erzeugt zusätzliche Spannung für starke Verbraucher",
-        "Sie ersetzt die Batterie bei deren Ausfall vollständig",
-        "Sie dient nur zur Befestigung von Anbauteilen"
+        "Sie dient lediglich zur Befestigung von Anbauteilen",
+        "Sie ersetzt bei deren Ausfall die vorhandene Batterie"
       ],
       "correct": 0,
-      "answer": "Richtig ist A: Anstatt für jeden Verbraucher eine separate Rückleitung zur Batterie zu verlegen, nutzt man die leitfähige Fahrzeugkarosserie als gemeinsamen Minuspfad (Masse). Das spart erheblich an Verkabelungsaufwand."
+      "answer": "Anstatt für jeden Verbraucher eine separate Rückleitung zur Batterie zu verlegen, nutzt man die leitfähige Fahrzeugkarosserie als gemeinsamen Minuspfad. Das spart erheblich Verkabelungsaufwand."
     },
     {
       "id": "elektrik-10",
       "category": "Elektrik & Elektronik",
       "question": "Welchen Hauptvorteil bieten LED-Leuchtmittel gegenüber klassischen Glühlampen im Fahrzeug?",
       "options": [
-        "Sie benötigen deutlich mehr elektrische Leistung für dieselbe Helligkeit",
-        "Sie haben eine deutlich höhere Lebensdauer, geringeren Energieverbrauch und schalten praktisch verzögerungsfrei",
-        "Sie funktionieren nur mit Wechselspannung",
-        "Sie benötigen zwingend eine eigene Batterie"
+        "Sie benötigen dabei deutlich mehr elektrische Leistung",
+        "Sie funktionieren ausschließlich mit reiner Wechselspannung",
+        "Höhere Lebensdauer, geringerer Verbrauch, kaum Schaltverzögerung",
+        "Sie benötigen zwingend eine eigene separate Batterie"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: LEDs wandeln elektrische Energie effizienter in Licht um, haben eine sehr hohe Lebensdauer gegenüber Glühlampen und reagieren nahezu ohne Einschaltverzögerung – ein Vorteil z. B. bei Bremsleuchten."
+      "correct": 2,
+      "answer": "LEDs wandeln elektrische Energie effizienter in Licht um, haben eine sehr hohe Lebensdauer gegenüber Glühlampen und reagieren nahezu ohne Einschaltverzögerung."
     },
-
     {
       "id": "bus-01",
       "category": "Bus-Systeme & Diagnose",
       "question": "Welchen grundlegenden Zweck erfüllt der CAN-Bus im Fahrzeug?",
       "options": [
-        "Er versorgt die Steuergeräte ausschließlich mit Batteriespannung",
-        "Er ermöglicht den schnellen, störsicheren Datenaustausch zwischen mehreren Steuergeräten über eine gemeinsame Zweidrahtleitung",
-        "Er dient ausschließlich zur Übertragung von Radiosignalen",
+        "Er ermöglicht schnellen, störsicheren Datenaustausch zwischen Steuergeräten",
+        "Er überträgt dabei ausschließlich reine Radiosignale",
+        "Er versorgt Steuergeräte ausschließlich mit Batteriespannung",
         "Er ersetzt die komplette Fahrzeugverkabelung durch Funk"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Der CAN-Bus (Controller Area Network) verbindet mehrere Steuergeräte über eine gemeinsame Zweidrahtleitung und ermöglicht ihnen, Daten schnell, priorisiert und störsicher auszutauschen, statt für jede Information eine eigene Leitung zu benötigen."
+      "correct": 0,
+      "answer": "Der CAN-Bus verbindet mehrere Steuergeräte über eine gemeinsame Zweidrahtleitung und ermöglicht ihnen, Daten schnell, priorisiert und störsicher auszutauschen, statt für jede Information eine eigene Leitung zu benötigen."
     },
     {
       "id": "bus-02",
       "category": "Bus-Systeme & Diagnose",
       "question": "Wofür wird der LIN-Bus typischerweise im Fahrzeug eingesetzt?",
       "options": [
-        "Für sicherheitskritische Bremseingriffe mit sehr hoher Übertragungsgeschwindigkeit",
-        "Für einfache, weniger zeitkritische Komfortkomponenten wie Fensterheber, Sitzverstellung oder Klimabedienteile, da er kostengünstiger, aber langsamer als CAN ist",
-        "Ausschließlich für die Motorsteuerung",
-        "Für die Übertragung von Hochvolt-Energie zwischen Batterie und Motor"
+        "Ausschließlich für die zentrale Motorsteuerung",
+        "Für einfache Komfortkomponenten wie Fensterheber oder Sitzverstellung",
+        "Für sicherheitskritische Bremseingriffe mit sehr hoher Geschwindigkeit",
+        "Für die Übertragung der eigentlichen Hochvolt-Energie"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Der LIN-Bus (Local Interconnect Network) ist ein einfaches, kostengünstiges Ein-Draht-Bussystem für weniger zeitkritische Anwendungen, häufig als Sub-Bus untergeordnet an ein CAN-Steuergerät angebunden, etwa für Fensterheber oder Spiegelverstellung."
+      "answer": "Der LIN-Bus ist ein einfaches, kostengünstiges Ein-Draht-Bussystem für weniger zeitkritische Anwendungen, häufig als Sub-Bus unter einem CAN-Steuergerät, etwa für Fensterheber oder Spiegelverstellung."
     },
     {
       "id": "bus-03",
       "category": "Bus-Systeme & Diagnose",
       "question": "Was ist die Hauptaufgabe der On-Board-Diagnose (OBD)?",
       "options": [
-        "Sie überwacht fortlaufend abgasrelevante Systeme und speichert bei erkannten Fehlern entsprechende Fehlercodes ab",
-        "Sie ersetzt die klassische Werkstattdiagnose vollständig ohne Diagnosegerät",
-        "Sie dient nur zur Anzeige der Uhrzeit im Kombiinstrument",
-        "Sie steuert ausschließlich das Infotainmentsystem"
+        "Sie zeigt lediglich die Uhrzeit im Kombiinstrument",
+        "Sie steuert ausschließlich das vorhandene Infotainmentsystem",
+        "Sie überwacht abgasrelevante Systeme und speichert Fehlercodes",
+        "Sie ersetzt vollständig die klassische Werkstattdiagnose"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Die On-Board-Diagnose überwacht während der Fahrt kontinuierlich abgasrelevante und sicherheitsrelevante Systeme. Erkennt sie eine Störung, wird ein Fehlercode gespeichert und meist die entsprechende Warnleuchte aktiviert."
+      "correct": 2,
+      "answer": "Die On-Board-Diagnose überwacht während der Fahrt kontinuierlich abgas- und sicherheitsrelevante Systeme. Erkennt sie eine Störung, wird ein Fehlercode gespeichert und meist eine Warnleuchte aktiviert."
     },
     {
       "id": "bus-04",
       "category": "Bus-Systeme & Diagnose",
       "question": "Wozu dient das Auslesen des Fehlerspeichers mit einem Diagnosegerät?",
       "options": [
-        "Um ausschließlich den Kilometerstand zu verändern",
-        "Um gespeicherte Fehlercodes und Umgebungsdaten (Freeze Frame) auszulesen und so die Fehlersuche gezielt einzugrenzen",
-        "Um das Motoröl automatisch zu wechseln",
-        "Um die Fahrzeugfarbe im Steuergerät zu ändern"
+        "Um die Fahrzeugfarbe im Steuergerät zu ändern",
+        "Um gespeicherte Fehlercodes auszulesen und Fehlersuche einzugrenzen",
+        "Um ausschließlich den aktuellen Kilometerstand zu verändern",
+        "Um das Motoröl vollautomatisch zu wechseln"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Das Diagnosegerät liest die im jeweiligen Steuergerät gespeicherten Fehlercodes sowie oft zusätzliche Umgebungsdaten zum Zeitpunkt der Fehlererkennung aus. Das erleichtert die gezielte Eingrenzung der Fehlerursache erheblich."
+      "answer": "Das Diagnosegerät liest die im jeweiligen Steuergerät gespeicherten Fehlercodes sowie oft zusätzliche Umgebungsdaten zum Fehlerzeitpunkt aus. Das erleichtert die gezielte Eingrenzung der Fehlerursache erheblich."
     },
     {
       "id": "bus-05",
       "category": "Bus-Systeme & Diagnose",
       "question": "Wofür steht der Anfangsbuchstabe 'P' in einem OBD-Fehlercode wie z. B. P0301?",
       "options": [
-        "Für 'Parking' (Parksystem)",
-        "Für 'Powertrain' (Antriebsstrang, also Motor/Getriebe betreffend)",
-        "Für 'Panel' (Karosserie)",
-        "Für 'Pressure' (nur Reifendruck)"
+        "Für Panel, also die äußere Karosserie betreffend",
+        "Für Parking, also das vorhandene Parksystem betreffend",
+        "Für Pressure, also nur den reinen Reifendruck",
+        "Für Powertrain, also Motor- und Antriebsstrang betreffend"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Der erste Buchstabe eines standardisierten OBD-Fehlercodes gibt das betroffene System an. 'P' steht für Powertrain (Motor- und Antriebsstrang), weitere Buchstaben sind u. a. 'B' (Body/Karosserie), 'C' (Chassis/Fahrwerk) und 'U' (Netzwerk/Bus)."
+      "correct": 3,
+      "answer": "Der erste Buchstabe eines standardisierten OBD-Fehlercodes gibt das betroffene System an. 'P' steht für Powertrain, weitere Buchstaben sind u. a. 'B' für Body, 'C' für Chassis und 'U' für Netzwerk."
     },
     {
       "id": "bus-06",
       "category": "Bus-Systeme & Diagnose",
       "question": "Wofür wird ein Oszilloskop in der Kfz-Diagnose eingesetzt?",
       "options": [
-        "Um den Reifendruck zu messen",
-        "Um den zeitlichen Verlauf elektrischer Signale (z. B. eines Sensors) grafisch darzustellen und so auch kurzzeitige Störungen sichtbar zu machen",
-        "Um die Karosserie zu vermessen",
-        "Um Bremsflüssigkeit zu analysieren"
+        "Um die Bremsflüssigkeit chemisch zu analysieren",
+        "Um den zeitlichen Verlauf elektrischer Signale darzustellen",
+        "Um die gesamte Karosserie exakt zu vermessen",
+        "Um den aktuellen Reifendruck präzise zu messen"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Ein Oszilloskop stellt Spannungssignale über die Zeit als Kurve dar. Damit lassen sich auch kurzzeitige Signalaussetzer, falsche Signalformen oder Störungen erkennen, die ein einfaches Multimeter nicht sichtbar machen kann."
+      "answer": "Ein Oszilloskop stellt Spannungssignale über die Zeit als Kurve dar. Damit lassen sich auch kurzzeitige Signalaussetzer oder Störungen erkennen, die ein einfaches Multimeter nicht sichtbar macht."
     },
     {
       "id": "bus-07",
       "category": "Bus-Systeme & Diagnose",
       "question": "Warum wird der CAN-Bus meist als verdrilltes Leitungspaar (CAN-High/CAN-Low) ausgeführt?",
       "options": [
-        "Weil dadurch zwei komplett unabhängige Datennetze entstehen",
-        "Weil durch das Differenzsignal auf zwei gegenläufig verdrillten Leitungen äußere elektromagnetische Störungen weitgehend herausgerechnet werden und die Übertragung dadurch besonders störsicher wird",
-        "Weil so eine höhere Spannung als 12 V erreicht wird",
-        "Weil es rein optische Gründe hat"
+        "Dadurch entstehen zwei vollständig unabhängige Datennetze",
+        "Das entstehende Differenzsignal rechnet Störungen weitgehend heraus",
+        "Es hat dabei ausschließlich rein optische Gründe",
+        "So wird eine deutlich höhere Spannung als 12 V erreicht"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: CAN-High und CAN-Low führen zueinander invertierte Signale. Eingestreute Störungen wirken auf beide Leitungen gleich und werden beim Bilden der Differenzspannung am Empfänger herausgerechnet – das macht CAN sehr störsicher."
+      "answer": "CAN-High und CAN-Low führen zueinander invertierte Signale. Eingestreute Störungen wirken auf beide Leitungen gleich und werden beim Bilden der Differenzspannung am Empfänger herausgerechnet – das macht CAN sehr störsicher."
     },
     {
       "id": "bus-08",
       "category": "Bus-Systeme & Diagnose",
       "question": "Welchen Zweck haben die Abschlusswiderstände (meist 120 Ohm) an den beiden Enden einer CAN-Busleitung?",
       "options": [
-        "Sie erhöhen die Übertragungsgeschwindigkeit auf das Doppelte",
-        "Sie verhindern Signalreflexionen an den Leitungsenden und sorgen für einen definierten Ruhezustand der Busleitung",
-        "Sie laden die Fahrzeugbatterie zusätzlich auf",
-        "Sie ersetzen die Sicherung im Bus-System"
+        "Sie verhindern Signalreflexionen an den offenen Leitungsenden",
+        "Sie verdoppeln dadurch die erreichbare Übertragungsgeschwindigkeit",
+        "Sie ersetzen dabei die Sicherung im Bus-System",
+        "Sie laden dabei die Fahrzeugbatterie zusätzlich auf"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Ohne Abschlusswiderstände würden Signale an den offenen Leitungsenden reflektiert werden und die Datenübertragung stören. Die Widerstände sorgen für einen sauberen Signalabschluss und einen definierten Ruhepegel der Busleitung."
+      "correct": 0,
+      "answer": "Ohne Abschlusswiderstände würden Signale an den offenen Leitungsenden reflektiert werden und die Datenübertragung stören. Die Widerstände sorgen für einen sauberen Signalabschluss und einen definierten Ruhepegel."
     },
     {
       "id": "bus-09",
       "category": "Bus-Systeme & Diagnose",
-      "question": "Welchen Vorteil bietet die Vernetzung mehrerer Steuergeräte über ein Bussystem gegenüber einer klassischen Punkt-zu-Punkt-Verkabelung?",
+      "question": "Welchen Vorteil bietet die Vernetzung mehrerer Steuergeräte über ein Bussystem gegenüber klassischer Punkt-zu-Punkt-Verkabelung?",
       "options": [
-        "Es wird grundsätzlich mehr Kabel benötigt",
-        "Steuergeräte können sich Sensordaten gegenseitig über wenige gemeinsame Leitungen teilen, was Verkabelungsaufwand, Gewicht und Fehleranfälligkeit reduziert",
         "Jedes Steuergerät benötigt dadurch eine eigene Batterie",
-        "Die Datenübertragung wird dadurch grundsätzlich langsamer"
+        "Steuergeräte teilen sich Daten über wenige gemeinsame Leitungen",
+        "Die Datenübertragung wird dadurch grundsätzlich langsamer",
+        "Es wird dadurch grundsätzlich mehr Kabel benötigt"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Über den Bus können sich mehrere Steuergeräte Informationen (z. B. Raddrehzahl, Außentemperatur) teilen, ohne dass für jedes Signal eine eigene Leitung zu jedem Steuergerät verlegt werden muss – das spart Kabel, Gewicht und potenzielle Fehlerquellen."
+      "answer": "Über den Bus können sich mehrere Steuergeräte Informationen teilen, ohne dass für jedes Signal eine eigene Leitung zu jedem Steuergerät verlegt werden muss – das spart Kabel, Gewicht und Fehlerquellen."
     },
     {
       "id": "bus-10",
       "category": "Bus-Systeme & Diagnose",
       "question": "Was war ein wesentlicher Nachteil der älteren Blinkcode-Diagnose gegenüber dem heutigen Auslesen mit einem Diagnosetester?",
       "options": [
-        "Es gab keinerlei Möglichkeit, überhaupt einen Fehler anzuzeigen",
-        "Es konnten meist nur grob codierte Fehlerbereiche über Blinkfolgen ausgegeben werden, ohne detaillierte Zusatzinformationen wie Freeze-Frame-Daten",
-        "Der Blinkcode funktionierte ausschließlich bei Elektrofahrzeugen",
-        "Der Blinkcode war schneller und genauer als jedes moderne Diagnosegerät"
+        "Es gab damit keinerlei Möglichkeit, einen Fehler anzuzeigen",
+        "Nur grobe Fehlerbereiche ohne detaillierte Zusatzinformationen",
+        "Er war dabei schneller und genauer als jedes moderne Gerät",
+        "Er funktionierte ausschließlich bei reinen Elektrofahrzeugen"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Bei der Blinkcode-Diagnose gab eine Warnleuchte oder ein Bauteil eine Blinkfolge aus, die einem groben Fehlerbereich entsprach. Detaillierte Zusatzinformationen wie exakte Messwerte oder Umgebungsbedingungen zum Fehlerzeitpunkt lieferte sie im Gegensatz zu modernen Diagnosetestern nicht."
+      "answer": "Bei der Blinkcode-Diagnose gab eine Warnleuchte oder ein Bauteil eine Blinkfolge aus, die einem groben Fehlerbereich entsprach. Detaillierte Zusatzinformationen wie exakte Messwerte lieferte sie im Gegensatz zu modernen Diagnosetestern nicht."
     },
-
     {
       "id": "hv-01",
       "category": "Hochvolt",
       "question": "Ab welcher Spannung spricht man im Kraftfahrzeugbereich üblicherweise von einem Hochvoltsystem?",
       "options": [
-        "Bereits ab 12 V Gleichspannung",
+        "Erst ab etwa 1000 V Gleichspannung im Fahrzeug",
+        "Nur beim reinen 48-V-Mildhybrid-Bordnetz des Fahrzeugs",
         "Ab etwa 60 V Gleichspannung bzw. 30 V Wechselspannung",
-        "Erst ab 1000 V Gleichspannung",
-        "Hochvolt bezeichnet ausschließlich das 48-V-Bordnetz"
+        "Bereits ab 12 V Gleichspannung im normalen Bordnetz"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: In der Praxis gilt im Kfz-Bereich eine Spannung von mehr als etwa 60 V DC bzw. 30 V AC als Hochvolt-Bereich, wie er z. B. in Hybrid- und Elektrofahrzeugen für Antriebsbatterie und E-Maschine vorkommt."
+      "correct": 2,
+      "answer": "In der Praxis gilt im Kfz-Bereich eine Spannung von mehr als etwa 60 V DC bzw. 30 V AC als Hochvolt-Bereich, wie er z. B. in Hybrid- und Elektrofahrzeugen vorkommt."
     },
     {
       "id": "hv-02",
       "category": "Hochvolt",
       "question": "Warum sind Hochvolt-Leitungen im Fahrzeug orange gekennzeichnet?",
       "options": [
-        "Aus rein optischen bzw. Design-Gründen ohne technischen Hintergrund",
-        "Damit HV-Leitungen eindeutig als solche erkennbar sind und ungeschultes Personal einen sicheren Abstand einhalten bzw. keine Arbeiten daran vornehmen kann",
-        "Weil orange Kabel besser isolieren als andere Farben",
-        "Weil orange Leitungen weniger Widerstand haben"
+        "Weil orange Kabel grundsätzlich besser isolieren",
+        "Weil orange Leitungen einen geringeren Widerstand haben",
+        "Damit sie eindeutig erkennbar sind und Abstand gehalten wird",
+        "Aus rein optischen Gründen ohne technischen Hintergrund"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Die orange Kennzeichnung ist eine genormte Warnfarbe, die Hochvolt-Komponenten und -Leitungen eindeutig von der übrigen Fahrzeugelektrik unterscheidbar macht, damit jeder sofort erkennt, dass hier besondere Sicherheitsvorkehrungen gelten."
+      "correct": 2,
+      "answer": "Die orange Kennzeichnung ist eine genormte Warnfarbe, die Hochvolt-Komponenten und -Leitungen eindeutig von der übrigen Fahrzeugelektrik unterscheidbar macht, damit sofort erkennbar ist, dass besondere Sicherheitsvorkehrungen gelten."
     },
     {
       "id": "hv-03",
       "category": "Hochvolt",
       "question": "Wer darf im Kfz-Betrieb eigenständig Arbeiten an spannungsführenden Hochvoltkomponenten durchführen?",
       "options": [
-        "Jeder Auszubildende ab dem ersten Lehrjahr",
-        "Nur speziell qualifizierte Personen, z. B. eine 'Fachkraft für Hochvoltsysteme in Kraftfahrzeugen' nach entsprechender Zusatzausbildung",
-        "Jeder, der einen normalen Führerschein besitzt",
-        "Nur der Fahrzeughersteller persönlich"
+        "Grundsätzlich jeder Auszubildende ab dem ersten Lehrjahr",
+        "Nur speziell qualifizierte Fachkräfte für Hochvoltsysteme",
+        "Ausschließlich der Fahrzeughersteller ganz persönlich",
+        "Jede Person mit einem normalen Pkw-Führerschein"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Arbeiten an spannungsführenden Hochvoltsystemen dürfen nur von dafür qualifizierten Personen durchgeführt werden, die eine entsprechende Zusatzqualifikation (z. B. Fachkraft/verantwortliche Fachkraft für Hochvoltsysteme) nachweisen."
+      "answer": "Arbeiten an spannungsführenden Hochvoltsystemen dürfen nur von dafür qualifizierten Personen durchgeführt werden, die eine entsprechende Zusatzqualifikation nachweisen."
     },
     {
       "id": "hv-04",
       "category": "Hochvolt",
       "question": "Welchen Zweck erfüllt ein Service-Stecker bzw. eine HV-Trennstelle an einem Hochvoltfahrzeug?",
       "options": [
-        "Er lädt die Hochvoltbatterie schneller auf",
-        "Er ermöglicht das gezielte Auftrennen des Hochvolt-Stromkreises, um das System für Wartungsarbeiten spannungsfrei zu schalten",
-        "Er erhöht die Reichweite des Fahrzeugs",
-        "Er dient nur der Diebstahlsicherung"
+        "Zusätzliche Diebstahlsicherung des gesamten Fahrzeugs",
+        "Spürbare Erhöhung der erreichbaren Reichweite des Fahrzeugs",
+        "Deutlich schnelleres Aufladen der vorhandenen Hochvoltbatterie",
+        "Gezieltes Auftrennen des Hochvolt-Kreises für Wartungsarbeiten"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Über den Service-Stecker bzw. die Trennstelle lässt sich der Hochvolt-Kreislauf gezielt auftrennen, sodass das System für Wartungs- oder Reparaturarbeiten sicher freigeschaltet werden kann."
+      "correct": 3,
+      "answer": "Über den Service-Stecker bzw. die Trennstelle lässt sich der Hochvolt-Kreislauf gezielt auftrennen, sodass das System für Wartungs- oder Reparaturarbeiten sicher freigeschaltet werden kann."
     },
     {
       "id": "hv-05",
       "category": "Hochvolt",
       "question": "Was gehört zu den grundlegenden '5 Sicherheitsregeln' beim Freischalten elektrischer bzw. Hochvoltanlagen?",
       "options": [
-        "Nur das Abklemmen der 12-V-Starterbatterie reicht grundsätzlich aus",
-        "Unter anderem: Freischalten, gegen Wiedereinschalten sichern, Spannungsfreiheit feststellen und benachbarte, unter Spannung stehende Teile abdecken bzw. absperren",
-        "Ausschließlich das Tragen von Sicherheitsschuhen",
-        "Das Fahrzeug muss dafür angehoben werden"
+        "Das Fahrzeug muss dafür grundsätzlich angehoben werden",
+        "Ausschließlich das Abklemmen der normalen 12-V-Starterbatterie",
+        "Freischalten, sichern, Spannungsfreiheit feststellen, Teile absperren",
+        "Ausschließlich das Tragen fester Sicherheitsschuhe"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Zu den fünf Sicherheitsregeln zählen u. a. Freischalten, gegen Wiedereinschalten sichern, Spannungsfreiheit feststellen, Erden und Kurzschließen (soweit zutreffend) sowie benachbarte, unter Spannung stehende Teile abdecken oder absperren."
+      "correct": 2,
+      "answer": "Zu den fünf Sicherheitsregeln zählen u. a. Freischalten, gegen Wiedereinschalten sichern, Spannungsfreiheit feststellen, Erden und Kurzschließen sowie benachbarte, unter Spannung stehende Teile abdecken oder absperren."
     },
     {
       "id": "hv-06",
       "category": "Hochvolt",
       "question": "Welche persönliche Schutzausrüstung (PSA) ist bei Arbeiten an spannungsführenden Hochvoltkomponenten zwingend erforderlich?",
       "options": [
-        "Normale Arbeitshandschuhe aus Baumwolle reichen völlig aus",
-        "Geprüfte isolierende Handschuhe (Isolierhandschuhe) mit entsprechender Schutzklasse, ggf. zusätzlich isolierende Schutzausrüstung wie Schutzbrille und isolierende Werkzeuge",
-        "Es wird keinerlei besondere Schutzausrüstung benötigt",
-        "Ausschließlich ein Gehörschutz"
+        "Geprüfte isolierende Handschuhe der passenden Schutzklasse",
+        "Normale Arbeitshandschuhe aus einfacher Baumwolle",
+        "Es ist dafür keinerlei besondere Schutzausrüstung nötig",
+        "Ausschließlich ein zusätzlicher Gehörschutz"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Bei Arbeiten an spannungsführenden HV-Teilen sind geprüfte, für die jeweilige Spannungsklasse zugelassene Isolierhandschuhe Pflicht, ergänzt um weitere persönliche Schutzausrüstung wie Schutzbrille und isoliertes Werkzeug."
+      "correct": 0,
+      "answer": "Bei Arbeiten an spannungsführenden HV-Teilen sind geprüfte, für die jeweilige Spannungsklasse zugelassene Isolierhandschuhe Pflicht, ergänzt um weitere Schutzausrüstung wie Schutzbrille und isoliertes Werkzeug."
     },
     {
       "id": "hv-07",
       "category": "Hochvolt",
       "question": "Welche Funktion hat die sogenannte Pilotlinie (Interlock-Schleife) im Hochvoltsystem?",
       "options": [
-        "Sie überwacht die korrekte Verbindung der HV-Steckverbindungen und veranlasst bei Unterbrechung (z. B. gezogenem Stecker) eine sichere Abschaltung des Hochvoltsystems",
-        "Sie dient zur Regelung der Innenraumtemperatur",
-        "Sie steuert das Infotainment-System",
-        "Sie erhöht die Ladeleistung an der Wallbox"
+        "Sie regelt dabei die gesamte Innenraumtemperatur",
+        "Sie erhöht gezielt die Ladeleistung an der Wallbox",
+        "Sie überwacht HV-Stecker und löst bei Trennung eine Abschaltung aus",
+        "Sie steuert ausschließlich das vorhandene Infotainment-System"
       ],
-      "correct": 0,
-      "answer": "Richtig ist A: Die Pilotlinie durchläuft in einer Schleife alle wichtigen HV-Steckverbindungen. Wird eine Verbindung getrennt oder beschädigt, unterbricht dies die Pilotlinie, worauf das System die Hochvoltspannung automatisch sicher abschaltet."
+      "correct": 2,
+      "answer": "Die Pilotlinie durchläuft in einer Schleife alle wichtigen HV-Steckverbindungen. Wird eine Verbindung getrennt oder beschädigt, unterbricht dies die Pilotlinie, worauf das System die Hochvoltspannung automatisch sicher abschaltet."
     },
     {
       "id": "hv-08",
       "category": "Hochvolt",
       "question": "Welcher Zellentyp wird in modernen Hochvolt-Fahrzeugbatterien (Hybrid/Elektrofahrzeuge) meist verwendet?",
       "options": [
+        "Ausschließlich ältere Nickel-Cadmium-Zellen",
         "Klassische Blei-Säure-Zellen wie bei der Starterbatterie",
-        "Lithium-Ionen-Zellen, wegen ihrer hohen Energiedichte im Vergleich zu älteren Batterietechnologien",
-        "Ausschließlich Nickel-Cadmium-Zellen",
-        "Alkali-Mangan-Zellen wie bei Haushaltsbatterien"
+        "Alkali-Mangan-Zellen wie bei gewöhnlichen Haushaltsbatterien",
+        "Lithium-Ionen-Zellen wegen ihrer hohen Energiedichte"
       ],
-      "correct": 1,
-      "answer": "Richtig ist B: Lithium-Ionen-Zellen bieten im Vergleich zu z. B. Blei-Säure- oder NiMH-Zellen eine deutlich höhere Energiedichte bei geringerem Gewicht, weshalb sie heute Standard in Hochvoltbatterien von Hybrid- und Elektrofahrzeugen sind."
+      "correct": 3,
+      "answer": "Lithium-Ionen-Zellen bieten im Vergleich zu Blei-Säure- oder NiMH-Zellen eine deutlich höhere Energiedichte bei geringerem Gewicht, weshalb sie heute Standard in Hochvoltbatterien sind."
     },
     {
       "id": "hv-09",
       "category": "Hochvolt",
       "question": "Was bedeutet 'Rekuperation' bei Hybrid- und Elektrofahrzeugen?",
       "options": [
-        "Das schnelle Nachladen der Hochvoltbatterie an der Schnellladesäule",
-        "Die Rückgewinnung von Bewegungsenergie beim Bremsen bzw. Verzögern, indem die E-Maschine als Generator arbeitet und die Batterie auflädt",
-        "Das Nachfüllen von Kühlmittel im HV-Kreislauf",
-        "Die Reinigung der Hochvoltbatterie von Ablagerungen"
+        "Regelmäßiges Nachfüllen von Kühlmittel im HV-Kreislauf",
+        "Rückgewinnung von Bewegungsenergie beim Bremsen über die E-Maschine",
+        "Regelmäßige Reinigung der Hochvoltbatterie von Ablagerungen",
+        "Besonders schnelles Nachladen an einer Schnellladesäule"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Beim Verzögern wird die E-Maschine generatorisch betrieben: Sie wandelt einen Teil der Bewegungsenergie des Fahrzeugs in elektrische Energie um und speist diese zurück in die Hochvoltbatterie, statt sie wie bei rein mechanischem Bremsen ungenutzt als Wärme abzugeben."
+      "answer": "Beim Verzögern wird die E-Maschine generatorisch betrieben: Sie wandelt einen Teil der Bewegungsenergie in elektrische Energie um und speist diese zurück in die Hochvoltbatterie."
     },
     {
       "id": "hv-10",
       "category": "Hochvolt",
       "question": "Welchen Zweck hat die Isolationsüberwachung in einem Hochvoltfahrzeug?",
       "options": [
-        "Sie überwacht ausschließlich die Innenraumtemperatur",
-        "Sie überprüft laufend den Isolationswiderstand zwischen Hochvoltsystem und Fahrzeugkarosserie und erkennt Isolationsfehler, bevor gefährliche Berührspannungen entstehen können",
+        "Sie überwacht dabei ausschließlich die Innenraumtemperatur",
+        "Sie erkennt Isolationsfehler zwischen Hochvoltsystem und Karosserie",
         "Sie steuert die Ladeleistung an öffentlichen Ladesäulen",
-        "Sie misst nur den Reifendruck der Antriebsräder"
+        "Sie misst dabei nur den Reifendruck der Antriebsräder"
       ],
       "correct": 1,
-      "answer": "Richtig ist B: Die Isolationsüberwachung misst kontinuierlich den Widerstand zwischen dem Hochvolt-System und der (geerdeten) Fahrzeugkarosserie. Sinkt dieser Widerstand zu stark ab, deutet das auf einen Isolationsfehler hin, und das System kann entsprechend reagieren, bevor eine gefährliche Berührspannung entstehen kann."
+      "answer": "Die Isolationsüberwachung misst kontinuierlich den Widerstand zwischen dem Hochvolt-System und der Fahrzeugkarosserie. Sinkt dieser Widerstand zu stark ab, deutet das auf einen Isolationsfehler hin, bevor eine gefährliche Berührspannung entstehen kann."
     }
   ]
 }
