@@ -1,11 +1,11 @@
-const CACHE_VERSION = "v8";
+const CACHE_VERSION = "v9";
 const CACHE_NAME = `kfz-karteikarten-${CACHE_VERSION}`;
 
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./style.css",
-  "./app.js",
+  "./style.css?v=9",
+  "./app.js?v=9",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
@@ -27,12 +27,15 @@ self.addEventListener("activate", (event) => {
 });
 
 // Netzwerk zuerst: bei jedem Öffnen online werden frische Dateien geladen.
-// Der Cache dient nur noch als Fallback, wenn kein Internet verfügbar ist.
+// cache: "no-store" umgeht auch den normalen HTTP-Cache des Browsers, nicht
+// nur unseren eigenen Cache Storage. Der Cache dient nur als Offline-Fallback.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
+  const freshRequest = new Request(event.request, { cache: "no-store" });
+
   event.respondWith(
-    fetch(event.request)
+    fetch(freshRequest)
       .then((res) => {
         const clone = res.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));

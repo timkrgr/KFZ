@@ -98,6 +98,13 @@ const els = {
   toast: document.getElementById("toast"),
 };
 
+// Erzwingt Vollbild-Overlay per Inline-Style, unabhängig von der externen CSS-Datei
+// (Absicherung gegen veraltete/gecachte Stylesheets auf einzelnen Geräten).
+els.profileGate.style.cssText =
+  "position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;" +
+  "z-index:999999;background:#000;display:flex;align-items:center;justify-content:center;" +
+  "padding:24px;margin:0;box-sizing:border-box;";
+
 let sheetCategory = null;
 
 let allCards = [];
