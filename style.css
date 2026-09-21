@@ -47,6 +47,21 @@ html, body {
   padding: calc(18px + env(safe-area-inset-top, 0px)) 18px 100px;
 }
 
+#tabContent {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Während eines Tab-Wechsels liegen altes und neues Tab kurzzeitig übereinander
+   und gleiten horizontal aneinander vorbei. */
+.tab-view.tab-sliding {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* Brand header */
 
 .brand-header {

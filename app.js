@@ -1,4 +1,4 @@
-const APP_VERSION = "v33";
+const APP_VERSION = "v34";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -68,6 +68,7 @@ const els = {
   profileGate: document.getElementById("profileGate"),
   profileButtons: document.querySelectorAll(".profile-btn"),
   activeProfileBadge: document.getElementById("activeProfileBadge"),
+  profileBadgeButtons: document.querySelectorAll(".profile-badge-btn"),
   settingsProfileName: document.getElementById("settingsProfileName"),
   switchProfileBtn: document.getElementById("switchProfileBtn"),
 
@@ -318,16 +319,62 @@ const ACTIVE_TAB_KEY = "kfz_active_tab_v1";
 let activeTabIndex = 0;
 
 function switchTab(tabId, { remember = true } = {}) {
+  const fromId = TAB_ORDER[activeTabIndex];
+  const fromEl = els[fromId];
+  const toEl = els[tabId];
+  const isRealSwitch = fromEl && toEl && fromEl !== toEl && !fromEl.hidden;
+  const direction = TAB_ORDER.indexOf(tabId) > activeTabIndex ? 1 : -1;
+
   activeTabIndex = TAB_ORDER.indexOf(tabId);
-  [els.tabHome, els.tabStats, els.tabExplain, els.tabSettings].forEach((el) => {
-    el.hidden = el.id !== tabId;
-  });
   els.tabButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.tab === tabId));
   if (tabId === "tabStats") renderStats();
   if (tabId === "tabExplain") renderExplainList();
   if (remember) localStorage.setItem(ACTIVE_TAB_KEY, tabId);
   window.scrollTo(0, 0);
   replayTitleDropIn(tabId);
+
+  if (!isRealSwitch) {
+    [els.tabHome, els.tabStats, els.tabExplain, els.tabSettings].forEach((el) => {
+      el.hidden = el.id !== tabId;
+    });
+    return;
+  }
+  slideTabs(fromEl, toEl, direction);
+}
+
+// Flüssiger Wechsel zwischen zwei Tabs: das neue Tab kommt von links nach
+// Mitte hereingeglitten, während das alte von Mitte nach rechts hinausgleitet
+// (bzw. umgekehrt beim Zurückwechseln zu einem weiter links stehenden Tab).
+function slideTabs(fromEl, toEl, direction) {
+  const enterFrom = direction === 1 ? -100 : 100;
+  const exitTo = direction === 1 ? 100 : -100;
+
+  toEl.hidden = false;
+  [fromEl, toEl].forEach((el) => el.classList.add("tab-sliding"));
+
+  toEl.style.transition = "none";
+  toEl.style.transform = `translateX(${enterFrom}%)`;
+  fromEl.style.transition = "none";
+  fromEl.style.transform = "translateX(0%)";
+
+  tabContent.style.height = `${Math.max(fromEl.offsetHeight, toEl.offsetHeight)}px`;
+  void toEl.offsetHeight; // Reflow erzwingen, damit die Startposition vor der Animation greift
+
+  toEl.style.transition = "";
+  fromEl.style.transition = "";
+  toEl.style.transform = "translateX(0%)";
+  fromEl.style.transform = `translateX(${exitTo}%)`;
+
+  clearTimeout(slideTabs._t);
+  slideTabs._t = setTimeout(() => {
+    fromEl.hidden = true;
+    [fromEl, toEl].forEach((el) => {
+      el.classList.remove("tab-sliding");
+      el.style.transform = "";
+      el.style.transition = "";
+    });
+    tabContent.style.height = "";
+  }, 340);
 }
 
 // --- Einmalige Eintritts-Animation: der Seitentitel taucht klein oben links
@@ -1421,7 +1468,8 @@ function selectProfile(id) {
   rememberProfile(id);
 
   const name = PROFILES[id].name;
-  els.activeProfileBadge.innerHTML = `<img src="${PROFILES[id].avatar}" alt="">${escapeHtml(name)}`;
+  const badgeHtml = `<img src="${PROFILES[id].avatar}" alt="">${escapeHtml(name)}`;
+  els.profileBadgeButtons.forEach((btn) => { btn.innerHTML = badgeHtml; });
   els.settingsProfileName.textContent = name;
   els.profileGate.hidden = true;
 
@@ -1437,7 +1485,9 @@ els.profileButtons.forEach((btn) => {
 
 // Profilwechsel lädt die App neu und vergisst das gemerkte Profil, damit die
 // Auswahl wieder erscheint (und kein Timer/Zustand des vorigen Profils übrig bleibt).
-els.activeProfileBadge.addEventListener("click", () => { forgetProfile(); location.reload(); });
+els.profileBadgeButtons.forEach((btn) => {
+  btn.addEventListener("click", () => { forgetProfile(); location.reload(); });
+});
 els.switchProfileBtn.addEventListener("click", () => { forgetProfile(); location.reload(); });
 
 // --- Init ---

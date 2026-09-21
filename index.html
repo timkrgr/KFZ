@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=33">
+<link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 <div class="app">
@@ -42,7 +42,7 @@
     <header class="brand-header sticky-topbar" id="stickyTopbarHome">
       <div class="brand-badge">🔧<span class="brand-badge-sub">KFZ</span></div>
       <div class="brand-word">LERNEN<span class="brand-bang">!</span></div>
-      <button id="activeProfileBadge" class="profile-badge" type="button"></button>
+      <button id="activeProfileBadge" class="profile-badge profile-badge-btn" type="button"></button>
     </header>
     <h1 class="page-title title-drop-in" id="bigTitleHome">Kategorien</h1>
 
@@ -83,6 +83,11 @@
 
   <!-- ===== TAB: Statistik ===== -->
   <section id="tabStats" class="tab-view" hidden>
+    <header class="brand-header sticky-topbar" id="stickyTopbarStats">
+      <div class="brand-badge">🔧<span class="brand-badge-sub">KFZ</span></div>
+      <div class="brand-word">LERNEN<span class="brand-bang">!</span></div>
+      <button class="profile-badge profile-badge-btn" type="button"></button>
+    </header>
     <h1 class="page-title title-drop-in" id="bigTitleStats">Statistik</h1>
 
     <div class="battle-card">
@@ -106,6 +111,11 @@
 
   <!-- ===== TAB: Erklärungen ===== -->
   <section id="tabExplain" class="tab-view" hidden>
+    <header class="brand-header sticky-topbar" id="stickyTopbarExplain">
+      <div class="brand-badge">🔧<span class="brand-badge-sub">KFZ</span></div>
+      <div class="brand-word">LERNEN<span class="brand-bang">!</span></div>
+      <button class="profile-badge profile-badge-btn" type="button"></button>
+    </header>
     <h1 class="page-title title-drop-in" id="bigTitleExplain">Erklärungen</h1>
     <p class="explain-intro">Ausführliche Grundlagen zu jedem Themengebiet – damit du jede Frage auch inhaltlich verstehst, nicht nur auswendig lernst.</p>
     <div id="explainList" class="topic-list"></div>
@@ -257,6 +267,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=33"></script>
+<script src="app.js?v=34"></script>
 </body>
 </html>
