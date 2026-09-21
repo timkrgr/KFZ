@@ -3,8 +3,8 @@ const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
 
 const PROFILES = {
-  tim: { name: "Tim", color: "var(--accent)" },
-  huseyn: { name: "Huseyn", color: "var(--merk)" },
+  tim: { name: "Tim", color: "var(--accent)", avatar: "icons/avatar-tim.jpg" },
+  huseyn: { name: "Huseyn", color: "var(--merk)", avatar: "icons/avatar-huseyn.jpg" },
 };
 let currentProfile = null;
 
@@ -312,9 +312,9 @@ function profileStats(id, cardsSubset) {
 function battleSideHtml(id, stats, isWinner) {
   return `
     <div class="battle-side">
-      <div class="battle-avatar" style="background:${PROFILES[id].color}">
+      <div class="battle-avatar">
         ${isWinner ? '<span class="battle-crown">👑</span>' : ""}
-        ${PROFILES[id].name[0]}
+        <img src="${PROFILES[id].avatar}" alt="${escapeHtml(PROFILES[id].name)}">
       </div>
       <div class="battle-name">${escapeHtml(PROFILES[id].name)}</div>
       <div class="battle-pct">${stats.pct}%</div>
@@ -735,7 +735,7 @@ function selectProfile(id) {
   rememberProfile(id);
 
   const name = PROFILES[id].name;
-  els.activeProfileBadge.textContent = name;
+  els.activeProfileBadge.innerHTML = `<img src="${PROFILES[id].avatar}" alt="">${escapeHtml(name)}`;
   els.settingsProfileName.textContent = name;
   els.profileGate.hidden = true;
 

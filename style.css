@@ -65,20 +65,23 @@ html, body {
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 700;
-  padding: 5px 10px 5px 6px;
+  padding: 4px 10px 4px 4px;
   border-radius: 999px;
   cursor: pointer;
 }
 
-.profile-badge::before {
-  content: "👤";
-  font-size: 0.8rem;
+.profile-badge img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .brand-badge {
@@ -401,14 +404,16 @@ html, body {
 .battle-avatar {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: white;
   position: relative;
+}
+
+.battle-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-2);
+  display: block;
 }
 
 .battle-crown {
@@ -1085,13 +1090,9 @@ html, body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: white;
+  object-fit: cover;
   flex-shrink: 0;
+  background: var(--surface-2);
 }
 
 .profile-name {
