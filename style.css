@@ -769,7 +769,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .back-btn {
@@ -801,7 +801,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .progress-track {
@@ -930,46 +930,50 @@ html, body {
 .mc-question-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px 22px;
-  margin-bottom: 18px;
+  border-radius: 18px;
+  padding: 16px 16px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 9px;
   align-items: flex-start;
 }
 
 .mc-question-card .card-text {
-  font-size: 1.1rem;
+  font-size: 0.98rem;
+  line-height: 1.35;
   text-align: left;
+  max-height: none;
+  overflow-y: visible;
 }
 
 .mc-options {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
 }
 
 .mc-option {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
   text-align: left;
-  padding: 14px 16px;
-  border-radius: 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: 0.86rem;
+  line-height: 1.3;
   cursor: pointer;
 }
 
 .mc-option:active { transform: scale(0.98); }
 
 .mc-option-letter {
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--surface-2);
   color: var(--muted);
@@ -977,7 +981,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   flex-shrink: 0;
 }
 
@@ -1006,15 +1010,15 @@ html, body {
 .mc-option.disabled { pointer-events: none; }
 
 .mc-explain {
-  margin-top: 16px;
+  margin-top: 10px;
   background: var(--surface-2);
   border-radius: 14px;
-  padding: 16px;
+  padding: 12px 14px;
 }
 
 .mc-explain p {
-  font-size: 0.88rem;
-  line-height: 1.5;
+  font-size: 0.84rem;
+  line-height: 1.4;
   margin: 0;
   color: var(--text);
 }
