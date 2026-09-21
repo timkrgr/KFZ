@@ -1,4 +1,4 @@
-const APP_VERSION = "v32";
+const APP_VERSION = "v33";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -327,53 +327,19 @@ function switchTab(tabId, { remember = true } = {}) {
   if (tabId === "tabExplain") renderExplainList();
   if (remember) localStorage.setItem(ACTIVE_TAB_KEY, tabId);
   window.scrollTo(0, 0);
-  updateScrollTitle();
+  replayTitleDropIn(tabId);
 }
 
-// --- Großer Seitentitel <-> kompakter Titel in der Sticky-Leiste beim Scrollen ---
+// --- Einmalige Eintritts-Animation: der Seitentitel taucht klein oben links
+// auf (neben dem Logo) und gleitet dann nach unten in seine normale Position. ---
 
-const SCROLL_TITLE_TABS = {
-  tabHome: { plain: false },
-  tabStats: { plain: true },
-  tabExplain: { plain: true },
-};
-const SCROLL_TITLE_RANGE = 70; // Scroll-Distanz in px, über die die Animation abläuft
-let scrollTitleTicking = false;
-
-function updateScrollTitle() {
-  const tabId = TAB_ORDER[activeTabIndex];
-  const cfg = SCROLL_TITLE_TABS[tabId];
-  if (!cfg) return;
-
-  const topbar = document.getElementById(`stickyTopbar${tabId.slice(3)}`);
-  const compact = document.getElementById(`compactTitle${tabId.slice(3)}`);
+function replayTitleDropIn(tabId) {
   const big = document.getElementById(`bigTitle${tabId.slice(3)}`);
-  if (!topbar || !compact || !big) return;
-
-  const y = window.scrollY || document.documentElement.scrollTop || 0;
-  const progress = Math.max(0, Math.min(1, y / SCROLL_TITLE_RANGE));
-
-  big.style.opacity = String(1 - progress);
-  big.style.transform = `translate(${-18 * progress}px, ${-14 * progress}px) scale(${1 - 0.15 * progress})`;
-
-  compact.style.opacity = String(progress);
-  compact.style.transform = topbar.id === "stickyTopbarHome"
-    ? `translateY(-50%) translateX(${-10 * (1 - progress)}px)`
-    : `translateX(${-10 * (1 - progress)}px)`;
-
-  if (cfg.plain) {
-    topbar.style.height = `${44 * progress}px`;
-  }
+  if (!big) return;
+  big.classList.remove("title-drop-in");
+  void big.offsetWidth; // Reflow erzwingen, damit die Animation neu startet
+  big.classList.add("title-drop-in");
 }
-
-window.addEventListener("scroll", () => {
-  if (scrollTitleTicking) return;
-  scrollTitleTicking = true;
-  requestAnimationFrame(() => {
-    updateScrollTitle();
-    scrollTitleTicking = false;
-  });
-}, { passive: true });
 
 els.tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => switchTab(btn.dataset.tab));
@@ -1462,6 +1428,7 @@ function selectProfile(id) {
   renderHome();
   renderStats();
   startCloudSync();
+  replayTitleDropIn(TAB_ORDER[activeTabIndex]);
 }
 
 els.profileButtons.forEach((btn) => {
