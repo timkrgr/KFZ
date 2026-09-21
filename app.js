@@ -1,4 +1,4 @@
-const APP_VERSION = "v23";
+const APP_VERSION = "v24";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -159,32 +159,67 @@ function saveProgress() {
 // eigene Änderungen werden sofort hochgeladen, der Stand des anderen Profils
 // wird regelmäßig im Hintergrund abgeholt und lokal gecacht.
 
+let cloudSyncWarned = false;
+
+function warnCloudSyncOnce(reason) {
+  console.warn("Cloud-Sync fehlgeschlagen:", reason);
+  if (cloudSyncWarned) return;
+  cloudSyncWarned = true;
+  showToast("⚠️ Online-Abgleich klappt gerade nicht", 3000);
+}
+
+// Verschmilzt zwei Fortschritts-Stände, ohne je gelernte Karten zu verlieren:
+// "known" gewinnt immer, "hard" nur wenn die Karte nirgends schon "known" ist.
+function mergeProgress(a, b) {
+  const known = { ...(a.known || {}), ...(b.known || {}) };
+  const hard = {};
+  Object.keys({ ...(a.hard || {}), ...(b.hard || {}) }).forEach((id) => {
+    if (!known[id]) hard[id] = true;
+  });
+  return { known, hard };
+}
+
 function pushProgressToCloud() {
   if (!currentProfile) return;
   fetch(`${DB_URL}/progress/${currentProfile}.json`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(progress),
-  }).catch(() => {});
+  }).then((res) => {
+    if (!res.ok) warnCloudSyncOnce(`Upload HTTP ${res.status}`);
+  }).catch((e) => warnCloudSyncOnce(e.message || "Upload fehlgeschlagen"));
 }
 
 async function syncFromCloud() {
   try {
     const res = await fetch(`${DB_URL}/progress.json?ts=${Date.now()}`, { cache: "no-store" });
-    if (!res.ok) return;
+    if (!res.ok) { warnCloudSyncOnce(`Download HTTP ${res.status}`); return; }
     const data = await res.json();
     if (!data) return;
     let changed = false;
+
     Object.keys(PROFILES).forEach((id) => {
-      if (id === currentProfile) return; // eigenes Profil bleibt lokal führend
-      if (data[id]) {
+      if (!data[id]) return;
+      if (id === currentProfile) {
+        const merged = mergeProgress(progress, data[id]);
+        if (JSON.stringify(merged) !== JSON.stringify(progress)) {
+          progress = merged;
+          localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(progress));
+          pushProgressToCloud(); // gemergten Stand auch wieder hochladen
+          changed = true;
+        }
+      } else {
         localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(data[id]));
         changed = true;
       }
     });
-    if (changed) renderStats();
-  } catch {
-    // offline – nächster Sync-Versuch übernimmt
+
+    if (changed) {
+      renderHome();
+      renderStats();
+    }
+  } catch (e) {
+    warnCloudSyncOnce(e.message || "Offline");
   }
 }
 
