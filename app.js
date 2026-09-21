@@ -1,4 +1,4 @@
-const APP_VERSION = "v29";
+const APP_VERSION = "v30";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -524,7 +524,7 @@ function renderStats() {
   els.statsSummary.innerHTML = `
     <div class="stat-tile"><div class="stat-value">${total}</div><div class="stat-label">Karten</div></div>
     <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${known}</div><div class="stat-label">gelernt</div></div>
-    <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${hard}</div><div class="stat-label">unsicher</div></div>
+    <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${hard}</div><div class="stat-label">falsch</div></div>
   `;
 
   els.statsList.innerHTML = "";
