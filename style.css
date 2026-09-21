@@ -16,6 +16,8 @@
   --sim-bg: rgba(251, 191, 36, 0.18);
   --merk: #a78bfa;
   --merk-bg: rgba(167, 139, 250, 0.18);
+  --streak: #fb923c;
+  --streak-bg: rgba(249, 115, 22, 0.18);
   --border: #262a33;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -330,77 +332,29 @@ html, body {
   margin-bottom: 4px;
 }
 
-.mini-sim .mini-icon { background: var(--sim-bg); color: var(--sim); }
 .mini-merk .mini-icon { background: var(--merk-bg); color: var(--merk); }
+.mini-streak .mini-icon { background: var(--streak-bg); color: var(--streak); filter: grayscale(1) opacity(0.6); }
+.mini-streak.has-streak .mini-icon { filter: none; }
 
 .mini-title { font-weight: 700; font-size: 0.92rem; }
 .mini-sub { font-size: 0.75rem; color: var(--muted); }
 
-/* Streak card */
+/* Streak-Mini-Karte (abholbereiter Zustand) */
 
-.streak-card {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  cursor: pointer;
-  margin-top: 12px;
-  text-align: left;
-}
-
-.streak-card:active { transform: scale(0.98); }
-
-.streak-card.is-ready {
+.mini-streak.is-ready {
   background: linear-gradient(135deg, #f97316, #fb923c);
   border-color: transparent;
   color: white;
   box-shadow: 0 10px 26px rgba(249, 115, 22, 0.32);
 }
 
-.streak-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.streak-flame {
-  font-size: 1.8rem;
-  filter: grayscale(1) opacity(0.5);
-}
-
-.streak-card.is-ready .streak-flame,
-.streak-card.has-streak .streak-flame {
+.mini-streak.is-ready .mini-icon {
+  background: rgba(255, 255, 255, 0.22);
+  color: white;
   filter: none;
 }
 
-.streak-count { font-weight: 800; font-size: 0.98rem; }
-
-.streak-sub {
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-.streak-card.is-ready .streak-sub { color: rgba(255, 255, 255, 0.85); }
-
-.streak-status {
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: var(--surface-2);
-  color: var(--muted);
-  flex-shrink: 0;
-}
-
-.streak-card.is-ready .streak-status {
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
-}
+.mini-streak.is-ready .mini-sub { color: rgba(255, 255, 255, 0.85); }
 
 /* Streak-Abholen-Animation */
 
@@ -411,7 +365,7 @@ html, body {
   100% { transform: scale(1) rotate(0deg); }
 }
 
-.streak-flame.streak-pop { animation: streakPop 0.6s ease; }
+.streak-pop { animation: streakPop 0.6s ease; }
 
 @keyframes streakCardFlash {
   0% { box-shadow: 0 10px 26px rgba(249, 115, 22, 0.32); }
@@ -419,7 +373,7 @@ html, body {
   100% { box-shadow: 0 10px 26px rgba(249, 115, 22, 0.32); }
 }
 
-.streak-card.streak-burst { animation: streakCardFlash 0.7s ease; }
+.streak-burst { animation: streakCardFlash 0.7s ease; }
 
 @keyframes streakParticle {
   0% { transform: translate(-50%, -50%) scale(0.6); opacity: 1; }
@@ -435,7 +389,7 @@ html, body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .streak-flame.streak-pop, .streak-card.streak-burst, .streak-particle { animation: none; }
+  .streak-pop, .streak-burst, .streak-particle { animation: none; }
 }
 
 /* Topic list */

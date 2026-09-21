@@ -1,11 +1,11 @@
-const CACHE_VERSION = "v42";
+const CACHE_VERSION = "v43";
 const CACHE_NAME = `kfz-karteikarten-${CACHE_VERSION}`;
 
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./style.css?v=42",
-  "./app.js?v=42",
+  "./style.css?v=43",
+  "./app.js?v=43",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

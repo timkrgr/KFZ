@@ -1,6 +1,5 @@
-const APP_VERSION = "v42";
+const APP_VERSION = "v43";
 const STORAGE_KEY = "kfz_progress_v1";
-const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const STREAK_MIN_GAP_MS = 24 * 60 * 60 * 1000; // frühestens 24h nach dem letzten Abholen wieder abholbar
 const STREAK_GRACE_MS = 48 * 60 * 60 * 1000; // innerhalb 48h nach dem letzten Abholen zählt die Streak weiter, sonst reißt sie ab
@@ -89,7 +88,6 @@ const els = {
   heroBtn: document.getElementById("heroBtn"),
   heroRingFill: document.getElementById("heroRingFill"),
   heroRingPct: document.getElementById("heroRingPct"),
-  simBtn: document.getElementById("simBtn"),
   merkBtn: document.getElementById("merkBtn"),
   merkCount: document.getElementById("merkCount"),
   topicList: document.getElementById("topicList"),
@@ -99,7 +97,6 @@ const els = {
   streakFlame: document.getElementById("streakFlame"),
   streakCount: document.getElementById("streakCount"),
   streakSub: document.getElementById("streakSub"),
-  streakStatus: document.getElementById("streakStatus"),
   streakVersus: document.getElementById("streakVersus"),
 
   battleVersus: document.getElementById("battleVersus"),
@@ -110,7 +107,6 @@ const els = {
   statsSummary: document.getElementById("statsSummary"),
   statsList: document.getElementById("statsList"),
 
-  simCountInput: document.getElementById("simCountInput"),
   reloadBtn: document.getElementById("reloadBtn"),
   resetBtn: document.getElementById("resetBtn"),
 
@@ -553,7 +549,6 @@ function renderHome() {
 
   const hardCount = allCards.filter((c) => progress.hard[c.id]).length;
   els.merkCount.textContent = hardCount;
-  els.simBtn.hidden = total === 0;
   els.merkBtn.hidden = total === 0;
   els.examBtn.hidden = total === 0;
 
@@ -616,13 +611,11 @@ function renderStreak() {
   els.streakBtn.classList.toggle("has-streak", streak.count > 0);
 
   if (ready) {
-    els.streakSub.textContent = streak.count > 0 ? "Weiter geht's – jetzt abholen!" : "Starte deine Streak";
-    els.streakStatus.textContent = "Abholen";
+    els.streakSub.textContent = "Jetzt abholen";
   } else {
     const remainingMs = streak.lastClaim + STREAK_MIN_GAP_MS - Date.now();
     const hours = Math.max(1, Math.ceil(remainingMs / (60 * 60 * 1000)));
     els.streakSub.textContent = `Nächste Flamme in ${hours} Std.`;
-    els.streakStatus.textContent = "Erledigt ✓";
   }
 }
 
@@ -1439,17 +1432,6 @@ wrap.addEventListener("touchend", (e) => {
 
 // --- Simulation (Prüfung auf Zeit) ---
 
-function getSimCount() {
-  const v = parseInt(localStorage.getItem(`${SIM_COUNT_KEY}_${currentProfile}`), 10);
-  return Number.isFinite(v) && v > 0 ? v : 20;
-}
-
-els.simCountInput.addEventListener("change", () => {
-  const v = Math.max(5, Math.min(200, parseInt(els.simCountInput.value, 10) || 20));
-  els.simCountInput.value = v;
-  localStorage.setItem(`${SIM_COUNT_KEY}_${currentProfile}`, String(v));
-});
-
 function shuffled(arr) {
   const copy = arr.slice();
   for (let i = copy.length - 1; i > 0; i--) {
@@ -1466,7 +1448,7 @@ function startSimulation(fixedCount) {
   sessionMode = "simulation";
   sessionResults = { right: 0, wrong: 0 };
   lastSimFixedCount = fixedCount || null;
-  const count = Math.min(fixedCount || getSimCount(), allCards.length);
+  const count = Math.min(fixedCount || 40, allCards.length);
   deck = shuffled(allCards).slice(0, count);
   currentIndex = 0;
 
@@ -1542,7 +1524,6 @@ function endTopicSession() {
   showResult(sessionResults.right, sessionResults.wrong);
 }
 
-els.simBtn.addEventListener("click", () => startSimulation());
 els.examBtn.addEventListener("click", () => startSimulation(40));
 
 els.resultRepeatBtn.addEventListener("click", () => {
@@ -1599,7 +1580,6 @@ function selectProfile(id) {
   currentProfile = id;
   progress = loadProgress();
   streak = loadStreak();
-  els.simCountInput.value = getSimCount();
   rememberProfile(id);
 
   const name = PROFILES[id].name;

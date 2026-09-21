@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=42">
+<link rel="stylesheet" href="style.css?v=43">
 </head>
 <body>
 <div class="app">
@@ -76,22 +76,11 @@
       <span class="exam-arrow">›</span>
     </button>
 
-    <button id="streakBtn" class="streak-card" type="button">
-      <div class="streak-left">
-        <span class="streak-flame" id="streakFlame">🔥</span>
-        <div>
-          <div class="streak-count"><span id="streakCount">0</span> Tage Streak</div>
-          <div class="streak-sub" id="streakSub">Jetzt abholen</div>
-        </div>
-      </div>
-      <div class="streak-status" id="streakStatus">Abholen</div>
-    </button>
-
     <div class="mini-row">
-      <button id="simBtn" class="mini-card mini-sim">
-        <span class="mini-icon">⏱️</span>
-        <span class="mini-title">Simulation</span>
-        <span class="mini-sub">Prüfung auf Zeit</span>
+      <button id="streakBtn" class="mini-card mini-streak" type="button">
+        <span class="mini-icon" id="streakFlame">🔥</span>
+        <span class="mini-title"><span id="streakCount">0</span> Tage Streak</span>
+        <span class="mini-sub" id="streakSub">Jetzt abholen</span>
       </button>
       <button id="merkBtn" class="mini-card mini-merk">
         <span class="mini-icon">❌</span>
@@ -161,11 +150,6 @@
         <button id="switchProfileBtn" class="btn btn-outline">🔁 Profil wechseln</button>
       </div>
       <p class="panel-hint">Tim und Huseyn haben getrennte Fortschritte auf diesem Gerät – beim Profilwechsel wird nichts überschrieben. Die App merkt sich dein Profil für 8 Stunden, danach fragt sie beim nächsten Öffnen wieder nach.</p>
-    </div>
-
-    <div class="settings-group">
-      <label class="settings-label" for="simCountInput">Fragen pro Simulation</label>
-      <input id="simCountInput" class="settings-input" type="number" min="5" max="200" step="5" value="20">
     </div>
 
     <div class="settings-group">
@@ -286,6 +270,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=42"></script>
+<script src="app.js?v=43"></script>
 </body>
 </html>
