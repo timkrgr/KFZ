@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "updated": "2026-09-21",
   "cards": [
     {
@@ -3952,6 +3952,318 @@
         "Sie ersetzt dabei vollständig das Thermomanagement der Hochvoltbatterie"
       ],
       "answer": "Eine Wärmepumpe entzieht der Umgebung zusätzliche Wärmeenergie und benötigt dadurch pro erzeugter Wärmemenge deutlich weniger elektrische Energie als eine reine Widerstandsheizung. Das schont bei kaltem Wetter spürbar die Reichweite des Elektrofahrzeugs.",
+      "correct": 0
+    },
+    {
+      "id": "klima-01",
+      "category": "Klimaanlage",
+      "question": "In welcher Reihenfolge durchläuft das Kältemittel die Hauptkomponenten einer klassischen Kfz-Klimaanlage?",
+      "options": [
+        "Kompressor, Kondensator, Expansionsventil, Verdampfer",
+        "Verdampfer, Expansionsventil, Kompressor, Kondensator",
+        "Kondensator, Verdampfer, Kompressor, Expansionsventil",
+        "Expansionsventil, Kompressor, Verdampfer, Kondensator"
+      ],
+      "answer": "Der Kompressor verdichtet das gasförmige Kältemittel, der Kondensator kühlt es dabei zur Flüssigkeit ab, das Expansionsventil entspannt es auf niedrigen Druck, und im Verdampfer nimmt es Wärme aus der Innenraumluft auf, wodurch diese abkühlt.",
+      "correct": 0
+    },
+    {
+      "id": "klima-02",
+      "category": "Klimaanlage",
+      "question": "Welche Hauptaufgabe hat der Klimakompressor (Verdichter) im Kältemittelkreislauf?",
+      "options": [
+        "Er verdichtet das gasförmige Kältemittel und erhöht dabei Druck und Temperatur",
+        "Er entfeuchtet ausschließlich die angesaugte Frischluft vor dem Innenraum",
+        "Er filtert Pollen und Staub aus der angesaugten Umgebungsluft heraus",
+        "Er kühlt das Kältemittel direkt auf die gewünschte Zieltemperatur ab"
+      ],
+      "answer": "Der Kompressor saugt das kalte, niedrig verdichtete Kältemittelgas aus dem Verdampfer an und verdichtet es stark, wodurch Druck und Temperatur deutlich steigen – die Voraussetzung dafür, dass im Kondensator anschließend Wärme an die Umgebung abgegeben werden kann.",
+      "correct": 0
+    },
+    {
+      "id": "klima-03",
+      "category": "Klimaanlage",
+      "question": "Was passiert mit dem Kältemittel im Kondensator der Klimaanlage?",
+      "options": [
+        "Es gibt Wärme an die Umgebungsluft ab und wird dabei von gasförmig zu flüssig",
+        "Es wird dabei stark verdichtet und wechselt von flüssig zu gasförmig",
+        "Es nimmt dabei Wärme aus dem Fahrzeuginnenraum auf und verdampft",
+        "Es wird dabei vollständig aus dem Kreislauf entfernt und ersetzt"
+      ],
+      "answer": "Im meist vorne im Fahrzeug verbauten Kondensator strömt Fahrtwind bzw. vom Lüfter erzeugter Luftstrom vorbei. Das heiße, verdichtete Kältemittelgas gibt dabei Wärme ab und kondensiert zu einer Flüssigkeit unter hohem Druck.",
+      "correct": 0
+    },
+    {
+      "id": "klima-04",
+      "category": "Klimaanlage",
+      "question": "Welche Funktion hat das (thermostatische) Expansionsventil im Kältemittelkreislauf?",
+      "options": [
+        "Es entspannt das flüssige Kältemittel auf niedrigen Druck vor dem Verdampfer",
+        "Es verdichtet das Kältemittel zusätzlich, bevor es in den Kondensator strömt",
+        "Es filtert grobe Partikel aus dem zirkulierenden Kältemittel heraus",
+        "Es erzeugt den Antrieb für den riemengetriebenen Klimakompressor"
+      ],
+      "answer": "Das Expansionsventil reduziert schlagartig den Druck des flüssigen Kältemittels kurz vor dem Verdampfer. Durch diese Entspannung sinkt die Temperatur stark ab, sodass das Kältemittel im Verdampfer effektiv Wärme aus der Innenraumluft aufnehmen kann.",
+      "correct": 0
+    },
+    {
+      "id": "klima-05",
+      "category": "Klimaanlage",
+      "question": "Warum wird die Luft beim Durchströmen des Verdampfers zusätzlich entfeuchtet?",
+      "options": [
+        "Luftfeuchtigkeit kondensiert an den kalten Verdampferlamellen und tropft als Wasser ab",
+        "Der Verdampfer heizt die Luft zusätzlich auf und verdunstet dabei ihre Feuchtigkeit",
+        "Ein separater chemischer Filter bindet die Feuchtigkeit im Verdampfergehäuse",
+        "Die Entfeuchtung erfolgt ausschließlich im nachgeschalteten Pollenfilter"
+      ],
+      "answer": "Da die Verdampferlamellen sehr kalt sind, kondensiert die Luftfeuchtigkeit der durchströmenden Luft an ihnen, ähnlich wie an einem kalten Glas. Das Kondenswasser sammelt sich und tropft über einen Ablaufschlauch unter dem Fahrzeug ab – deshalb entfeuchtet Klimatisieren auch beschlagene Scheiben.",
+      "correct": 0
+    },
+    {
+      "id": "klima-06",
+      "category": "Klimaanlage",
+      "question": "Was ist ein wesentlicher Unterschied zwischen den Kältemitteln R134a und R1234yf?",
+      "options": [
+        "R1234yf hat ein deutlich geringeres Treibhauspotenzial (GWP) als R134a",
+        "R134a ist deutlich brennbarer und deshalb heute nicht mehr zugelassen",
+        "R1234yf darf ausschließlich in Hochvoltfahrzeugen eingesetzt werden",
+        "Beide Kältemittel sind chemisch identisch und beliebig austauschbar"
+      ],
+      "answer": "R1234yf wurde eingeführt, weil es ein deutlich geringeres Treibhauspotenzial (GWP) als das ältere R134a besitzt und damit die EU-Vorgaben zur Reduktion klimaschädlicher Kältemittel erfüllt. Die beiden Kältemittel dürfen wegen unterschiedlicher Eigenschaften nicht einfach gemischt oder ausgetauscht werden.",
+      "correct": 0
+    },
+    {
+      "id": "klima-07",
+      "category": "Klimaanlage",
+      "question": "Welche Aufgabe hat der Kältemitteltrockner (Sammler-Trockner) im Kreislauf?",
+      "options": [
+        "Er bindet Feuchtigkeit im Kältemittel und dient zusätzlich als Kältemittelspeicher",
+        "Er verdichtet das Kältemittel zusätzlich vor dem Eintritt in den Kompressor",
+        "Er erzeugt die für den Kompressorantrieb nötige elektrische Energie",
+        "Er kühlt das Kältemittel direkt auf die gewünschte Verdampfertemperatur ab"
+      ],
+      "answer": "Der Trockner enthält ein Granulat, das Restfeuchtigkeit im Kältemittel bindet – wichtig, da Feuchtigkeit im Kreislauf zu Eisbildung und Korrosion führen kann. Gleichzeitig gleicht er als Speicher schwankende Kältemittelmengen im Kreislauf aus.",
+      "correct": 0
+    },
+    {
+      "id": "klima-08",
+      "category": "Klimaanlage",
+      "question": "Wie wird ein riemengetriebener Klimakompressor üblicherweise zu- und abgeschaltet?",
+      "options": [
+        "Über eine elektromagnetische Kupplung, die den Kompressor bei Bedarf zuschaltet",
+        "Ausschließlich durch manuelles Lösen des Keilrippenriemens am Kompressor",
+        "Er läuft dabei permanent mit und kann grundsätzlich nie abgeschaltet werden",
+        "Ausschließlich durch vollständiges Abstellen des laufenden Verbrennungsmotors"
+      ],
+      "answer": "Eine elektromagnetische Kupplung zwischen Riemenscheibe und Kompressorwelle wird vom Klimasteuergerät angesteuert und verbindet den Kompressor nur bei tatsächlichem Kühlbedarf mit dem laufenden Riementrieb, um Kraftstoff zu sparen, wenn keine Kühlung nötig ist.",
+      "correct": 0
+    },
+    {
+      "id": "klima-09",
+      "category": "Klimaanlage",
+      "question": "Welche Aufgabe hat der Innenraumfilter (Pollenfilter) im Lüftungssystem?",
+      "options": [
+        "Er filtert Pollen, Staub und teils Schadstoffe aus der angesaugten Luft heraus",
+        "Er kühlt die angesaugte Luft direkt auf Verdampfertemperatur herunter",
+        "Er entfeuchtet die Innenraumluft zusätzlich zum eigentlichen Verdampfer",
+        "Er verdichtet die angesaugte Luft für einen stärkeren Luftstrom im Innenraum"
+      ],
+      "answer": "Der Innenraumfilter sitzt meist vor dem Verdampfer im Ansaugtrakt der Belüftung und hält Pollen, Staub und je nach Ausführung auch einen Teil der Schadstoffe und Gerüche zurück, bevor die Luft in den Innenraum gelangt.",
+      "correct": 0
+    },
+    {
+      "id": "klima-10",
+      "category": "Klimaanlage",
+      "question": "Was bewirkt das Umschalten von Frischluft auf Umluft im Klimabedienteil?",
+      "options": [
+        "Die Klappe schließt die Frischluftzufuhr, es wird nur Innenraumluft umgewälzt",
+        "Der Kältemittelkreislauf wird dabei vollständig auf Wärmepumpenbetrieb umgestellt",
+        "Es wird dabei ausschließlich der Innenraumfilter automatisch wechselseitig getauscht",
+        "Der Klimakompressor wird bei aktivem Umluftbetrieb dauerhaft abgeschaltet"
+      ],
+      "answer": "Bei Umluft schließt eine Klappe die Frischluftzufuhr von außen, und nur die bereits im Innenraum befindliche Luft wird umgewälzt und weiter gekühlt. Das kühlt schneller ab, verschlechtert aber mit der Zeit die Luftqualität und begünstigt beschlagene Scheiben.",
+      "correct": 0
+    },
+    {
+      "id": "klima-11",
+      "category": "Klimaanlage",
+      "question": "Was unterscheidet eine Klimaautomatik (Climatronic) von einer einfachen, manuellen Klimaanlage?",
+      "options": [
+        "Sie hält eine eingestellte Zieltemperatur automatisch über Sensoren und Stellklappen",
+        "Sie besitzt grundsätzlich keinen eigenen Kompressor und kühlt rein passiv",
+        "Sie kann ausschließlich manuell über feste Gebläsestufen bedient werden",
+        "Sie funktioniert ausschließlich in Fahrzeugen ohne jede Verbrennungsmotor-Kühlung"
+      ],
+      "answer": "Eine Klimaautomatik regelt anhand von Innenraum-, Außen- und Sonnensensoren selbstständig Gebläsestufe, Luftverteilung und Mischklappenstellung, um die vom Fahrer eingestellte Zieltemperatur automatisch zu halten – im Gegensatz zur manuellen Anlage, bei der der Fahrer alles selbst einstellt.",
+      "correct": 0
+    },
+    {
+      "id": "klima-12",
+      "category": "Klimaanlage",
+      "question": "Warum wird empfohlen, die Klimaanlage auch im Winter regelmäßig kurz zu betreiben?",
+      "options": [
+        "Damit Kompressordichtungen geschmiert und feucht bleiben und nicht porös werden",
+        "Damit sich das Kältemittel im Winter nicht vollständig in Eis verwandelt",
+        "Damit der Innenraumfilter sich im Winter automatisch selbst reinigt",
+        "Weil die Klimaanlage im Winter ansonsten dauerhaft einfriert und blockiert"
+      ],
+      "answer": "Läuft der Kompressor lange nicht, können Dichtungen im System austrocknen und porös werden, da das im Kältemittel enthaltene Öl sie normalerweise schmiert und geschmeidig hält. Regelmäßiger Kurzbetrieb auch im Winter beugt Undichtigkeiten und Kältemittelverlust vor.",
+      "correct": 0
+    },
+    {
+      "id": "klima-13",
+      "category": "Klimaanlage",
+      "question": "Wozu ist dem Kältemittel im Kreislauf ein spezielles Kältemittelöl (z. B. PAG-Öl) beigemischt?",
+      "options": [
+        "Es schmiert bewegte Teile des Kompressors, die vom Kältemittel mitgeführt werden",
+        "Es bindet Feuchtigkeit im Kältemittel anstelle des Trockner-Granulats",
+        "Es färbt das Kältemittel sichtbar ein, um Leckagen leichter erkennbar zu machen",
+        "Es erhöht gezielt den Siedepunkt des Kältemittels im gesamten Kreislauf"
+      ],
+      "answer": "Da der Kompressor mechanisch bewegte Teile besitzt, ist dem Kältemittel ein spezielles, mit dem jeweiligen Kältemittel verträgliches Öl beigemischt, das im gesamten Kreislauf mitzirkuliert und die Kompressorbauteile schmiert.",
+      "correct": 0
+    },
+    {
+      "id": "klima-14",
+      "category": "Klimaanlage",
+      "question": "Wie unterscheiden sich Hochdruck- und Niederdruckseite eines Klimakreislaufs grundsätzlich?",
+      "options": [
+        "Die Hochdruckseite reicht vom Kompressorausgang bis zum Expansionsventil",
+        "Die Niederdruckseite reicht vom Kompressorausgang bis zum Expansionsventil",
+        "Beide Seiten weisen im normalen Betrieb grundsätzlich denselben Druck auf",
+        "Die Hochdruckseite befindet sich ausschließlich innerhalb des Fahrzeuginnenraums"
+      ],
+      "answer": "Vom Kompressorausgang über den Kondensator bis zum Expansionsventil steht das Kältemittel unter hohem Druck (Hochdruckseite). Nach dem Expansionsventil bis zurück zum Kompressoreingang (über den Verdampfer) herrscht der deutlich niedrigere Druck der Niederdruckseite.",
+      "correct": 0
+    },
+    {
+      "id": "klima-15",
+      "category": "Klimaanlage",
+      "question": "Welche Schutzfunktion hat ein Hochdruckschalter (Druckwächter) in der Klimaanlage?",
+      "options": [
+        "Er schaltet den Kompressor bei unzulässig hohem Druck ab, um Schäden zu vermeiden",
+        "Er erhöht bei Bedarf gezielt den Druck im gesamten Kältemittelkreislauf",
+        "Er misst ausschließlich die aktuelle Innenraumtemperatur des Fahrzeugs",
+        "Er ersetzt vollständig die Funktion des thermostatischen Expansionsventils"
+      ],
+      "answer": "Steigt der Druck im System z. B. durch einen verschmutzten Kondensator oder zu hohe Außentemperatur über einen kritischen Wert, schaltet der Hochdruckschalter den Kompressor ab, um Bauteile wie Leitungen oder den Kondensator vor Beschädigung zu schützen.",
+      "correct": 0
+    },
+    {
+      "id": "klima-16",
+      "category": "Klimaanlage",
+      "question": "Welches Symptom deutet häufig auf eine zu geringe Kältemittelmenge in der Klimaanlage hin?",
+      "options": [
+        "Die Kühlleistung lässt spürbar nach, der Kompressor schaltet sich häufiger ab",
+        "Die Kühlleistung steigt dabei zuverlässig deutlich über die Normalwerte an",
+        "Der Innenraumfilter muss dadurch spürbar häufiger gewechselt werden",
+        "Die Fahrzeugbeleuchtung wird dadurch merklich schwächer als gewöhnlich"
+      ],
+      "answer": "Bei zu wenig Kältemittel sinkt der Systemdruck. Sicherheitsschalter erkennen das und schalten den Kompressor häufiger oder ganz ab, um ihn vor mangelnder Schmierung zu schützen – spürbar wird das durch nachlassende oder unregelmäßige Kühlleistung.",
+      "correct": 0
+    },
+    {
+      "id": "klima-17",
+      "category": "Klimaanlage",
+      "question": "Wozu dient ein Verdampfertemperatursensor in der Klimaanlagensteuerung?",
+      "options": [
+        "Er verhindert ein Vereisen des Verdampfers durch rechtzeitiges Abschalten des Kompressors",
+        "Er misst ausschließlich die Außentemperatur vor dem vorderen Stoßfänger",
+        "Er ersetzt dabei vollständig die Funktion des Hochdruckschalters im System",
+        "Er steuert ausschließlich die Lautstärke des Gebläsemotors im Innenraum"
+      ],
+      "answer": "Wird der Verdampfer zu kalt, kann das Kondenswasser an seiner Oberfläche zu Eis gefrieren und den Luftstrom blockieren. Der Verdampfertemperatursensor meldet eine kritische Temperatur, woraufhin das Steuergerät den Kompressor kurzzeitig abschaltet, bis das Eis abgetaut ist.",
+      "correct": 0
+    },
+    {
+      "id": "klima-18",
+      "category": "Klimaanlage",
+      "question": "Was wird bei der vorgeschriebenen Dichtheitsprüfung einer Klimaanlage typischerweise untersucht?",
+      "options": [
+        "Ob Kältemittel an Leitungen, Verbindungen oder Komponenten unzulässig entweicht",
+        "Ob die Innenraumbeleuchtung bei geöffneter Fahrertür zuverlässig angeht",
+        "Ob der Reifendruck an allen vier Rädern den Herstellervorgaben entspricht",
+        "Ob die Fahrzeugbatterie noch ausreichend Kaltstartstrom liefern kann"
+      ],
+      "answer": "Da Kältemittel klimaschädlich wirken, wenn sie in die Atmosphäre entweichen, wird bei der Dichtheitsprüfung mit geeigneten Lecksuchgeräten oder UV-Kontrastmittel geprüft, ob an Leitungen, Dichtungen oder Komponenten Kältemittel unzulässig austritt.",
+      "correct": 0
+    },
+    {
+      "id": "klima-19",
+      "category": "Klimaanlage",
+      "question": "Warum benötigen viele Elektrofahrzeuge eine elektrisch angetriebene Zusatzheizung bzw. einen elektrischen Klimakompressor?",
+      "options": [
+        "Es fehlt die Abwärme eines Verbrennungsmotors bzw. ein riemengetriebener Antrieb",
+        "Elektrofahrzeuge benötigen grundsätzlich überhaupt keine Innenraumklimatisierung",
+        "Ein elektrischer Kompressor ist ausschließlich für das Laden der Batterie zuständig",
+        "Der elektrische Kompressor ersetzt dabei vollständig die Fahrzeugheizung im Winter"
+      ],
+      "answer": "Ohne Verbrennungsmotor fehlt sowohl die nutzbare Abwärme zum Heizen als auch ein mechanischer Riementrieb für einen klassischen Kompressor. Elektrofahrzeuge nutzen daher einen rein elektrisch angetriebenen Kompressor und oft eine elektrische Zusatzheizung oder Wärmepumpe.",
+      "correct": 0
+    },
+    {
+      "id": "klima-20",
+      "category": "Klimaanlage",
+      "question": "Wie funktioniert eine Wärmepumpe im Vergleich zu einer klassischen Klimaanlage beim Heizen des Innenraums?",
+      "options": [
+        "Der Kältemittelkreislauf wird so genutzt, dass er Wärme aus der Umgebung ins Fahrzeug pumpt",
+        "Sie erzeugt Wärme ausschließlich über einen zusätzlichen elektrischen Heizwiderstand",
+        "Sie nutzt dabei ausschließlich die Abwärme der Bremsanlage zum Heizen",
+        "Sie funktioniert dabei technisch grundlegend anders als jeder Kältemittelkreislauf"
+      ],
+      "answer": "Eine Wärmepumpe nutzt im Prinzip denselben Kältemittelkreislauf wie eine Klimaanlage, nur in umgekehrter Betriebsweise: Sie entzieht der Außenluft (oder Antriebskomponenten) Wärme und gibt diese über einen Wärmetauscher an den Innenraum ab – effizienter als eine reine Widerstandsheizung.",
+      "correct": 0
+    },
+    {
+      "id": "klima-21",
+      "category": "Klimaanlage",
+      "question": "Welche Bauart eines Klimakompressors kommt bei vielen modernen Elektro- und Hybridfahrzeugen zum Einsatz?",
+      "options": [
+        "Ein elektrisch angetriebener Kompressor, unabhängig vom Verbrennungsmotor",
+        "Ausschließlich ein klassischer, riemengetriebener Taumelscheibenkompressor",
+        "Ausschließlich ein Kompressor, der direkt über die Kurbelwelle angetrieben wird",
+        "Ausschließlich ein rein mechanischer Kompressor ganz ohne jede Ansteuerung"
+      ],
+      "answer": "Da bei Elektro- und vielen Hybridfahrzeugen kein durchgehend laufender Verbrennungsmotor als Riemenantrieb zur Verfügung steht, kommt meist ein elektrisch angetriebener Klimakompressor zum Einsatz, der unabhängig von einem Verbrennungsmotor jederzeit Kühlleistung bereitstellen kann.",
+      "correct": 0
+    },
+    {
+      "id": "klima-22",
+      "category": "Klimaanlage",
+      "question": "Wofür wird UV-Kontrastmittel bei der Fehlersuche an einer Klimaanlage eingesetzt?",
+      "options": [
+        "Es wird dem Kältemittel beigemischt und macht Leckstellen unter UV-Licht sichtbar",
+        "Es dient ausschließlich zur Reinigung des Innenraumfilters von Ablagerungen",
+        "Es ersetzt dabei vollständig das eigentliche Kältemittel im gesamten Kreislauf",
+        "Es wird ausschließlich zur Kennzeichnung der Hochvolt-Leitungen verwendet"
+      ],
+      "answer": "Ein spezielles UV-Kontrastmittel wird dem Kältemittelöl beigemischt und zirkuliert mit dem Kältemittel im System. An undichten Stellen tritt es zusammen mit dem Kältemittel aus und lässt sich mit einer UV-Lampe als leuchtender Fleck erkennen – so lassen sich auch kleine Leckagen gezielt aufspüren.",
+      "correct": 0
+    },
+    {
+      "id": "klima-23",
+      "category": "Klimaanlage",
+      "question": "Warum wird eine Klimaanlage vor dem Befüllen mit Kältemittel zunächst evakuiert (vakuumiert)?",
+      "options": [
+        "Um Luft und Feuchtigkeit aus dem System zu entfernen, bevor Kältemittel eingefüllt wird",
+        "Um dabei gezielt das Kältemittelöl aus dem gesamten System zu entfernen",
+        "Um den Kompressor vor dem Befüllen für kurze Zeit mechanisch zu blockieren",
+        "Um die Klimaanlage dauerhaft drucklos und damit funktionsunfähig zu machen"
+      ],
+      "answer": "Luft und Feuchtigkeit im Kreislauf würden die Funktion und Effizienz der Anlage beeinträchtigen und z. B. zu Eisbildung oder Korrosion führen. Durch das Evakuieren mit einer Vakuumpumpe werden sie vor dem eigentlichen Befüllen mit Kältemittel zuverlässig entfernt.",
+      "correct": 0
+    },
+    {
+      "id": "klima-24",
+      "category": "Klimaanlage",
+      "question": "Welche Qualifikation wird in Deutschland für den fachgerechten Umgang mit Kältemitteln in Kfz-Klimaanlagen verlangt?",
+      "options": [
+        "Ein anerkannter Sachkundenachweis nach Chemikalien-Klimaschutzverordnung",
+        "Ausschließlich ein gültiger Pkw-Führerschein der Klasse B",
+        "Ausschließlich eine bestandene theoretische Fahrschulprüfung",
+        "Für den Umgang mit Kältemittel ist grundsätzlich keinerlei Nachweis nötig"
+      ],
+      "answer": "Da Kältemittel umweltschädlich wirken können und ihr unsachgemäßer Umgang gesetzlich geregelt ist, ist für Arbeiten an Kfz-Klimaanlagen ein anerkannter Sachkundenachweis (u. a. nach Chemikalien-Klimaschutzverordnung) erforderlich, der im Rahmen der Ausbildung erworben wird.",
       "correct": 0
     }
   ]

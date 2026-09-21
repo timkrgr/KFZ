@@ -58,6 +58,41 @@ html, body {
   margin-bottom: 6px;
 }
 
+/* Sticky Kopfleiste: bleibt beim Scrollen oben sichtbar, ein kompakter Titel
+   blendet sich dabei ein, während der große Seitentitel darunter verblasst. */
+.sticky-topbar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 15;
+  background: var(--bg);
+  margin-left: -18px;
+  margin-right: -18px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.sticky-topbar-plain {
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.compact-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  opacity: 0;
+  white-space: nowrap;
+  will-change: opacity, transform;
+}
+
+#stickyTopbarHome .compact-title {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-10px);
+}
+
 .profile-badge {
   position: absolute;
   right: 0;
@@ -123,6 +158,8 @@ html, body {
   font-size: 1.6rem;
   font-weight: 800;
   margin: 0 0 20px;
+  transform-origin: left center;
+  will-change: opacity, transform;
 }
 
 .section-title {

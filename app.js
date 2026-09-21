@@ -1,4 +1,4 @@
-const APP_VERSION = "v30";
+const APP_VERSION = "v31";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -22,11 +22,11 @@ const CATEGORY_ICONS = {
   },
   "Motormanagement & Abgasnachbehandlung": {
     color: "#22c55e",
-    svg: `<path d="M2 13.5h11"/><rect x="13" y="10.5" width="6" height="6" rx="1.5"/><path d="M20.5 9c1 1 1 3 0 4"/><path d="M7.5 6c1 1 1 3 0 4"/><path d="M4.5 4c1 1 1 3 0 4"/>`,
+    svg: `<line x1="2" y1="15" x2="10" y2="15"/><rect x="10" y="12.5" width="7" height="5" rx="2"/><path d="M19.5 5.5c1.1 1.1 1.1 2.7 0 3.8s-1.1 2.7 0 3.8"/><path d="M22.3 4c1.4 1.4 1.4 3.5 0 4.9s-1.4 3.5 0 4.9"/>`,
   },
   "Kraftübertragung": {
     color: "#94a3b8",
-    svg: `<circle cx="12" cy="12" r="3.1"/><path d="M12 3.2v3M12 17.8v3M3.2 12h3M17.8 12h3M5.8 5.8l2.1 2.1M16.1 16.1l2.1 2.1M18.2 5.8l-2.1 2.1M7.9 16.1l-2.1 2.1"/>`,
+    svg: `<circle cx="9" cy="9" r="3.4"/><path d="M9 3.4v1.6M9 12.4v1.6M3.4 9h1.6M12.4 9h1.6M5.1 5.1l1.1 1.1M10.8 10.8l1.1 1.1M12.9 5.1l-1.1 1.1M6.2 10.8l-1.1 1.1"/><circle cx="16.5" cy="16" r="2.4"/><path d="M16.5 11.9v1.3M16.5 18.8v1.3M12.4 16h1.3M19.3 16h1.3M13.9 13.4l0.9 0.9M18.2 17.7l0.9 0.9M19.1 13.4l-0.9 0.9M14.8 17.7l-0.9 0.9"/>`,
   },
   "Fahrwerk": {
     color: "#3b82f6",
@@ -47,6 +47,10 @@ const CATEGORY_ICONS = {
   "Hochvolt": {
     color: "#f59e0b",
     svg: `<path d="M12 3 2 20h20L12 3Z"/><path d="M13.2 9l-4 6h3l-1 4 5-7h-3l1-3Z" fill="currentColor" stroke="none"/>`,
+  },
+  "Klimaanlage": {
+    color: "#22d3ee",
+    svg: `<path d="M12 2v20M4 6.5l16 11M20 6.5 4 17.5"/><path d="M12 2 9.8 4.2M12 2l2.2 2.2M12 22l-2.2-2.2M12 22l2.2-2.2M4 6.5l3 .3M4 6.5l.7-2.9M20 6.5l-3 .3M20 6.5l-.7-2.9M4 17.5l3-.3M4 17.5l.7 2.9M20 17.5l-3-.3M20 17.5l-.7 2.9"/>`,
   },
 };
 
@@ -322,7 +326,54 @@ function switchTab(tabId, { remember = true } = {}) {
   if (tabId === "tabStats") renderStats();
   if (tabId === "tabExplain") renderExplainList();
   if (remember) localStorage.setItem(ACTIVE_TAB_KEY, tabId);
+  window.scrollTo(0, 0);
+  updateScrollTitle();
 }
+
+// --- Großer Seitentitel <-> kompakter Titel in der Sticky-Leiste beim Scrollen ---
+
+const SCROLL_TITLE_TABS = {
+  tabHome: { plain: false },
+  tabStats: { plain: true },
+  tabExplain: { plain: true },
+};
+const SCROLL_TITLE_RANGE = 70; // Scroll-Distanz in px, über die die Animation abläuft
+let scrollTitleTicking = false;
+
+function updateScrollTitle() {
+  const tabId = TAB_ORDER[activeTabIndex];
+  const cfg = SCROLL_TITLE_TABS[tabId];
+  if (!cfg) return;
+
+  const topbar = document.getElementById(`stickyTopbar${tabId.slice(3)}`);
+  const compact = document.getElementById(`compactTitle${tabId.slice(3)}`);
+  const big = document.getElementById(`bigTitle${tabId.slice(3)}`);
+  if (!topbar || !compact || !big) return;
+
+  const y = window.scrollY || document.documentElement.scrollTop || 0;
+  const progress = Math.max(0, Math.min(1, y / SCROLL_TITLE_RANGE));
+
+  big.style.opacity = String(1 - progress);
+  big.style.transform = `translate(${-18 * progress}px, ${-14 * progress}px) scale(${1 - 0.15 * progress})`;
+
+  compact.style.opacity = String(progress);
+  compact.style.transform = topbar.id === "stickyTopbarHome"
+    ? `translateY(-50%) translateX(${-10 * (1 - progress)}px)`
+    : `translateX(${-10 * (1 - progress)}px)`;
+
+  if (cfg.plain) {
+    topbar.style.height = `${44 * progress}px`;
+  }
+}
+
+window.addEventListener("scroll", () => {
+  if (scrollTitleTicking) return;
+  scrollTitleTicking = true;
+  requestAnimationFrame(() => {
+    updateScrollTitle();
+    scrollTitleTicking = false;
+  });
+}, { passive: true });
 
 els.tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => switchTab(btn.dataset.tab));
@@ -875,6 +926,65 @@ const EXPLANATIONS = {
       <li><strong>AC-Laden (Wechselstrom):</strong> über den Typ-2-Stecker, das Fahrzeug wandelt den Wechselstrom intern über das Onboard-Ladegerät in Gleichstrom um – geeignet für Laden zu Hause/an der Wallbox, eher langsam.</li>
       <li><strong>DC-Laden (Gleichstrom, Schnellladen):</strong> über CCS- (oder CHAdeMO-)Stecker liefert die Ladesäule direkt Gleichstrom an die HV-Batterie, das Onboard-Ladegerät wird umgangen – deutlich höhere Ladeleistung und kürzere Ladezeit.</li>
     </ul>
+  `,
+
+  "Klimaanlage": `
+    <span class="explain-eyebrow">Themengebiet</span>
+    <h1>Klimaanlage</h1>
+    <p class="explain-lead">Die Kfz-Klimaanlage kühlt und entfeuchtet die Innenraumluft, indem sie ein Kältemittel in einem geschlossenen Kreislauf abwechselnd verdichtet, abkühlt, entspannt und wieder verdampfen lässt.</p>
+
+    <h2>Der Kältemittelkreislauf</h2>
+    <div class="explain-diagram">
+      <svg viewBox="0 0 300 130" width="100%">
+        <g font-family="sans-serif" font-size="10.5" fill="var(--text)">
+          <rect x="12" y="45" width="56" height="36" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="40" y="65" text-anchor="middle">Kompressor</text>
+          <text x="40" y="78" text-anchor="middle" font-size="9" fill="var(--muted)">verdichtet</text>
+
+          <rect x="98" y="15" width="56" height="36" rx="6" fill="none" stroke="var(--wrong)" stroke-width="2"/>
+          <text x="126" y="35" text-anchor="middle">Kondensator</text>
+          <text x="126" y="48" text-anchor="middle" font-size="9" fill="var(--muted)">kühlt ab</text>
+
+          <rect x="184" y="45" width="56" height="36" rx="6" fill="none" stroke="var(--sim)" stroke-width="2"/>
+          <text x="212" y="65" text-anchor="middle">Expansions-</text>
+          <text x="212" y="77" text-anchor="middle">ventil</text>
+
+          <rect x="98" y="90" width="56" height="36" rx="6" fill="none" stroke="var(--right)" stroke-width="2"/>
+          <text x="126" y="110" text-anchor="middle">Verdampfer</text>
+          <text x="126" y="123" text-anchor="middle" font-size="9" fill="var(--muted)">kühlt Luft</text>
+
+          <path d="M68 55 L98 40" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrKlima)"/>
+          <path d="M154 33 L184 55" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrKlima)"/>
+          <path d="M212 81 L212 90 L154 105" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrKlima)"/>
+          <path d="M98 108 L68 80" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrKlima)"/>
+          <defs>
+            <marker id="arrKlima" markerWidth="6" markerHeight="6" refX="4" refY="2" orient="auto">
+              <path d="M0 0 L4 2 L0 4 Z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+        </g>
+      </svg>
+      <figcaption>Kreislauf: Kompressor verdichtet das Kältemittelgas → Kondensator kühlt es zu Flüssigkeit ab → Expansionsventil entspannt es → Verdampfer nimmt Wärme aus der Innenraumluft auf, das Gas strömt zurück zum Kompressor.</figcaption>
+    </div>
+    <p>Der <strong>Kompressor</strong> verdichtet das gasförmige Kältemittel, wodurch Druck und Temperatur stark steigen. Im <strong>Kondensator</strong> (meist vorne am Fahrzeug) gibt das heiße Gas Wärme an die Umgebungsluft ab und wird dabei flüssig. Das <strong>Expansionsventil</strong> entspannt die Flüssigkeit schlagartig auf niedrigen Druck, wodurch sie stark abkühlt. Im <strong>Verdampfer</strong> nimmt das kalte Kältemittel Wärme aus der durchströmenden Innenraumluft auf und verdampft dabei wieder – die Luft kühlt ab, ihre Feuchtigkeit kondensiert an den kalten Lamellen und tropft ab.</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Deshalb entfeuchtet die Klimaanlage auch beschlagene Scheiben zuverlässiger als reines Heizen – die Luft wird am kalten Verdampfer entfeuchtet und danach bei Bedarf wieder erwärmt.</div>
+
+    <h2>Kältemittel</h2>
+    <p>Modernere Fahrzeuge nutzen <strong>R1234yf</strong> statt des älteren <strong>R134a</strong>, da es ein deutlich geringeres Treibhauspotenzial (GWP) besitzt und so die EU-Vorgaben erfüllt. Die beiden Kältemittel sind nicht austauschbar oder mischbar. Dem Kältemittel ist zusätzlich ein spezielles Öl beigemischt, das im ganzen Kreislauf mitzirkuliert und die beweglichen Teile des Kompressors schmiert.</p>
+
+    <h2>Weitere wichtige Bauteile</h2>
+    <ul>
+      <li><strong>Trockner/Sammler:</strong> bindet Restfeuchtigkeit im Kältemittel und dient als Ausgleichsspeicher.</li>
+      <li><strong>Innenraumfilter (Pollenfilter):</strong> hält Pollen, Staub und teils Schadstoffe aus der angesaugten Luft zurück.</li>
+      <li><strong>Hochdruckschalter:</strong> schaltet den Kompressor bei unzulässig hohem Druck sicherheitshalber ab.</li>
+      <li><strong>Verdampfertemperatursensor:</strong> verhindert ein Vereisen des Verdampfers durch rechtzeitiges Abschalten.</li>
+    </ul>
+
+    <h2>Wartung und Umweltschutz</h2>
+    <p>Da austretendes Kältemittel klimaschädlich wirken kann, ist die Anlage bei Arbeiten <strong>dicht zu prüfen</strong>, und vor dem Neubefüllen wird sie mit einer Vakuumpumpe <strong>evakuiert</strong>, um Luft und Feuchtigkeit zu entfernen. Für den fachgerechten Umgang mit Kältemitteln ist ein anerkannter Sachkundenachweis vorgeschrieben. Auch im Winter sollte die Klimaanlage regelmäßig kurz laufen, damit die Dichtungen durch das mitgeführte Öl geschmeidig bleiben.</p>
+
+    <h2>Klimaanlage bei Elektrofahrzeugen</h2>
+    <p>Ohne Verbrennungsmotor fehlt sowohl die Abwärme zum Heizen als auch ein Riementrieb für den Kompressor. Elektrofahrzeuge nutzen daher einen <strong>elektrisch angetriebenen Kompressor</strong> sowie häufig eine <strong>Wärmepumpe</strong>, die denselben Kältemittelkreislauf in umgekehrter Betriebsweise nutzt, um der Umgebung Wärme zu entziehen und effizient in den Innenraum zu leiten – das schont die Reichweite gegenüber einer reinen elektrischen Widerstandsheizung.</p>
   `,
 };
 
