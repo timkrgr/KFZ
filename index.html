@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
 <title>KFZ Karteikarten</title>
-<meta name="theme-color" content="#115ead">
+<meta name="theme-color" content="#2f6fed">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KFZ Karten">
@@ -17,83 +17,146 @@
 <body>
 <div class="app">
 
-  <header class="topbar">
-    <h1>KFZ Karteikarten</h1>
-    <button id="menuBtn" class="icon-btn" aria-label="Einstellungen">⚙</button>
-  </header>
+  <!-- ===== TAB: Kategorien (Home) ===== -->
+  <section id="tabHome" class="tab-view">
+    <header class="brand-header">
+      <div class="brand-badge">🔧<span class="brand-badge-sub">KFZ</span></div>
+      <div class="brand-word">LERNEN<span class="brand-bang">!</span></div>
+    </header>
+    <h1 class="page-title">Kategorien</h1>
 
-  <div id="panel" class="panel" hidden>
-    <div class="panel-row">
-      <label for="filterSelect">Auswahl innerhalb eines Themas</label>
-      <select id="filterSelect">
-        <option value="all">Alle Karten</option>
-        <option value="learning">Nur die ich noch lerne</option>
-        <option value="hard">Nur unsichere Karten</option>
-      </select>
-    </div>
-    <div class="panel-row buttons-row">
-      <button id="shuffleBtn" class="btn">Mischen</button>
-      <button id="resetBtn" class="btn btn-outline">Gesamten Fortschritt zurücksetzen</button>
-    </div>
-    <div class="panel-row">
-      <button id="reloadBtn" class="btn btn-outline">Neue Karten laden</button>
-    </div>
-    <p class="panel-hint">Neue Fragen schickst du wie gewohnt an Claude – sie erscheinen hier, sobald du online bist und auf „Neue Karten laden“ tippst (oder die App neu öffnest).</p>
-  </div>
+    <button id="heroBtn" class="hero-card">
+      <div class="hero-left">
+        <span class="hero-icon">⚡</span>
+        <div>
+          <div class="hero-title">Jetzt üben</div>
+          <div class="hero-sub">Alle Themen, gemischt</div>
+        </div>
+      </div>
+      <div class="ring" id="heroRing">
+        <svg viewBox="0 0 64 64">
+          <circle class="ring-track" cx="32" cy="32" r="27"></circle>
+          <circle class="ring-fill" id="heroRingFill" cx="32" cy="32" r="27"></circle>
+        </svg>
+        <div class="ring-label"><span id="heroRingPct">0</span><small>%</small></div>
+      </div>
+    </button>
 
-  <main id="main" class="main">
-
-    <!-- Themen-Übersicht -->
-    <section id="homeView">
-      <button id="allBtn" class="hero-btn">
-        <span class="hero-title">🚀 Alle Fragen am Stück üben</span>
-        <span class="hero-sub" id="allCount">0 Karten</span>
+    <div class="mini-row">
+      <button id="simBtn" class="mini-card mini-sim">
+        <span class="mini-icon">⏱️</span>
+        <span class="mini-title">Simulation</span>
+        <span class="mini-sub">Prüfung auf Zeit</span>
       </button>
+      <button id="merkBtn" class="mini-card mini-merk">
+        <span class="mini-icon">🔖</span>
+        <span class="mini-title">Gemerkt</span>
+        <span class="mini-sub"><span id="merkCount">0</span> unsicher</span>
+      </button>
+    </div>
 
-      <h2 class="section-title">Themen</h2>
-      <div id="topicGrid" class="topic-grid"></div>
-      <p id="noTopics" class="empty-state" hidden>Noch keine Themen vorhanden.</p>
-    </section>
+    <h2 class="section-title">Themengebiete</h2>
+    <div id="topicList" class="topic-list"></div>
+    <p id="noTopics" class="empty-hint" hidden>Noch keine Themen vorhanden. Schick Claude deine ersten Fragen!</p>
+  </section>
 
-    <!-- Lernmodus für ein Thema oder "alle Fragen" -->
-    <section id="studyView" hidden>
-      <button id="backBtn" class="back-btn">← Themen</button>
+  <!-- ===== TAB: Statistik ===== -->
+  <section id="tabStats" class="tab-view" hidden>
+    <h1 class="page-title">Statistik</h1>
+    <div class="stats-summary" id="statsSummary"></div>
+    <h2 class="section-title">Nach Thema</h2>
+    <div id="statsList" class="stats-list"></div>
+  </section>
 
-      <div id="emptyState" class="empty-state" hidden>
-        <p>Keine Karten in dieser Auswahl 🎉</p>
-        <button id="emptyResetBtn" class="btn">Auswahl zurücksetzen</button>
+  <!-- ===== TAB: Einstellungen ===== -->
+  <section id="tabSettings" class="tab-view" hidden>
+    <h1 class="page-title">Einstellungen</h1>
+
+    <div class="settings-group">
+      <label class="settings-label" for="simCountInput">Fragen pro Simulation</label>
+      <input id="simCountInput" class="settings-input" type="number" min="5" max="200" step="5" value="20">
+    </div>
+
+    <div class="settings-group">
+      <button id="reloadBtn" class="btn btn-outline">🔄 Neue Karten laden</button>
+      <p class="panel-hint">Neue Fragen schickst du wie gewohnt an Claude – sie erscheinen hier, sobald du online bist und auf „Neue Karten laden“ tippst (oder die App neu öffnest).</p>
+    </div>
+
+    <div class="settings-group">
+      <button id="resetBtn" class="btn btn-danger">🗑️ Gesamten Lernfortschritt zurücksetzen</button>
+    </div>
+  </section>
+
+  <!-- ===== Bottom Tab Bar ===== -->
+  <nav class="tabbar">
+    <button class="tab-btn active" data-tab="tabHome" aria-label="Kategorien">
+      <span class="tab-icon">🗂️</span><span class="tab-label">Kategorien</span>
+    </button>
+    <button class="tab-btn" data-tab="tabStats" aria-label="Statistik">
+      <span class="tab-icon">📊</span><span class="tab-label">Statistik</span>
+    </button>
+    <button class="tab-btn" data-tab="tabSettings" aria-label="Einstellungen">
+      <span class="tab-icon">⚙️</span><span class="tab-label">Einstellungen</span>
+    </button>
+  </nav>
+
+  <!-- ===== Lern-/Simulationsansicht (Overlay) ===== -->
+  <section id="studyView" class="study-view" hidden>
+    <div class="study-header">
+      <button id="backBtn" class="back-btn">← Zurück</button>
+      <div id="simTimer" class="sim-timer" hidden>⏱ <span id="simTimerText">20:00</span></div>
+    </div>
+
+    <div id="emptyState" class="empty-hint centered" hidden>
+      <p>Keine Karten in dieser Auswahl 🎉</p>
+      <button id="emptyBackBtn" class="btn">Zurück</button>
+    </div>
+
+    <div id="cardArea" class="card-area">
+      <div class="progress-line">
+        <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+        <span id="progressText" class="progress-text">0 / 0</span>
       </div>
 
-      <div id="cardArea" class="card-area">
-        <div class="progress-line">
-          <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
-          <span id="progressText" class="progress-text">0 / 0</span>
-        </div>
-
-        <div id="cardWrap" class="card-wrap">
-          <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="Karte umdrehen">
-            <div class="flashcard-inner">
-              <div class="face face-front">
-                <span id="categoryTag" class="category-tag"></span>
-                <p id="questionText" class="card-text"></p>
-                <span class="tap-hint">Antippen für Antwort</span>
-              </div>
-              <div class="face face-back">
-                <span id="categoryTagBack" class="category-tag"></span>
-                <p id="answerText" class="card-text"></p>
-                <span class="tap-hint">Antippen für Frage</span>
-              </div>
+      <div id="cardWrap" class="card-wrap">
+        <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="Karte umdrehen">
+          <div class="flashcard-inner">
+            <div class="face face-front">
+              <span id="categoryTag" class="category-tag"></span>
+              <p id="questionText" class="card-text"></p>
+              <span class="tap-hint">Antippen für Antwort</span>
+            </div>
+            <div class="face face-back">
+              <span id="categoryTagBack" class="category-tag"></span>
+              <p id="answerText" class="card-text"></p>
+              <span class="tap-hint">Antippen für Frage</span>
             </div>
           </div>
         </div>
-
-        <div class="action-row">
-          <button id="hardBtn" class="btn btn-hard">🔁 Nochmal üben</button>
-          <button id="knownBtn" class="btn btn-known">✅ Weiß ich</button>
-        </div>
       </div>
-    </section>
-  </main>
+
+      <div class="action-row">
+        <button id="hardBtn" class="btn btn-wrong">❌ Falsch</button>
+        <button id="knownBtn" class="btn btn-right">✅ Richtig</button>
+      </div>
+    </div>
+
+    <!-- Ergebnis der Simulation -->
+    <div id="resultView" class="result-view" hidden>
+      <div class="result-ring">
+        <svg viewBox="0 0 120 120">
+          <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+          <circle class="ring-fill" id="resultRingFill" cx="60" cy="60" r="52"></circle>
+        </svg>
+        <div class="result-ring-label"><span id="resultPct">0</span><small>%</small></div>
+      </div>
+      <p class="result-line"><span id="resultRight">0</span> richtig · <span id="resultWrong">0</span> falsch</p>
+      <div class="result-actions">
+        <button id="resultRepeatBtn" class="btn">🔁 Nochmal</button>
+        <button id="resultHomeBtn" class="btn btn-outline">Fertig</button>
+      </div>
+    </div>
+  </section>
 
   <div id="toast" class="toast" hidden></div>
 </div>

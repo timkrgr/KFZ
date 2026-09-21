@@ -1,25 +1,56 @@
 const STORAGE_KEY = "kfz_progress_v1";
+const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
 
-const els = {
-  menuBtn: document.getElementById("menuBtn"),
-  panel: document.getElementById("panel"),
-  filterSelect: document.getElementById("filterSelect"),
-  shuffleBtn: document.getElementById("shuffleBtn"),
-  resetBtn: document.getElementById("resetBtn"),
-  reloadBtn: document.getElementById("reloadBtn"),
+const ICONS = [
+  [/brems|abs\b/i, "🛑"],
+  [/getriebe|kupplung/i, "⚙️"],
+  [/motor|antrieb|verbrennung|zylinder/i, "🏎️"],
+  [/elektr|bordnetz|start|lade|batterie/i, "⚡"],
+  [/klima|komfort/i, "❄️"],
+  [/sicherheit|airbag|unfall/i, "🛡️"],
+  [/fahrwerk|lenkung|feder|stoßdämpfer/i, "🛞"],
+  [/diagnose|fehler|obd/i, "🩺"],
+  [/wiso|sozial|wirtschaft|recht|kunde/i, "📘"],
+  [/hu\b|prüfung|abnahme/i, "✅"],
+  [/reifen|rad/i, "🛞"],
+  [/abgas|umwelt/i, "🌫️"],
+];
 
-  homeView: document.getElementById("homeView"),
-  allBtn: document.getElementById("allBtn"),
-  allCount: document.getElementById("allCount"),
-  topicGrid: document.getElementById("topicGrid"),
+function iconForCategory(name) {
+  const hit = ICONS.find(([re]) => re.test(name));
+  return hit ? hit[1] : "🔧";
+}
+
+const els = {
+  tabButtons: document.querySelectorAll(".tab-btn"),
+  tabHome: document.getElementById("tabHome"),
+  tabStats: document.getElementById("tabStats"),
+  tabSettings: document.getElementById("tabSettings"),
+
+  heroBtn: document.getElementById("heroBtn"),
+  heroRingFill: document.getElementById("heroRingFill"),
+  heroRingPct: document.getElementById("heroRingPct"),
+  simBtn: document.getElementById("simBtn"),
+  merkBtn: document.getElementById("merkBtn"),
+  merkCount: document.getElementById("merkCount"),
+  topicList: document.getElementById("topicList"),
   noTopics: document.getElementById("noTopics"),
+
+  statsSummary: document.getElementById("statsSummary"),
+  statsList: document.getElementById("statsList"),
+
+  simCountInput: document.getElementById("simCountInput"),
+  reloadBtn: document.getElementById("reloadBtn"),
+  resetBtn: document.getElementById("resetBtn"),
 
   studyView: document.getElementById("studyView"),
   backBtn: document.getElementById("backBtn"),
+  simTimer: document.getElementById("simTimer"),
+  simTimerText: document.getElementById("simTimerText"),
   cardArea: document.getElementById("cardArea"),
   emptyState: document.getElementById("emptyState"),
-  emptyResetBtn: document.getElementById("emptyResetBtn"),
+  emptyBackBtn: document.getElementById("emptyBackBtn"),
   progressFill: document.getElementById("progressFill"),
   progressText: document.getElementById("progressText"),
   flashcard: document.getElementById("flashcard"),
@@ -29,6 +60,15 @@ const els = {
   answerText: document.getElementById("answerText"),
   hardBtn: document.getElementById("hardBtn"),
   knownBtn: document.getElementById("knownBtn"),
+
+  resultView: document.getElementById("resultView"),
+  resultRingFill: document.getElementById("resultRingFill"),
+  resultPct: document.getElementById("resultPct"),
+  resultRight: document.getElementById("resultRight"),
+  resultWrong: document.getElementById("resultWrong"),
+  resultRepeatBtn: document.getElementById("resultRepeatBtn"),
+  resultHomeBtn: document.getElementById("resultHomeBtn"),
+
   toast: document.getElementById("toast"),
 };
 
@@ -36,6 +76,11 @@ let allCards = [];
 let deck = [];
 let currentIndex = 0;
 let currentTopic = ALL_TOPIC;
+let currentFilter = "all";
+let sessionMode = "topic"; // "topic" | "simulation"
+let sessionResults = { right: 0, wrong: 0 };
+let simInterval = null;
+let simRemaining = 0;
 let progress = loadProgress();
 
 function loadProgress() {
@@ -61,6 +106,14 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
 }
 
+function setRing(circleEl, radius, pct) {
+  const circ = 2 * Math.PI * radius;
+  circleEl.style.strokeDasharray = `${circ} ${circ}`;
+  circleEl.style.strokeDashoffset = String(circ * (1 - Math.max(0, Math.min(100, pct)) / 100));
+}
+
+// --- Daten laden ---
+
 async function loadCards({ silent = false } = {}) {
   try {
     const res = await fetch(`cards.json?ts=${Date.now()}`, { cache: "no-store" });
@@ -69,7 +122,8 @@ async function loadCards({ silent = false } = {}) {
     const prevCount = allCards.length;
     allCards = data.cards || [];
     renderHome();
-    if (currentTopic !== ALL_TOPIC || !els.studyView.hidden) buildDeck();
+    renderStats();
+    if (!els.studyView.hidden && sessionMode === "topic") buildDeck();
     if (!silent && prevCount && allCards.length !== prevCount) {
       showToast(`Karten aktualisiert (${allCards.length} insgesamt)`);
     } else if (!silent) {
@@ -82,6 +136,7 @@ async function loadCards({ silent = false } = {}) {
       if (cached) {
         allCards = JSON.parse(cached).cards || [];
         renderHome();
+        renderStats();
       }
     }
     return;
@@ -89,7 +144,25 @@ async function loadCards({ silent = false } = {}) {
   localStorage.setItem("kfz_cards_cache", JSON.stringify({ cards: allCards }));
 }
 
-// --- Home / Themen-Übersicht ---
+// --- Tabs ---
+
+function switchTab(tabId) {
+  [els.tabHome, els.tabStats, els.tabSettings].forEach((el) => {
+    el.hidden = el.id !== tabId;
+  });
+  els.tabButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.tab === tabId));
+  if (tabId === "tabStats") renderStats();
+}
+
+els.tabButtons.forEach((btn) => {
+  btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+});
+
+// --- Home ---
+
+function categories() {
+  return Array.from(new Set(allCards.map((c) => c.category || "Allgemein"))).sort();
+}
 
 function cardState(id) {
   if (progress.known[id]) return "known";
@@ -98,71 +171,116 @@ function cardState(id) {
 }
 
 function renderHome() {
-  const cats = Array.from(new Set(allCards.map((c) => c.category || "Allgemein"))).sort();
+  const total = allCards.length;
+  const known = allCards.filter((c) => progress.known[c.id]).length;
+  const pct = total ? Math.round((known / total) * 100) : 0;
+  els.heroRingPct.textContent = pct;
+  setRing(els.heroRingFill, 27, pct);
+  els.heroBtn.hidden = total === 0;
 
-  els.allCount.textContent = `${allCards.length} Karten insgesamt`;
-  els.allBtn.hidden = allCards.length === 0;
+  const hardCount = allCards.filter((c) => progress.hard[c.id]).length;
+  els.merkCount.textContent = hardCount;
+  els.simBtn.hidden = total === 0;
+  els.merkBtn.hidden = total === 0;
 
+  const cats = categories();
   els.noTopics.hidden = cats.length > 0;
-  els.topicGrid.innerHTML = "";
+  els.topicList.innerHTML = "";
 
   cats.forEach((cat) => {
     const cardsInCat = allCards.filter((c) => (c.category || "Allgemein") === cat);
-    const known = cardsInCat.filter((c) => progress.known[c.id]).length;
-    const total = cardsInCat.length;
-    const pct = total ? Math.round((known / total) * 100) : 0;
+    const knownInCat = cardsInCat.filter((c) => progress.known[c.id]).length;
+    const totalInCat = cardsInCat.length;
+    const pctCat = totalInCat ? Math.round((knownInCat / totalInCat) * 100) : 0;
+    const hasProgress = knownInCat > 0 || cardsInCat.some((c) => progress.hard[c.id]);
 
-    const btn = document.createElement("button");
-    btn.className = "topic-card";
-    btn.type = "button";
-    btn.innerHTML = `
-      <span class="topic-name">${escapeHtml(cat)}</span>
-      <span class="topic-count">${known} / ${total} gelernt</span>
-      <span class="topic-progress-track"><span class="topic-progress-fill" style="width:${pct}%"></span></span>
+    const item = document.createElement("div");
+    item.className = "topic-item";
+    item.innerHTML = `
+      <div class="topic-item-row">
+        <span class="topic-icon">${iconForCategory(cat)}</span>
+        <div class="topic-info">
+          <div class="topic-name">${escapeHtml(cat)}</div>
+          <div class="topic-count">${knownInCat} von ${totalInCat} beherrscht</div>
+        </div>
+      </div>
+      <div class="topic-progress-row">
+        <div class="topic-progress-track"><div class="topic-progress-fill" style="width:${pctCat}%"></div></div>
+        <span class="topic-pct">${pctCat}%</span>
+      </div>
+      <div class="topic-actions">
+        <button type="button" class="btn start-btn">${hasProgress ? "▶ Fortsetzen" : "⚡ Starten"}</button>
+        ${hasProgress ? '<button type="button" class="icon-reset-btn" title="Fortschritt zurücksetzen">↺</button>' : ""}
+      </div>
     `;
-    btn.addEventListener("click", () => openTopic(cat));
-    els.topicGrid.appendChild(btn);
+    item.querySelector(".start-btn").addEventListener("click", () => openTopic(cat, "all"));
+    const resetBtn = item.querySelector(".icon-reset-btn");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => resetTopicProgress(cat));
+    }
+    els.topicList.appendChild(item);
   });
 }
 
-function openTopic(topic) {
+function resetTopicProgress(cat) {
+  if (!confirm(`Fortschritt für „${cat}“ zurücksetzen?`)) return;
+  allCards.filter((c) => (c.category || "Allgemein") === cat).forEach((c) => {
+    delete progress.known[c.id];
+    delete progress.hard[c.id];
+  });
+  saveProgress();
+  renderHome();
+  showToast("Zurückgesetzt");
+}
+
+// --- Statistik ---
+
+function renderStats() {
+  const total = allCards.length;
+  const known = allCards.filter((c) => progress.known[c.id]).length;
+  const hard = allCards.filter((c) => progress.hard[c.id]).length;
+
+  els.statsSummary.innerHTML = `
+    <div class="stat-tile"><div class="stat-value">${total}</div><div class="stat-label">Karten</div></div>
+    <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${known}</div><div class="stat-label">gelernt</div></div>
+    <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${hard}</div><div class="stat-label">unsicher</div></div>
+  `;
+
+  els.statsList.innerHTML = "";
+  categories().forEach((cat) => {
+    const cardsInCat = allCards.filter((c) => (c.category || "Allgemein") === cat);
+    const knownInCat = cardsInCat.filter((c) => progress.known[c.id]).length;
+    const pctCat = cardsInCat.length ? Math.round((knownInCat / cardsInCat.length) * 100) : 0;
+    const row = document.createElement("div");
+    row.className = "stats-row";
+    row.innerHTML = `
+      <div class="stats-row-top"><span class="name">${escapeHtml(cat)}</span><span class="count">${knownInCat}/${cardsInCat.length}</span></div>
+      <div class="topic-progress-track"><div class="topic-progress-fill" style="width:${pctCat}%"></div></div>
+    `;
+    els.statsList.appendChild(row);
+  });
+}
+
+// --- Study view: Themen-Lernmodus ---
+
+function openTopic(topic, filter) {
+  sessionMode = "topic";
   currentTopic = topic;
-  els.homeView.hidden = true;
+  currentFilter = filter;
   els.studyView.hidden = false;
+  els.simTimer.hidden = true;
+  els.resultView.hidden = true;
   buildDeck();
 }
 
-function goHome() {
-  els.studyView.hidden = true;
-  els.homeView.hidden = false;
-  renderHome();
-}
-
-// --- Lern-/Quizmodus ---
-
 function buildDeck() {
-  const filter = els.filterSelect.value;
-
   deck = allCards.filter((c) => {
     if (currentTopic !== ALL_TOPIC && (c.category || "Allgemein") !== currentTopic) return false;
-    const state = cardState(c.id);
-    if (filter === "learning") return state !== "known";
-    if (filter === "hard") return state === "hard";
+    if (currentFilter === "hard") return cardState(c.id) === "hard";
     return true;
   });
-
   currentIndex = 0;
   render();
-}
-
-function shuffleDeck() {
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
-  }
-  currentIndex = 0;
-  render();
-  showToast("Gemischt");
 }
 
 function render() {
@@ -180,20 +298,21 @@ function render() {
   els.questionText.textContent = card.question;
   els.answerText.textContent = card.answer;
 
-  const scope = allCards.filter((c) => currentTopic === ALL_TOPIC || (c.category || "Allgemein") === currentTopic);
-  const knownCount = scope.filter((c) => progress.known[c.id]).length;
-  els.progressFill.style.width = scope.length ? `${(knownCount / scope.length) * 100}%` : "0%";
-  els.progressText.textContent = `${knownCount} / ${scope.length} gelernt`;
+  if (sessionMode === "simulation") {
+    const answered = sessionResults.right + sessionResults.wrong;
+    const totalSim = answered + deck.length;
+    els.progressFill.style.width = totalSim ? `${(answered / totalSim) * 100}%` : "0%";
+    els.progressText.textContent = `${answered} / ${totalSim} beantwortet`;
+  } else {
+    const scope = allCards.filter((c) => currentTopic === ALL_TOPIC || (c.category || "Allgemein") === currentTopic);
+    const knownCount = scope.filter((c) => progress.known[c.id]).length;
+    els.progressFill.style.width = scope.length ? `${(knownCount / scope.length) * 100}%` : "0%";
+    els.progressText.textContent = `${knownCount} / ${scope.length} gelernt`;
+  }
 }
 
 function flip() {
   els.flashcard.classList.toggle("flipped");
-}
-
-function nextCard() {
-  if (!deck.length) return;
-  currentIndex = (currentIndex + 1) % deck.length;
-  render();
 }
 
 function markCurrent(state) {
@@ -208,54 +327,42 @@ function markCurrent(state) {
   }
   saveProgress();
 
-  const filter = els.filterSelect.value;
-  if (filter === "learning" || filter === "hard") {
-    if (state === "known") {
-      deck.splice(currentIndex, 1);
-      if (!deck.length) { render(); return; }
-      if (currentIndex >= deck.length) currentIndex = 0;
-      render();
-      return;
-    }
+  if (sessionMode === "simulation") {
+    sessionResults[state === "known" ? "right" : "wrong"] += 1;
+    deck.splice(currentIndex, 1);
+    if (currentIndex >= deck.length) currentIndex = 0;
+    if (!deck.length) { endSimulation(); return; }
+    render();
+    return;
   }
-  nextCard();
+
+  if (currentFilter === "hard" && state === "known") {
+    deck.splice(currentIndex, 1);
+    if (currentIndex >= deck.length) currentIndex = 0;
+    render();
+    return;
+  }
+
+  currentIndex = (currentIndex + 1) % deck.length;
+  render();
 }
 
-// --- Events ---
-els.menuBtn.addEventListener("click", () => {
-  els.panel.hidden = !els.panel.hidden;
-});
+function goHome() {
+  stopSimTimer();
+  els.studyView.hidden = true;
+  renderHome();
+  renderStats();
+}
 
-els.allBtn.addEventListener("click", () => openTopic(ALL_TOPIC));
 els.backBtn.addEventListener("click", goHome);
+els.emptyBackBtn.addEventListener("click", goHome);
 
-els.filterSelect.addEventListener("change", () => {
-  if (!els.studyView.hidden) buildDeck();
-});
-els.shuffleBtn.addEventListener("click", () => {
-  if (!els.studyView.hidden) shuffleDeck();
-});
-els.reloadBtn.addEventListener("click", () => loadCards());
-
-els.resetBtn.addEventListener("click", () => {
-  if (confirm("Gesamten Lernfortschritt (alle Themen) zurücksetzen?")) {
-    progress = { known: {}, hard: {} };
-    saveProgress();
-    if (!els.studyView.hidden) buildDeck();
-    renderHome();
-    showToast("Fortschritt zurückgesetzt");
-  }
-});
-
-els.emptyResetBtn.addEventListener("click", () => {
-  els.filterSelect.value = "all";
-  buildDeck();
-});
+els.heroBtn.addEventListener("click", () => openTopic(ALL_TOPIC, "all"));
+els.merkBtn.addEventListener("click", () => openTopic(ALL_TOPIC, "hard"));
 
 els.flashcard.addEventListener("click", flip);
 els.flashcard.addEventListener("keydown", (e) => {
   if (e.key === " " || e.key === "Enter") { e.preventDefault(); flip(); }
-  if (e.key === "ArrowRight") nextCard();
 });
 
 els.hardBtn.addEventListener("click", () => markCurrent("hard"));
@@ -282,7 +389,104 @@ wrap.addEventListener("touchend", (e) => {
   }
 }, { passive: true });
 
-// Init
+// --- Simulation (Prüfung auf Zeit) ---
+
+function getSimCount() {
+  const v = parseInt(localStorage.getItem(SIM_COUNT_KEY), 10);
+  return Number.isFinite(v) && v > 0 ? v : 20;
+}
+
+els.simCountInput.value = getSimCount();
+els.simCountInput.addEventListener("change", () => {
+  const v = Math.max(5, Math.min(200, parseInt(els.simCountInput.value, 10) || 20));
+  els.simCountInput.value = v;
+  localStorage.setItem(SIM_COUNT_KEY, String(v));
+});
+
+function shuffled(arr) {
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function startSimulation() {
+  if (!allCards.length) return;
+  sessionMode = "simulation";
+  sessionResults = { right: 0, wrong: 0 };
+  const count = Math.min(getSimCount(), allCards.length);
+  deck = shuffled(allCards).slice(0, count);
+  currentIndex = 0;
+
+  els.studyView.hidden = false;
+  els.resultView.hidden = true;
+  els.simTimer.hidden = false;
+
+  const seconds = Math.max(300, count * 60);
+  startSimTimer(seconds);
+  render();
+}
+
+function startSimTimer(seconds) {
+  stopSimTimer();
+  simRemaining = seconds;
+  updateSimTimerText();
+  simInterval = setInterval(() => {
+    simRemaining -= 1;
+    updateSimTimerText();
+    if (simRemaining <= 0) endSimulation();
+  }, 1000);
+}
+
+function stopSimTimer() {
+  if (simInterval) clearInterval(simInterval);
+  simInterval = null;
+}
+
+function updateSimTimerText() {
+  const m = Math.max(0, Math.floor(simRemaining / 60));
+  const s = Math.max(0, simRemaining % 60);
+  els.simTimerText.textContent = `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function endSimulation() {
+  stopSimTimer();
+  els.cardArea.hidden = true;
+  els.emptyState.hidden = true;
+  els.resultView.hidden = false;
+
+  const { right, wrong } = sessionResults;
+  const answered = right + wrong;
+  const pct = answered ? Math.round((right / answered) * 100) : 0;
+
+  els.resultPct.textContent = pct;
+  setRing(els.resultRingFill, 52, pct);
+  els.resultRight.textContent = right;
+  els.resultWrong.textContent = wrong;
+}
+
+els.simBtn.addEventListener("click", startSimulation);
+els.resultRepeatBtn.addEventListener("click", startSimulation);
+els.resultHomeBtn.addEventListener("click", goHome);
+
+// --- Einstellungen ---
+
+els.reloadBtn.addEventListener("click", () => loadCards());
+
+els.resetBtn.addEventListener("click", () => {
+  if (confirm("Gesamten Lernfortschritt (alle Themen) zurücksetzen?")) {
+    progress = { known: {}, hard: {} };
+    saveProgress();
+    renderHome();
+    renderStats();
+    showToast("Fortschritt zurückgesetzt");
+  }
+});
+
+// --- Init ---
+
 loadCards({ silent: true });
 
 if ("serviceWorker" in navigator) {
