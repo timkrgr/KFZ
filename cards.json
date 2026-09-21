@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "updated": "2026-09-21",
   "cards": [
     {
@@ -1041,6 +1041,1046 @@
       ],
       "correct": 1,
       "answer": "Die Isolationsüberwachung misst kontinuierlich den Widerstand zwischen dem Hochvolt-System und der Fahrzeugkarosserie. Sinkt dieser Widerstand zu stark ab, deutet das auf einen Isolationsfehler hin, bevor eine gefährliche Berührspannung entstehen kann."
+    },
+    {
+      "id": "motor-11",
+      "category": "Motor",
+      "question": "Warum wird ein Ventilspiel bei mechanisch betätigten Ventilen benötigt?",
+      "options": [
+        "Es verringert den Kraftstoffverbrauch im Leerlauf",
+        "Es gleicht die Wärmeausdehnung der Bauteile im Betrieb aus",
+        "Es erhöht dauerhaft die maximale Motordrehzahl",
+        "Es ersetzt die Funktion der Ventilfeder komplett"
+      ],
+      "correct": 1,
+      "answer": "Bauteile im Ventiltrieb dehnen sich bei Erwärmung aus. Ein definiertes Ventilspiel im kalten Zustand stellt sicher, dass die Ventile im warmen Betrieb trotzdem vollständig schließen können."
+    },
+    {
+      "id": "motor-12",
+      "category": "Motor",
+      "question": "Was unterscheidet ein Wastegate-Turbolader von einem Turbolader mit variabler Turbinengeometrie (VTG)?",
+      "options": [
+        "Beide Bauarten regeln den Ladedruck dabei auf völlig identische Weise",
+        "VTG kommt konstruktionsbedingt ausschließlich bei Ottomotoren zum Einsatz",
+        "VTG verstellt Leitschaufeln, das Wastegate leitet Abgas an der Turbine vorbei",
+        "Das Wastegate verstellt aktiv die Leitschaufeln der Turbine im Betrieb"
+      ],
+      "correct": 2,
+      "answer": "Beim Wastegate-Lader wird überschüssiges Abgas über ein Bypassventil an der Turbine vorbeigeleitet, um den Ladedruck zu begrenzen. Bei der VTG verstellen bewegliche Leitschaufeln den Anströmwinkel der Turbine und passen so den Ladedruck über einen weiten Drehzahlbereich an."
+    },
+    {
+      "id": "motor-13",
+      "category": "Motor",
+      "question": "Was versteht man unter 'Downsizing' bei modernen Verbrennungsmotoren?",
+      "options": [
+        "Sämtliche Zylinder werden bei niedriger Last dauerhaft abgeschaltet",
+        "Der Motor wird ausschließlich für den Rennsport verkleinert",
+        "Kleinerer Hubraum mit Aufladung ersetzt größeren Saugmotor bei ähnlicher Leistung",
+        "Der Hubraum wird bei gleichbleibender Zylinderzahl deutlich vergrößert"
+      ],
+      "correct": 2,
+      "answer": "Downsizing bedeutet, den Hubraum bei gleichzeitiger Aufladung (meist Turbo) zu verkleinern, um bei ähnlicher oder höherer Leistung Gewicht, innere Reibung und Verbrauch zu reduzieren."
+    },
+    {
+      "id": "motor-14",
+      "category": "Motor",
+      "question": "Wofür steht die SAE-Klassifizierung eines Motoröls wie z. B. '5W-30'?",
+      "options": [
+        "Sie gibt ausschließlich das Herstellungsjahr des Motoröls an",
+        "Sie beschreibt die Viskosität des Öls bei Kälte und im Betrieb",
+        "Sie beschreibt dabei die enthaltene Additivmenge in Prozent",
+        "Sie gibt die maximale Laufleistung bis zum nächsten Ölwechsel an"
+      ],
+      "correct": 1,
+      "answer": "Die Zahl vor dem W beschreibt das Kälteverhalten (Fließfähigkeit bei niedrigen Temperaturen), die Zahl nach dem W die Viskosität bei Betriebstemperatur. '5W-30' bleibt bei Kälte dünnflüssiger als z. B. '15W-40'."
+    },
+    {
+      "id": "motor-15",
+      "category": "Motor",
+      "question": "Welchen Vorteil bietet ein Zahnriemen gegenüber einer Steuerkette im Ventiltrieb, welchen Nachteil hat er?",
+      "options": [
+        "Er überträgt spürbar höhere Kräfte als eine vergleichbare Steuerkette",
+        "Deutlich langlebiger als eine Kette und wartungsfrei über die gesamte Lebensdauer",
+        "Leiser im Betrieb, muss aber nach vorgeschriebenem Intervall gewechselt werden",
+        "Er benötigt im Gegensatz zur Kette keinerlei Spannvorrichtung"
+      ],
+      "correct": 2,
+      "answer": "Ein Zahnriemen läuft leiser und leichter als eine Steuerkette, unterliegt aber Verschleiß und Alterung und muss deshalb nach einem vom Hersteller vorgegebenen Intervall gewechselt werden, um einen Riemenriss zu vermeiden."
+    },
+    {
+      "id": "motor-16",
+      "category": "Motor",
+      "question": "Wie verändert sich bei gleichbleibendem Hubraum das Drehmoment, wenn das Verdichtungsverhältnis eines Ottomotors erhöht wird?",
+      "options": [
+        "Es steigt tendenziell durch die effizientere Verbrennung des Gemischs",
+        "Es bleibt davon in jedem Fall vollkommen unbeeinflusst",
+        "Es hängt ausschließlich vom Reifendruck des Fahrzeugs ab",
+        "Es sinkt dabei immer unabhängig von anderen Einflüssen"
+      ],
+      "correct": 0,
+      "answer": "Eine höhere Verdichtung verbessert grundsätzlich den thermischen Wirkungsgrad der Verbrennung, wodurch bei gleicher Kraftstoffmenge tendenziell mehr Drehmoment erzeugt wird – begrenzt durch die Klopfneigung des Kraftstoffs."
+    },
+    {
+      "id": "motor-17",
+      "category": "Motor",
+      "question": "Wie werden Pleuellager und Kurbelwellenlager im laufenden Motor hauptsächlich geschmiert?",
+      "options": [
+        "Durch direktes Einspritzen von Kraftstoff auf die Lagerstellen",
+        "Sie benötigen im normalen Fahrbetrieb keinerlei Schmierung",
+        "Durch einen hydrodynamischen Schmierfilm aus unter Druck stehendem Motoröl",
+        "Durch eine dauerhafte Fettfüllung, die beim Zusammenbau eingebracht wird"
+      ],
+      "correct": 2,
+      "answer": "Die Ölpumpe drückt Motoröl durch Bohrungen in Kurbelwelle und Pleuel zu den Gleitlagern, wo sich ein tragender hydrodynamischer Schmierfilm aufbaut, der Metall-auf-Metall-Kontakt verhindert."
+    },
+    {
+      "id": "motor-18",
+      "category": "Motor",
+      "question": "Was passiert bei einer sogenannten 'Ventilüberschneidung' im Arbeitsspiel eines Verbrennungsmotors?",
+      "options": [
+        "Ein- und Auslassventil sind kurzzeitig gleichzeitig leicht geöffnet",
+        "Die Ventile werden für diesen Vorgang komplett ausgebaut",
+        "Das Einlassventil öffnet dabei doppelt so weit wie üblich",
+        "Beide Ventile eines Zylinders bleiben während des gesamten Takts geschlossen"
+      ],
+      "correct": 0,
+      "answer": "Um den Kreislauf am Ende des Ausstoßtakts und Beginn des Ansaugtakts optimal zu nutzen, sind Ein- und Auslassventil kurzzeitig gleichzeitig geöffnet ('überschneiden' sich), was den Gaswechsel verbessert."
+    },
+    {
+      "id": "motor-19",
+      "category": "Motor",
+      "question": "Welche Funktion hat ein Ladeluftkühler bei einem aufgeladenen Motor?",
+      "options": [
+        "Er kühlt ausschließlich das zirkulierende Motoröl im gesamten Kreislauf",
+        "Er kühlt direkt die heißen Abgase nach Verlassen der Zylinder",
+        "Er kühlt gezielt die Bremsflüssigkeit bei starker Beanspruchung ab",
+        "Er kühlt die durch Verdichtung erwärmte Ansaugluft vor den Zylindern"
+      ],
+      "correct": 3,
+      "answer": "Durch die Verdichtung im Turbolader erwärmt sich die angesaugte Luft und dehnt sich aus. Der Ladeluftkühler kühlt sie wieder ab, wodurch die Luft dichter wird und mehr Sauerstoffmasse in die Zylinder gelangt."
+    },
+    {
+      "id": "motor-20",
+      "category": "Motor",
+      "question": "Wie wird der Hubraum eines Verbrennungsmotors grundsätzlich berechnet?",
+      "options": [
+        "Kolbenhub mal Zylinderquerschnittsfläche mal Anzahl der Zylinder",
+        "Motorleistung in kW multipliziert mit der maximalen Motordrehzahl",
+        "Zylinderdurchmesser geteilt durch die Anzahl der vorhandenen Zylinder",
+        "Verdichtungsverhältnis multipliziert mit dem gemessenen Zünddruck"
+      ],
+      "correct": 0,
+      "answer": "Der Hubraum eines Zylinders ergibt sich aus der Kolbenfläche multipliziert mit dem Kolbenhub; multipliziert mit der Zylinderzahl erhält man den gesamten Hubraum des Motors."
+    },
+    {
+      "id": "mm-11",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was ist der wesentliche Unterschied zwischen einer Sprung-Lambdasonde und einer Breitband-Lambdasonde?",
+      "options": [
+        "Breitbandsonden werden ausschließlich vor dem Katalysator verbaut",
+        "Sprungsonden benötigen im Gegensatz zur Breitbandsonde keine Beheizung",
+        "Die Sprungsonde liefert generell ein deutlich präziseres Dauersignal",
+        "Die Breitbandsonde liefert ein kontinuierliches Signal auch abseits von Lambda 1"
+      ],
+      "correct": 3,
+      "answer": "Die Sprungsonde liefert nur ein sprunghaftes Signal um Lambda 1 herum (fett/mager), während die Breitbandsonde den tatsächlichen Lambda-Wert über einen weiten Bereich kontinuierlich und präzise misst – wichtig z. B. für Mager- oder Volllastanreicherung."
+    },
+    {
+      "id": "mm-12",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Welche Aufgabe hat ein NOx-Speicherkatalysator (NSC), im Unterschied zum SCR-System?",
+      "options": [
+        "Er filtert dabei ausschließlich Rußpartikel aus dem Abgasstrom",
+        "Er benötigt dafür zwingend eine kontinuierliche Zudosierung von AdBlue",
+        "Er speichert Stickoxide zwischenzeitlich und regeneriert sich periodisch",
+        "Er arbeitet nur bei sehr hohen Abgastemperaturen über 800 Grad"
+      ],
+      "correct": 2,
+      "answer": "Der NOx-Speicherkat bindet Stickoxide im mageren Betrieb chemisch an sich und wird in kurzen fetten Betriebsphasen wieder regeneriert – ohne den bei SCR nötigen AdBlue-Verbrauch, dafür mit anderen Regenerationsanforderungen."
+    },
+    {
+      "id": "mm-13",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was unterscheidet einen Luftmassenmesser (HFM) grundsätzlich von einem Saugrohrdrucksensor (MAP-Sensor) zur Lasterfassung?",
+      "options": [
+        "Beide Sensoren messen grundsätzlich exakt dieselbe physikalische Größe",
+        "Der HFM wird ausschließlich bei Dieselmotoren ohne Turbolader eingesetzt",
+        "Der MAP-Sensor misst direkt die angesaugte Luftmasse in Gramm",
+        "Der HFM misst die tatsächlich angesaugte Luftmasse direkt im Ansaugtrakt"
+      ],
+      "correct": 3,
+      "answer": "Der Luftmassenmesser (Heißfilm-Luftmassenmesser) misst direkt die angesaugte Luftmasse. Der Saugrohrdrucksensor erfasst stattdessen den Unterdruck im Saugrohr, aus dem die Last indirekt berechnet wird (Drucksensor-Prinzip)."
+    },
+    {
+      "id": "mm-14",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wofür wird ein Benzin-Partikelfilter (GPF) bei modernen Ottomotoren mit Direkteinspritzung benötigt?",
+      "options": [
+        "Er filtert ausschließlich Stickoxide aus dem heißen Abgasstrom",
+        "Er ersetzt vollständig den bisherigen Dreiwege-Katalysator im System",
+        "Er filtert die bei der Direkteinspritzung entstehenden Rußpartikel aus dem Abgas",
+        "Er wird nur bei Fahrzeugen mit Turbodiesel-Motor verbaut"
+      ],
+      "correct": 2,
+      "answer": "Bei der Benzin-Direkteinspritzung kann durch lokal fette Gemischzonen mehr Ruß entstehen als bei der Saugrohreinspritzung. Der Benzinpartikelfilter filtert diese Partikel zusätzlich zum Dreiwegekatalysator aus dem Abgas."
+    },
+    {
+      "id": "mm-15",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was bewirkt eine zu geringe Oktanzahl (ROZ) des verwendeten Kraftstoffs bei einem hochverdichteten Ottomotor?",
+      "options": [
+        "Es hat auf den Motorbetrieb dabei grundsätzlich keinerlei Einfluss",
+        "Die Leistung des Motors steigt dadurch merklich und dauerhaft an",
+        "Die Klopfneigung steigt, der Zündzeitpunkt muss nach spät verstellt werden",
+        "Der Kraftstoffverbrauch sinkt dadurch dabei deutlich und spürbar ab"
+      ],
+      "correct": 2,
+      "answer": "Eine zu niedrige Oktanzahl erhöht die Klopfneigung, da der Kraftstoff der Verdichtung nicht ausreichend standhält. Das Steuergerät erkennt dies über den Klopfsensor und verstellt den Zündzeitpunkt nach spät, was Leistung und Wirkungsgrad verschlechtert."
+    },
+    {
+      "id": "mm-16",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Wie ist die Lambdaregelung im Motorsteuergerät grundsätzlich aufgebaut?",
+      "options": [
+        "Sie arbeitet ausschließlich als reine Vorsteuerung ohne jede Sensor-Rückmeldung",
+        "Eine berechnete Vorsteuerung wird durch die Lambdasonden-Rückmeldung feinjustiert",
+        "Sie basiert ausschließlich auf der Rückmeldung des Klopfsensors",
+        "Sie wird ausschließlich über die Motortemperatur ohne Sonde geregelt"
+      ],
+      "correct": 1,
+      "answer": "Das Steuergerät berechnet zunächst über Kennfelder eine vorgesteuerte Einspritzmenge und korrigiert diese anschließend über das Rückmeldesignal der Lambdasonde, um möglichst nah am optimalen Verbrennungsverhältnis zu bleiben."
+    },
+    {
+      "id": "mm-17",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Welches Problem kann bei Benzin-Direkteinspritzern im Bereich der Einlassventile im Vergleich zur Saugrohreinspritzung verstärkt auftreten?",
+      "options": [
+        "Eine dauerhaft zu niedrige Kühlmitteltemperatur im Motor",
+        "Ein spürbar sinkender Öldruck im gesamten Schmierkreislauf",
+        "Ablagerungen an den Einlassventilen, da kein Kraftstoff mehr darüberspült",
+        "Ein deutlich höherer Verschleiß ausschließlich an der Zündkerze"
+      ],
+      "correct": 2,
+      "answer": "Bei der Saugrohreinspritzung spült der Kraftstoff die Einlassventile mit und hält sie sauber. Bei der Direkteinspritzung entfällt dieser Effekt, wodurch sich über die Zeit verstärkt Ablagerungen an den Ventilen bilden können."
+    },
+    {
+      "id": "mm-18",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Was regelt im Wesentlichen die Euro-Abgasnormen für Kraftfahrzeuge in der EU?",
+      "options": [
+        "Ausschließlich die Farbwahl bei Neuzulassungen von Fahrzeugen",
+        "Ausschließlich die maximal zulässige Höchstgeschwindigkeit",
+        "Ausschließlich die Größe der verbauten Bremsscheiben",
+        "Grenzwerte für zulässige Schadstoffemissionen von Fahrzeugen"
+      ],
+      "correct": 3,
+      "answer": "Die Euro-Abgasnormen legen stufenweise verschärfte Grenzwerte für Schadstoffe wie CO, HC, NOx und Partikel fest, die neu zugelassene Fahrzeuge einhalten müssen."
+    },
+    {
+      "id": "mm-19",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Warum wird bei vielen aufgeladenen Ottomotoren im Volllastbereich das Gemisch bewusst angefettet?",
+      "options": [
+        "Angefettetes Gemisch verringert grundsätzlich den Kraftstoffverbrauch",
+        "Ein fettes Gemisch senkt dabei zuverlässig die Abgastemperatur auf null",
+        "Der zusätzliche Kraftstoff kühlt Brennraum und Abgasanlage vor Überhitzung",
+        "Es wird ausschließlich zur Reinigung des Katalysators eingesetzt"
+      ],
+      "correct": 2,
+      "answer": "Bei hoher Last und hohen Abgastemperaturen wird zusätzlicher Kraftstoff eingespritzt, der durch seine Verdampfungskühlung Brennraum, Turbine und Katalysator vor thermischer Überlastung schützt – auf Kosten eines höheren Verbrauchs."
+    },
+    {
+      "id": "mm-20",
+      "category": "Motormanagement & Abgasnachbehandlung",
+      "question": "Welche Aufgabe hat der Ladedrucksensor im Zusammenspiel mit dem Wastegate eines Turbomotors?",
+      "options": [
+        "Er öffnet und schließt das Wastegate rein mechanisch ohne Steuergerät",
+        "Er misst ausschließlich die Temperatur des Motoröls im Kreislauf",
+        "Er ersetzt vollständig die Funktion des Luftmassenmessers",
+        "Er liefert dem Steuergerät den Ist-Ladedruck zur Regelung des Wastegates"
+      ],
+      "correct": 3,
+      "answer": "Der Ladedrucksensor meldet dem Steuergerät den aktuellen Ladedruck im Saugrohr. Das Steuergerät vergleicht diesen mit dem Soll-Wert und steuert das Wastegate entsprechend an, um den Ladedruck im zulässigen Bereich zu halten."
+    },
+    {
+      "id": "kraft-11",
+      "category": "Kraftübertragung",
+      "question": "Was ist ein wesentlicher Unterschied zwischen einer trockenen Einscheibenkupplung und einer nasslaufenden Lamellenkupplung?",
+      "options": [
+        "Die Lamellenkupplung kommt ausschließlich bei Fahrrädern zum Einsatz",
+        "Beide Bauarten übertragen das Drehmoment auf identische Weise",
+        "Die Einscheibenkupplung läuft grundsätzlich dauerhaft in einem Ölbad",
+        "Die Lamellenkupplung läuft in Öl und verträgt dadurch mehr Wärme und Schlupf"
+      ],
+      "correct": 3,
+      "answer": "Die nasslaufende Lamellenkupplung wird von Öl umspült und gekühlt, wodurch sie mehr Wärme und Schlupfphasen verträgt als die trockene Einscheibenkupplung – genutzt z. B. in Doppelkupplungsgetrieben."
+    },
+    {
+      "id": "kraft-12",
+      "category": "Kraftübertragung",
+      "question": "Wie funktioniert ein stufenloses Getriebe (CVT) im Grundprinzip?",
+      "options": [
+        "Verstellbare Kegelscheiben mit Umschlingungsmittel ändern die Übersetzung stufenlos",
+        "Es überträgt das Drehmoment ausschließlich über Zahnräder mit festen Stufen",
+        "Es besitzt konstruktionsbedingt keinerlei bewegliche Bauteile zur Übersetzung",
+        "Es schaltet dabei zwischen exakt zwei festen mechanischen Gängen um"
+      ],
+      "correct": 0,
+      "answer": "Bei einem CVT-Getriebe verändern zwei verstellbare Kegelscheibenpaare, verbunden über Kette oder Schubgliederband, kontinuierlich ihren wirksamen Durchmesser und damit die Übersetzung – ohne feste Gangstufen."
+    },
+    {
+      "id": "kraft-13",
+      "category": "Kraftübertragung",
+      "question": "Welche Funktion hat ein Sperrdifferenzial gegenüber einem offenen Differenzial?",
+      "options": [
+        "Es wird konstruktionsbedingt ausschließlich bei Frontantrieb-Kleinwagen verbaut",
+        "Es ersetzt bei Bedarf vollständig die Funktion beider Antriebswellen",
+        "Es begrenzt den Drehzahlunterschied und verbessert die Traktion bei Schlupf",
+        "Es erlaubt einem durchdrehenden Rad dabei theoretisch unbegrenzte Drehzahl"
+      ],
+      "correct": 2,
+      "answer": "Ein offenes Differenzial lässt bei Traktionsverlust eines Rades die gesamte Kraft dorthin abfließen. Ein Sperrdifferenzial begrenzt diesen Drehzahlunterschied und leitet weiterhin Kraft auch zum Rad mit mehr Haftung."
+    },
+    {
+      "id": "kraft-14",
+      "category": "Kraftübertragung",
+      "question": "Wozu dient die Achsübersetzung im Hinterachsgetriebe (Achsantrieb)?",
+      "options": [
+        "Sie übersetzt die Getriebeausgangsdrehzahl auf die tatsächliche Raddrehzahl",
+        "Sie dient ausschließlich der Kühlung des Achsgetriebeöls",
+        "Sie ersetzt dabei vollständig die Übersetzung des Schaltgetriebes",
+        "Sie gleicht ausschließlich unterschiedliche Reifendurchmesser aus"
+      ],
+      "correct": 0,
+      "answer": "Die Achsübersetzung im Achsgetriebe setzt die vom Getriebe kommende Drehzahl in die endgültige Raddrehzahl um und wird zusätzlich zur Gangübersetzung des Schaltgetriebes wirksam."
+    },
+    {
+      "id": "kraft-15",
+      "category": "Kraftübertragung",
+      "question": "Wie hängt die Antriebsschlupfregelung (ASR) mit dem Differenzial zusammen?",
+      "options": [
+        "Sie bremst ein durchdrehendes Rad, damit mehr Kraft zum haftenden Rad fließt",
+        "Sie ersetzt bei modernen Fahrzeugen komplett das mechanische Differenzial",
+        "Sie hat auf die Kraftverteilung über das Differenzial dabei keinen Einfluss",
+        "Sie sperrt dabei dauerhaft und vollständig jedes vorhandene Differenzial"
+      ],
+      "correct": 0,
+      "answer": "Dreht ein Rad durch, bremst die ASR dieses Rad gezielt ab. Da ein offenes Differenzial die Kraft zum Rad mit weniger Widerstand lenkt, sorgt das Abbremsen dafür, dass mehr Antriebskraft zum Rad mit besserer Haftung geleitet wird."
+    },
+    {
+      "id": "kraft-16",
+      "category": "Kraftübertragung",
+      "question": "Woran lässt sich der Verschleiß einer mechanisch betätigten Kupplung häufig ohne Ausbau erkennen?",
+      "options": [
+        "Ausschließlich am aktuellen Kilometerstand des Fahrzeugs",
+        "Ausschließlich an der Farbe der verwendeten Bremsflüssigkeit",
+        "Ausschließlich am Luftdruck der montierten Reifen",
+        "Am veränderten Ausrückweg bzw. Anschlagpunkt des Kupplungspedals"
+      ],
+      "correct": 3,
+      "answer": "Mit zunehmendem Belagverschleiß verschiebt sich häufig der Punkt, an dem die Kupplung greift, näher zum oberen Pedalbereich – ein veränderter Ausrückweg kann ein Hinweis auf Verschleiß sein."
+    },
+    {
+      "id": "kraft-17",
+      "category": "Kraftübertragung",
+      "question": "Was ist ein automatisiertes Schaltgetriebe (ASG) im Vergleich zu einem klassischen Handschaltgetriebe?",
+      "options": [
+        "Ein Getriebe, das dabei grundsätzlich ganz ohne jede Kupplung auskommt",
+        "Ein Getriebe mit zwei komplett unabhängigen Teilgetrieben wie beim DKG",
+        "Ein normales Getriebe, dessen Kupplung und Schaltung ein Aktuator übernimmt",
+        "Ein rein hydrodynamisches Getriebe ganz ohne jegliche Zahnradstufen"
+      ],
+      "correct": 2,
+      "answer": "Beim automatisierten Schaltgetriebe ist der mechanische Aufbau im Kern wie bei einem Handschaltgetriebe, Kupplungsbetätigung und Gangwechsel übernimmt jedoch ein Aktuator, gesteuert vom Getriebesteuergerät."
+    },
+    {
+      "id": "kraft-18",
+      "category": "Kraftübertragung",
+      "question": "Welche Aufgabe hat das Verteilergetriebe bei einem Fahrzeug mit zuschaltbarem oder permanentem Allradantrieb?",
+      "options": [
+        "Es dient ausschließlich der Kühlung des Hauptgetriebeöls",
+        "Es ersetzt dabei vollständig die Funktion beider Achsdifferenziale",
+        "Es wird ausschließlich bei reinen Fronttriebler-Fahrzeugen verbaut",
+        "Es verteilt das Drehmoment vom Hauptgetriebe auf Vorder- und Hinterachse"
+      ],
+      "correct": 3,
+      "answer": "Das Verteilergetriebe sitzt zwischen Hauptgetriebe und den beiden Achsen und teilt das Antriebsmoment – fest oder variabel – zwischen Vorder- und Hinterachse auf."
+    },
+    {
+      "id": "kraft-19",
+      "category": "Kraftübertragung",
+      "question": "Wozu dient die Synchronisierung in einem klassischen Handschaltgetriebe?",
+      "options": [
+        "Sie kühlt ausschließlich das im Getriebe zirkulierende Öl",
+        "Sie sperrt dauerhaft das Einlegen bestimmter, einzelner Gänge",
+        "Sie gleicht vor dem Einlegen eines Gangs die Drehzahlen der Zahnräder an",
+        "Sie ersetzt dabei vollständig die Funktion der Hauptkupplung"
+      ],
+      "correct": 2,
+      "answer": "Beim Schalten müssen die Drehzahlen des einzulegenden Gangrads und der Getriebewelle angeglichen werden. Die Synchronisierung übernimmt diesen Drehzahlausgleich über Reibkonen, damit sich der Gang ruckfrei und ohne Krachen einlegen lässt."
+    },
+    {
+      "id": "kraft-20",
+      "category": "Kraftübertragung",
+      "question": "Wozu dient ein Mittellager bei einer mehrteiligen Gelenkwelle (Kardanwelle)?",
+      "options": [
+        "Es dient ausschließlich als zusätzlicher Massepunkt fürs Bordnetz",
+        "Es überträgt selbst kein Drehmoment und hat nur optische Funktion",
+        "Es stützt die geteilte Welle zusätzlich ab und dämpft Biegeschwingungen",
+        "Es ersetzt dabei vollständig eines der beiden Kreuzgelenke"
+      ],
+      "correct": 2,
+      "answer": "Bei langen, geteilten Gelenkwellen stützt ein zusätzliches Mittellager die Welle in der Fahrzeugmitte ab, reduziert Durchbiegung und dämpft Biegeschwingungen, die sonst zu Vibrationen führen würden."
+    },
+    {
+      "id": "fahrwerk-11",
+      "category": "Fahrwerk",
+      "question": "Wie verändert sich der Radsturz typischerweise beim Einfedern einer Achse mit Doppelquerlenker-Aufhängung?",
+      "options": [
+        "Er hat mit der Einfederung des Fahrzeugs grundsätzlich nichts zu tun",
+        "Er bleibt dabei konstruktionsbedingt in jedem Fahrzustand konstant",
+        "Er verändert sich abhängig von der Kinematik der Querlenkerlängen",
+        "Er wird ausschließlich manuell an der Werkstatt neu eingestellt"
+      ],
+      "correct": 2,
+      "answer": "Bei Mehrlenkerachsen wie der Doppelquerlenkerachse ändert sich der Sturz abhängig von der Geometrie und Länge der Lenker während des Ein- und Ausfederns – gezielt von den Konstrukteuren zur Verbesserung des Fahrverhaltens ausgelegt."
+    },
+    {
+      "id": "fahrwerk-12",
+      "category": "Fahrwerk",
+      "question": "Welche Aufgabe hat ein Stabilisator (Wankstabilisator) im Fahrwerk?",
+      "options": [
+        "Er dient ausschließlich der Übertragung des Antriebsmoments",
+        "Er erhöht gezielt den Bodenabstand des gesamten Fahrzeugs",
+        "Er ersetzt bei Bedarf vollständig die vorhandenen Tragfedern",
+        "Er verringert die Wankneigung der Karosserie in Kurven"
+      ],
+      "correct": 3,
+      "answer": "Der Stabilisator verbindet die Radaufhängungen einer Achse elastisch miteinander. Federt eine Seite in der Kurve stärker ein als die andere, wirkt er dieser Wankbewegung entgegen und stabilisiert die Karosserie."
+    },
+    {
+      "id": "fahrwerk-13",
+      "category": "Fahrwerk",
+      "question": "Was ermöglicht eine aktive Luftfederung mit Niveauregulierung zusätzlich zu einer klassischen Stahlfeder?",
+      "options": [
+        "Sie ersetzt bei Bedarf vollständig die vorhandenen Stoßdämpfer",
+        "Sie kann grundsätzlich nur eine einzige feste Fahrzeughöhe erreichen",
+        "Sie benötigt dabei keinerlei Kompressor oder Druckluftversorgung",
+        "Das Fahrzeugniveau lässt sich last- oder geschwindigkeitsabhängig anpassen"
+      ],
+      "correct": 3,
+      "answer": "Über einen Kompressor und Ventile lässt sich der Luftdruck in den Federbälgen verändern, wodurch sich das Fahrzeugniveau abhängig von Beladung oder Geschwindigkeit automatisch anpassen lässt."
+    },
+    {
+      "id": "fahrwerk-14",
+      "category": "Fahrwerk",
+      "question": "Was kennzeichnet eine Verbundlenkerachse als Hinterachskonstruktion?",
+      "options": [
+        "Jedes Rad wird komplett unabhängig über vier separate Lenker geführt",
+        "Sie benötigt zwingend eine aktive elektronische Luftfederung",
+        "Sie kommt konstruktionsbedingt ausschließlich an der Vorderachse vor",
+        "Zwei Längslenker sind über eine torsionsweiche Querverbindung verbunden"
+      ],
+      "correct": 3,
+      "answer": "Bei der Verbundlenkerachse sind zwei Längslenker über einen torsionsweichen Querträger verbunden, der bei ungleichem Einfedern eine gewisse Verdrehung zulässt und so als vereinfachte Stabilisierung wirkt."
+    },
+    {
+      "id": "fahrwerk-15",
+      "category": "Fahrwerk",
+      "question": "Welchen Vorteil bietet eine Mehrlenkerachse gegenüber einer einfachen Verbundlenkerachse?",
+      "options": [
+        "Sie benötigt im Gegensatz dazu keinerlei Achsvermessung mehr",
+        "Sie kommt dabei grundsätzlich vollständig ohne Stoßdämpfer aus",
+        "Radsturz und Spur lassen sich unabhängiger und präziser über die Lenker steuern",
+        "Sie ist prinzipbedingt immer spürbar leichter als jede Verbundlenkerachse"
+      ],
+      "correct": 2,
+      "answer": "Durch mehrere einzelne Lenker pro Rad lassen sich Sturz- und Spurverhalten beim Einfedern gezielter auslegen, was Fahrkomfort und Fahrdynamik gegenüber der einfacheren Verbundlenkerachse verbessern kann."
+    },
+    {
+      "id": "fahrwerk-16",
+      "category": "Fahrwerk",
+      "question": "Was bedeutet die Reifenbezeichnung '205/55 R16' auf der Reifenflanke?",
+      "options": [
+        "205 mm Breite, 55 % Höhen-Breiten-Verhältnis, Radial, 16 Zoll Felge",
+        "205 kg maximale Radlast bei einer Reifenbreite von 16 Zentimetern",
+        "205 km/h Höchstgeschwindigkeit bei einem Felgendurchmesser von 55 Zoll",
+        "16 mm Profiltiefe bei einer Reifenbreite von 205 Zentimetern"
+      ],
+      "correct": 0,
+      "answer": "205 steht für die Reifenbreite in Millimetern, 55 für das Verhältnis von Reifenhöhe zu -breite in Prozent, R für Radialbauweise, und 16 für den Felgendurchmesser in Zoll."
+    },
+    {
+      "id": "fahrwerk-17",
+      "category": "Fahrwerk",
+      "question": "Was beschreibt die Spreizung (Lenkachsneigung) im Unterschied zum Nachlaufwinkel?",
+      "options": [
+        "Die Neigung der Lenkachse nach innen, von vorne betrachtet",
+        "Den horizontalen Abstand der beiden Vorderräder zueinander",
+        "Die Neigung der Lenkachse in Fahrtrichtung, von der Seite betrachtet",
+        "Den Unterschied der Raddrehzahlen bei einer engen Kurvenfahrt"
+      ],
+      "correct": 0,
+      "answer": "Die Spreizung ist die Neigung der Lenkachse zur Senkrechten, von vorne betrachtet – im Gegensatz zum Nachlaufwinkel, der die Neigung von der Seite (in Fahrtrichtung) beschreibt. Beide beeinflussen zusammen den Lenkrollradius."
+    },
+    {
+      "id": "fahrwerk-18",
+      "category": "Fahrwerk",
+      "question": "Wodurch entsteht beim starken Bremsen das sogenannte 'Bremsnicken' der Karosserie?",
+      "options": [
+        "Ausschließlich durch einen zu geringen Reifendruck an der Hinterachse",
+        "Ausschließlich durch ein defektes ABS-Steuergerät im Fahrzeug",
+        "Ausschließlich durch eine falsch eingestellte Achsvermessung",
+        "Durch dynamische Lastverlagerung nach vorne beim Verzögern des Fahrzeugs"
+      ],
+      "correct": 3,
+      "answer": "Beim Bremsen verlagert sich durch die Massenträgheit ein Teil des Fahrzeuggewichts nach vorne, wodurch die Vorderachse stärker einfedert und die Karosserie sichtbar nach vorne nickt."
+    },
+    {
+      "id": "fahrwerk-19",
+      "category": "Fahrwerk",
+      "question": "Was ermöglicht eine elektronisch verstellbare (adaptive) Dämpfung gegenüber klassischen Stoßdämpfern?",
+      "options": [
+        "Die Dämpfungskraft lässt sich situationsabhängig in Millisekunden anpassen",
+        "Sie besitzt grundsätzlich keinerlei bewegliche mechanische Bauteile mehr",
+        "Sie funktioniert ausschließlich in Verbindung mit Trommelbremsen",
+        "Sie ersetzt dabei vollständig die vorhandene Tragfeder der Achse"
+      ],
+      "correct": 0,
+      "answer": "Über elektronisch ansteuerbare Ventile lässt sich der Durchfluss der Dämpferflüssigkeit und damit die Dämpfungshärte situationsabhängig sehr schnell verändern – etwa komfortabel auf der Geraden, straffer in Kurven."
+    },
+    {
+      "id": "fahrwerk-20",
+      "category": "Fahrwerk",
+      "question": "Welchen Zweck verfolgt eine Allradlenkung (Vierradlenkung) bei höheren Geschwindigkeiten?",
+      "options": [
+        "Sie schaltet bei hoher Geschwindigkeit automatisch die Vorderachslenkung ab",
+        "Gegenläufiges Mitlenken der Hinterräder verkleinert stets den Wendekreis",
+        "Gleichsinniges Mitlenken der Hinterräder verbessert die Fahrstabilität",
+        "Sie hat bei höherer Geschwindigkeit auf das Fahrverhalten keinerlei Einfluss"
+      ],
+      "correct": 2,
+      "answer": "Bei höherer Geschwindigkeit lenken die Hinterräder meist leicht gleichsinnig zu den Vorderrädern mit, was die Fahrstabilität beim Spurwechsel verbessert. Bei niedriger Geschwindigkeit lenken sie oft gegensinnig für einen kleineren Wendekreis."
+    },
+    {
+      "id": "bremse-11",
+      "category": "Bremsanlage",
+      "question": "Welche Aufgabe hat ein automatisch-lastabhängiger Bremskraftregler (ALB)?",
+      "options": [
+        "Er passt die Bremskraft an der Hinterachse an die aktuelle Beladung an",
+        "Er wird ausschließlich bei unbeladenen Motorrädern eingesetzt",
+        "Er regelt ausschließlich die Bremskraft an der Vorderachse",
+        "Er ersetzt dabei vollständig den vorhandenen Bremskraftverstärker"
+      ],
+      "correct": 0,
+      "answer": "Bei stärker beladenem Fahrzeug verändert sich die Achslastverteilung. Der ALB passt die Bremskraft an der Hinterachse abhängig von der tatsächlichen Beladung an, um ein vorzeitiges Blockieren zu vermeiden."
+    },
+    {
+      "id": "bremse-12",
+      "category": "Bremsanlage",
+      "question": "Was unterscheidet einen Festsattel von einem Schwimmsattel bei der Scheibenbremse?",
+      "options": [
+        "Beide Bauarten sind hinsichtlich ihres Aufbaus vollständig identisch",
+        "Der Schwimmsattel besitzt grundsätzlich keine beweglichen Kolben",
+        "Der Festsattel wird ausschließlich bei Trommelbremsen eingesetzt",
+        "Der Festsattel hat Kolben auf beiden Seiten, der Schwimmsattel nur auf einer"
+      ],
+      "correct": 3,
+      "answer": "Beim Festsattel drücken Kolben von beiden Seiten direkt auf die Beläge. Beim Schwimmsattel presst ein Kolben nur von einer Seite, während sich der gesamte Sattel verschiebt und den gegenüberliegenden Belag mitzieht."
+    },
+    {
+      "id": "bremse-13",
+      "category": "Bremsanlage",
+      "question": "Wofür werden innenbelüftete Bremsscheiben im Vergleich zu massiven Vollscheiben eingesetzt?",
+      "options": [
+        "Weil sie grundsätzlich einen deutlich geringeren Anschaffungspreis haben",
+        "Zur besseren Wärmeabfuhr und geringeren Neigung zum Fading bei starker Belastung",
+        "Um dadurch spürbar Gewicht an der Hinterachse zu erhöhen",
+        "Ausschließlich aus optischen Gründen bei Fahrzeugen mit Fest-Sattelbremse"
+      ],
+      "correct": 1,
+      "answer": "Innenbelüftete Scheiben besitzen innenliegende Kanäle, durch die Luft strömen kann. Das verbessert die Wärmeabfuhr und verringert die Gefahr des Fadings (Nachlassen der Bremswirkung durch Überhitzung) bei starker Beanspruchung."
+    },
+    {
+      "id": "bremse-14",
+      "category": "Bremsanlage",
+      "question": "Wie arbeiten hydraulische Betriebsbremse und Rekuperationsbremse bei einem Elektrofahrzeug typischerweise zusammen?",
+      "options": [
+        "Das Steuergerät koordiniert beide Systeme, um die geforderte Verzögerung aufzuteilen",
+        "Beide Systeme arbeiten völlig unabhängig ohne jede gemeinsame Steuerung",
+        "Die hydraulische Bremse wird beim Elektrofahrzeug grundsätzlich komplett weggelassen",
+        "Die Rekuperation übernimmt ausschließlich Notbremsungen bei hoher Geschwindigkeit"
+      ],
+      "correct": 0,
+      "answer": "Ein Bremssteuergerät koordiniert, wie viel der geforderten Verzögerung über die generatorische Bremsung (Rekuperation) und wie viel über die hydraulische Reibbremse erzeugt wird, um Energie zurückzugewinnen und trotzdem sicher zu verzögern."
+    },
+    {
+      "id": "bremse-15",
+      "category": "Bremsanlage",
+      "question": "Was unterscheidet die DOT-Klassen von Bremsflüssigkeit (z. B. DOT 4 gegenüber DOT 3) im Wesentlichen?",
+      "options": [
+        "Niedrigere DOT-Klassen vertragen grundsätzlich höhere Temperaturen",
+        "Die DOT-Klasse beschreibt ausschließlich die Farbe der Bremsflüssigkeit",
+        "Höhere DOT-Klassen sind grundsätzlich nicht hygroskopisch",
+        "Höhere DOT-Klassen haben in der Regel einen höheren Siedepunkt"
+      ],
+      "correct": 3,
+      "answer": "Die DOT-Klassifizierung gibt unter anderem Mindestsiedepunkte vor. Höhere Klassen wie DOT 4 oder DOT 5.1 haben in der Regel einen höheren Siedepunkt als DOT 3 und sind damit besser gegen Dampfblasenbildung geschützt."
+    },
+    {
+      "id": "bremse-16",
+      "category": "Bremsanlage",
+      "question": "Wie funktioniert eine elektrische Feststellbremse (EPB) im Grundprinzip?",
+      "options": [
+        "Sie kann grundsätzlich nur bei stehendem Motor betätigt werden",
+        "Sie wird ausschließlich über ein herkömmliches mechanisches Handbremsseil betätigt",
+        "Elektromotoren an den Bremssätteln spannen die Feststellbremse automatisch",
+        "Sie nutzt zum Feststellen ausschließlich den vorhandenen Bremskraftverstärker"
+      ],
+      "correct": 2,
+      "answer": "Bei der elektrischen Feststellbremse spannen kleine Elektromotoren direkt an den Bremssätteln (meist der Hinterachse) die Bremse automatisch, ausgelöst über einen Schalter statt eines mechanischen Handbremshebels."
+    },
+    {
+      "id": "bremse-17",
+      "category": "Bremsanlage",
+      "question": "Welche Funktion hat ein elektrischer Bremsbelagverschleißsensor?",
+      "options": [
+        "Er regelt ausschließlich den Bremsdruck während eines ABS-Eingriffs",
+        "Er meldet dem Fahrer elektronisch, wenn der Belag eine Grenzstärke unterschreitet",
+        "Er verstärkt dabei zusätzlich die vom Fahrer aufgebrachte Pedalkraft",
+        "Er ersetzt vollständig die Funktion des Hauptbremszylinders"
+      ],
+      "correct": 1,
+      "answer": "Ein im oder am Belag eingebetteter Drahtkontakt wird bei zu dünnem Belag vom Bremsvorgang durchgescheuert, wodurch ein Stromkreis unterbrochen wird und das Steuergerät eine Verschleißwarnung im Kombiinstrument anzeigt."
+    },
+    {
+      "id": "bremse-18",
+      "category": "Bremsanlage",
+      "question": "Warum benötigen viele Elektrofahrzeuge einen elektrisch angetriebenen Bremskraftverstärker statt eines klassischen Unterdruck-Verstärkers?",
+      "options": [
+        "Ohne Verbrennungsmotor steht kein natürlicher Ansaugunterdruck zur Verfügung",
+        "Ein Unterdruckverstärker würde bei E-Autos die Reichweite spürbar erhöhen",
+        "Elektrofahrzeuge benötigen grundsätzlich überhaupt keinen Bremskraftverstärker",
+        "Der elektrische Verstärker ist ausschließlich für die Feststellbremse zuständig"
+      ],
+      "correct": 0,
+      "answer": "Der klassische Bremskraftverstärker nutzt den im Saugrohr des Verbrennungsmotors entstehenden Unterdruck. Da dieser bei Elektrofahrzeugen fehlt, wird der nötige Unterdruck bzw. die Verstärkung elektrisch erzeugt, meist über eine eigene Vakuumpumpe oder einen elektromechanischen Verstärker."
+    },
+    {
+      "id": "bremse-19",
+      "category": "Bremsanlage",
+      "question": "Was ist die Aufgabe eines Bremsassistenten (Notbremsassistent)?",
+      "options": [
+        "Er verhindert dabei grundsätzlich jedes Blockieren der Räder komplett eigenständig",
+        "Er erkennt eine Notbremsung am Pedalverhalten und baut sofort vollen Bremsdruck auf",
+        "Er ersetzt bei Bedarf vollständig das vorhandene ABS-System",
+        "Er reduziert bei jeder Bremsung automatisch die eingeleitete Bremskraft"
+      ],
+      "correct": 1,
+      "answer": "Erkennt der Bremsassistent am schnellen, kräftigen Antreten des Bremspedals eine Notbremssituation, baut er selbstständig sofort den maximal möglichen Bremsdruck auf, da viele Fahrer instinktiv nicht fest genug bremsen."
+    },
+    {
+      "id": "bremse-20",
+      "category": "Bremsanlage",
+      "question": "Aus welchen Hauptkomponenten besteht ein typischer ABS-Regelkreis?",
+      "options": [
+        "Raddrehzahlsensoren, Steuergerät und ein hydraulischer Druckmodulator",
+        "Ausschließlich der Hauptbremszylinder ohne jede weitere Elektronik",
+        "Ausschließlich vier unabhängige, rein mechanische Fliehkraftregler",
+        "Ausschließlich die Bremsscheibe sowie der zugehörige Bremssattel"
+      ],
+      "correct": 0,
+      "answer": "Raddrehzahlsensoren liefern die Ist-Werte, das ABS-Steuergerät wertet sie aus und erkennt drohendes Blockieren, der hydraulische Druckmodulator setzt die berechnete Regelung durch gezieltes Auf-, Halten- und Abbauen des Bremsdrucks am jeweiligen Rad um."
+    },
+    {
+      "id": "elektrik-11",
+      "category": "Elektrik & Elektronik",
+      "question": "Was ist ein wesentliches Merkmal der Parallelschaltung mehrerer Widerstände?",
+      "options": [
+        "An allen Widerständen liegt dieselbe Spannung an, der Strom teilt sich auf",
+        "Der Gesamtwiderstand ist dabei immer größer als jeder Einzelwiderstand",
+        "Fällt ein Zweig aus, fließt in keinem der Zweige mehr Strom",
+        "Durch alle Widerstände fließt dabei grundsätzlich derselbe Strom"
+      ],
+      "correct": 0,
+      "answer": "In der Parallelschaltung liegt an jedem Widerstand dieselbe Spannung an, während sich der Gesamtstrom auf die einzelnen Zweige aufteilt. Der Gesamtwiderstand ist dabei stets kleiner als der kleinste Einzelwiderstand."
+    },
+    {
+      "id": "elektrik-12",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie wird die von der Lichtmaschine erzeugte Wechselspannung für das Bordnetz nutzbar gemacht?",
+      "options": [
+        "Das Bordnetz eines Fahrzeugs wird grundsätzlich mit Wechselspannung betrieben",
+        "Ein im Generator integrierter Gleichrichter wandelt sie in Gleichspannung um",
+        "Der Anlasser übernimmt zusätzlich die Funktion der Gleichrichtung",
+        "Die Batterie wandelt die Wechselspannung selbstständig in Gleichspannung um"
+      ],
+      "correct": 1,
+      "answer": "Der Drehstromgenerator erzeugt zunächst Wechselspannung. Eingebaute Dioden (Gleichrichter) wandeln diese in pulsierende Gleichspannung um, die für Batterie und Bordnetz nutzbar ist."
+    },
+    {
+      "id": "elektrik-13",
+      "category": "Elektrik & Elektronik",
+      "question": "Was beschreibt der Innenwiderstand einer Batterie im Zusammenhang mit ihrer Startfähigkeit?",
+      "options": [
+        "Ein hoher Innenwiderstand lässt die Spannung beim hohen Startstrom stark einbrechen",
+        "Der Innenwiderstand hat auf die Startfähigkeit grundsätzlich keinen Einfluss",
+        "Der Innenwiderstand beschreibt ausschließlich die äußeren Abmessungen der Batterie",
+        "Ein hoher Innenwiderstand deutet zuverlässig auf eine neuwertige Batterie hin"
+      ],
+      "correct": 0,
+      "answer": "Mit zunehmendem Alter oder bei Schäden steigt der Innenwiderstand einer Batterie. Beim hohen Startstrom bricht die Klemmenspannung dann stärker ein, was zu Startschwierigkeiten führen kann, selbst wenn die Ruhespannung noch normal erscheint."
+    },
+    {
+      "id": "elektrik-14",
+      "category": "Elektrik & Elektronik",
+      "question": "Was besagt die Kirchhoffsche Knotenregel für elektrische Schaltungen?",
+      "options": [
+        "Der Gesamtwiderstand eines Stromkreises ist stets die Summe aller Einzelwiderstände",
+        "Die Summe der zufließenden Ströme an einem Knoten entspricht der Summe der abfließenden",
+        "An jedem Widerstand in einem Stromkreis liegt grundsätzlich dieselbe Spannung an",
+        "Die Summe aller Spannungen in einer geschlossenen Masche ergibt immer null"
+      ],
+      "correct": 1,
+      "answer": "Die Knotenregel besagt, dass an jedem Verzweigungspunkt (Knoten) eines Stromkreises genauso viel Strom hinein- wie herausfließt – Strom kann an einem Knoten weder entstehen noch verschwinden."
+    },
+    {
+      "id": "elektrik-15",
+      "category": "Elektrik & Elektronik",
+      "question": "Wofür wird Pulsweitenmodulation (PWM) häufig in der Kfz-Elektronik eingesetzt, z. B. bei der Lüfter- oder Lichtsteuerung?",
+      "options": [
+        "Um durch schnelles Ein-/Ausschalten eine mittlere Leistung stufenlos einzustellen",
+        "Um dauerhaft die Versorgungsspannung des Bordnetzes deutlich zu erhöhen",
+        "Um die Kapazität der Starterbatterie messtechnisch zu bestimmen",
+        "Um digitale CAN-Signale in analoge Spannungswerte umzuwandeln"
+      ],
+      "correct": 0,
+      "answer": "Bei PWM wird ein Verbraucher sehr schnell ein- und ausgeschaltet. Über das Verhältnis von Ein- zu Auszeit (Tastverhältnis) lässt sich die effektiv wirksame Leistung stufenlos steuern, etwa die Helligkeit einer Lampe oder Lüfterdrehzahl."
+    },
+    {
+      "id": "elektrik-16",
+      "category": "Elektrik & Elektronik",
+      "question": "Was versteht man unter elektromagnetischer Verträglichkeit (EMV) im Fahrzeug?",
+      "options": [
+        "Die Fähigkeit von Geräten, störungsfrei zu arbeiten und andere nicht zu stören",
+        "Die Beständigkeit von Bauteilen gegenüber Feuchtigkeit und Korrosion",
+        "Die mechanische Festigkeit von Steckverbindern im Bordnetz",
+        "Die maximale Betriebsspannung, die ein Steuergerät kurzzeitig verträgt"
+      ],
+      "correct": 0,
+      "answer": "EMV beschreibt, dass elektrische und elektronische Geräte einerseits selbst ausreichend gegen äußere elektromagnetische Störungen geschützt sind und andererseits ihre Umgebung nicht unzulässig stören."
+    },
+    {
+      "id": "elektrik-17",
+      "category": "Elektrik & Elektronik",
+      "question": "Was passiert grundsätzlich beim 'Flashen' eines Steuergeräts?",
+      "options": [
+        "Das Steuergerät wird dabei komplett durch ein baugleiches neues Bauteil ersetzt",
+        "Es wird ausschließlich die Batteriespannung des Fahrzeugs kurzzeitig erhöht",
+        "Neue Software bzw. ein Datensatz wird in den Speicher des Steuergeräts geschrieben",
+        "Es werden dabei ausschließlich mechanische Bauteile im Motor angepasst"
+      ],
+      "correct": 2,
+      "answer": "Beim Flashen wird über eine Diagnoseschnittstelle eine neue oder aktualisierte Software bzw. ein neuer Parametersatz in den Speicher eines Steuergeräts programmiert, etwa zur Fehlerbehebung oder Funktionserweiterung."
+    },
+    {
+      "id": "elektrik-18",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie verhält sich eine Diode grundsätzlich in Sperr- und in Durchlassrichtung?",
+      "options": [
+        "Sie blockiert den Stromfluss grundsätzlich in beiden Richtungen komplett",
+        "Sie funktioniert ausschließlich bei reiner Wechselspannung, nie bei Gleichspannung",
+        "In Durchlassrichtung lässt sie Strom passieren, in Sperrrichtung blockiert sie ihn weitgehend",
+        "Sie lässt in beiden Richtungen den Strom vollkommen ungehindert passieren"
+      ],
+      "correct": 2,
+      "answer": "Eine Diode lässt Strom nur in einer Richtung (Durchlassrichtung) nahezu ungehindert fließen, in der Gegenrichtung (Sperrrichtung) sperrt sie den Stromfluss weitgehend – genutzt z. B. zur Gleichrichtung im Generator."
+    },
+    {
+      "id": "elektrik-19",
+      "category": "Elektrik & Elektronik",
+      "question": "Was bedeuten die Begriffe 'dominant' und 'rezessiv' bei den Signalpegeln des CAN-Bus?",
+      "options": [
+        "Dominant (logisch 0) setzt sich gegenüber rezessiv (logisch 1) auf dem Bus durch",
+        "Dominant und rezessiv haben mit der eigentlichen Buspriorität nichts zu tun",
+        "Rezessiv beschreibt dabei stets den höchsten möglichen Spannungspegel",
+        "Beide Begriffe beschreiben ausschließlich unterschiedliche Kabelfarben am Bus"
+      ],
+      "correct": 0,
+      "answer": "Senden mehrere Steuergeräte gleichzeitig, setzt sich der dominante Pegel (logisch 0) gegenüber dem rezessiven Pegel (logisch 1) durch. Über diesen Mechanismus wird auch die Priorität von Nachrichten auf dem CAN-Bus geregelt."
+    },
+    {
+      "id": "elektrik-20",
+      "category": "Elektrik & Elektronik",
+      "question": "Warum werden im Kfz-Bordnetz für hohe Ströme (z. B. Anlasserkabel) deutlich dickere Leitungsquerschnitte verwendet als für Signalleitungen?",
+      "options": [
+        "Ein zu geringer Querschnitt würde bei hohem Strom zu starker Erwärmung führen",
+        "Der Leitungsquerschnitt hat auf die Erwärmung keinerlei messbaren Einfluss",
+        "Dickere Leitungen werden ausschließlich aus optischen Gründen verwendet",
+        "Dickere Leitungen leiten dabei grundsätzlich schlechter als sehr dünne Leitungen"
+      ],
+      "correct": 0,
+      "answer": "Der elektrische Widerstand einer Leitung erzeugt bei Stromfluss Wärme, die mit steigendem Strom stark zunimmt. Ein ausreichend großer Leitungsquerschnitt begrenzt diese Erwärmung und den Spannungsabfall, weshalb Starkstromleitungen deutlich dicker ausgeführt werden."
+    },
+    {
+      "id": "bus-11",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wodurch unterscheidet sich der FlexRay-Bus grundsätzlich vom klassischen CAN-Bus?",
+      "options": [
+        "FlexRay überträgt Daten deutlich schneller und mit festen Zeitschlitzen",
+        "FlexRay überträgt dabei grundsätzlich nur ein einziges Signal pro Fahrt",
+        "FlexRay wird ausschließlich für einfache Komfortfunktionen wie Fensterheber genutzt",
+        "FlexRay benötigt im Gegensatz zu CAN keinerlei Zweidrahtleitung"
+      ],
+      "correct": 0,
+      "answer": "FlexRay ermöglicht deutlich höhere Datenraten als klassischer CAN und arbeitet mit festen, deterministischen Zeitschlitzen, was ihn für zeitkritische Anwendungen wie z. B. Fahrwerksregelsysteme geeignet macht."
+    },
+    {
+      "id": "bus-12",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Welche Aufgabe hat ein Gateway-Steuergerät im vernetzten Fahrzeug?",
+      "options": [
+        "Es ersetzt vollständig alle einzelnen Steuergeräte im Fahrzeug",
+        "Es vermittelt Daten zwischen unterschiedlichen Bussystemen im Fahrzeug",
+        "Es speichert ausschließlich das aktuelle Kombiinstrument-Design",
+        "Es erzeugt dabei eigenständig die für den Start nötige Zündspannung"
+      ],
+      "correct": 1,
+      "answer": "Ein Gateway verbindet unterschiedliche Bussysteme (z. B. Antriebs-CAN, Komfort-CAN, LIN) miteinander, wandelt Nachrichten passend um und leitet nur die jeweils relevanten Daten zwischen den Teilnetzen weiter."
+    },
+    {
+      "id": "bus-13",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür steht UDS (Unified Diagnostic Services) im Bereich der Fahrzeugdiagnose?",
+      "options": [
+        "Ein rein mechanisches Verfahren zur Achsvermessung ohne Elektronik",
+        "Eine Norm ausschließlich für die Lackierung von Neufahrzeugen",
+        "Eine Bezeichnung für die Bremsflüssigkeit in modernen Fahrzeugen",
+        "Ein standardisiertes Diagnoseprotokoll für die Kommunikation mit Steuergeräten"
+      ],
+      "correct": 3,
+      "answer": "UDS ist ein herstellerübergreifend standardisiertes Kommunikationsprotokoll, über das Diagnosegeräte Steuergeräte auslesen, Fehlercodes abfragen, Parameter anpassen oder Software aktualisieren können."
+    },
+    {
+      "id": "bus-14",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Welche Pins sind am genormten OBD-Stecker (16-polig) typischerweise für die CAN-Kommunikation vorgesehen?",
+      "options": [
+        "Pin 16 ist grundsätzlich für die CAN-High-Leitung reserviert",
+        "Ausschließlich Pin 1 für sämtliche Datenübertragung",
+        "Der OBD-Stecker besitzt konstruktionsbedingt keine CAN-Pins",
+        "Pin 6 für CAN-High und Pin 14 für CAN-Low"
+      ],
+      "correct": 3,
+      "answer": "Am genormten 16-poligen OBD-Stecker sind Pin 6 für CAN-High und Pin 14 für CAN-Low vorgesehen, während z. B. Pin 16 die permanente Batteriespannung für das Diagnosegerät liefert."
+    },
+    {
+      "id": "bus-15",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wofür wird eine Stromzange (Wandlerzange) bei der elektrischen Fehlersuche eingesetzt?",
+      "options": [
+        "Zur berührungslosen Messung des Stroms in einer Leitung über das Magnetfeld",
+        "Ausschließlich zur Messung des Reifendrucks an allen vier Rädern",
+        "Zur Messung der Spannung, indem sie parallel zum Bauteil angeschlossen wird",
+        "Ausschließlich zur mechanischen Befestigung loser Kabelbäume"
+      ],
+      "correct": 0,
+      "answer": "Eine Stromzange misst den Strom in einer Leitung berührungslos über das durch den Stromfluss erzeugte Magnetfeld, ohne den Stromkreis dafür auftrennen zu müssen."
+    },
+    {
+      "id": "bus-16",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Welchen Vorteil bietet Multiplex-Verkabelung gegenüber einer klassischen Punkt-zu-Punkt-Verdrahtung im Fahrzeug?",
+      "options": [
+        "Sie führt grundsätzlich zu einem deutlich höheren Gesamtkabelgewicht",
+        "Sie funktioniert ausschließlich bei rein mechanischen Fahrzeugkomponenten",
+        "Mehrere Signale lassen sich über wenige gemeinsame Leitungen übertragen",
+        "Jeder einzelne Verbraucher benötigt dabei weiterhin eine eigene Leitung"
+      ],
+      "correct": 2,
+      "answer": "Statt für jedes Signal eine eigene Leitung zu verlegen, überträgt Multiplexing mehrere Informationen zeitlich verschachtelt über wenige gemeinsame Leitungen (Busleitungen), was Kabelbaum, Gewicht und Komplexität deutlich reduziert."
+    },
+    {
+      "id": "bus-17",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Was ermöglicht ein Software-Update 'Over-the-Air' (OTA) bei modernen Fahrzeugen?",
+      "options": [
+        "Es betrifft ausschließlich die Lackierung der äußeren Fahrzeugkarosserie",
+        "Der komplette Kabelbaum des Fahrzeugs wird dabei automatisch ausgetauscht",
+        "Steuergerätesoftware wird drahtlos aktualisiert, ohne in die Werkstatt zu müssen",
+        "Es ersetzt dabei vollständig die klassische Diagnosesteckdose OBD"
+      ],
+      "correct": 2,
+      "answer": "Über eine Mobilfunk- oder WLAN-Verbindung kann Steuergerätesoftware direkt beim Fahrzeug aktualisiert werden, ohne dass es dafür zwingend in eine Werkstatt gebracht werden muss."
+    },
+    {
+      "id": "bus-18",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Was unterscheidet einen 'sporadischen' von einem 'stehenden' Fehlereintrag im Fehlerspeicher?",
+      "options": [
+        "Beide Begriffe bezeichnen dabei exakt denselben technischen Zustand",
+        "Der sporadische Fehler tritt nicht mehr aktuell auf, der stehende ist gerade aktiv",
+        "Ein stehender Fehler verschwindet dabei automatisch nach jeder Zündung",
+        "Ein sporadischer Fehler kann grundsätzlich niemals gespeichert werden"
+      ],
+      "correct": 1,
+      "answer": "Ein stehender Fehler liegt aktuell tatsächlich vor, während ein sporadischer (gespeicherter, aber nicht mehr anstehender) Fehler in der Vergangenheit einmal erkannt wurde, momentan aber nicht mehr auftritt."
+    },
+    {
+      "id": "bus-19",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Wozu dient ein Aktor- bzw. Endstufentest im Diagnosegerät?",
+      "options": [
+        "Ein Bauteil wird gezielt angesteuert, um seine Funktion direkt zu überprüfen",
+        "Er dient ausschließlich zur Anzeige gespeicherter Fehlercodes im Klartext",
+        "Er verändert dabei dauerhaft die Werkseinstellung des jeweiligen Steuergeräts",
+        "Es wird dabei ausschließlich der aktuelle Kilometerstand ausgelesen"
+      ],
+      "correct": 0,
+      "answer": "Beim Aktor- oder Endstufentest steuert das Diagnosegerät gezielt einen Aktor (z. B. ein Magnetventil oder eine Lampe) an, damit der Prüfer durch Hören, Sehen oder Messen direkt kontrollieren kann, ob das Bauteil einwandfrei funktioniert."
+    },
+    {
+      "id": "bus-20",
+      "category": "Bus-Systeme & Diagnose",
+      "question": "Welche Funktion übernimmt üblicherweise ein Bordnetz- bzw. Zentralsteuergerät (Body Control Modul)?",
+      "options": [
+        "Es steuert ausschließlich die Einspritzung des Verbrennungsmotors",
+        "Es koordiniert zentral viele Komfort- und Karosseriefunktionen des Fahrzeugs",
+        "Es dient ausschließlich als zusätzlicher Kraftstofftank im Motorraum",
+        "Es ersetzt dabei vollständig die vorhandene Starterbatterie"
+      ],
+      "correct": 1,
+      "answer": "Das Bordnetzsteuergerät (Body Control Modul) bündelt und koordiniert häufig zahlreiche Karosserie- und Komfortfunktionen wie Beleuchtung, Zentralverriegelung oder Fensterheber und kommuniziert dazu mit vielen anderen Steuergeräten über den Bus."
+    },
+    {
+      "id": "hv-11",
+      "category": "Hochvolt",
+      "question": "Was ist der grundlegende Unterschied zwischen AC-Laden und DC-Laden eines Elektrofahrzeugs?",
+      "options": [
+        "AC- und DC-Laden unterscheiden sich ausschließlich durch die Kabelfarbe",
+        "Beim DC-Laden wandelt eine externe Ladesäule den Strom bereits vor dem Fahrzeug um",
+        "Beim AC-Laden übernimmt stets die externe Ladesäule die gesamte Gleichrichtung",
+        "DC-Laden nutzt dabei grundsätzlich denselben Stecker wie eine Haushaltssteckdose"
+      ],
+      "correct": 1,
+      "answer": "Beim AC-Laden liefert die Ladesäule Wechselstrom, den das eingebaute Onboard-Ladegerät im Fahrzeug in Gleichstrom für die Batterie wandelt. Beim DC-Schnellladen übernimmt bereits die externe Ladesäule diese Umwandlung und lädt mit deutlich höherer Leistung direkt mit Gleichstrom."
+    },
+    {
+      "id": "hv-12",
+      "category": "Hochvolt",
+      "question": "Wofür steht CCS (Combined Charging System) bei Ladesteckern für Elektrofahrzeuge?",
+      "options": [
+        "Ein kombinierter Stecker, der sowohl AC- als auch DC-Schnellladen ermöglicht",
+        "Ein rein mechanisches System ohne jede elektrische Verbindung",
+        "Ein Stecker, der ausschließlich für die 12-V-Starterbatterie verwendet wird",
+        "Eine Bezeichnung ausschließlich für kabelloses induktives Laden"
+      ],
+      "correct": 0,
+      "answer": "Das Combined Charging System kombiniert die Kontakte für AC-Laden mit zwei zusätzlichen Leistungskontakten für DC-Schnellladen in einem gemeinsamen Steckerstandard."
+    },
+    {
+      "id": "hv-13",
+      "category": "Hochvolt",
+      "question": "Warum benötigt die Hochvoltbatterie eines Elektrofahrzeugs ein eigenes Thermomanagement?",
+      "options": [
+        "Zu hohe oder zu niedrige Zelltemperaturen verschlechtern Leistung und Lebensdauer",
+        "Die Batteriezellen erzeugen im Betrieb grundsätzlich keinerlei eigene Wärme",
+        "Es wird ausschließlich zur Kühlung der Bremsanlage mitgenutzt",
+        "Es dient ausschließlich der Beheizung des Fahrzeuginnenraums im Winter"
+      ],
+      "correct": 0,
+      "answer": "Lithium-Ionen-Zellen altern bei dauerhaft zu hoher Temperatur schneller und verlieren bei Kälte an Leistungsfähigkeit. Ein Thermomanagement kühlt oder heizt die Batterie gezielt, um sie in einem optimalen Temperaturfenster zu halten."
+    },
+    {
+      "id": "hv-14",
+      "category": "Hochvolt",
+      "question": "Was ist der Unterschied zwischen Ladezustand (SOC) und Gesundheitszustand (SOH) einer Hochvoltbatterie?",
+      "options": [
+        "SOC wird ausschließlich einmalig bei der Herstellung der Batterie festgelegt",
+        "SOH beschreibt ausschließlich den kurzfristigen aktuellen Ladezustand der Batterie",
+        "SOC beschreibt den aktuellen Füllstand, SOH die verbleibende Kapazität im Alterungsverlauf",
+        "Beide Begriffe beschreiben dabei exakt denselben technischen Wert"
+      ],
+      "correct": 2,
+      "answer": "Der State of Charge (SOC) gibt an, wie voll die Batterie aktuell ist, vergleichbar mit einer Tankanzeige. Der State of Health (SOH) beschreibt dagegen, wie stark die Batterie im Vergleich zum Neuzustand gealtert ist und wie viel Kapazität ihr noch maximal zur Verfügung steht."
+    },
+    {
+      "id": "hv-15",
+      "category": "Hochvolt",
+      "question": "Welche Funktion hat eine Vorladeschaltung (Precharge) beim Zuschalten der Hochvoltbatterie an den Zwischenkreis?",
+      "options": [
+        "Sie ersetzt dabei vollständig den regulären Ladevorgang an der Ladesäule",
+        "Sie lädt Kondensatoren des Zwischenkreises kontrolliert vor, gegen Stromspitzen",
+        "Sie schaltet die komplette Hochvoltanlage bei jedem Start dauerhaft ab",
+        "Sie dient dabei ausschließlich der Beheizung der Fahrgastzelle im Winter"
+      ],
+      "correct": 1,
+      "answer": "Beim direkten Zuschalten der vollen Batteriespannung würden ungeladene Kondensatoren im Zwischenkreis einen sehr hohen Einschaltstrom verursachen. Die Vorladeschaltung lädt diese über einen Widerstand kontrolliert vor, bevor die Hauptschütze schließen."
+    },
+    {
+      "id": "hv-16",
+      "category": "Hochvolt",
+      "question": "Wozu dient der Potentialausgleich (Schutzleiterverbindung) an einem Hochvoltfahrzeug?",
+      "options": [
+        "Er wird ausschließlich bei Fahrzeugen mit Verbrennungsmotor benötigt",
+        "Er dient ausschließlich zur Übertragung von CAN-Bus-Signalen im Fahrzeug",
+        "Er erhöht dabei gezielt die verfügbare Ladeleistung an der Schnellladesäule",
+        "Er verbindet leitfähige Fahrzeugteile, um gefährliche Berührspannungen zu verhindern"
+      ],
+      "correct": 3,
+      "answer": "Der Potentialausgleich verbindet leitfähige, berührbare Fahrzeugteile elektrisch miteinander und mit der Karosserie, damit im Fehlerfall keine gefährlichen Potentialunterschiede und damit Berührspannungen entstehen können."
+    },
+    {
+      "id": "hv-17",
+      "category": "Hochvolt",
+      "question": "Wofür wird das sogenannte Rettungsdatenblatt eines Hochvoltfahrzeugs benötigt?",
+      "options": [
+        "Es ersetzt dabei vollständig die vorgeschriebene Betriebsanleitung des Fahrzeugs",
+        "Es wird ausschließlich beim Kauf eines neuen Fahrzeugs einmalig benötigt",
+        "Es dient ausschließlich als Nachweis für die letzte Hauptuntersuchung",
+        "Es zeigt Rettungskräften die Lage von HV-Komponenten und Trennstellen im Fahrzeug"
+      ],
+      "correct": 3,
+      "answer": "Das Rettungsdatenblatt zeigt unter anderem die Lage von Hochvoltkomponenten, Leitungen, Airbags und Trennstellen im Fahrzeug, damit Feuerwehr und Rettungsdienst bei einem Unfall schnell und sicher handeln können."
+    },
+    {
+      "id": "hv-18",
+      "category": "Hochvolt",
+      "question": "Wozu dient die Abschirmung (geschirmter Aufbau) von Hochvoltleitungen im Fahrzeug?",
+      "options": [
+        "Sie erhöht dabei ausschließlich die mechanische Zugfestigkeit der Leitung",
+        "Sie reduziert elektromagnetische Störungen und leitet Störströme kontrolliert ab",
+        "Sie ersetzt dabei vollständig die vorgeschriebene orange Isolierung",
+        "Sie dient ausschließlich als zusätzlicher optischer Kennzeichnungsring"
+      ],
+      "correct": 1,
+      "answer": "Der geschirmte Aufbau von HV-Leitungen (meist ein Geflecht um die Adern) reduziert die Abstrahlung elektromagnetischer Störungen in andere Fahrzeugsysteme und leitet eingekoppelte Störströme kontrolliert ab."
+    },
+    {
+      "id": "hv-19",
+      "category": "Hochvolt",
+      "question": "Welchen praktischen Vorteil bietet eine 800-Volt-Systemspannung gegenüber 400 Volt bei gleicher Ladeleistung?",
+      "options": [
+        "Bei gleicher Leistung fließt ein geringerer Strom, wodurch Kabel dünner ausfallen können",
+        "Es hat auf Ladezeit und Kabeldimensionierung keinerlei praktischen Einfluss",
+        "Bei gleicher Leistung fließt dabei automatisch ein deutlich höherer Strom",
+        "Die Batteriezellen benötigen bei 800 Volt grundsätzlich keinerlei Kühlung mehr"
+      ],
+      "correct": 0,
+      "answer": "Da Leistung das Produkt aus Spannung und Strom ist, fließt bei doppelter Spannung für dieselbe Ladeleistung nur der halbe Strom. Das erlaubt dünnere, leichtere Kabel und ermöglicht tendenziell kürzere Ladezeiten bei vergleichbarer Erwärmung."
+    },
+    {
+      "id": "hv-20",
+      "category": "Hochvolt",
+      "question": "Welche Aufgabe haben die Hauptschütze (HV-Schütze) im Hochvoltsystem eines Fahrzeugs?",
+      "options": [
+        "Sie ersetzen dabei vollständig die vorgeschriebenen Isolierhandschuhe bei Wartungsarbeiten",
+        "Sie dienen ausschließlich zur Anzeige des aktuellen Ladezustands im Display",
+        "Sie trennen die Hochvoltbatterie sicher vom restlichen Hochvoltsystem, z. B. im Fehlerfall",
+        "Sie wandeln dabei die Batteriespannung direkt in Wechselspannung für den Motor um"
+      ],
+      "correct": 2,
+      "answer": "Die Hauptschütze verbinden oder trennen die Hochvoltbatterie kontrolliert vom übrigen Hochvoltsystem – etwa beim Start, Abstellen oder in einer erkannten Fehler- bzw. Unfallsituation, um das System sicher spannungsfrei zu schalten."
     }
   ]
 }
