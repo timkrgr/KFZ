@@ -446,7 +446,15 @@ html, body {
   gap: 12px;
 }
 
+.topic-item-wrap {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
 .topic-item {
+  flex: 1;
+  min-width: 0;
   padding: 16px;
   border-radius: 18px;
   border: 1px solid var(--border);
@@ -454,7 +462,6 @@ html, body {
 }
 
 .topic-item-btn {
-  width: 100%;
   display: block;
   text-align: left;
   cursor: pointer;
@@ -489,13 +496,12 @@ html, body {
 
 .topic-reset-btn {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  width: 52px;
+  border-radius: 18px;
   border: 1px solid var(--wrong);
   background: var(--wrong-bg);
   color: var(--wrong);
-  font-size: 0.8rem;
+  font-size: 1.15rem;
   font-weight: 800;
   line-height: 1;
   display: flex;
@@ -505,7 +511,7 @@ html, body {
   padding: 0;
 }
 
-.topic-reset-btn:active { transform: scale(0.9); }
+.topic-reset-btn:active { transform: scale(0.94); }
 
 .topic-name {
   font-weight: 700;

@@ -1,4 +1,4 @@
-const APP_VERSION = "v41";
+const APP_VERSION = "v42";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const STREAK_KEY = "kfz_streak_v1";
@@ -567,6 +567,9 @@ function renderHome() {
     const totalInCat = cardsInCat.length;
     const pctCat = totalInCat ? Math.round((knownInCat / totalInCat) * 100) : 0;
 
+    const wrap = document.createElement("div");
+    wrap.className = "topic-item-wrap";
+
     const item = document.createElement("div");
     item.className = "topic-item topic-item-btn";
     item.setAttribute("role", "button");
@@ -578,7 +581,6 @@ function renderHome() {
           <div class="topic-name">${escapeHtml(cat)}</div>
           <div class="topic-count">${knownInCat} von ${totalInCat} beherrscht</div>
         </div>
-        <button type="button" class="topic-reset-btn" aria-label="Fortschritt für ${escapeHtml(cat)} zurücksetzen">✕</button>
       </div>
       <div class="topic-progress-row">
         <div class="topic-progress-track"><div class="topic-progress-fill" style="width:${pctCat}%"></div></div>
@@ -592,11 +594,17 @@ function renderHome() {
         openTopic(cat, "all");
       }
     });
-    item.querySelector(".topic-reset-btn").addEventListener("click", (e) => {
-      e.stopPropagation();
-      resetTopicProgress(cat);
-    });
-    els.topicList.appendChild(item);
+
+    const resetBtn = document.createElement("button");
+    resetBtn.type = "button";
+    resetBtn.className = "topic-reset-btn";
+    resetBtn.setAttribute("aria-label", `Fortschritt für ${cat} zurücksetzen`);
+    resetBtn.textContent = "✕";
+    resetBtn.addEventListener("click", () => resetTopicProgress(cat));
+
+    wrap.appendChild(item);
+    wrap.appendChild(resetBtn);
+    els.topicList.appendChild(wrap);
   });
 }
 
