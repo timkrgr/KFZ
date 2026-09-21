@@ -25,10 +25,13 @@
 
 [hidden] { display: none !important; }
 
+html {
+  overflow-x: hidden;
+}
+
 html, body {
   margin: 0;
   height: 100%;
-  overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
@@ -64,7 +67,7 @@ html, body {
 
 /* Brand header */
 
-.brand-header {
+.brand-header-row {
   position: relative;
   display: flex;
   align-items: center;
@@ -73,8 +76,8 @@ html, body {
   margin-bottom: 6px;
 }
 
-/* Sticky Kopfleiste: das Logo bleibt beim Scrollen auf der Kategorien-Seite
-   oben sichtbar statt mit dem Inhalt wegzuscrollen. */
+/* Sticky Kopfleiste: Logo UND Seitentitel bleiben beim Scrollen oben sichtbar
+   statt mit dem Inhalt wegzuscrollen. */
 .sticky-topbar {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
@@ -84,6 +87,11 @@ html, body {
   margin-right: -18px;
   padding-left: 18px;
   padding-right: 18px;
+  padding-bottom: 10px;
+}
+
+.sticky-topbar .page-title {
+  margin-bottom: 0;
 }
 
 .profile-badge {
