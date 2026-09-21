@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=13">
+<link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
 <div class="app">
@@ -178,9 +178,21 @@
         </div>
       </div>
 
-      <div class="action-row">
+      <div id="actionRow" class="action-row">
         <button id="hardBtn" class="btn btn-wrong">❌ Falsch</button>
         <button id="knownBtn" class="btn btn-right">✅ Richtig</button>
+      </div>
+
+      <div id="mcArea" class="mc-area" hidden>
+        <div class="mc-question-card">
+          <span id="mcCategoryTag" class="category-tag"></span>
+          <p id="mcQuestionText" class="card-text"></p>
+        </div>
+        <div id="mcOptions" class="mc-options"></div>
+        <div id="mcExplain" class="mc-explain" hidden>
+          <p id="mcExplainText"></p>
+          <button id="mcNextBtn" class="btn">Weiter →</button>
+        </div>
       </div>
     </div>
 
@@ -224,6 +236,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=13"></script>
+<script src="app.js?v=14"></script>
 </body>
 </html>

@@ -69,13 +69,23 @@ const els = {
   emptyBackBtn: document.getElementById("emptyBackBtn"),
   progressFill: document.getElementById("progressFill"),
   progressText: document.getElementById("progressText"),
+  cardWrap: document.getElementById("cardWrap"),
   flashcard: document.getElementById("flashcard"),
   categoryTag: document.getElementById("categoryTag"),
   categoryTagBack: document.getElementById("categoryTagBack"),
   questionText: document.getElementById("questionText"),
   answerText: document.getElementById("answerText"),
+  actionRow: document.getElementById("actionRow"),
   hardBtn: document.getElementById("hardBtn"),
   knownBtn: document.getElementById("knownBtn"),
+
+  mcArea: document.getElementById("mcArea"),
+  mcCategoryTag: document.getElementById("mcCategoryTag"),
+  mcQuestionText: document.getElementById("mcQuestionText"),
+  mcOptions: document.getElementById("mcOptions"),
+  mcExplain: document.getElementById("mcExplain"),
+  mcExplainText: document.getElementById("mcExplainText"),
+  mcNextBtn: document.getElementById("mcNextBtn"),
 
   resultView: document.getElementById("resultView"),
   resultRingFill: document.getElementById("resultRingFill"),
@@ -502,6 +512,9 @@ function buildDeck() {
   render();
 }
 
+const OPTION_LETTERS = ["A", "B", "C", "D", "E", "F"];
+let mcAnswered = false;
+
 function render() {
   const hasCards = deck.length > 0;
   els.cardArea.hidden = !hasCards;
@@ -510,12 +523,21 @@ function render() {
 
   if (currentIndex >= deck.length) currentIndex = 0;
   const card = deck[currentIndex];
+  const isMc = Array.isArray(card.options) && card.options.length > 0;
 
-  els.flashcard.classList.remove("flipped");
-  els.categoryTag.textContent = card.category || "Allgemein";
-  els.categoryTagBack.textContent = card.category || "Allgemein";
-  els.questionText.textContent = card.question;
-  els.answerText.textContent = card.answer;
+  els.cardWrap.hidden = isMc;
+  els.actionRow.hidden = isMc;
+  els.mcArea.hidden = !isMc;
+
+  if (isMc) {
+    renderMcCard(card);
+  } else {
+    els.flashcard.classList.remove("flipped");
+    els.categoryTag.textContent = card.category || "Allgemein";
+    els.categoryTagBack.textContent = card.category || "Allgemein";
+    els.questionText.textContent = card.question;
+    els.answerText.textContent = card.answer;
+  }
 
   if (sessionMode === "simulation") {
     const answered = sessionResults.right + sessionResults.wrong;
@@ -534,7 +556,52 @@ function flip() {
   els.flashcard.classList.toggle("flipped");
 }
 
-function markCurrent(state) {
+// --- Multiple-Choice ---
+
+function renderMcCard(card) {
+  mcAnswered = false;
+  els.mcCategoryTag.textContent = card.category || "Allgemein";
+  els.mcQuestionText.textContent = card.question;
+  els.mcExplain.hidden = true;
+  els.mcExplainText.textContent = card.answer || "";
+
+  els.mcOptions.innerHTML = "";
+  card.options.forEach((optionText, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "mc-option";
+    btn.innerHTML = `<span class="mc-option-letter">${OPTION_LETTERS[i] || i + 1}</span><span>${escapeHtml(optionText)}</span>`;
+    btn.addEventListener("click", () => selectMcOption(card, i));
+    els.mcOptions.appendChild(btn);
+  });
+}
+
+function selectMcOption(card, selectedIndex) {
+  if (mcAnswered) return;
+  mcAnswered = true;
+
+  const buttons = Array.from(els.mcOptions.children);
+  buttons.forEach((btn, i) => {
+    btn.classList.add("disabled");
+    if (i === card.correct) btn.classList.add("correct");
+    else if (i === selectedIndex) btn.classList.add("wrong");
+  });
+
+  const isCorrect = selectedIndex === card.correct;
+  recordAnswer(isCorrect ? "known" : "hard");
+
+  els.mcExplain.hidden = false;
+}
+
+els.mcNextBtn.addEventListener("click", () => {
+  const card = deck[currentIndex];
+  const isCorrect = card ? progress.known[card.id] : true;
+  advanceAfterAnswer(isCorrect ? "known" : "hard");
+});
+
+// --- Fortschritt speichern & weiterschalten ---
+
+function recordAnswer(state) {
   if (!deck.length) return;
   const card = deck[currentIndex];
   if (state === "known") {
@@ -545,7 +612,9 @@ function markCurrent(state) {
     delete progress.known[card.id];
   }
   saveProgress();
+}
 
+function advanceAfterAnswer(state) {
   if (sessionMode === "simulation") {
     sessionResults[state === "known" ? "right" : "wrong"] += 1;
     deck.splice(currentIndex, 1);
@@ -564,6 +633,12 @@ function markCurrent(state) {
 
   currentIndex = (currentIndex + 1) % deck.length;
   render();
+}
+
+function markCurrent(state) {
+  if (!deck.length) return;
+  recordAnswer(state);
+  advanceAfterAnswer(state);
 }
 
 function goHome() {
