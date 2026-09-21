@@ -649,6 +649,13 @@ html, body {
   line-height: 1.4;
 }
 
+.version-tag {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
 /* Bottom tab bar */
 
 .tabbar {

@@ -1,3 +1,4 @@
+const APP_VERSION = "v15";
 const STORAGE_KEY = "kfz_progress_v1";
 const SIM_COUNT_KEY = "kfz_sim_count_v1";
 const ALL_TOPIC = "__all__";
@@ -828,6 +829,8 @@ els.activeProfileBadge.addEventListener("click", () => { forgetProfile(); locati
 els.switchProfileBtn.addEventListener("click", () => { forgetProfile(); location.reload(); });
 
 // --- Init ---
+
+document.getElementById("appVersion").textContent = APP_VERSION;
 
 const rememberedProfile = getRememberedProfile();
 if (rememberedProfile) selectProfile(rememberedProfile);
