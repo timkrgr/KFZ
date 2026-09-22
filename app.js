@@ -1,4 +1,4 @@
-const APP_VERSION = "v46";
+const APP_VERSION = "v47";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -1108,6 +1108,87 @@ const EXPLANATIONS = {
 
     <h2>Reihen- und Parallelschaltung</h2>
     <p>Bei einer <strong>Reihenschaltung</strong> addieren sich die Widerstände (R_ges = R1 + R2 + …), der Strom ist überall gleich groß, die Spannung teilt sich auf. Bei einer <strong>Parallelschaltung</strong> liegt an allen Verbrauchern die gleiche Spannung an, die Ströme addieren sich, der Gesamtwiderstand sinkt. Das Kfz-Bordnetz ist überwiegend eine Parallelschaltung, damit jeder Verbraucher (Licht, Radio, Sitzheizung …) unabhängig von den anderen mit voller Bordnetzspannung arbeitet.</p>
+
+    <h2>Generator (Lichtmaschine) im Detail</h2>
+    <div class="explain-diagram">
+      <svg viewBox="0 0 300 140" width="100%">
+        <g font-family="sans-serif" font-size="10" fill="var(--text)">
+          <rect x="8" y="50" width="72" height="46" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="44" y="68" text-anchor="middle">Rotor</text>
+          <text x="44" y="80" text-anchor="middle" font-size="8.5" fill="var(--muted)">Erreger-</text>
+          <text x="44" y="90" text-anchor="middle" font-size="8.5" fill="var(--muted)">wicklung</text>
+          <circle cx="26" cy="105" r="3" fill="var(--sim)"/>
+          <circle cx="38" cy="105" r="3" fill="var(--sim)"/>
+          <text x="44" y="119" text-anchor="middle" font-size="8" fill="var(--muted)">Schleifringe</text>
+
+          <rect x="102" y="38" width="72" height="70" rx="6" fill="none" stroke="var(--wrong)" stroke-width="2"/>
+          <text x="138" y="58" text-anchor="middle">Stator</text>
+          <text x="138" y="71" text-anchor="middle" font-size="8.5" fill="var(--muted)">3 Wicklungen</text>
+          <text x="138" y="83" text-anchor="middle" font-size="8.5" fill="var(--muted)">im Stern</text>
+
+          <rect x="196" y="53" width="56" height="42" rx="6" fill="none" stroke="var(--right)" stroke-width="2"/>
+          <text x="224" y="70" text-anchor="middle" font-size="9">Gleich-</text>
+          <text x="224" y="82" text-anchor="middle" font-size="9">richter</text>
+
+          <rect x="266" y="58" width="28" height="32" rx="4" fill="none" stroke="var(--text)" stroke-width="2"/>
+          <text x="280" y="102" text-anchor="middle" font-size="8.5">Bordnetz</text>
+
+          <path d="M80 73 L102 73" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrGen)"/>
+          <path d="M174 73 L196 73" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrGen)"/>
+          <path d="M252 73 L266 73" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrGen)"/>
+          <defs>
+            <marker id="arrGen" markerWidth="6" markerHeight="6" refX="4" refY="2" orient="auto">
+              <path d="M0 0 L4 2 L0 4 Z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+        </g>
+      </svg>
+      <figcaption>Der Rotor mit Erregerwicklung (Strom über Schleifringe/Kohlebürsten) dreht im feststehenden Stator. Die dort in den drei sternverschalteten Wicklungen induzierte Wechselspannung wird über die Gleichrichterbrücke in Gleichspannung für Batterie und Bordnetz umgewandelt.</figcaption>
+    </div>
+    <p>Der <strong>Klauenpolrotor</strong> trägt die vom Regler gesteuerte Erregerwicklung und meist 12 oder 14 klauenförmige Pole - je mehr Pole, desto höher die elektrische Frequenz bei gleicher Drehzahl und desto gleichmäßiger die spätere Gleichspannung. Der Erregerstrom gelangt über zwei <strong>Schleifringe</strong> und federnd angedrückte <strong>Kohlebürsten</strong> auf die rotierende Welle. Die drei Phasenwicklungen des <strong>Stators</strong> sind meist im <strong>Stern</strong> geschaltet (alle drei Enden treffen sich im Sternpunkt) - das liefert bei gleichem Wicklungsstrom eine höhere Spannung als eine Dreieckschaltung, wichtig für ausreichende Ladung schon bei niedriger Leerlaufdrehzahl.</p>
+    <p>Die erzeugte Drehstrom-Wechselspannung wird von einer <strong>Gleichrichterbrücke</strong> aus sechs Leistungsdioden (je eine Plus- und eine Minus-Diode pro Phase) in pulsierende Gleichspannung umgewandelt. Der <strong>Spannungsregler</strong> hält die Bordnetzspannung dabei unabhängig von Drehzahl und Last bei rund 14,4 Volt konstant, indem er den Erregerstrom im Rotor dosiert. Vor dem Start liefert die Batterie diesen Erregerstrom über den Vorerregerkreis (meist über die Ladekontrollleuchte als Vorwiderstand) - sobald der Generator selbst genug Spannung erzeugt (Selbsterregung), erlischt die Leuchte. Moderne Steuergeräte regeln die Erregung zusätzlich bedarfsgerecht: stark im Schubbetrieb (Bremsen), schwach beim Beschleunigen, um Kraftstoff zu sparen.</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Leuchtet die Ladekontrollleuchte bei laufendem Motor dauerhaft, lädt der Generator nicht ausreichend - mögliche Ursachen sind ein gerissener Keilrippenriemen, verschlissene Kohlebürsten, ein defekter Regler oder eine defekte Diode in der Gleichrichterbrücke.</div>
+
+    <h2>Anlasser (Starter) im Detail</h2>
+    <div class="explain-diagram">
+      <svg viewBox="0 0 300 145" width="100%">
+        <g font-family="sans-serif" font-size="10" fill="var(--text)">
+          <rect x="8" y="8" width="82" height="32" rx="6" fill="none" stroke="var(--text)" stroke-width="2"/>
+          <text x="49" y="28" text-anchor="middle" font-size="9">Batterie (Kl. 30)</text>
+
+          <rect x="8" y="105" width="82" height="32" rx="6" fill="none" stroke="var(--sim)" stroke-width="2"/>
+          <text x="49" y="120" text-anchor="middle" font-size="9">Zündschloss</text>
+          <text x="49" y="132" text-anchor="middle" font-size="8.5" fill="var(--muted)">(Kl. 50)</text>
+
+          <rect x="120" y="52" width="80" height="46" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <text x="160" y="70" text-anchor="middle">Magnet-</text>
+          <text x="160" y="82" text-anchor="middle">schalter</text>
+          <text x="160" y="93" text-anchor="middle" font-size="8" fill="var(--muted)">Einzug + Halte</text>
+
+          <rect x="232" y="18" width="62" height="34" rx="6" fill="none" stroke="var(--wrong)" stroke-width="2"/>
+          <text x="263" y="38" text-anchor="middle" font-size="9">Ritzel →</text>
+          <text x="263" y="49" text-anchor="middle" font-size="8">Zahnkranz</text>
+
+          <rect x="232" y="98" width="62" height="34" rx="6" fill="none" stroke="var(--right)" stroke-width="2"/>
+          <text x="263" y="116" text-anchor="middle" font-size="9">Anlasser-</text>
+          <text x="263" y="127" text-anchor="middle" font-size="9">motor</text>
+
+          <path d="M90 24 L120 66" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrAnl)"/>
+          <path d="M90 121 L120 84" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrAnl)"/>
+          <path d="M200 66 L232 38" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrAnl)"/>
+          <path d="M200 89 L232 115" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrAnl)"/>
+          <defs>
+            <marker id="arrAnl" markerWidth="6" markerHeight="6" refX="4" refY="2" orient="auto">
+              <path d="M0 0 L4 2 L0 4 Z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+        </g>
+      </svg>
+      <figcaption>Batterie (Klemme 30) und Zündschloss (Klemme 50) laufen im Magnetschalter zusammen: er schiebt mechanisch das Ritzel in den Zahnkranz und schaltet elektrisch den Hauptstrom zum Anlassermotor.</figcaption>
+    </div>
+    <p>Ein klassischer Schubschraubtrieb-Anlasser besteht aus einem <strong>Elektromotor</strong>, dem <strong>Magnetschalter</strong> (Einrückrelais), dem <strong>Ritzel</strong> und einer <strong>Freilaufkupplung</strong>. Der Anlassermotor ist meist als <strong>Reihenschluss-Gleichstrommotor</strong> ausgeführt: Feld- und Ankerwicklung liegen im selben Stromkreis, was gerade bei hohem Strom und niedriger Drehzahl ein sehr hohes Anzugsmoment liefert - genau das, was zum Durchdrehen des stehenden, kalten Verbrennungsmotors nötig ist.</p>
+    <p>Der Magnetschalter besitzt zwei Wicklungen: Beim Einschalten (Klemme 50 vom Zündschloss) ziehen <strong>Einzugswicklung</strong> und <strong>Haltewicklung</strong> gemeinsam den Anker und damit das Ritzel in den Zahnkranz des Schwungrads - dieser <strong>Einspurvorgang</strong> läuft zweistufig ab: Erst wenn das Ritzel eingespurt ist, schließt derselbe Magnetschalter den Hauptstromkreis von Klemme 30 (Batterie) zum Anlassermotor. Die Einzugswicklung wird dabei stromlos, da sie nun auf beiden Seiten an Plus liegt - nur die schwächere Haltewicklung hält das Ritzel noch eingespurt, das spart Strom. Sobald der Verbrennungsmotor anspringt und schneller dreht als der Anlasser, lässt die <strong>Freilaufkupplung</strong> das Ritzel durchrutschen und schützt den Anlassermotor vor zerstörerisch hohen Drehzahlen.</p>
+    <div class="explain-example"><strong>Beispiel:</strong> Dreht der Anlasser hörbar frei, ohne den Motor mitzunehmen, sind meist Ritzel, Zahnkranz oder die Freilaufkupplung defekt. Ist dagegen nur ein Klacken zu hören und der Anlasser dreht gar nicht durch, deutet das eher auf verschlissene Magnetschalter-Kontakte oder einen zu starken Spannungseinbruch (schwache Batterie) hin.</div>
   `,
 
   "Bus-Systeme & Diagnose": `
