@@ -29,6 +29,7 @@
 
 html {
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 html, body {
@@ -37,6 +38,7 @@ html, body {
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  overscroll-behavior-y: none;
 }
 
 .app {
