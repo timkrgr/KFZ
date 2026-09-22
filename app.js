@@ -1,7 +1,8 @@
-const APP_VERSION = "v44";
+const APP_VERSION = "v45";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
+const EXAM_PASS_PCT = 75; // ab dieser Prozentzahl gilt eine Prüfungssimulation als bestanden
 const STREAK_MIN_GAP_MS = 24 * 60 * 60 * 1000; // frühestens 24h nach dem letzten Abholen wieder abholbar
 const STREAK_GRACE_MS = 48 * 60 * 60 * 1000; // innerhalb 48h nach dem letzten Abholen zählt die Streak weiter, sonst reißt sie ab
 const ALL_TOPIC = "__all__";
@@ -147,6 +148,7 @@ const els = {
   resultRight: document.getElementById("resultRight"),
   resultWrong: document.getElementById("resultWrong"),
   resultGrade: document.getElementById("resultGrade"),
+  resultPassBadge: document.getElementById("resultPassBadge"),
   resultRepeatBtn: document.getElementById("resultRepeatBtn"),
   resultHomeBtn: document.getElementById("resultHomeBtn"),
 
@@ -177,7 +179,7 @@ let simInterval = null;
 let simRemaining = 0;
 let progress = { known: {}, hard: {} };
 let streak = { count: 0, lastClaim: 0 };
-let examStats = { count: 0, right: 0, wrong: 0 };
+let examStats = { count: 0, right: 0, wrong: 0, passed: 0 };
 
 function loadProgress() {
   try {
@@ -280,17 +282,17 @@ function playStreakClaimAnimation() {
 
 function loadExamStats() {
   try {
-    return JSON.parse(localStorage.getItem(`${EXAM_STATS_KEY}_${currentProfile}`)) || { count: 0, right: 0, wrong: 0 };
+    return { count: 0, right: 0, wrong: 0, passed: 0, ...JSON.parse(localStorage.getItem(`${EXAM_STATS_KEY}_${currentProfile}`)) };
   } catch {
-    return { count: 0, right: 0, wrong: 0 };
+    return { count: 0, right: 0, wrong: 0, passed: 0 };
   }
 }
 
 function loadProfileExamStats(id) {
   try {
-    return JSON.parse(localStorage.getItem(`${EXAM_STATS_KEY}_${id}`)) || { count: 0, right: 0, wrong: 0 };
+    return { count: 0, right: 0, wrong: 0, passed: 0, ...JSON.parse(localStorage.getItem(`${EXAM_STATS_KEY}_${id}`)) };
   } catch {
-    return { count: 0, right: 0, wrong: 0 };
+    return { count: 0, right: 0, wrong: 0, passed: 0 };
   }
 }
 
@@ -417,7 +419,7 @@ async function syncFromCloud() {
           if (!examData[id]) return;
           if (id === currentProfile) {
             if ((examData[id].count || 0) > (examStats.count || 0)) {
-              examStats = examData[id];
+              examStats = { count: 0, right: 0, wrong: 0, passed: 0, ...examData[id] };
               localStorage.setItem(`${EXAM_STATS_KEY}_${id}`, JSON.stringify(examStats));
               changed = true;
             } else if ((examStats.count || 0) > (examData[id].count || 0)) {
@@ -777,7 +779,7 @@ function renderBattle() {
       return `
         <div class="exam-versus-item">
           <span class="exam-versus-name">🎓 ${escapeHtml(PROFILES[id].name)}</span>
-          <span class="exam-versus-detail">${es.count} Prüfungen · ${es.right} ✓ · ${es.wrong} ✗</span>
+          <span class="exam-versus-detail">${es.count} Prüfungen · ${es.passed} bestanden · ${es.right} ✓ · ${es.wrong} ✗</span>
         </div>
       `;
     }).join("");
@@ -824,6 +826,7 @@ function renderStats() {
 
   els.examStatsSummary.innerHTML = `
     <div class="stat-tile"><div class="stat-value">${examStats.count}</div><div class="stat-label">Prüfungen</div></div>
+    <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${examStats.passed}/${examStats.count}</div><div class="stat-label">bestanden</div></div>
     <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${examStats.right}</div><div class="stat-label">richtig</div></div>
     <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${examStats.wrong}</div><div class="stat-label">falsch</div></div>
   `;
@@ -1525,6 +1528,7 @@ function shuffled(arr) {
 }
 
 let lastSimFixedCount = null; // merkt sich eine feste Fragenzahl (z. B. die 40er-Prüfungssimulation) fürs Wiederholen
+let currentExamTotal = 0; // Gesamtzahl der Fragen der laufenden Prüfungssimulation (für die 75%-Bestehensgrenze)
 
 function startSimulation(fixedCount) {
   if (!allCards.length) return;
@@ -1532,6 +1536,7 @@ function startSimulation(fixedCount) {
   sessionResults = { right: 0, wrong: 0 };
   lastSimFixedCount = fixedCount || null;
   const count = Math.min(fixedCount || 40, allCards.length);
+  currentExamTotal = count;
   deck = shuffled(allCards).slice(0, count);
   currentIndex = 0;
 
@@ -1593,6 +1598,18 @@ function showResult(right, wrong) {
   els.resultGrade.className = `result-grade ${grade.cls}`;
   els.resultGrade.querySelector(".result-grade-note").textContent = `Note ${grade.note}`;
   els.resultGrade.querySelector(".result-grade-label").textContent = grade.label;
+
+  if (sessionEndKind === "simulation" && currentExamTotal > 0) {
+    const examPct = Math.round((right / currentExamTotal) * 100);
+    const passed = examPct >= EXAM_PASS_PCT;
+    els.resultPassBadge.hidden = false;
+    els.resultPassBadge.className = `result-pass-badge ${passed ? "pass" : "fail"}`;
+    els.resultPassBadge.textContent = passed
+      ? `✅ Bestanden (${examPct}% von ${currentExamTotal} Fragen)`
+      : `❌ Nicht bestanden (${examPct}% von ${currentExamTotal} Fragen, ${EXAM_PASS_PCT}% nötig)`;
+  } else {
+    els.resultPassBadge.hidden = true;
+  }
 }
 
 function endSimulation() {
@@ -1601,6 +1618,8 @@ function endSimulation() {
   examStats.count += 1;
   examStats.right += sessionResults.right;
   examStats.wrong += sessionResults.wrong;
+  const examPct = currentExamTotal ? Math.round((sessionResults.right / currentExamTotal) * 100) : 0;
+  if (examPct >= EXAM_PASS_PCT) examStats.passed += 1;
   saveExamStats();
   renderStats();
   showResult(sessionResults.right, sessionResults.wrong);
