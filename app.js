@@ -1,4 +1,4 @@
-const APP_VERSION = "v60";
+const APP_VERSION = "v61";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -545,12 +545,13 @@ function switchTab(tabId, { remember = true, animate = true } = {}) {
   slideTabs(fromEl, toEl, direction);
 }
 
-// Flüssiger Wechsel zwischen zwei Tabs: das neue Tab kommt von links nach
-// Mitte hereingeglitten, während das alte von Mitte nach rechts hinausgleitet
-// (bzw. umgekehrt beim Zurückwechseln zu einem weiter links stehenden Tab).
+// Flüssiger Wechsel zwischen zwei Tabs: beim Vorwärtswechseln (z. B. durch
+// Wischen nach links) kommt das neue Tab von rechts nach Mitte
+// hereingeglitten, während das alte nach links hinausgleitet - spiegelbildlich
+// zur Fingerbewegung. Beim Zurückwechseln läuft es genau andersherum.
 function slideTabs(fromEl, toEl, direction) {
-  const enterFrom = direction === 1 ? -100 : 100;
-  const exitTo = direction === 1 ? 100 : -100;
+  const enterFrom = direction === 1 ? 100 : -100;
+  const exitTo = direction === 1 ? -100 : 100;
 
   toEl.hidden = false;
   [fromEl, toEl].forEach((el) => el.classList.add("tab-sliding"));
