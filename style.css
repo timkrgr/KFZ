@@ -415,6 +415,25 @@ body {
 .mini-title { font-weight: 700; font-size: 0.92rem; }
 .mini-sub { font-size: 0.75rem; color: var(--muted); }
 
+.mini-streak { position: relative; }
+
+.streak-rank-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--streak);
+}
+
+.mini-streak.is-ready .streak-rank-badge {
+  background: rgba(255, 255, 255, 0.22);
+  color: white;
+}
+
 /* Streak-Mini-Karte (abholbereiter Zustand) */
 
 .mini-streak.is-ready {
@@ -703,10 +722,17 @@ body {
 
 .streak-versus-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+.streak-versus-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .streak-versus-item .streak-versus-flame {
@@ -715,6 +741,15 @@ body {
 }
 
 .streak-versus-item.has-streak .streak-versus-flame { filter: none; }
+
+.streak-versus-rank {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--surface-2);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
 
 .exam-versus {
   display: flex;

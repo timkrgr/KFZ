@@ -1,4 +1,4 @@
-const APP_VERSION = "v65";
+const APP_VERSION = "v66";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -6,6 +6,25 @@ const EXAM_PASS_PCT = 75; // ab dieser Prozentzahl gilt eine Prüfungssimulation
 const FINAL_EXAM_DATE = new Date(2026, 11, 12); // Termin der echten Abschlussprüfung (Monat 0-basiert: 11 = Dezember)
 const STREAK_MIN_GAP_MS = 24 * 60 * 60 * 1000; // frühestens 24h nach dem letzten Abholen wieder abholbar
 const STREAK_GRACE_MS = 48 * 60 * 60 * 1000; // innerhalb 48h nach dem letzten Abholen zählt die Streak weiter, sonst reißt sie ab
+
+// Rang nach Streak-Länge, angelehnt an die echte Kfz-Laufbahn - je länger man
+// dranbleibt, desto höher der Rang. Aufsteigend sortiert, der jeweils höchste
+// erreichte Rang zählt.
+const RANKS = [
+  { min: 0, title: "Azubi", icon: "🔧" },
+  { min: 10, title: "Geselle", icon: "🛠️" },
+  { min: 25, title: "Facharbeiter", icon: "⚙️" },
+  { min: 50, title: "Meister", icon: "🏆" },
+  { min: 100, title: "Obermeister", icon: "👑" },
+];
+
+function rankForStreak(count) {
+  let current = RANKS[0];
+  for (const r of RANKS) {
+    if (count >= r.min) current = r;
+  }
+  return current;
+}
 const ALL_TOPIC = "__all__";
 const DB_URL = "https://kfz-lernen-default-rtdb.europe-west1.firebasedatabase.app";
 const CLOUD_SYNC_INTERVAL_MS = 2 * 60 * 1000; // alle 2 Minuten mit dem anderen Profil abgleichen
@@ -102,6 +121,7 @@ const els = {
   streakFlame: document.getElementById("streakFlame"),
   streakCount: document.getElementById("streakCount"),
   streakSub: document.getElementById("streakSub"),
+  streakRankBadge: document.getElementById("streakRankBadge"),
   streakVersus: document.getElementById("streakVersus"),
   examVersus: document.getElementById("examVersus"),
 
@@ -235,6 +255,7 @@ function canClaimStreak() {
 function claimStreak() {
   if (!canClaimStreak()) return;
   const now = Date.now();
+  const oldRank = rankForStreak(streak.count);
   if (streak.lastClaim && (now - streak.lastClaim) <= STREAK_GRACE_MS) {
     streak.count += 1;
   } else {
@@ -245,7 +266,13 @@ function claimStreak() {
   renderStreak();
   renderBattle();
   playStreakClaimAnimation();
-  showToast(`🔥 Tag ${streak.count} der Streak!`);
+
+  const newRank = rankForStreak(streak.count);
+  if (newRank.title !== oldRank.title) {
+    showToast(`${newRank.icon} Aufstieg! Du bist jetzt ${newRank.title}!`, 4000);
+  } else {
+    showToast(`🔥 Tag ${streak.count} der Streak!`);
+  }
 }
 
 function playStreakClaimAnimation() {
@@ -767,6 +794,11 @@ function renderStreak() {
   els.streakBtn.classList.toggle("is-ready", ready);
   els.streakBtn.classList.toggle("has-streak", streak.count > 0);
 
+  if (els.streakRankBadge) {
+    const rank = rankForStreak(streak.count);
+    els.streakRankBadge.textContent = `${rank.icon} ${rank.title}`;
+  }
+
   if (ready) {
     els.streakSub.textContent = "Jetzt abholen";
   } else {
@@ -863,9 +895,11 @@ function renderBattle() {
   if (els.streakVersus) {
     els.streakVersus.innerHTML = ids.map((id) => {
       const s = loadProfileStreak(id);
+      const rank = rankForStreak(s.count);
       return `
         <div class="streak-versus-item${s.count > 0 ? " has-streak" : ""}">
-          <span class="streak-versus-flame">🔥</span>${escapeHtml(PROFILES[id].name)}: ${s.count}
+          <div class="streak-versus-main"><span class="streak-versus-flame">🔥</span>${escapeHtml(PROFILES[id].name)}: ${s.count}</div>
+          <div class="streak-versus-rank">${rank.icon} ${rank.title}</div>
         </div>
       `;
     }).join("");
