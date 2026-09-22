@@ -1,4 +1,4 @@
-const APP_VERSION = "v68";
+const APP_VERSION = "v69";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -2172,9 +2172,11 @@ els.secureAccountBtn?.addEventListener("click", async () => {
 const LAST_ACTIVE_UID_KEY = "kfz_last_active_uid_v1";
 const KNOWN_IDENTITIES_KEY = "kfz_known_identities_v1";
 const DISPLAY_NAME_KEY = "kfz_display_name_v1";
+// Kein Foto mehr (öffentliches Repo/App Store) - die Übernahme-Auswahl zeigt
+// Tim/Huseyn jetzt mit Initialen-Avatar wie jede andere Identität.
 const LEGACY_PROFILES = {
-  tim: { name: "Tim", avatar: "icons/avatar-tim.jpg" },
-  huseyn: { name: "Huseyn", avatar: "icons/avatar-huseyn.jpg" },
+  tim: { name: "Tim" },
+  huseyn: { name: "Huseyn" },
 };
 
 function loadDisplayName(uid) {
@@ -2362,7 +2364,7 @@ function showChooserOrOnboarding() {
   }
   const legacyIds = findLegacyProfiles();
   if (legacyIds.length > 0) {
-    const entries = legacyIds.map((id) => ({ legacyId: id, name: LEGACY_PROFILES[id].name, avatar: LEGACY_PROFILES[id].avatar }));
+    const entries = legacyIds.map((id) => ({ legacyId: id, name: LEGACY_PROFILES[id].name }));
     showChooserScreen(entries, { legacy: true });
     return;
   }

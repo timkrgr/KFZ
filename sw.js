@@ -1,18 +1,16 @@
-const CACHE_VERSION = "v68";
+const CACHE_VERSION = "v69";
 const CACHE_NAME = `kfz-karteikarten-${CACHE_VERSION}`;
 
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./style.css?v=68",
-  "./app.js?v=68",
+  "./style.css?v=69",
+  "./app.js?v=69",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
   "./icons/logo-round.png",
-  "./icons/avatar-tim.jpg",
-  "./icons/avatar-huseyn.jpg",
 ];
 
 self.addEventListener("install", (event) => {
