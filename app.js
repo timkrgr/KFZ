@@ -1,4 +1,4 @@
-const APP_VERSION = "v64";
+const APP_VERSION = "v65";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -116,6 +116,9 @@ const els = {
 
   reloadBtn: document.getElementById("reloadBtn"),
   resetBtn: document.getElementById("resetBtn"),
+  exportBtn: document.getElementById("exportBtn"),
+  importBtn: document.getElementById("importBtn"),
+  importFileInput: document.getElementById("importFileInput"),
 
   studyView: document.getElementById("studyView"),
   backBtn: document.getElementById("backBtn"),
@@ -1481,9 +1484,17 @@ function buildDeck() {
     // Beim normalen Üben zuerst noch nie beantwortete Fragen zeigen, damit
     // schon beantwortete nicht sofort wiederkommen. Erst wenn wirklich jede
     // Frage im Thema mindestens einmal beantwortet wurde (oder das Thema
-    // zurückgesetzt wurde), startet ein neuer voller Durchlauf.
+    // zurückgesetzt wurde), startet ein neuer voller Durchlauf. Falsch
+    // beantwortete Fragen werden dabei mehrfach eingemischt, damit sie
+    // deutlich häufiger drankommen als schon gewusste.
+    const HARD_WEIGHT = 3;
     const unseen = categoryCards.filter((c) => cardState(c.id) === "new");
-    pool = unseen.length > 0 ? unseen : categoryCards;
+    const hard = categoryCards.filter((c) => cardState(c.id) === "hard");
+    const known = categoryCards.filter((c) => cardState(c.id) === "known");
+    const weightedHard = Array(HARD_WEIGHT).fill(hard).flat();
+
+    pool = unseen.length > 0 ? unseen.concat(weightedHard) : weightedHard.concat(known);
+    if (pool.length === 0) pool = categoryCards;
   }
 
   deck = shuffled(pool);
@@ -1709,6 +1720,31 @@ function shuffled(arr) {
 let lastSimFixedCount = null; // merkt sich eine feste Fragenzahl (z. B. die 40er-Prüfungssimulation) fürs Wiederholen
 let currentExamTotal = 0; // Gesamtzahl der Fragen der laufenden Prüfungssimulation (für die 75%-Bestehensgrenze)
 
+// Zieht die Fragen möglichst gleichmäßig über alle Kategorien verteilt statt
+// rein zufällig aus dem Gesamtpool - sonst wären große Kategorien (z. B.
+// Elektrik & Elektronik mit 60 Karten) in der Prüfungssimulation automatisch
+// überrepräsentiert, nur weil zu ihnen mehr Karteikarten existieren.
+function buildBalancedExamPool(count) {
+  const cats = categories();
+  if (cats.length === 0) return [];
+
+  const byCat = cats.map((cat) => shuffled(allCards.filter((c) => (c.category || "Allgemein") === cat)));
+  const base = Math.floor(count / cats.length);
+  const picked = [];
+  const leftoverPool = [];
+
+  byCat.forEach((catCards) => {
+    const take = Math.min(base, catCards.length);
+    picked.push(...catCards.slice(0, take));
+    leftoverPool.push(...catCards.slice(take));
+  });
+
+  const stillNeeded = count - picked.length;
+  if (stillNeeded > 0) picked.push(...shuffled(leftoverPool).slice(0, stillNeeded));
+
+  return picked;
+}
+
 function startSimulation(fixedCount) {
   if (!allCards.length) return;
   sessionMode = "simulation";
@@ -1716,7 +1752,7 @@ function startSimulation(fixedCount) {
   lastSimFixedCount = fixedCount || null;
   const count = Math.min(fixedCount || 40, allCards.length);
   currentExamTotal = count;
-  deck = shuffled(allCards).slice(0, count);
+  deck = shuffled(buildBalancedExamPool(count));
   currentIndex = 0;
 
   els.studyView.hidden = false;
@@ -1843,6 +1879,63 @@ els.resetBtn.addEventListener("click", () => {
     renderStats();
     showToast("Fortschritt zurückgesetzt");
   }
+});
+
+els.exportBtn.addEventListener("click", () => {
+  const backup = {
+    app: "KFZ Karteikarten",
+    exportedAt: new Date().toISOString(),
+    profile: currentProfile,
+    progress,
+    streak,
+    examStats,
+  };
+  const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const dateTag = new Date().toISOString().slice(0, 10);
+  a.href = url;
+  a.download = `kfz-backup-${currentProfile}-${dateTag}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast("Backup heruntergeladen");
+});
+
+els.importBtn.addEventListener("click", () => els.importFileInput.click());
+
+els.importFileInput.addEventListener("change", async () => {
+  const file = els.importFileInput.files[0];
+  els.importFileInput.value = "";
+  if (!file) return;
+
+  let data;
+  try {
+    data = JSON.parse(await file.text());
+  } catch {
+    showToast("⚠️ Backup-Datei ist kein gültiges JSON");
+    return;
+  }
+
+  if (!data || typeof data.progress !== "object" || typeof data.progress.known !== "object") {
+    showToast("⚠️ Das ist keine gültige Backup-Datei");
+    return;
+  }
+
+  const name = PROFILES[currentProfile]?.name || "";
+  if (!confirm(`Fortschritt von ${name} mit dieser Backup-Datei überschreiben?`)) return;
+
+  progress = { known: data.progress.known || {}, hard: data.progress.hard || {} };
+  streak = { count: 0, lastClaim: 0, ...(data.streak || {}) };
+  examStats = { count: 0, right: 0, wrong: 0, passed: 0, ...(data.examStats || {}) };
+  saveProgress();
+  saveStreak();
+  saveExamStats();
+  renderHome();
+  renderStats();
+  renderStreak();
+  showToast("Backup wiederhergestellt");
 });
 
 // --- Profil ---

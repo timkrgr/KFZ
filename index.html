@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=64">
+<link rel="stylesheet" href="style.css?v=65">
 </head>
 <body>
 <div class="app">
@@ -181,6 +181,13 @@
     </div>
 
     <div class="settings-group">
+      <button id="exportBtn" class="btn btn-outline">⬇️ Fortschritt sichern (Backup-Datei)</button>
+      <button id="importBtn" class="btn btn-outline">⬆️ Fortschritt aus Backup wiederherstellen</button>
+      <input type="file" id="importFileInput" accept="application/json" hidden>
+      <p class="panel-hint">Lädt eine Datei mit deinem gesamten Lernfortschritt (gelernte/falsche Karten, Streak, Prüfungen) herunter bzw. spielt sie wieder ein – falls mal etwas schiefgeht oder du das Gerät wechselst.</p>
+    </div>
+
+    <div class="settings-group">
       <button id="resetBtn" class="btn btn-danger">🗑️ Gesamten Lernfortschritt dieses Profils zurücksetzen</button>
     </div>
 
@@ -322,6 +329,6 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="app.js?v=64"></script>
+<script src="app.js?v=65"></script>
 </body>
 </html>

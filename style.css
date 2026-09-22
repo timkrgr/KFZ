@@ -943,6 +943,13 @@ body {
   font-size: 0.85rem;
 }
 
+#exportBtn, #importBtn {
+  display: block;
+  width: 100%;
+}
+
+#exportBtn { margin-bottom: 8px; }
+
 .settings-input {
   width: 100%;
   padding: 10px;
