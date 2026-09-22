@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "updated": "2026-09-21",
   "cards": [
     {
@@ -4265,6 +4265,162 @@
       ],
       "answer": "Da Kältemittel umweltschädlich wirken können und ihr unsachgemäßer Umgang gesetzlich geregelt ist, ist für Arbeiten an Kfz-Klimaanlagen ein anerkannter Sachkundenachweis (u. a. nach Chemikalien-Klimaschutzverordnung) erforderlich, der im Rahmen der Ausbildung erworben wird.",
       "correct": 0
+    },
+    {
+      "id": "elektrik-41",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie ist ein Klauenpolgenerator (Lichtmaschine) grundsätzlich aufgebaut?",
+      "options": [
+        "Ein Rotor mit Erregerwicklung dreht sich im feststehenden Stator mit Drehstromwicklung",
+        "Ein feststehender Rotor mit Dauermagneten umschließt die rotierende Statorwicklung",
+        "Ein Elektromotor treibt über ein Planetengetriebe eine rotierende Schwungmasse an",
+        "Die Erregerwicklung sitzt fest im Gehäuse und induziert die Spannung in die Batterie"
+      ],
+      "correct": 0,
+      "answer": "Der Rotor (Läufer) trägt die vom Regler gesteuerte Erregerwicklung und dreht sich im Inneren des feststehenden Stators (Ständers) mit seiner Drehstromwicklung. Die rotierende Magnetfeldänderung induziert dort die Wechselspannung."
+    },
+    {
+      "id": "elektrik-42",
+      "category": "Elektrik & Elektronik",
+      "question": "Welche Aufgabe hat der Spannungsregler der Lichtmaschine?",
+      "options": [
+        "Er hält die Bordnetzspannung unabhängig von Drehzahl und Last konstant",
+        "Er begrenzt die maximale Drehzahl des Generators mechanisch ab",
+        "Er schaltet den Generator bei hoher Motordrehzahl automatisch ab",
+        "Er wandelt die erzeugte Wechselspannung in Gleichspannung um"
+      ],
+      "correct": 0,
+      "answer": "Der Spannungsregler steuert den Erregerstrom im Rotor so, dass die Generatorspannung unabhängig von Motordrehzahl und Verbraucherlast bei etwa 14,4 Volt (12-Volt-Bordnetz) konstant bleibt."
+    },
+    {
+      "id": "elektrik-43",
+      "category": "Elektrik & Elektronik",
+      "question": "Wodurch wird die Lichtmaschine im Fahrzeug angetrieben?",
+      "options": [
+        "Über einen Keilrippenriemen von der Kurbelwelle des Motors",
+        "Über eine eigene Kardanwelle direkt vom Getriebeausgang",
+        "Über einen Zahnriemen, der auch die Nockenwelle antreibt",
+        "Über eine Steuerkette, die auch die Ölpumpe mit antreibt"
+      ],
+      "correct": 0,
+      "answer": "Ein Keilrippenriemen (Poly-V-Riemen) verbindet die Kurbelwellen-Riemenscheibe mit der Generator-Riemenscheibe. Manche Generatoren besitzen zusätzlich eine Freilaufriemenscheibe, die Drehungleichförmigkeiten ausgleicht."
+    },
+    {
+      "id": "elektrik-44",
+      "category": "Elektrik & Elektronik",
+      "question": "Was bedeutet es, wenn die Ladekontrollleuchte bei laufendem Motor dauerhaft leuchtet?",
+      "options": [
+        "Der Generator lädt die Batterie nicht ausreichend oder gar nicht",
+        "Der Motorölstand liegt unterhalb der Minimum-Markierung",
+        "Die Handbremse ist noch nicht ganz gelöst",
+        "Der Reifendruck ist an mindestens einem Rad zu niedrig"
+      ],
+      "correct": 0,
+      "answer": "Die Ladekontrollleuchte (Batteriesymbol) zeigt an, dass der Generator keinen ausreichenden Ladestrom liefert - Ursachen sind z. B. ein gerissener Keilrippenriemen, verschlissene Kohlebürsten, ein defekter Regler oder eine defekte Diode."
+    },
+    {
+      "id": "elektrik-45",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie wird die Erregerwicklung des Generators beim Motorstart zunächst mit Strom versorgt, bevor der Generator selbst Spannung liefert?",
+      "options": [
+        "Über die Batterie, meist über den Stromkreis der Ladekontrollleuchte",
+        "Über einen im Rotor eingebauten Permanentmagneten ganz ohne Strom",
+        "Über den Anlasser, der die Erregerwicklung direkt mitversorgt",
+        "Über eine separate kleine Batterie speziell für die Erregerwicklung"
+      ],
+      "correct": 0,
+      "answer": "Vor dem Start liefert die Fahrzeugbatterie über den Vorerregerkreis (meist über die Ladekontrollleuchte als Vorwiderstand) den nötigen Erregerstrom. Sobald der Generator läuft, erzeugt er seinen Erregerstrom selbst (Selbsterregung), wodurch die Kontrollleuchte erlischt."
+    },
+    {
+      "id": "elektrik-46",
+      "category": "Elektrik & Elektronik",
+      "question": "Was bewirkt ein bedarfsgerechtes Generatormanagement (intelligente Lichtmaschinenregelung) in modernen Fahrzeugen?",
+      "options": [
+        "Der Generator wird gezielt vor allem im Schubbetrieb stark erregt, um Kraftstoff zu sparen",
+        "Der Generator liefert durchgehend die maximal mögliche Ladespannung",
+        "Der Generator wird beim Beschleunigen zusätzlich stark erregt",
+        "Der Generator schaltet sich unterhalb von 2000 U/min automatisch ab"
+      ],
+      "correct": 0,
+      "answer": "Das Steuergerät regelt die Erregung so, dass der Generator vor allem beim Bremsen oder im Schubbetrieb (wenn ohnehin Bewegungsenergie zur Verfügung steht) stark lädt, während er bei Beschleunigung möglichst wenig Leistung vom Motor abzweigt - das spart Kraftstoff."
+    },
+    {
+      "id": "elektrik-47",
+      "category": "Elektrik & Elektronik",
+      "question": "Aus welchen Hauptbestandteilen besteht ein klassischer Schubschraubtrieb-Anlasser?",
+      "options": [
+        "Elektromotor, Magnetschalter, Ritzel und Freilaufkupplung",
+        "Elektromotor, Spannungsregler, Gleichrichterbrücke und Rotor",
+        "Keilrippenriemen, Freilaufriemenscheibe, Rotor und Stator",
+        "Zündspule, Verteiler, Unterbrecherkontakte und Kondensator"
+      ],
+      "correct": 0,
+      "answer": "Ein Elektromotor (Reihenschlussmotor) liefert das Drehmoment, der Magnetschalter (Einrückrelais) schiebt das Ritzel in den Zahnkranz und schaltet den Hauptstrom, und eine Freilaufkupplung trennt den Kraftfluss wieder, sobald der Motor anspringt."
+    },
+    {
+      "id": "elektrik-48",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie läuft der Einspurvorgang beim Starten typischerweise ab?",
+      "options": [
+        "Der Magnetschalter schiebt zuerst das Ritzel ein, dann schließt er erst den Hauptstromkreis",
+        "Der Hauptstromkreis schließt zuerst, danach schiebt sich das Ritzel erst ein",
+        "Ritzel-Einspuren und Hauptstromschluss erfolgen gleichzeitig in einem Schritt",
+        "Das Ritzel wird nur mechanisch über die Kupplung eingespurt, ganz ohne Magnetschalter"
+      ],
+      "correct": 0,
+      "answer": "Beim Betätigen des Zündschlüssels zieht der Magnetschalter zunächst das Ritzel in den Zahnkranz des Schwungrads. Erst wenn es eingespurt ist, schließt derselbe Magnetschalter den Hauptstromkreis zum Anlassermotor - das schont die Zahnflanken."
+    },
+    {
+      "id": "elektrik-49",
+      "category": "Elektrik & Elektronik",
+      "question": "Wozu dient die Freilaufkupplung im Anlasser?",
+      "options": [
+        "Sie trennt das Ritzel vom Anlassermotor, sobald der Verbrennungsmotor schneller dreht als der Anlasser",
+        "Sie gleicht Drehzahlunterschiede zwischen Anlasser und Generator laufend aus",
+        "Sie überträgt beim Start zusätzliches Drehmoment vom Schwungrad auf den Anlasser",
+        "Sie speichert beim Startvorgang kinetische Energie für den nächsten Start"
+      ],
+      "correct": 0,
+      "answer": "Sobald der Verbrennungsmotor anspringt und schneller dreht als der Anlasser, lässt die Freilaufkupplung das Ritzel durchrutschen. Ohne sie würde der Verbrennungsmotor den Anlassermotor auf zerstörerisch hohe Drehzahlen hochtreiben."
+    },
+    {
+      "id": "elektrik-50",
+      "category": "Elektrik & Elektronik",
+      "question": "Der Anlasser dreht hörbar, aber der Motor springt nicht an - woran kann das liegen?",
+      "options": [
+        "Ritzel oder Zahnkranz sind beschädigt, oder die Freilaufkupplung rutscht durch",
+        "Die Starterbatterie ist schon vollkommen leer",
+        "Der Keilrippenriemen des Generators ist gerissen",
+        "Der Anlasser dreht wegen zu niedriger Bordnetzspannung nur sehr langsam"
+      ],
+      "correct": 0,
+      "answer": "Dreht der Anlasser hörbar frei, ohne den Motor mitzunehmen, sind meist Ritzel oder Zahnkranz beschädigt oder die Freilaufkupplung rutscht durch. Eine leere Batterie oder zu niedrige Spannung würden den Anlasser dagegen eher gar nicht oder nur sehr langsam drehen lassen."
+    },
+    {
+      "id": "elektrik-51",
+      "category": "Elektrik & Elektronik",
+      "question": "Beim Startversuch ist nur ein Klacken zu hören, der Anlasser dreht aber nicht durch - was ist eine typische Ursache?",
+      "options": [
+        "Die Batteriespannung bricht unter der Last zu stark ein, oder die Magnetschalter-Kontakte sind verschlissen",
+        "Der Zahnkranz am Schwungrad ist an mehreren Zähnen abgebrochen",
+        "Die Freilaufkupplung ist mechanisch blockiert und lässt den Motor nicht anspringen",
+        "Der Keilrippenriemen zur Lichtmaschine ist zu stark gespannt"
+      ],
+      "correct": 0,
+      "answer": "Das typische Klacken entsteht, wenn der Magnetschalter zwar anzieht, aber wegen verschlissener Hauptkontakte oder wegen zu starkem Spannungseinbruch (z. B. schwache Batterie, korrodierte Massepunkte) nicht genug Strom für den Anlassermotor durchlässt."
+    },
+    {
+      "id": "elektrik-52",
+      "category": "Elektrik & Elektronik",
+      "question": "Warum benötigen Fahrzeuge mit Start-Stopp-System meist einen verstärkten Anlasser?",
+      "options": [
+        "Weil die deutlich höhere Anzahl an Startvorgängen den Anlasser stärker beansprucht",
+        "Weil der Motor bei Start-Stopp-Systemen generell mehr Hubraum hat",
+        "Weil zusätzlich zur Batterie ein zweiter Anlasser parallel mitläuft",
+        "Weil Start-Stopp-Anlasser den Generator beim Laden unterstützen müssen"
+      ],
+      "correct": 0,
+      "answer": "Bei aktivem Start-Stopp-System startet der Motor deutlich häufiger als üblich (mehrere hundert Mal pro Tag im Stadtverkehr). Verstärkte Anlasser mit robusteren Lagern, Ritzeln und Freiläufen sind für diese hohe Zyklenzahl ausgelegt."
     }
   ]
 }
