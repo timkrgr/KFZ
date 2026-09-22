@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "updated": "2026-09-21",
   "cards": [
     {
@@ -4421,6 +4421,110 @@
       ],
       "correct": 0,
       "answer": "Bei aktivem Start-Stopp-System startet der Motor deutlich häufiger als üblich (mehrere hundert Mal pro Tag im Stadtverkehr). Verstärkte Anlasser mit robusteren Lagern, Ritzeln und Freiläufen sind für diese hohe Zyklenzahl ausgelegt."
+    },
+    {
+      "id": "elektrik-53",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie ist die Drehstromwicklung im Stator eines Kfz-Generators meist verschaltet?",
+      "options": [
+        "In Stern-Schaltung, da sie bei gleichem Strom eine höhere Spannung liefert",
+        "In Dreieck-Schaltung, da sie bei gleicher Spannung einen höheren Strom liefert",
+        "In Reihenschaltung aller drei Phasenwicklungen ohne gemeinsamen Sternpunkt",
+        "In Parallelschaltung, wobei jede Phase einzeln zur Batterie geführt wird"
+      ],
+      "correct": 0,
+      "answer": "Die drei Phasenwicklungen des Stators werden meist im Stern geschaltet: alle drei Wicklungsenden laufen in einem gemeinsamen Sternpunkt zusammen. Das liefert bei gleichem Wicklungsstrom eine höhere Spannung als eine Dreieckschaltung - wichtig für ausreichende Ladespannung schon bei niedriger Leerlaufdrehzahl."
+    },
+    {
+      "id": "elektrik-54",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie gelangt der Erregerstrom zur rotierenden Erregerwicklung im Rotor?",
+      "options": [
+        "Über zwei Schleifringe auf der Rotorwelle, an denen Kohlebürsten schleifen",
+        "Über eine drahtlose Induktionsspule zwischen Rotor und Stator",
+        "Über flexible Litzen, die direkt mit dem Stator verlötet sind",
+        "Über das Kugellager der Rotorwelle, das gleichzeitig als Kontakt dient"
+      ],
+      "correct": 0,
+      "answer": "Auf der Rotorwelle sitzen zwei isolierte Schleifringe, die mit den beiden Enden der Erregerwicklung verbunden sind. Federnd angedrückte Kohlebürsten übertragen den vom Regler gesteuerten Erregerstrom auf die rotierenden Schleifringe."
+    },
+    {
+      "id": "elektrik-55",
+      "category": "Elektrik & Elektronik",
+      "question": "Wie ist die Gleichrichterbrücke (Diodenbrücke) eines Drehstromgenerators typischerweise aufgebaut?",
+      "options": [
+        "Aus sechs Leistungsdioden - je eine Plus- und eine Minus-Diode pro Phase",
+        "Aus einer einzigen großen Diode, die alle drei Phasen gemeinsam gleichrichtet",
+        "Aus drei Dioden, da nur die positive Halbwelle jeder Phase genutzt wird",
+        "Aus zwölf Dioden, da jede Phase doppelt redundant abgesichert ist"
+      ],
+      "correct": 0,
+      "answer": "Für jede der drei Phasen sind eine Plus-Diode (zur Batterie) und eine Minus-Diode (zur Masse) verbaut, insgesamt also sechs Leistungsdioden. Diese Vollweg-Gleichrichtung nutzt beide Halbwellen jeder Phase und ergibt eine deutlich gleichmäßigere Gleichspannung."
+    },
+    {
+      "id": "elektrik-56",
+      "category": "Elektrik & Elektronik",
+      "question": "Warum besitzt ein Klauenpolrotor meist 12 oder 14 klauenförmige Pole?",
+      "options": [
+        "Mehr Pole erzeugen bei gleicher Drehzahl eine höhere Frequenz und gleichmäßigere Gleichspannung",
+        "Mehr Pole senken die im Rotor entstehende Reibungswärme deutlich",
+        "Mehr Pole verringern den nötigen Erregerstrom für die gleiche Leistung",
+        "Mehr Pole ersetzen die Notwendigkeit einer Gleichrichterbrücke"
+      ],
+      "correct": 0,
+      "answer": "Mit steigender Polzahl steigt bei gleicher Drehzahl auch die elektrische Frequenz der erzeugten Wechselspannung. Das ergibt eine feinere Welligkeit nach der Gleichrichtung und ermöglicht einen kompakteren, leichteren Generator."
+    },
+    {
+      "id": "elektrik-57",
+      "category": "Elektrik & Elektronik",
+      "question": "Der Magnetschalter des Anlassers besitzt eine Einzugswicklung und eine Haltewicklung - wie arbeiten diese beim Startvorgang zusammen?",
+      "options": [
+        "Beide ziehen zunächst gemeinsam den Anker ein, danach hält nur noch die Haltewicklung das Ritzel eingespurt",
+        "Nur die Haltewicklung zieht den Anker ein, die Einzugswicklung wirkt erst danach",
+        "Beide Wicklungen bleiben während des gesamten Startvorgangs gleich stark bestromt",
+        "Die Einzugswicklung hält das Ritzel bis zum Motorstart, die Haltewicklung zieht nur kurz an"
+      ],
+      "correct": 0,
+      "answer": "Beim Einschalten ziehen Einzugs- und Haltewicklung gemeinsam den Anker und damit das Ritzel ein. Sobald die Hauptkontakte schließen, liegt die Einzugswicklung auf beiden Seiten an Plus und wird stromlos - nur die schwächere Haltewicklung hält das Ritzel dann noch eingespurt."
+    },
+    {
+      "id": "elektrik-58",
+      "category": "Elektrik & Elektronik",
+      "question": "Warum wird die Einzugswicklung des Magnetschalters abgeschaltet, sobald die Hauptkontakte geschlossen sind?",
+      "options": [
+        "Sie würde unnötig hohen Strom verbrauchen, den der Anlassermotor selbst dann braucht",
+        "Sie würde das Ritzel sonst wieder aus dem Zahnkranz herausziehen",
+        "Sie würde den Spannungsregler des Generators überlasten",
+        "Sie würde die Drehrichtung des Anlassermotors umkehren"
+      ],
+      "correct": 0,
+      "answer": "Nach dem Einspuren ist die Einzugswicklung nicht mehr nötig - sie würde nur zusätzlichen Strom aus der Batterie ziehen, der besser dem Anlassermotor zugutekommt. Deshalb liegt sie nach dem Kontaktschluss stromlos an gleichem Potenzial."
+    },
+    {
+      "id": "elektrik-59",
+      "category": "Elektrik & Elektronik",
+      "question": "Warum ist der Anlassermotor meist als Reihenschluss-Gleichstrommotor ausgeführt?",
+      "options": [
+        "Feld- und Ankerwicklung in Reihe ergeben ein hohes Anzugsmoment bei niedriger Drehzahl",
+        "Feld- und Ankerwicklung parallel ergeben eine besonders konstante Drehzahl",
+        "Nur ein Reihenschlussmotor lässt sich über Schleifringe mit Strom versorgen",
+        "Ein Reihenschlussmotor benötigt keinen Kommutator und ist wartungsfrei"
+      ],
+      "correct": 0,
+      "answer": "Bei einem Reihenschlussmotor liegen Feldwicklung und Ankerwicklung im selben Stromkreis. Das ergibt gerade beim Anlassen - hoher Strom, niedrige Drehzahl - ein sehr hohes Drehmoment, genau das, was zum Durchdrehen des stehenden, kalten Verbrennungsmotors gebraucht wird."
+    },
+    {
+      "id": "elektrik-60",
+      "category": "Elektrik & Elektronik",
+      "question": "Was unterscheidet die Anlasser-Anschlüsse Klemme 30 und Klemme 50?",
+      "options": [
+        "Klemme 30 führt den Hauptstrom von der Batterie, Klemme 50 den Steuerstrom vom Zündschloss",
+        "Klemme 30 kommt vom Zündschloss, Klemme 50 liefert den Hauptstrom der Batterie",
+        "Beide Klemmen führen denselben Steuerstrom, nur redundant abgesichert",
+        "Klemme 30 versorgt nur die Haltewicklung, Klemme 50 nur die Einzugswicklung"
+      ],
+      "correct": 0,
+      "answer": "Klemme 30 ist der dauerhaft an die Batterie angeschlossene Hauptstromanschluss des Anlassers. Klemme 50 kommt vom Zündschloss (Startstellung) und aktiviert den Magnetschalter mit dem vergleichsweise geringen Steuerstrom."
     }
   ]
 }
