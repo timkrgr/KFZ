@@ -640,6 +640,25 @@ html, body {
 
 .streak-versus-item.has-streak .streak-versus-flame { filter: none; }
 
+.exam-versus {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.exam-versus-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.82rem;
+}
+
+.exam-versus-name { font-weight: 700; }
+
+.exam-versus-detail { color: var(--muted); }
+
 .battle-topics {
   display: flex;
   flex-direction: column;

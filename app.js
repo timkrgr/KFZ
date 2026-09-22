@@ -1,6 +1,7 @@
-const APP_VERSION = "v43";
+const APP_VERSION = "v44";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
+const EXAM_STATS_KEY = "kfz_exam_stats_v1";
 const STREAK_MIN_GAP_MS = 24 * 60 * 60 * 1000; // frühestens 24h nach dem letzten Abholen wieder abholbar
 const STREAK_GRACE_MS = 48 * 60 * 60 * 1000; // innerhalb 48h nach dem letzten Abholen zählt die Streak weiter, sonst reißt sie ab
 const ALL_TOPIC = "__all__";
@@ -98,6 +99,7 @@ const els = {
   streakCount: document.getElementById("streakCount"),
   streakSub: document.getElementById("streakSub"),
   streakVersus: document.getElementById("streakVersus"),
+  examVersus: document.getElementById("examVersus"),
 
   battleVersus: document.getElementById("battleVersus"),
   battleWinner: document.getElementById("battleWinner"),
@@ -105,6 +107,7 @@ const els = {
   battleTopicsToggle: document.getElementById("battleTopicsToggle"),
 
   statsSummary: document.getElementById("statsSummary"),
+  examStatsSummary: document.getElementById("examStatsSummary"),
   statsList: document.getElementById("statsList"),
 
   reloadBtn: document.getElementById("reloadBtn"),
@@ -174,6 +177,7 @@ let simInterval = null;
 let simRemaining = 0;
 let progress = { known: {}, hard: {} };
 let streak = { count: 0, lastClaim: 0 };
+let examStats = { count: 0, right: 0, wrong: 0 };
 
 function loadProgress() {
   try {
@@ -269,6 +273,32 @@ function playStreakClaimAnimation() {
   }
 }
 
+// --- Prüfungssimulation-Statistik ---
+// Zählt über alle Prüfungssimulationen hinweg mit, wie viele schon
+// gemacht wurden und wie viele Fragen dabei insgesamt richtig/falsch
+// beantwortet wurden - für die eigene Statistik und den Battle-Vergleich.
+
+function loadExamStats() {
+  try {
+    return JSON.parse(localStorage.getItem(`${EXAM_STATS_KEY}_${currentProfile}`)) || { count: 0, right: 0, wrong: 0 };
+  } catch {
+    return { count: 0, right: 0, wrong: 0 };
+  }
+}
+
+function loadProfileExamStats(id) {
+  try {
+    return JSON.parse(localStorage.getItem(`${EXAM_STATS_KEY}_${id}`)) || { count: 0, right: 0, wrong: 0 };
+  } catch {
+    return { count: 0, right: 0, wrong: 0 };
+  }
+}
+
+function saveExamStats() {
+  localStorage.setItem(`${EXAM_STATS_KEY}_${currentProfile}`, JSON.stringify(examStats));
+  pushExamStatsToCloud();
+}
+
 // --- Cloud-Sync (Firebase Realtime Database) ---
 // Damit Tim & Huseyn auf getrennten Geräten den Fortschritt des anderen sehen:
 // eigene Änderungen werden sofort hochgeladen, der Stand des anderen Profils
@@ -311,6 +341,17 @@ function pushStreakToCloud() {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(streak),
+  }).then((res) => {
+    if (!res.ok) warnCloudSyncOnce(`Upload HTTP ${res.status}`);
+  }).catch((e) => warnCloudSyncOnce(e.message || "Upload fehlgeschlagen"));
+}
+
+function pushExamStatsToCloud() {
+  if (!currentProfile) return;
+  fetch(`${DB_URL}/examstats/${currentProfile}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(examStats),
   }).then((res) => {
     if (!res.ok) warnCloudSyncOnce(`Upload HTTP ${res.status}`);
   }).catch((e) => warnCloudSyncOnce(e.message || "Upload fehlgeschlagen"));
@@ -360,6 +401,30 @@ async function syncFromCloud() {
             }
           } else {
             localStorage.setItem(`${STREAK_KEY}_${id}`, JSON.stringify(streakData[id]));
+            changed = true;
+          }
+        });
+      }
+    }
+
+    // Prüfungsstatistik: pro Profil gewinnt der Stand mit der höheren
+    // Prüfungsanzahl - das ist der vollständigere Verlauf.
+    const examRes = await fetch(`${DB_URL}/examstats.json?ts=${Date.now()}`, { cache: "no-store" });
+    if (examRes.ok) {
+      const examData = await examRes.json();
+      if (examData) {
+        Object.keys(PROFILES).forEach((id) => {
+          if (!examData[id]) return;
+          if (id === currentProfile) {
+            if ((examData[id].count || 0) > (examStats.count || 0)) {
+              examStats = examData[id];
+              localStorage.setItem(`${EXAM_STATS_KEY}_${id}`, JSON.stringify(examStats));
+              changed = true;
+            } else if ((examStats.count || 0) > (examData[id].count || 0)) {
+              pushExamStatsToCloud(); // lokaler Stand ist vollständiger, wieder hochladen
+            }
+          } else {
+            localStorage.setItem(`${EXAM_STATS_KEY}_${id}`, JSON.stringify(examData[id]));
             changed = true;
           }
         });
@@ -706,6 +771,18 @@ function renderBattle() {
     }).join("");
   }
 
+  if (els.examVersus) {
+    els.examVersus.innerHTML = ids.map((id) => {
+      const es = loadProfileExamStats(id);
+      return `
+        <div class="exam-versus-item">
+          <span class="exam-versus-name">🎓 ${escapeHtml(PROFILES[id].name)}</span>
+          <span class="exam-versus-detail">${es.count} Prüfungen · ${es.right} ✓ · ${es.wrong} ✗</span>
+        </div>
+      `;
+    }).join("");
+  }
+
   els.battleTopics.innerHTML = "";
   categories().forEach((cat) => {
     const cardsInCat = allCards.filter((c) => (c.category || "Allgemein") === cat);
@@ -743,6 +820,12 @@ function renderStats() {
     <div class="stat-tile"><div class="stat-value">${total}</div><div class="stat-label">Karten</div></div>
     <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${known}</div><div class="stat-label">gelernt</div></div>
     <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${hard}</div><div class="stat-label">falsch</div></div>
+  `;
+
+  els.examStatsSummary.innerHTML = `
+    <div class="stat-tile"><div class="stat-value">${examStats.count}</div><div class="stat-label">Prüfungen</div></div>
+    <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${examStats.right}</div><div class="stat-label">richtig</div></div>
+    <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${examStats.wrong}</div><div class="stat-label">falsch</div></div>
   `;
 
   els.statsList.innerHTML = "";
@@ -1515,6 +1598,11 @@ function showResult(right, wrong) {
 function endSimulation() {
   stopSimTimer();
   sessionEndKind = "simulation";
+  examStats.count += 1;
+  examStats.right += sessionResults.right;
+  examStats.wrong += sessionResults.wrong;
+  saveExamStats();
+  renderStats();
   showResult(sessionResults.right, sessionResults.wrong);
 }
 
@@ -1580,6 +1668,7 @@ function selectProfile(id) {
   currentProfile = id;
   progress = loadProgress();
   streak = loadStreak();
+  examStats = loadExamStats();
   rememberProfile(id);
 
   const name = PROFILES[id].name;
