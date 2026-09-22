@@ -1,4 +1,4 @@
-const APP_VERSION = "v63";
+const APP_VERSION = "v64";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -92,6 +92,7 @@ const els = {
   heroBtn: document.getElementById("heroBtn"),
   heroRingFill: document.getElementById("heroRingFill"),
   heroRingPct: document.getElementById("heroRingPct"),
+  heroResetAllBtn: document.getElementById("heroResetAllBtn"),
   merkBtn: document.getElementById("merkBtn"),
   merkCount: document.getElementById("merkCount"),
   topicList: document.getElementById("topicList"),
@@ -697,6 +698,9 @@ function renderHome() {
   setRing(els.heroRingFill, 27, pct);
   els.heroBtn.hidden = total === 0;
 
+  const allAnswered = total > 0 && allCards.every((c) => progress.known[c.id] || progress.hard[c.id]);
+  if (els.heroResetAllBtn) els.heroResetAllBtn.hidden = !allAnswered;
+
   const hardCount = allCards.filter((c) => progress.hard[c.id]).length;
   els.merkCount.textContent = hardCount;
   els.merkBtn.hidden = total === 0;
@@ -783,6 +787,13 @@ function resetTopicProgress(cat) {
   clearTopicProgress(cat);
   renderHome();
   showToast("Zurückgesetzt");
+}
+
+function resetAllProgress() {
+  if (!confirm("Wirklich alle Fragen zurücksetzen? Dein kompletter Lernfortschritt geht verloren.")) return;
+  clearTopicProgress(ALL_TOPIC);
+  renderHome();
+  showToast("Alle Fragen zurückgesetzt");
 }
 
 // --- Battle Mode (Tim vs. Huseyn) ---
@@ -1653,6 +1664,7 @@ els.emptyBackBtn.addEventListener("click", goHome);
 
 els.heroBtn.addEventListener("click", () => openTopic(ALL_TOPIC, "all"));
 els.merkBtn.addEventListener("click", () => openTopic(ALL_TOPIC, "hard"));
+if (els.heroResetAllBtn) els.heroResetAllBtn.addEventListener("click", resetAllProgress);
 
 els.flashcard.addEventListener("click", flip);
 els.flashcard.addEventListener("keydown", (e) => {
