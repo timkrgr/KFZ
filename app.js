@@ -1,4 +1,4 @@
-const APP_VERSION = "v47";
+const APP_VERSION = "v48";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -825,12 +825,14 @@ function renderStats() {
     <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${hard}</div><div class="stat-label">falsch</div></div>
   `;
 
-  els.examStatsSummary.innerHTML = `
-    <div class="stat-tile"><div class="stat-value">${examStats.count}</div><div class="stat-label">Prüfungen</div></div>
-    <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${examStats.passed}/${examStats.count}</div><div class="stat-label">bestanden</div></div>
-    <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${examStats.right}</div><div class="stat-label">richtig</div></div>
-    <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${examStats.wrong}</div><div class="stat-label">falsch</div></div>
-  `;
+  if (els.examStatsSummary) {
+    els.examStatsSummary.innerHTML = `
+      <div class="stat-tile"><div class="stat-value">${examStats.count}</div><div class="stat-label">Prüfungen</div></div>
+      <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${examStats.passed}/${examStats.count}</div><div class="stat-label">bestanden</div></div>
+      <div class="stat-tile"><div class="stat-value" style="color:var(--right)">${examStats.right}</div><div class="stat-label">richtig</div></div>
+      <div class="stat-tile"><div class="stat-value" style="color:var(--wrong)">${examStats.wrong}</div><div class="stat-label">falsch</div></div>
+    `;
+  }
 
   els.statsList.innerHTML = "";
   categories().forEach((cat) => {
@@ -1684,16 +1686,20 @@ function showResult(right, wrong) {
   if (sessionEndKind === "simulation" && currentExamTotal > 0) {
     const examPct = Math.round((right / currentExamTotal) * 100);
     const passed = examPct >= EXAM_PASS_PCT;
-    els.resultPassBadge.hidden = false;
-    els.resultPassBadge.className = `result-pass-badge ${passed ? "pass" : "fail"}`;
-    els.resultPassBadge.textContent = passed
-      ? `✅ Bestanden (${examPct}% von ${currentExamTotal} Fragen)`
-      : `❌ Nicht bestanden (${examPct}% von ${currentExamTotal} Fragen, ${EXAM_PASS_PCT}% nötig)`;
-    els.resultExamCount.hidden = false;
-    els.resultExamCount.textContent = `Das war deine ${examStats.count}. Prüfungssimulation`;
+    if (els.resultPassBadge) {
+      els.resultPassBadge.hidden = false;
+      els.resultPassBadge.className = `result-pass-badge ${passed ? "pass" : "fail"}`;
+      els.resultPassBadge.textContent = passed
+        ? `✅ Bestanden (${examPct}% von ${currentExamTotal} Fragen)`
+        : `❌ Nicht bestanden (${examPct}% von ${currentExamTotal} Fragen, ${EXAM_PASS_PCT}% nötig)`;
+    }
+    if (els.resultExamCount) {
+      els.resultExamCount.hidden = false;
+      els.resultExamCount.textContent = `Das war deine ${examStats.count}. Prüfungssimulation`;
+    }
   } else {
-    els.resultPassBadge.hidden = true;
-    els.resultExamCount.hidden = true;
+    if (els.resultPassBadge) els.resultPassBadge.hidden = true;
+    if (els.resultExamCount) els.resultExamCount.hidden = true;
   }
 }
 
