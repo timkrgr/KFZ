@@ -1,4 +1,4 @@
-const APP_VERSION = "v72";
+const APP_VERSION = "v73";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -1688,26 +1688,28 @@ function buildDeck() {
 
   let pool;
   if (currentFilter === "hard") {
-    pool = categoryCards.filter((c) => cardState(c.id) === "hard");
+    pool = shuffled(categoryCards.filter((c) => cardState(c.id) === "hard"));
     hardSessionTotal = pool.length;
   } else {
     // Beim normalen Üben zuerst noch nie beantwortete Fragen zeigen, damit
     // schon beantwortete nicht sofort wiederkommen. Erst wenn wirklich jede
     // Frage im Thema mindestens einmal beantwortet wurde (oder das Thema
     // zurückgesetzt wurde), startet ein neuer voller Durchlauf. Falsch
-    // beantwortete Fragen werden dabei mehrfach eingemischt, damit sie
-    // deutlich häufiger drankommen als schon gewusste.
-    const HARD_WEIGHT = 3;
+    // beantwortete Fragen kommen dabei bevorzugt zuerst dran - aber jede
+    // Karte nur einmal pro Durchlauf, sonst könnte dieselbe Frage im selben
+    // Durchlauf mehrfach drankommen, sogar nachdem man sie schon richtig
+    // beantwortet hat.
     const unseen = categoryCards.filter((c) => cardState(c.id) === "new");
     const hard = categoryCards.filter((c) => cardState(c.id) === "hard");
     const known = categoryCards.filter((c) => cardState(c.id) === "known");
-    const weightedHard = Array(HARD_WEIGHT).fill(hard).flat();
 
-    pool = unseen.length > 0 ? unseen.concat(weightedHard) : weightedHard.concat(known);
+    pool = unseen.length > 0
+      ? shuffled(unseen).concat(shuffled(hard))
+      : shuffled(hard).concat(shuffled(known));
     if (pool.length === 0) pool = categoryCards;
   }
 
-  deck = shuffled(pool);
+  deck = pool;
   currentIndex = 0;
   render();
 }
