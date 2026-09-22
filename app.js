@@ -1,8 +1,9 @@
-const APP_VERSION = "v58";
+const APP_VERSION = "v59";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
 const EXAM_PASS_PCT = 75; // ab dieser Prozentzahl gilt eine Prüfungssimulation als bestanden
+const FINAL_EXAM_DATE = new Date(2026, 11, 12); // Termin der echten Abschlussprüfung (Monat 0-basiert: 11 = Dezember)
 const STREAK_MIN_GAP_MS = 24 * 60 * 60 * 1000; // frühestens 24h nach dem letzten Abholen wieder abholbar
 const STREAK_GRACE_MS = 48 * 60 * 60 * 1000; // innerhalb 48h nach dem letzten Abholen zählt die Streak weiter, sonst reißt sie ab
 const ALL_TOPIC = "__all__";
@@ -87,6 +88,7 @@ const els = {
   explainBackBtn: document.getElementById("explainBackBtn"),
   explainContent: document.getElementById("explainContent"),
 
+  examCountdownText: document.getElementById("examCountdownText"),
   heroBtn: document.getElementById("heroBtn"),
   heroRingFill: document.getElementById("heroRingFill"),
   heroRingPct: document.getElementById("heroRingPct"),
@@ -622,7 +624,25 @@ function cardState(id) {
   return "new";
 }
 
+function renderExamCountdown() {
+  if (!els.examCountdownText) return;
+  const now = new Date();
+  const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Math.round((FINAL_EXAM_DATE - todayMidnight) / (1000 * 60 * 60 * 24));
+
+  if (days > 1) {
+    els.examCountdownText.textContent = `Noch ${days} Tage bis zur Abschlussprüfung`;
+  } else if (days === 1) {
+    els.examCountdownText.textContent = "Noch 1 Tag bis zur Abschlussprüfung";
+  } else if (days === 0) {
+    els.examCountdownText.textContent = "Heute ist die Abschlussprüfung – viel Erfolg! 🍀";
+  } else {
+    els.examCountdownText.textContent = "Die Abschlussprüfung ist vorbei";
+  }
+}
+
 function renderHome() {
+  renderExamCountdown();
   const total = allCards.length;
   const known = allCards.filter((c) => progress.known[c.id]).length;
   const pct = total ? Math.round((known / total) * 100) : 0;

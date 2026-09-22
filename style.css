@@ -157,6 +157,24 @@ html, body {
   margin: 22px 0 10px;
 }
 
+/* Countdown zur Abschlussprüfung */
+
+.exam-countdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--sim-bg);
+  color: var(--sim);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.exam-countdown-icon { display: flex; flex-shrink: 0; }
+.exam-countdown-icon svg { width: 18px; height: 18px; }
+
 /* Hero card */
 
 .hero-card {
