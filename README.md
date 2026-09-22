@@ -54,3 +54,23 @@ npm run sync        # baut www/ aus den Root-Dateien und synct es nach ios/ & an
   daraus alle Icon-/Splash-Größen für beide Plattformen neu.
 - Nach jeder Änderung an den Root-Dateien vor einem nativen Build: `npm run sync`
   ausführen, damit `ios/`/`android/` die aktuelle Version bekommen.
+
+## Account-System (Firebase Auth) einrichten
+
+Für die öffentliche Version bekommt jeder Nutzer ein eigenes, anonymes Konto
+(kein Zwang zu E-Mail/Passwort), damit Fortschritt nicht mehr an zwei fest
+einprogrammierte Profile (Tim/Huseyn) gebunden ist. Zwei einmalige Schritte
+in der Firebase-Konsole (console.firebase.google.com → euer Projekt), die nur
+der Projekt-Inhaber machen kann:
+
+1. **Authentication → Sign-in method** → "Anonymous" aktivieren und
+   "Email/Password" aktivieren (für "Konto sichern", optional für Nutzer).
+2. **Realtime Database → Regeln** → Inhalt von `firebase-database-rules.json`
+   (im Repo-Root) reinkopieren und veröffentlichen. Ersetzt die bisher offene
+   Konfiguration durch: jeder Nutzer darf nur seine eigenen Daten
+   (`progress/$uid`, `streak/$uid`, `examstats/$uid`, `users/$uid`) lesen/schreiben.
+3. **Project Settings → General → Web API Key** kopieren und in `app.js` als
+   `FIREBASE_API_KEY` eintragen. Das ist kein Geheimnis - der Web-API-Key ist
+   bei Firebase bewusst öffentlich/clientseitig sichtbar (steht in jeder
+   Firebase-Web-App im Quellcode) und wird durch die Datenbank-Regeln
+   oben abgesichert, nicht durch Geheimhaltung.

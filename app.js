@@ -1,4 +1,4 @@
-const APP_VERSION = "v67";
+const APP_VERSION = "v68";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -27,13 +27,21 @@ function rankForStreak(count) {
 }
 const ALL_TOPIC = "__all__";
 const DB_URL = "https://kfz-lernen-default-rtdb.europe-west1.firebasedatabase.app";
-const CLOUD_SYNC_INTERVAL_MS = 2 * 60 * 1000; // alle 2 Minuten mit dem anderen Profil abgleichen
+// Öffentlicher Web-API-Key aus der Firebase-Konsole (Project Settings -> General).
+// Kein Geheimnis - bei Firebase bewusst clientseitig sichtbar, abgesichert wird über
+// die Datenbank-Regeln (firebase-database-rules.json), nicht über Geheimhaltung.
+const FIREBASE_API_KEY = "REPLACE_MIT_WEB_API_KEY";
+const CLOUD_SYNC_INTERVAL_MS = 2 * 60 * 1000; // alle 2 Minuten mit der Cloud abgleichen
 
-const PROFILES = {
-  tim: { name: "Tim", color: "var(--accent)", avatar: "icons/avatar-tim.jpg" },
-  huseyn: { name: "Huseyn", color: "var(--merk)", avatar: "icons/avatar-huseyn.jpg" },
-};
-let currentProfile = null;
+// Battle Mode brauchte bisher zwei fest bekannte Profile (Tim/Huseyn) mit offenem
+// Lesezugriff auf die Daten des jeweils anderen. Mit echten, öffentlichen Accounts
+// und abgesicherten Firebase-Regeln (jeder darf nur seine eigenen Daten lesen) geht
+// das so nicht mehr - pausiert, bis es ein Einverständnis-System (z. B. Freundescode)
+// gibt. Die Funktionen bleiben erhalten, falls wir das später wieder aufgreifen.
+const BATTLE_MODE_ENABLED = false;
+
+let currentProfile = null; // Firebase-UID des angemeldeten Nutzers
+let currentDisplayName = "";
 
 // Handgezeichnete SVG-Icons statt generischer Emojis, damit jede Kategorie
 // ein thematisch passendes, gut erkennbares Symbol bekommt (z. B. eine
@@ -90,11 +98,40 @@ function iconForCategory(name) {
 
 const els = {
   profileGate: document.getElementById("profileGate"),
-  profileButtons: document.querySelectorAll(".profile-btn"),
   activeProfileBadge: document.getElementById("activeProfileBadge"),
   profileBadgeButtons: document.querySelectorAll(".profile-badge-btn"),
   settingsProfileName: document.getElementById("settingsProfileName"),
   switchProfileBtn: document.getElementById("switchProfileBtn"),
+  renameProfileBtn: document.getElementById("renameProfileBtn"),
+  renameProfileForm: document.getElementById("renameProfileForm"),
+  renameProfileInput: document.getElementById("renameProfileInput"),
+  renameProfileSaveBtn: document.getElementById("renameProfileSaveBtn"),
+
+  profileChooser: document.getElementById("profileChooser"),
+  profileChooserTitle: document.getElementById("profileChooserTitle"),
+  profileChooserSub: document.getElementById("profileChooserSub"),
+  profileChooserList: document.getElementById("profileChooserList"),
+  profileChooserNewBtn: document.getElementById("profileChooserNewBtn"),
+
+  profileOnboard: document.getElementById("profileOnboard"),
+  onboardTitle: document.getElementById("onboardTitle"),
+  onboardSub: document.getElementById("onboardSub"),
+  onboardNameStep: document.getElementById("onboardNameStep"),
+  onboardNameInput: document.getElementById("onboardNameInput"),
+  onboardStartBtn: document.getElementById("onboardStartBtn"),
+  showSignInBtn: document.getElementById("showSignInBtn"),
+  onboardBackToChooserBtn: document.getElementById("onboardBackToChooserBtn"),
+  onboardSignInStep: document.getElementById("onboardSignInStep"),
+  signInEmailInput: document.getElementById("signInEmailInput"),
+  signInPasswordInput: document.getElementById("signInPasswordInput"),
+  signInSubmitBtn: document.getElementById("signInSubmitBtn"),
+  showNameStepBtn: document.getElementById("showNameStepBtn"),
+
+  accountSecureForm: document.getElementById("accountSecureForm"),
+  accountSecureHint: document.getElementById("accountSecureHint"),
+  secureEmailInput: document.getElementById("secureEmailInput"),
+  securePasswordInput: document.getElementById("securePasswordInput"),
+  secureAccountBtn: document.getElementById("secureAccountBtn"),
 
   tabButtons: document.querySelectorAll(".tab-btn"),
   tabHome: document.getElementById("tabHome"),
@@ -128,6 +165,7 @@ const els = {
   streakVersus: document.getElementById("streakVersus"),
   examVersus: document.getElementById("examVersus"),
 
+  battleCard: document.getElementById("battleCard"),
   battleVersus: document.getElementById("battleVersus"),
   battleWinner: document.getElementById("battleWinner"),
   battleTopics: document.getElementById("battleTopics"),
@@ -365,10 +403,105 @@ function saveExamStats() {
   pushExamStatsToCloud();
 }
 
+// --- Firebase Auth (anonyme Konten, optional per E-Mail gesichert) ---
+// Jeder Nutzer bekommt beim ersten Start automatisch ein anonymes Konto - kein
+// Zwang zu E-Mail/Passwort. Wer will, kann es in den Einstellungen optional per
+// E-Mail sichern, damit der Fortschritt eine Neuinstallation/einen Gerätewechsel
+// übersteht. Bewusst per REST-API (Identity Toolkit) statt Firebase-SDK, damit
+// die App ohne Bundler/externe Laufzeit-Abhängigkeit auskommt.
+
+const AUTH_SESSION_KEY = "kfz_auth_session_v1"; // { uid, idToken, refreshToken, expiresAt }
+
+function loadAuthSession() {
+  try {
+    return JSON.parse(localStorage.getItem(AUTH_SESSION_KEY));
+  } catch {
+    return null;
+  }
+}
+
+function saveAuthSession(session) {
+  localStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(session));
+  return session;
+}
+
+function sessionFromAuthResponse(data) {
+  return {
+    uid: data.localId || data.user_id,
+    idToken: data.idToken || data.id_token,
+    refreshToken: data.refreshToken || data.refresh_token,
+    expiresAt: Date.now() + Number(data.expiresIn || data.expires_in) * 1000,
+  };
+}
+
+function mapAuthError(code) {
+  const map = {
+    EMAIL_EXISTS: "Diese E-Mail wird schon verwendet.",
+    INVALID_EMAIL: "Ungültige E-Mail-Adresse.",
+    WEAK_PASSWORD: "Passwort ist zu schwach (mind. 6 Zeichen).",
+    EMAIL_NOT_FOUND: "Kein Konto mit dieser E-Mail gefunden.",
+    INVALID_PASSWORD: "Falsches Passwort.",
+    INVALID_LOGIN_CREDENTIALS: "E-Mail oder Passwort falsch.",
+    TOO_MANY_ATTEMPTS_TRY_LATER: "Zu viele Versuche, bitte später erneut probieren.",
+  };
+  return map[code] || "Das hat leider nicht geklappt.";
+}
+
+async function identityToolkitRequest(path, body) {
+  const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:${path}?key=${FIREBASE_API_KEY}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(mapAuthError(data.error?.message));
+  return data;
+}
+
+async function signUpAnonymously() {
+  const data = await identityToolkitRequest("signUp", { returnSecureToken: true });
+  return saveAuthSession(sessionFromAuthResponse(data));
+}
+
+async function refreshSession(session) {
+  const form = `grant_type=refresh_token&refresh_token=${encodeURIComponent(session.refreshToken)}`;
+  const res = await fetch(`https://securetoken.googleapis.com/v1/token?key=${FIREBASE_API_KEY}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: form,
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(mapAuthError(data.error?.message));
+  return saveAuthSession(sessionFromAuthResponse(data));
+}
+
+async function getValidIdToken() {
+  let session = loadAuthSession();
+  if (!session) return null;
+  if (Date.now() > session.expiresAt - 5 * 60 * 1000) {
+    session = await refreshSession(session);
+  }
+  return session.idToken;
+}
+
+async function linkEmailPassword(email, password) {
+  const session = loadAuthSession();
+  if (!session) throw new Error("Nicht angemeldet");
+  const data = await identityToolkitRequest("update", { idToken: session.idToken, email, password, returnSecureToken: true });
+  return saveAuthSession(sessionFromAuthResponse(data));
+}
+
+async function signInWithEmailPassword(email, password) {
+  const data = await identityToolkitRequest("signInWithPassword", { email, password, returnSecureToken: true });
+  return saveAuthSession(sessionFromAuthResponse(data));
+}
+
 // --- Cloud-Sync (Firebase Realtime Database) ---
-// Damit Tim & Huseyn auf getrennten Geräten den Fortschritt des anderen sehen:
-// eigene Änderungen werden sofort hochgeladen, der Stand des anderen Profils
-// wird regelmäßig im Hintergrund abgeholt und lokal gecacht.
+// Eigene Änderungen werden sofort hochgeladen, der eigene Stand wird
+// regelmäßig im Hintergrund mit der Cloud abgeglichen (z. B. nach einer
+// Neuinstallation oder auf einem zweiten Gerät mit gesichertem Konto).
+// Jeder Request trägt das aktuelle ID-Token mit (?auth=...), die Firebase-
+// Regeln lassen pro Nutzer nur Zugriff auf die eigenen Daten zu.
 
 let cloudSyncWarned = false;
 
@@ -390,110 +523,103 @@ function mergeProgress(a, b) {
   return { known, hard };
 }
 
-function pushProgressToCloud() {
+async function pushProgressToCloud() {
   if (!currentProfile) return;
-  fetch(`${DB_URL}/progress/${currentProfile}.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(progress),
-  }).then((res) => {
+  try {
+    const token = await getValidIdToken();
+    if (!token) return;
+    const res = await fetch(`${DB_URL}/progress/${currentProfile}.json?auth=${token}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(progress),
+    });
     if (!res.ok) warnCloudSyncOnce(`Upload HTTP ${res.status}`);
-  }).catch((e) => warnCloudSyncOnce(e.message || "Upload fehlgeschlagen"));
+  } catch (e) {
+    warnCloudSyncOnce(e.message || "Upload fehlgeschlagen");
+  }
 }
 
-function pushStreakToCloud() {
+async function pushStreakToCloud() {
   if (!currentProfile) return;
-  fetch(`${DB_URL}/streak/${currentProfile}.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(streak),
-  }).then((res) => {
+  try {
+    const token = await getValidIdToken();
+    if (!token) return;
+    const res = await fetch(`${DB_URL}/streak/${currentProfile}.json?auth=${token}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(streak),
+    });
     if (!res.ok) warnCloudSyncOnce(`Upload HTTP ${res.status}`);
-  }).catch((e) => warnCloudSyncOnce(e.message || "Upload fehlgeschlagen"));
+  } catch (e) {
+    warnCloudSyncOnce(e.message || "Upload fehlgeschlagen");
+  }
 }
 
-function pushExamStatsToCloud() {
+async function pushExamStatsToCloud() {
   if (!currentProfile) return;
-  fetch(`${DB_URL}/examstats/${currentProfile}.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(examStats),
-  }).then((res) => {
+  try {
+    const token = await getValidIdToken();
+    if (!token) return;
+    const res = await fetch(`${DB_URL}/examstats/${currentProfile}.json?auth=${token}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(examStats),
+    });
     if (!res.ok) warnCloudSyncOnce(`Upload HTTP ${res.status}`);
-  }).catch((e) => warnCloudSyncOnce(e.message || "Upload fehlgeschlagen"));
+  } catch (e) {
+    warnCloudSyncOnce(e.message || "Upload fehlgeschlagen");
+  }
 }
 
 async function syncFromCloud() {
+  if (!currentProfile) return;
   try {
+    const token = await getValidIdToken();
+    if (!token) return;
     let changed = false;
 
-    const res = await fetch(`${DB_URL}/progress.json?ts=${Date.now()}`, { cache: "no-store" });
+    const res = await fetch(`${DB_URL}/progress/${currentProfile}.json?auth=${token}&ts=${Date.now()}`, { cache: "no-store" });
     if (!res.ok) { warnCloudSyncOnce(`Download HTTP ${res.status}`); return; }
-    const data = await res.json();
-
-    if (data) {
-      Object.keys(PROFILES).forEach((id) => {
-        if (!data[id]) return;
-        if (id === currentProfile) {
-          const merged = mergeProgress(progress, data[id]);
-          if (JSON.stringify(merged) !== JSON.stringify(progress)) {
-            progress = merged;
-            localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(progress));
-            pushProgressToCloud(); // gemergten Stand auch wieder hochladen
-            changed = true;
-          }
-        } else {
-          localStorage.setItem(`${STORAGE_KEY}_${id}`, JSON.stringify(data[id]));
-          changed = true;
-        }
-      });
-    }
-
-    // Streak: pro Profil gewinnt immer der Stand mit dem neueren "lastClaim" -
-    // das ist das Gerät, auf dem zuletzt tatsächlich abgeholt wurde.
-    const streakRes = await fetch(`${DB_URL}/streak.json?ts=${Date.now()}`, { cache: "no-store" });
-    if (streakRes.ok) {
-      const streakData = await streakRes.json();
-      if (streakData) {
-        Object.keys(PROFILES).forEach((id) => {
-          if (!streakData[id]) return;
-          if (id === currentProfile) {
-            if ((streakData[id].lastClaim || 0) > (streak.lastClaim || 0)) {
-              streak = streakData[id];
-              localStorage.setItem(`${STREAK_KEY}_${id}`, JSON.stringify(streak));
-              changed = true;
-            } else if ((streak.lastClaim || 0) > (streakData[id].lastClaim || 0)) {
-              pushStreakToCloud(); // lokaler Stand ist neuer, wieder hochladen
-            }
-          } else {
-            localStorage.setItem(`${STREAK_KEY}_${id}`, JSON.stringify(streakData[id]));
-            changed = true;
-          }
-        });
+    const cloudProgress = await res.json();
+    if (cloudProgress) {
+      const merged = mergeProgress(progress, cloudProgress);
+      if (JSON.stringify(merged) !== JSON.stringify(progress)) {
+        progress = merged;
+        localStorage.setItem(`${STORAGE_KEY}_${currentProfile}`, JSON.stringify(progress));
+        pushProgressToCloud(); // gemergten Stand auch wieder hochladen
+        changed = true;
       }
     }
 
-    // Prüfungsstatistik: pro Profil gewinnt der Stand mit der höheren
-    // Prüfungsanzahl - das ist der vollständigere Verlauf.
-    const examRes = await fetch(`${DB_URL}/examstats.json?ts=${Date.now()}`, { cache: "no-store" });
+    // Streak: der Stand mit dem neueren "lastClaim" gewinnt - das ist das
+    // Gerät, auf dem zuletzt tatsächlich abgeholt wurde.
+    const streakRes = await fetch(`${DB_URL}/streak/${currentProfile}.json?auth=${token}&ts=${Date.now()}`, { cache: "no-store" });
+    if (streakRes.ok) {
+      const cloudStreak = await streakRes.json();
+      if (cloudStreak) {
+        if ((cloudStreak.lastClaim || 0) > (streak.lastClaim || 0)) {
+          streak = { count: 0, lastClaim: 0, ...cloudStreak };
+          localStorage.setItem(`${STREAK_KEY}_${currentProfile}`, JSON.stringify(streak));
+          changed = true;
+        } else if ((streak.lastClaim || 0) > (cloudStreak.lastClaim || 0)) {
+          pushStreakToCloud(); // lokaler Stand ist neuer, wieder hochladen
+        }
+      }
+    }
+
+    // Prüfungsstatistik: der Stand mit der höheren Prüfungsanzahl gewinnt -
+    // das ist der vollständigere Verlauf.
+    const examRes = await fetch(`${DB_URL}/examstats/${currentProfile}.json?auth=${token}&ts=${Date.now()}`, { cache: "no-store" });
     if (examRes.ok) {
-      const examData = await examRes.json();
-      if (examData) {
-        Object.keys(PROFILES).forEach((id) => {
-          if (!examData[id]) return;
-          if (id === currentProfile) {
-            if ((examData[id].count || 0) > (examStats.count || 0)) {
-              examStats = { count: 0, right: 0, wrong: 0, passed: 0, ...examData[id] };
-              localStorage.setItem(`${EXAM_STATS_KEY}_${id}`, JSON.stringify(examStats));
-              changed = true;
-            } else if ((examStats.count || 0) > (examData[id].count || 0)) {
-              pushExamStatsToCloud(); // lokaler Stand ist vollständiger, wieder hochladen
-            }
-          } else {
-            localStorage.setItem(`${EXAM_STATS_KEY}_${id}`, JSON.stringify(examData[id]));
-            changed = true;
-          }
-        });
+      const cloudExam = await examRes.json();
+      if (cloudExam) {
+        if ((cloudExam.count || 0) > (examStats.count || 0)) {
+          examStats = { count: 0, right: 0, wrong: 0, passed: 0, ...cloudExam };
+          localStorage.setItem(`${EXAM_STATS_KEY}_${currentProfile}`, JSON.stringify(examStats));
+          changed = true;
+        } else if ((examStats.count || 0) > (cloudExam.count || 0)) {
+          pushExamStatsToCloud(); // lokaler Stand ist vollständiger, wieder hochladen
+        }
       }
     }
 
@@ -895,6 +1021,10 @@ function battleSideHtml(id, stats, isWinner) {
 }
 
 function renderBattle() {
+  if (els.battleCard) els.battleCard.hidden = !BATTLE_MODE_ENABLED;
+  if (els.battleTopicsToggle) els.battleTopicsToggle.hidden = !BATTLE_MODE_ENABLED;
+  if (!BATTLE_MODE_ENABLED) return;
+
   const ids = Object.keys(PROFILES);
   if (ids.length < 2) return;
   const [a, b] = ids;
@@ -1934,8 +2064,7 @@ els.resultHomeBtn.addEventListener("click", goHome);
 els.reloadBtn.addEventListener("click", () => loadCards());
 
 els.resetBtn.addEventListener("click", () => {
-  const name = PROFILES[currentProfile]?.name || "";
-  if (confirm(`Gesamten Lernfortschritt von ${name} (alle Themen) zurücksetzen?`)) {
+  if (confirm(`Gesamten Lernfortschritt von ${currentDisplayName} (alle Themen) zurücksetzen?`)) {
     progress = { known: {}, hard: {} };
     saveProgress();
     renderHome();
@@ -1948,7 +2077,7 @@ els.exportBtn.addEventListener("click", () => {
   const backup = {
     app: "KFZ Karteikarten",
     exportedAt: new Date().toISOString(),
-    profile: currentProfile,
+    profileName: currentDisplayName,
     progress,
     streak,
     examStats,
@@ -1957,8 +2086,9 @@ els.exportBtn.addEventListener("click", () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   const dateTag = new Date().toISOString().slice(0, 10);
+  const slug = (currentDisplayName || "profil").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "profil";
   a.href = url;
-  a.download = `kfz-backup-${currentProfile}-${dateTag}.json`;
+  a.download = `kfz-backup-${slug}-${dateTag}.json`;
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -1986,8 +2116,7 @@ els.importFileInput.addEventListener("change", async () => {
     return;
   }
 
-  const name = PROFILES[currentProfile]?.name || "";
-  if (!confirm(`Fortschritt von ${name} mit dieser Backup-Datei überschreiben?`)) return;
+  if (!confirm(`Fortschritt von ${currentDisplayName} mit dieser Backup-Datei überschreiben?`)) return;
 
   progress = { known: data.progress.known || {}, hard: data.progress.hard || {} };
   streak = { count: 0, lastClaim: 0, ...(data.streak || {}) };
@@ -2001,41 +2130,125 @@ els.importFileInput.addEventListener("change", async () => {
   showToast("Backup wiederhergestellt");
 });
 
-// --- Profil ---
+// --- Konto sichern (optional: E-Mail/Passwort an das anonyme Konto binden) ---
 
-const ACTIVE_PROFILE_KEY = "kfz_active_profile_v1";
-const ACTIVE_PROFILE_TTL_MS = 8 * 60 * 60 * 1000; // 8 Stunden "eingeloggt bleiben"
-
-function getRememberedProfile() {
-  try {
-    const raw = JSON.parse(localStorage.getItem(ACTIVE_PROFILE_KEY));
-    if (!raw || !PROFILES[raw.id]) return null;
-    if (Date.now() - raw.ts > ACTIVE_PROFILE_TTL_MS) return null;
-    return raw.id;
-  } catch {
-    return null;
+function renderAccountSecureStatus() {
+  const session = loadAuthSession();
+  const secured = !!session?.securedEmail;
+  if (els.accountSecureForm) els.accountSecureForm.hidden = secured;
+  if (els.accountSecureHint) {
+    els.accountSecureHint.textContent = secured
+      ? `✅ Gesichert mit ${session.securedEmail} – dein Fortschritt übersteht Neuinstallation & Gerätewechsel.`
+      : "Optional: Mit E-Mail & Passwort bleibt dein Fortschritt erhalten, falls du die App neu installierst oder das Gerät wechselst.";
   }
 }
 
-function rememberProfile(id) {
-  localStorage.setItem(ACTIVE_PROFILE_KEY, JSON.stringify({ id, ts: Date.now() }));
+els.secureAccountBtn?.addEventListener("click", async () => {
+  const email = els.secureEmailInput.value.trim();
+  const password = els.securePasswordInput.value;
+  if (!email || !password) { showToast("Bitte E-Mail und Passwort eingeben"); return; }
+  try {
+    const session = await linkEmailPassword(email, password);
+    session.securedEmail = email;
+    saveAuthSession(session);
+    rememberIdentity(session, currentDisplayName);
+    els.secureEmailInput.value = "";
+    els.securePasswordInput.value = "";
+    showToast("✅ Konto gesichert");
+    renderAccountSecureStatus();
+  } catch (e) {
+    showToast(`⚠️ ${e.message || "Konto konnte nicht gesichert werden"}`, 4000);
+  }
+});
+
+// --- Profil / Account-System ---
+// Jeder Nutzer bekommt automatisch ein anonymes Firebase-Konto (keine
+// E-Mail/Passwort-Pflicht). Auf diesem Gerät zuletzt genutzte Identitäten
+// werden gemerkt (inkl. Refresh-Token), damit man zwischen ihnen wechseln
+// kann - z. B. wenn sich mehrere Leute ein Gerät teilen, wie bisher Tim und
+// Huseyn. Alte, vor dem Account-System entstandene Tim/Huseyn-Daten auf
+// diesem Gerät werden beim ersten Start einmalig zur Übernahme angeboten.
+
+const LAST_ACTIVE_UID_KEY = "kfz_last_active_uid_v1";
+const KNOWN_IDENTITIES_KEY = "kfz_known_identities_v1";
+const DISPLAY_NAME_KEY = "kfz_display_name_v1";
+const LEGACY_PROFILES = {
+  tim: { name: "Tim", avatar: "icons/avatar-tim.jpg" },
+  huseyn: { name: "Huseyn", avatar: "icons/avatar-huseyn.jpg" },
+};
+
+function loadDisplayName(uid) {
+  return localStorage.getItem(`${DISPLAY_NAME_KEY}_${uid}`) || "";
 }
 
-function forgetProfile() {
-  localStorage.removeItem(ACTIVE_PROFILE_KEY);
+function saveDisplayName(uid, name) {
+  localStorage.setItem(`${DISPLAY_NAME_KEY}_${uid}`, name);
 }
 
-function selectProfile(id) {
-  currentProfile = id;
+async function pushDisplayNameToCloud(uid, name) {
+  try {
+    const token = await getValidIdToken();
+    if (!token) return;
+    await fetch(`${DB_URL}/users/${uid}.json?auth=${token}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ displayName: name }),
+    });
+  } catch {
+    // Name ist lokal gespeichert; der nächste Cloud-Sync holt das nach.
+  }
+}
+
+function loadKnownIdentities() {
+  try {
+    return JSON.parse(localStorage.getItem(KNOWN_IDENTITIES_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+// Merkt sich uid + Name + Refresh-Token - Refresh-Token aktualisieren wir bei
+// jedem Login neu, da Firebase ihn beim Erneuern gelegentlich rotiert.
+function rememberIdentity(session, name) {
+  const list = loadKnownIdentities().filter((x) => x.uid !== session.uid);
+  list.unshift({ uid: session.uid, name, refreshToken: session.refreshToken });
+  localStorage.setItem(KNOWN_IDENTITIES_KEY, JSON.stringify(list.slice(0, 6)));
+}
+
+function findLegacyProfiles() {
+  return Object.keys(LEGACY_PROFILES).filter((id) => localStorage.getItem(`${STORAGE_KEY}_${id}`) !== null);
+}
+
+function hashCode(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) { hash = (hash << 5) - hash + str.charCodeAt(i); hash |= 0; }
+  return hash;
+}
+
+function avatarInitialsHtml(name, uid, sizeClass) {
+  const letter = (name || "?").trim().charAt(0).toUpperCase() || "?";
+  const hue = Math.abs(hashCode(String(uid || name || "x"))) % 360;
+  return `<span class="${sizeClass}" style="background:hsl(${hue},55%,38%)">${escapeHtml(letter)}</span>`;
+}
+
+function updateProfileBadges() {
+  const badgeHtml = avatarInitialsHtml(currentDisplayName, currentProfile, "badge-avatar-initial") + escapeHtml(currentDisplayName);
+  els.profileBadgeButtons.forEach((btn) => { btn.innerHTML = badgeHtml; });
+  if (els.settingsProfileName) els.settingsProfileName.textContent = currentDisplayName;
+}
+
+function enterApp(session, name) {
+  currentProfile = session.uid;
+  currentDisplayName = name;
+  rememberIdentity(session, name);
+  localStorage.setItem(LAST_ACTIVE_UID_KEY, session.uid);
+
   progress = loadProgress();
   streak = loadStreak();
   examStats = loadExamStats();
-  rememberProfile(id);
 
-  const name = PROFILES[id].name;
-  const badgeHtml = `<img src="${PROFILES[id].avatar}" alt="">${escapeHtml(name)}`;
-  els.profileBadgeButtons.forEach((btn) => { btn.innerHTML = badgeHtml; });
-  els.settingsProfileName.textContent = name;
+  updateProfileBadges();
+  renderAccountSecureStatus();
   els.profileGate.hidden = true;
 
   safeCall(renderHome, "Home");
@@ -2044,31 +2257,192 @@ function selectProfile(id) {
   startCloudSync();
 }
 
+async function startOnboarding(name) {
+  const trimmed = (name || "").trim();
+  if (!trimmed) { showToast("Bitte einen Namen eingeben"); return; }
+  try {
+    const session = await signUpAnonymously();
+    saveDisplayName(session.uid, trimmed);
+    enterApp(session, trimmed);
+    pushDisplayNameToCloud(session.uid, trimmed);
+  } catch (e) {
+    showToast(`⚠️ ${e.message || "Anmeldung fehlgeschlagen"}`, 4000);
+  }
+}
+
+async function startSignIn(email, password) {
+  if (!email || !password) { showToast("Bitte E-Mail und Passwort eingeben"); return; }
+  try {
+    const session = await signInWithEmailPassword(email, password);
+    session.securedEmail = email;
+    saveAuthSession(session);
+
+    let name = loadDisplayName(session.uid);
+    if (!name) {
+      try {
+        const res = await fetch(`${DB_URL}/users/${session.uid}.json?auth=${session.idToken}`);
+        const data = res.ok ? await res.json() : null;
+        name = data?.displayName || "Du";
+      } catch {
+        name = "Du";
+      }
+      saveDisplayName(session.uid, name);
+    }
+    enterApp(session, name);
+  } catch (e) {
+    showToast(`⚠️ ${e.message || "Anmeldung fehlgeschlagen"}`, 4000);
+  }
+}
+
+async function switchToKnownIdentity(entry) {
+  try {
+    const session = await refreshSession({ refreshToken: entry.refreshToken });
+    enterApp(session, entry.name);
+  } catch (e) {
+    showToast(`⚠️ ${e.message || "Wechsel fehlgeschlagen"}`, 4000);
+  }
+}
+
+async function migrateLegacyProfile(legacyId) {
+  const name = LEGACY_PROFILES[legacyId].name;
+  try {
+    const session = await signUpAnonymously();
+    [STORAGE_KEY, STREAK_KEY, EXAM_STATS_KEY].forEach((key) => {
+      const legacyValue = localStorage.getItem(`${key}_${legacyId}`);
+      if (legacyValue) localStorage.setItem(`${key}_${session.uid}`, legacyValue);
+    });
+    saveDisplayName(session.uid, name);
+    enterApp(session, name);
+    pushDisplayNameToCloud(session.uid, name);
+  } catch (e) {
+    showToast(`⚠️ ${e.message || "Übernahme fehlgeschlagen"}`, 4000);
+  }
+}
+
+function renderProfilePickerList(container, entries, onPick) {
+  container.innerHTML = "";
+  entries.forEach((entry) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "profile-btn";
+    btn.innerHTML = entry.avatar
+      ? `<img class="profile-avatar" src="${entry.avatar}" alt="${escapeHtml(entry.name)}"><span class="profile-name">${escapeHtml(entry.name)}</span>`
+      : `${avatarInitialsHtml(entry.name, entry.uid, "profile-avatar profile-avatar-initial")}<span class="profile-name">${escapeHtml(entry.name)}</span>`;
+    btn.addEventListener("click", () => onPick(entry));
+    container.appendChild(btn);
+  });
+}
+
+function showOnboardingScreen() {
+  els.onboardNameStep.hidden = false;
+  els.onboardSignInStep.hidden = true;
+  els.onboardTitle.textContent = "Wie heißt du?";
+  els.onboardSub.textContent = "Damit dein Fortschritt dir gehört";
+  els.onboardBackToChooserBtn.hidden = loadKnownIdentities().length === 0;
+  els.profileChooser.hidden = true;
+  els.profileOnboard.hidden = false;
+  els.profileGate.hidden = false;
+}
+
+function showChooserScreen(entries, { legacy }) {
+  els.profileChooserTitle.textContent = legacy ? "Alten Fortschritt gefunden!" : "Wer bist du?";
+  els.profileChooserSub.textContent = legacy ? "Bist du das?" : "Wähle dein Profil oder starte neu";
+  els.profileChooserNewBtn.textContent = legacy ? "Nein, neu anfangen" : "+ Neuer Name";
+  renderProfilePickerList(els.profileChooserList, entries, legacy ? (e) => migrateLegacyProfile(e.legacyId) : switchToKnownIdentity);
+  els.profileChooser.hidden = false;
+  els.profileOnboard.hidden = true;
+  els.profileGate.hidden = false;
+}
+
+function showChooserOrOnboarding() {
+  const known = loadKnownIdentities();
+  if (known.length > 0) {
+    showChooserScreen(known, { legacy: false });
+    return;
+  }
+  const legacyIds = findLegacyProfiles();
+  if (legacyIds.length > 0) {
+    const entries = legacyIds.map((id) => ({ legacyId: id, name: LEGACY_PROFILES[id].name, avatar: LEGACY_PROFILES[id].avatar }));
+    showChooserScreen(entries, { legacy: true });
+    return;
+  }
+  showOnboardingScreen();
+}
+
+function switchProfilePrompt() {
+  localStorage.removeItem(LAST_ACTIVE_UID_KEY);
+  location.reload();
+}
+
 els.streakBtn.addEventListener("click", claimStreak);
 
-els.profileButtons.forEach((btn) => {
-  btn.addEventListener("click", () => selectProfile(btn.dataset.profile));
+els.onboardStartBtn.addEventListener("click", () => startOnboarding(els.onboardNameInput.value));
+els.onboardNameInput.addEventListener("keydown", (e) => { if (e.key === "Enter") startOnboarding(els.onboardNameInput.value); });
+
+els.showSignInBtn.addEventListener("click", () => {
+  els.onboardNameStep.hidden = true;
+  els.onboardSignInStep.hidden = false;
+  els.onboardTitle.textContent = "Willkommen zurück";
+  els.onboardSub.textContent = "Melde dich mit deinem gesicherten Konto an";
+});
+els.showNameStepBtn.addEventListener("click", () => {
+  els.onboardSignInStep.hidden = true;
+  els.onboardNameStep.hidden = false;
+  els.onboardTitle.textContent = "Wie heißt du?";
+  els.onboardSub.textContent = "Damit dein Fortschritt dir gehört";
+});
+els.signInSubmitBtn.addEventListener("click", () => startSignIn(els.signInEmailInput.value.trim(), els.signInPasswordInput.value));
+
+els.onboardBackToChooserBtn.addEventListener("click", showChooserOrOnboarding);
+els.profileChooserNewBtn.addEventListener("click", showOnboardingScreen);
+
+els.renameProfileBtn?.addEventListener("click", () => {
+  els.renameProfileInput.value = currentDisplayName;
+  els.renameProfileForm.hidden = !els.renameProfileForm.hidden;
 });
 
-// Profilwechsel lädt die App neu und vergisst das gemerkte Profil, damit die
-// Auswahl wieder erscheint (und kein Timer/Zustand des vorigen Profils übrig bleibt).
-els.profileBadgeButtons.forEach((btn) => {
-  btn.addEventListener("click", () => { forgetProfile(); location.reload(); });
+els.renameProfileSaveBtn?.addEventListener("click", () => {
+  const newName = els.renameProfileInput.value.trim();
+  if (!newName) { showToast("Bitte einen Namen eingeben"); return; }
+  currentDisplayName = newName;
+  saveDisplayName(currentProfile, newName);
+  const session = loadAuthSession();
+  if (session) rememberIdentity(session, newName);
+  updateProfileBadges();
+  pushDisplayNameToCloud(currentProfile, newName);
+  els.renameProfileForm.hidden = true;
+  showToast("Name geändert");
 });
-els.switchProfileBtn.addEventListener("click", () => { forgetProfile(); location.reload(); });
+
+// Profilwechsel lädt die App neu und zeigt danach die Profilauswahl statt
+// automatisch weiterzumachen (Fortschritt bleibt dabei unangetastet).
+els.profileBadgeButtons.forEach((btn) => btn.addEventListener("click", switchProfilePrompt));
+els.switchProfileBtn.addEventListener("click", switchProfilePrompt);
 
 // --- Init ---
 
 document.getElementById("appVersion").textContent = APP_VERSION;
 
-const rememberedProfile = getRememberedProfile();
-if (rememberedProfile) {
-  selectProfile(rememberedProfile);
-  const rememberedTab = localStorage.getItem(ACTIVE_TAB_KEY);
-  if (rememberedTab && TAB_ORDER.includes(rememberedTab)) {
-    switchTab(rememberedTab, { remember: false, animate: false });
+(function initProfileGate() {
+  const lastUid = localStorage.getItem(LAST_ACTIVE_UID_KEY);
+  const known = loadKnownIdentities();
+  const lastEntry = known.find((x) => x.uid === lastUid);
+
+  if (lastEntry) {
+    refreshSession({ refreshToken: lastEntry.refreshToken }).then((session) => {
+      enterApp(session, lastEntry.name);
+      const rememberedTab = localStorage.getItem(ACTIVE_TAB_KEY);
+      if (rememberedTab && TAB_ORDER.includes(rememberedTab)) {
+        switchTab(rememberedTab, { remember: false, animate: false });
+      }
+    }).catch(() => {
+      showChooserOrOnboarding(); // Sitzung nicht mehr gültig - zurück zur Auswahl
+    });
+    return;
   }
-}
+
+  showChooserOrOnboarding();
+})();
 
 loadCards({ silent: true });
 

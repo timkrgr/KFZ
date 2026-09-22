@@ -1086,6 +1086,13 @@ body {
 
 #exportBtn { margin-bottom: 8px; }
 
+#secureEmailInput, #securePasswordInput { margin-bottom: 8px; }
+
+#secureAccountBtn {
+  display: block;
+  width: 100%;
+}
+
 .settings-input {
   width: 100%;
   padding: 10px;
@@ -1742,8 +1749,9 @@ body {
 .profile-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 36px;
+  gap: 24px 36px;
 }
 
 .profile-btn {
@@ -1773,6 +1781,63 @@ body {
 .profile-name {
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.profile-avatar-initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: white;
+}
+
+.badge-avatar-initial {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+}
+
+.profile-gate-input {
+  margin-bottom: 10px;
+}
+
+.profile-gate-start {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.profile-gate-link {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.profile-gate-skip {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.profile-gate-hint {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 18px 0 0;
+  line-height: 1.4;
 }
 
 .toast {
