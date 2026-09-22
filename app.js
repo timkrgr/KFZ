@@ -1,4 +1,4 @@
-const APP_VERSION = "v49";
+const APP_VERSION = "v50";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -184,7 +184,8 @@ let examStats = { count: 0, right: 0, wrong: 0, passed: 0 };
 
 function loadProgress() {
   try {
-    return JSON.parse(localStorage.getItem(`${STORAGE_KEY}_${currentProfile}`)) || { known: {}, hard: {} };
+    const parsed = JSON.parse(localStorage.getItem(`${STORAGE_KEY}_${currentProfile}`));
+    return { known: parsed?.known || {}, hard: parsed?.hard || {} };
   } catch {
     return { known: {}, hard: {} };
   }
@@ -202,7 +203,7 @@ function saveProgress() {
 
 function loadStreak() {
   try {
-    return JSON.parse(localStorage.getItem(`${STREAK_KEY}_${currentProfile}`)) || { count: 0, lastClaim: 0 };
+    return { count: 0, lastClaim: 0, ...JSON.parse(localStorage.getItem(`${STREAK_KEY}_${currentProfile}`)) };
   } catch {
     return { count: 0, lastClaim: 0 };
   }
@@ -210,7 +211,7 @@ function loadStreak() {
 
 function loadProfileStreak(id) {
   try {
-    return JSON.parse(localStorage.getItem(`${STREAK_KEY}_${id}`)) || { count: 0, lastClaim: 0 };
+    return { count: 0, lastClaim: 0, ...JSON.parse(localStorage.getItem(`${STREAK_KEY}_${id}`)) };
   } catch {
     return { count: 0, lastClaim: 0 };
   }
@@ -719,7 +720,8 @@ function resetTopicProgress(cat) {
 
 function loadProfileProgress(id) {
   try {
-    return JSON.parse(localStorage.getItem(`${STORAGE_KEY}_${id}`)) || { known: {}, hard: {} };
+    const parsed = JSON.parse(localStorage.getItem(`${STORAGE_KEY}_${id}`));
+    return { known: parsed?.known || {}, hard: parsed?.hard || {} };
   } catch {
     return { known: {}, hard: {} };
   }
