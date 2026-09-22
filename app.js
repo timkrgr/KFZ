@@ -1,4 +1,4 @@
-const APP_VERSION = "v70";
+const APP_VERSION = "v71";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -657,6 +657,16 @@ function safeCall(fn, label) {
     showToast(`⚠️ Fehler (${label}): ${e.message}`, 5000);
   }
 }
+
+// Sicherheitsnetz für Fehler, die sonst komplett lautlos wären: ein Klick-Handler,
+// der eine async-Funktion aufruft, ohne das zurückgegebene Promise abzuwarten oder
+// selbst abzufangen, lässt bei einem Fehler einfach gar nichts passieren - wirkt
+// nach außen wie ein Button, der nicht reagiert. Zeigt stattdessen den echten
+// Fehler als Toast, damit sich sowas melden/screenshotten lässt.
+window.addEventListener("unhandledrejection", (event) => {
+  console.error("Unbehandelter Fehler:", event.reason);
+  showToast(`⚠️ Fehler: ${event.reason?.message || event.reason || "unbekannt"}`, 5000);
+});
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
@@ -2306,8 +2316,8 @@ async function switchToKnownIdentity(entry) {
 }
 
 async function migrateLegacyProfile(legacyId) {
-  const name = LEGACY_PROFILES[legacyId].name;
   try {
+    const name = LEGACY_PROFILES[legacyId].name;
     const session = await signUpAnonymously();
     [STORAGE_KEY, STREAK_KEY, EXAM_STATS_KEY].forEach((key) => {
       const legacyValue = localStorage.getItem(`${key}_${legacyId}`);
