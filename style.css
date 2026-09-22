@@ -901,10 +901,10 @@ html, body {
   right: 0;
   bottom: 0;
   display: flex;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  border-radius: 20px 20px 0 0;
-  padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
   z-index: 30;
   /* Erzwingt eine eigene Compositing-Ebene, damit die Leiste auf iOS Safari
      beim Scrollen nicht kurz "abgehängt" wirkt oder verzögert nachzieht. */
@@ -913,23 +913,32 @@ html, body {
 }
 
 .tab-btn {
-  flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
-  background: none;
-  border: none;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
   color: var(--muted);
-  padding: 6px 0;
   cursor: pointer;
-  font-size: 0.68rem;
-  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: width 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease, color 0.2s ease;
 }
 
-.tab-btn .tab-icon { font-size: 1.25rem; }
+.tab-btn .tab-icon { display: flex; }
+.tab-btn .tab-icon svg { width: 21px; height: 21px; flex-shrink: 0; }
+.tab-label { display: none; }
 
-.tab-btn.active { color: var(--accent); }
+.tab-btn.active {
+  width: 68px;
+  background: var(--surface-2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tab-btn:active { transform: scale(0.94); }
 
 /* Study view (overlay) */
 

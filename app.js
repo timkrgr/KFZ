@@ -1,4 +1,4 @@
-const APP_VERSION = "v57";
+const APP_VERSION = "v58";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
