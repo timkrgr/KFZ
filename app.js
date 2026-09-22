@@ -1,4 +1,4 @@
-const APP_VERSION = "v71";
+const APP_VERSION = "v72";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -443,8 +443,15 @@ function mapAuthError(code) {
     INVALID_PASSWORD: "Falsches Passwort.",
     INVALID_LOGIN_CREDENTIALS: "E-Mail oder Passwort falsch.",
     TOO_MANY_ATTEMPTS_TRY_LATER: "Zu viele Versuche, bitte später erneut probieren.",
+    OPERATION_NOT_ALLOWED: "E-Mail/Passwort-Anmeldung ist in der Firebase-Konsole noch nicht aktiviert (Authentication -> Sign-in method).",
+    CREDENTIAL_TOO_OLD_LOGIN_AGAIN: "Bitte einmal die App neu öffnen und erneut versuchen.",
+    INVALID_ID_TOKEN: "Sitzung abgelaufen - bitte App neu öffnen.",
+    USER_DISABLED: "Dieses Konto wurde deaktiviert.",
+    CONFIGURATION_NOT_FOUND: "Firebase-Projekt ist nicht richtig eingerichtet (Authentication fehlt).",
   };
-  return map[code] || "Das hat leider nicht geklappt.";
+  // Unbekannte Codes trotzdem im Klartext zeigen statt sie zu verschlucken -
+  // damit sich ein neuer Fehlerfall sofort diagnostizieren lässt.
+  return map[code] || (code ? `Fehler: ${code}` : "Das hat leider nicht geklappt.");
 }
 
 async function identityToolkitRequest(path, body) {
