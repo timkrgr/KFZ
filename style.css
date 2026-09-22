@@ -487,6 +487,107 @@ body {
   .streak-pop, .streak-burst, .streak-particle { animation: none; }
 }
 
+/* Große Streak-Abhol-Animation (Bildschirmmitte) */
+
+.streak-celebration {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: background 0.25s ease;
+}
+
+.streak-celebration.is-visible { background: rgba(0, 0, 0, 0.55); }
+
+.streak-celebration-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.streak-celebration.is-visible .streak-celebration-card {
+  animation: streakCelebrationPop 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.streak-celebration.is-leaving .streak-celebration-card {
+  animation: streakCelebrationOut 0.3s ease forwards;
+}
+
+@keyframes streakCelebrationPop {
+  0% { opacity: 0; transform: scale(0.4) rotate(-8deg); }
+  60% { opacity: 1; transform: scale(1.12) rotate(3deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes streakCelebrationOut {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.85); }
+}
+
+.streak-celebration-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.55), rgba(249, 115, 22, 0) 70%);
+  filter: blur(4px);
+  animation: streakGlowPulse 1.1s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes streakGlowPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+.streak-celebration-flame {
+  font-size: 5.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 6px 18px rgba(249, 115, 22, 0.55));
+}
+
+.streak-celebration-count {
+  font-size: 3.6rem;
+  font-weight: 900;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fde68a, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.streak-celebration-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.02em;
+}
+
+.streak-celebration-rank {
+  margin-top: 10px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .streak-celebration-card, .streak-celebration-glow { animation: none !important; }
+  .streak-celebration.is-visible .streak-celebration-card { opacity: 1; transform: scale(1); }
+}
+
 /* Topic list */
 
 .topic-list {

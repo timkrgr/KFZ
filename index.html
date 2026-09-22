@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=66">
+<link rel="stylesheet" href="style.css?v=67">
 </head>
 <body>
 <div class="app">
@@ -328,8 +328,18 @@
   </section>
 
   <div id="toast" class="toast" hidden></div>
+
+  <div id="streakCelebration" class="streak-celebration" hidden>
+    <div class="streak-celebration-card">
+      <div class="streak-celebration-glow"></div>
+      <div class="streak-celebration-flame">🔥</div>
+      <div class="streak-celebration-count" id="streakCelebrationCount">0</div>
+      <div class="streak-celebration-label">Tage Streak</div>
+      <div class="streak-celebration-rank" id="streakCelebrationRank" hidden></div>
+    </div>
+  </div>
 </div>
 
-<script src="app.js?v=66"></script>
+<script src="app.js?v=67"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const APP_VERSION = "v66";
+const APP_VERSION = "v67";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -122,6 +122,9 @@ const els = {
   streakCount: document.getElementById("streakCount"),
   streakSub: document.getElementById("streakSub"),
   streakRankBadge: document.getElementById("streakRankBadge"),
+  streakCelebration: document.getElementById("streakCelebration"),
+  streakCelebrationCount: document.getElementById("streakCelebrationCount"),
+  streakCelebrationRank: document.getElementById("streakCelebrationRank"),
   streakVersus: document.getElementById("streakVersus"),
   examVersus: document.getElementById("examVersus"),
 
@@ -268,11 +271,37 @@ function claimStreak() {
   playStreakClaimAnimation();
 
   const newRank = rankForStreak(streak.count);
-  if (newRank.title !== oldRank.title) {
-    showToast(`${newRank.icon} Aufstieg! Du bist jetzt ${newRank.title}!`, 4000);
-  } else {
-    showToast(`🔥 Tag ${streak.count} der Streak!`);
+  const isRankUp = newRank.title !== oldRank.title;
+  playStreakCelebration(streak.count, newRank, isRankUp);
+  if (isRankUp) showToast(`${newRank.icon} Aufstieg! Du bist jetzt ${newRank.title}!`, 4000);
+}
+
+let streakCelebrationTimer = null;
+
+function playStreakCelebration(count, rank, isRankUp) {
+  const el = els.streakCelebration;
+  if (!el) return;
+
+  clearTimeout(streakCelebrationTimer);
+  el.classList.remove("is-leaving");
+  els.streakCelebrationCount.textContent = count;
+  if (els.streakCelebrationRank) {
+    els.streakCelebrationRank.hidden = !isRankUp;
+    if (isRankUp) els.streakCelebrationRank.textContent = `${rank.icon} Neuer Rang: ${rank.title}!`;
   }
+
+  el.hidden = false;
+  void el.offsetWidth; // Reflow, damit die Animation bei schnellem erneutem Abholen neu startet
+  el.classList.add("is-visible");
+
+  const holdMs = isRankUp ? 2000 : 1300;
+  streakCelebrationTimer = setTimeout(() => {
+    el.classList.add("is-leaving");
+    setTimeout(() => {
+      el.classList.remove("is-visible", "is-leaving");
+      el.hidden = true;
+    }, 300);
+  }, holdMs);
 }
 
 function playStreakClaimAnimation() {
