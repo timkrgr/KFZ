@@ -28,7 +28,7 @@
 [hidden] { display: none !important; }
 
 html {
-  overflow-x: hidden;
+  overflow: hidden;
   overscroll-behavior-y: none;
 }
 
@@ -41,8 +41,24 @@ html, body {
   overscroll-behavior-y: none;
 }
 
+/* body bleibt fest (kein natives Scrollen/Bouncen des Dokuments selbst) –
+   stattdessen scrollt nur .app als eigener Container. So kann iOS beim
+   Ziehen über den Rand hinaus nirgendwo mehr echtes leeres Schwarz zeigen,
+   auch nicht in der als Homescreen-App installierten (standalone) Ansicht,
+   wo overscroll-behavior allein den nativen Rubber-Band-Bounce nicht immer
+   unterdrückt. */
+body {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
 .app {
-  min-height: 100dvh;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
   display: flex;
   flex-direction: column;
 }

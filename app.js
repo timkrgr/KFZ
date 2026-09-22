@@ -1,4 +1,4 @@
-const APP_VERSION = "v61";
+const APP_VERSION = "v62";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -534,7 +534,8 @@ function switchTab(tabId, { remember = true, animate = true } = {}) {
   if (tabId === "tabStats") safeCall(renderStats, "Statistik");
   if (tabId === "tabExplain") safeCall(renderExplainList, "Erklärungen");
   if (remember) localStorage.setItem(ACTIVE_TAB_KEY, tabId);
-  window.scrollTo(0, 0);
+  const appEl = document.querySelector(".app");
+  if (appEl) appEl.scrollTop = 0;
 
   if (!isRealSwitch) {
     [els.tabHome, els.tabStats, els.tabExplain, els.tabSettings].forEach((el) => {
