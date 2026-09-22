@@ -1,0 +1,31 @@
+{
+  "name": "kfz",
+  "version": "1.0.0",
+  "description": "Persönliche Lern-App für die Kfz-Abschlussprüfung. Läuft als installierbare Web-App (PWA) direkt vom iPhone-Homescreen, auch offline.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:www": "node scripts/build-www.js",
+    "sync": "npm run build:www && npx cap sync"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timkrgr/KFZ.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timkrgr/KFZ/issues"
+  },
+  "homepage": "https://github.com/timkrgr/KFZ#readme",
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.2"
+  }
+}

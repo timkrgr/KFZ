@@ -33,3 +33,24 @@ Persönliche Lern-App für die Kfz-Abschlussprüfung. Läuft als installierbare 
 ```
 
 Lernfortschritt wird nur lokal im Browser gespeichert (localStorage) – nicht in `cards.json` und nicht auf einem Server.
+
+## Native App (iOS / Android) über Capacitor
+
+Die Web-App (Root-Dateien) bleibt unverändert die Quelle für GitHub Pages. Für den
+App-Store-Build wird daraus zusätzlich eine native Hülle gebaut:
+
+```
+npm install        # einmalig
+npm run sync        # baut www/ aus den Root-Dateien und synct es nach ios/ & android/
+```
+
+- `www/` ist reines Build-Ergebnis (nicht eingecheckt) – Quelle bleiben `index.html`,
+  `app.js`, `style.css`, `sw.js`, `manifest.json`, `cards.json`, `icons/` im Root.
+- `ios/` und `android/` sind die generierten nativen Projekte (Xcode- bzw.
+  Android-Studio-Projekt) und werden eingecheckt, weil dort plattformspezifische
+  Einstellungen (Icons, Berechtigungen, Signing) reinkommen.
+- `assets/icon.png` (1024×1024, kein Alpha) und `assets/splash.png` sind die
+  Quellbilder fürs App-Icon/Splash-Screen; `npx capacitor-assets generate` erzeugt
+  daraus alle Icon-/Splash-Größen für beide Plattformen neu.
+- Nach jeder Änderung an den Root-Dateien vor einem nativen Build: `npm run sync`
+  ausführen, damit `ios/`/`android/` die aktuelle Version bekommen.
