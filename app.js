@@ -1,4 +1,4 @@
-const APP_VERSION = "v48";
+const APP_VERSION = "v49";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -435,9 +435,9 @@ async function syncFromCloud() {
     }
 
     if (changed) {
-      renderHome();
-      renderStats();
-      renderStreak();
+      safeCall(renderHome, "Home");
+      safeCall(renderStats, "Statistik");
+      safeCall(renderStreak, "Streak");
     }
   } catch (e) {
     warnCloudSyncOnce(e.message || "Offline");
@@ -455,6 +455,18 @@ function showToast(msg, ms = 2000) {
   els.toast.hidden = false;
   clearTimeout(showToast._t);
   showToast._t = setTimeout(() => { els.toast.hidden = true; }, ms);
+}
+
+// Führt fn aus und fängt Fehler ab, damit z. B. ein kaputter Render-Aufruf
+// weder den Tab-Wechsel blockiert noch sich fälschlich als "Sync fehlgeschlagen"
+// ausgibt. Zeigt den echten Fehlertext an, damit er sich melden/screenshotten lässt.
+function safeCall(fn, label) {
+  try {
+    fn();
+  } catch (e) {
+    console.error(`Fehler in ${label}:`, e);
+    showToast(`⚠️ Fehler (${label}): ${e.message}`, 5000);
+  }
 }
 
 function escapeHtml(s) {
@@ -514,8 +526,8 @@ function switchTab(tabId, { remember = true } = {}) {
 
   activeTabIndex = TAB_ORDER.indexOf(tabId);
   els.tabButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.tab === tabId));
-  if (tabId === "tabStats") renderStats();
-  if (tabId === "tabExplain") renderExplainList();
+  if (tabId === "tabStats") safeCall(renderStats, "Statistik");
+  if (tabId === "tabExplain") safeCall(renderExplainList, "Erklärungen");
   if (remember) localStorage.setItem(ACTIVE_TAB_KEY, tabId);
   window.scrollTo(0, 0);
 
@@ -1787,9 +1799,9 @@ function selectProfile(id) {
   els.settingsProfileName.textContent = name;
   els.profileGate.hidden = true;
 
-  renderHome();
-  renderStats();
-  renderStreak();
+  safeCall(renderHome, "Home");
+  safeCall(renderStats, "Statistik");
+  safeCall(renderStreak, "Streak");
   startCloudSync();
 }
 
