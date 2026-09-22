@@ -1,4 +1,4 @@
-const APP_VERSION = "v59";
+const APP_VERSION = "v60";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -590,18 +590,20 @@ els.battleTopicsToggle.addEventListener("click", () => {
   els.battleTopics.hidden = expanded;
 });
 
-// Zwischen den Tabs wischen (wie zwischen iPhone-Homescreen-Seiten)
+// Zwischen den Tabs wischen (wie zwischen iPhone-Homescreen-Seiten) - sowohl im
+// Inhaltsbereich als auch direkt auf der unteren Tab-Leiste.
 const tabContent = document.getElementById("tabContent");
+const tabbarEl = document.querySelector(".tabbar");
 let tabTouchStartX = null;
 let tabTouchStartY = null;
 
-tabContent.addEventListener("touchstart", (e) => {
+function onTabSwipeStart(e) {
   if (!els.studyView.hidden) return;
   tabTouchStartX = e.touches[0].clientX;
   tabTouchStartY = e.touches[0].clientY;
-}, { passive: true });
+}
 
-tabContent.addEventListener("touchend", (e) => {
+function onTabSwipeEnd(e) {
   if (tabTouchStartX === null) return;
   const dx = e.changedTouches[0].clientX - tabTouchStartX;
   const dy = e.changedTouches[0].clientY - tabTouchStartY;
@@ -610,7 +612,12 @@ tabContent.addEventListener("touchend", (e) => {
     if (dx < 0 && activeTabIndex < TAB_ORDER.length - 1) switchTab(TAB_ORDER[activeTabIndex + 1]);
     else if (dx > 0 && activeTabIndex > 0) switchTab(TAB_ORDER[activeTabIndex - 1]);
   }
-}, { passive: true });
+}
+
+tabContent.addEventListener("touchstart", onTabSwipeStart, { passive: true });
+tabContent.addEventListener("touchend", onTabSwipeEnd, { passive: true });
+tabbarEl.addEventListener("touchstart", onTabSwipeStart, { passive: true });
+tabbarEl.addEventListener("touchend", onTabSwipeEnd, { passive: true });
 
 // --- Home ---
 
