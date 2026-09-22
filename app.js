@@ -1,4 +1,4 @@
-const APP_VERSION = "v73";
+const APP_VERSION = "v74";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -697,12 +697,17 @@ async function loadCards({ silent = false } = {}) {
     safeCall(renderHome, "Home");
     safeCall(renderStats, "Statistik");
     safeCall(renderExplainList, "Erklärungen");
-    if (!els.studyView.hidden && sessionMode === "topic") buildDeck();
+    // Deck nur neu aufbauen, wenn sich die Kartenanzahl wirklich geändert hat -
+    // sonst würde jeder stille Hintergrund-Refresh (z. B. App aus dem Hintergrund
+    // zurückholen) mitten im Lernen den Durchlauf zurücksetzen und eine andere
+    // Frage zeigen, obwohl sich gar nichts geändert hat.
+    if (!els.studyView.hidden && sessionMode === "topic" && allCards.length !== prevCount) buildDeck();
     if (!silent && prevCount && allCards.length !== prevCount) {
       showToast(`Karten aktualisiert (${allCards.length} insgesamt)`);
     } else if (!silent) {
       showToast("Neue Karten geladen");
     }
+    maybeResumeStudySession();
   } catch (e) {
     if (!silent) showToast("Keine Verbindung – zeige gespeicherte Karten");
     if (!allCards.length) {
@@ -714,6 +719,7 @@ async function loadCards({ silent = false } = {}) {
         safeCall(renderExplainList, "Erklärungen");
       }
     }
+    maybeResumeStudySession();
     return;
   }
   localStorage.setItem("kfz_cards_cache", JSON.stringify({ cards: allCards }));
@@ -1669,6 +1675,68 @@ els.explainBackBtn.addEventListener("click", () => {
 
 // --- Study view: Themen-Lernmodus ---
 
+// --- Lern-Durchlauf über App-Neustarts hinweg fortsetzen ---
+// Schließt man die App mitten im Lernen, soll man beim nächsten Öffnen genau
+// bei der gleichen Karte weitermachen können statt einen neuen, anders
+// gemischten Durchlauf zu bekommen.
+
+const STUDY_SESSION_KEY = "kfz_study_session_v1";
+let studySessionResumeAttempted = false;
+
+function saveStudySession() {
+  if (sessionMode !== "topic" || !currentProfile || !deck.length) return;
+  const session = {
+    topic: currentTopic,
+    filter: currentFilter,
+    deckIds: deck.map((c) => c.id),
+    currentIndex,
+    sessionResults,
+    topicAnsweredCount,
+    hardSessionTotal,
+  };
+  localStorage.setItem(`${STUDY_SESSION_KEY}_${currentProfile}`, JSON.stringify(session));
+}
+
+function clearStudySession() {
+  if (!currentProfile) return;
+  localStorage.removeItem(`${STUDY_SESSION_KEY}_${currentProfile}`);
+}
+
+function loadStudySession() {
+  if (!currentProfile) return null;
+  try {
+    return JSON.parse(localStorage.getItem(`${STUDY_SESSION_KEY}_${currentProfile}`));
+  } catch {
+    return null;
+  }
+}
+
+function maybeResumeStudySession() {
+  if (studySessionResumeAttempted) return;
+  if (!currentProfile || !allCards.length) return;
+  studySessionResumeAttempted = true;
+
+  const saved = loadStudySession();
+  if (!saved || !saved.deckIds || !saved.deckIds.length) return;
+
+  const rehydratedDeck = saved.deckIds.map((id) => allCards.find((c) => c.id === id)).filter(Boolean);
+  if (!rehydratedDeck.length) { clearStudySession(); return; }
+
+  sessionMode = "topic";
+  currentTopic = saved.topic;
+  currentFilter = saved.filter;
+  deck = rehydratedDeck;
+  currentIndex = Math.min(saved.currentIndex || 0, deck.length - 1);
+  sessionResults = saved.sessionResults || { right: 0, wrong: 0 };
+  topicAnsweredCount = saved.topicAnsweredCount || 0;
+  hardSessionTotal = saved.hardSessionTotal || 0;
+
+  els.studyView.hidden = false;
+  els.simTimer.hidden = true;
+  els.resultView.hidden = true;
+  render();
+}
+
 function openTopic(topic, filter) {
   sessionMode = "topic";
   currentTopic = topic;
@@ -1712,6 +1780,7 @@ function buildDeck() {
   deck = pool;
   currentIndex = 0;
   render();
+  saveStudySession();
 }
 
 const OPTION_LETTERS = ["A", "B", "C", "D", "E", "F"];
@@ -1859,6 +1928,21 @@ function advanceAfterAnswer(state) {
   if (currentFilter === "all") {
     sessionResults[state === "known" ? "right" : "wrong"] += 1;
     topicAnsweredCount += 1;
+
+    if (state === "hard") {
+      // Falsch beantwortete Frage kommt noch im selben Durchlauf irgendwann
+      // später zufällig nochmal dran, um zu prüfen, ob's jetzt sitzt - nicht
+      // sofort danach, sondern mit etwas Abstand (oder ganz ans Ende, falls
+      // nicht mehr genug Karten übrig sind).
+      const card = deck[currentIndex];
+      const minGap = 3;
+      const remaining = deck.length - currentIndex - 1;
+      const startOffset = Math.min(minGap, remaining);
+      const span = remaining - startOffset;
+      const insertAt = currentIndex + 1 + startOffset + (span > 0 ? Math.floor(Math.random() * (span + 1)) : 0);
+      deck.splice(insertAt, 0, card);
+    }
+
     if (topicAnsweredCount >= deck.length) {
       endTopicSession();
       return;
@@ -1867,6 +1951,7 @@ function advanceAfterAnswer(state) {
 
   currentIndex = (currentIndex + 1) % deck.length;
   render();
+  saveStudySession();
 }
 
 function markCurrent(state) {
@@ -1877,6 +1962,7 @@ function markCurrent(state) {
 
 function goHome() {
   stopSimTimer();
+  if (sessionMode === "topic") clearStudySession();
   els.studyView.hidden = true;
   renderHome();
   renderStats();
@@ -2060,6 +2146,7 @@ function endSimulation() {
 }
 
 function endTopicSession() {
+  clearStudySession();
   sessionEndKind = "topic";
   sessionEndTopic = currentTopic;
   showResult(sessionResults.right, sessionResults.wrong);
@@ -2276,6 +2363,7 @@ function enterApp(session, name) {
   safeCall(renderStats, "Statistik");
   safeCall(renderStreak, "Streak");
   startCloudSync();
+  maybeResumeStudySession();
 }
 
 async function startOnboarding(name) {
