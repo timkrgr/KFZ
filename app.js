@@ -1,4 +1,4 @@
-const APP_VERSION = "v69";
+const APP_VERSION = "v70";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -30,7 +30,7 @@ const DB_URL = "https://kfz-lernen-default-rtdb.europe-west1.firebasedatabase.ap
 // Öffentlicher Web-API-Key aus der Firebase-Konsole (Project Settings -> General).
 // Kein Geheimnis - bei Firebase bewusst clientseitig sichtbar, abgesichert wird über
 // die Datenbank-Regeln (firebase-database-rules.json), nicht über Geheimhaltung.
-const FIREBASE_API_KEY = "REPLACE_MIT_WEB_API_KEY";
+const FIREBASE_API_KEY = "AIzaSyDyAMgh6fvFBo2sfnAFXZP9g4TME7Lv_Xo";
 const CLOUD_SYNC_INTERVAL_MS = 2 * 60 * 1000; // alle 2 Minuten mit der Cloud abgleichen
 
 // Battle Mode brauchte bisher zwei fest bekannte Profile (Tim/Huseyn) mit offenem
