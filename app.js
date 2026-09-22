@@ -1,4 +1,4 @@
-const APP_VERSION = "v62";
+const APP_VERSION = "v63";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -620,6 +620,44 @@ tabContent.addEventListener("touchstart", onTabSwipeStart, { passive: true });
 tabContent.addEventListener("touchend", onTabSwipeEnd, { passive: true });
 tabbarEl.addEventListener("touchstart", onTabSwipeStart, { passive: true });
 tabbarEl.addEventListener("touchend", onTabSwipeEnd, { passive: true });
+
+// Als Homescreen-App (standalone) installiert, ignoriert iOS overscroll-behavior
+// für den äußeren Seiten-Bounce (bekannte WebKit-Einschränkung, die es nur im
+// normalen Safari-Tab respektiert). Deshalb wird das Ziehen über den Rand einer
+// scrollbaren Fläche hinaus hier zusätzlich manuell per touchmove abgefangen,
+// sobald der jeweilige Container schon an seiner Grenze ist.
+function findScrollableAncestor(el) {
+  while (el && el !== document.body) {
+    const style = getComputedStyle(el);
+    if ((style.overflowY === "auto" || style.overflowY === "scroll") && el.scrollHeight > el.clientHeight) {
+      return el;
+    }
+    el = el.parentElement;
+  }
+  return null;
+}
+
+let bounceGuardStartY = 0;
+let bounceGuardScrollEl = null;
+
+document.addEventListener("touchstart", (e) => {
+  if (e.touches.length !== 1) return;
+  bounceGuardStartY = e.touches[0].clientY;
+  bounceGuardScrollEl = findScrollableAncestor(e.target);
+}, { passive: true });
+
+document.addEventListener("touchmove", (e) => {
+  if (e.touches.length !== 1) return;
+  const deltaY = e.touches[0].clientY - bounceGuardStartY;
+  const scrollEl = bounceGuardScrollEl;
+  if (!scrollEl) {
+    e.preventDefault();
+    return;
+  }
+  const atTop = scrollEl.scrollTop <= 0;
+  const atBottom = scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 1;
+  if ((atTop && deltaY > 0) || (atBottom && deltaY < 0)) e.preventDefault();
+}, { passive: false });
 
 // --- Home ---
 
