@@ -1,4 +1,4 @@
-const APP_VERSION = "v45";
+const APP_VERSION = "v46";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -149,6 +149,7 @@ const els = {
   resultWrong: document.getElementById("resultWrong"),
   resultGrade: document.getElementById("resultGrade"),
   resultPassBadge: document.getElementById("resultPassBadge"),
+  resultExamCount: document.getElementById("resultExamCount"),
   resultRepeatBtn: document.getElementById("resultRepeatBtn"),
   resultHomeBtn: document.getElementById("resultHomeBtn"),
 
@@ -1607,8 +1608,11 @@ function showResult(right, wrong) {
     els.resultPassBadge.textContent = passed
       ? `✅ Bestanden (${examPct}% von ${currentExamTotal} Fragen)`
       : `❌ Nicht bestanden (${examPct}% von ${currentExamTotal} Fragen, ${EXAM_PASS_PCT}% nötig)`;
+    els.resultExamCount.hidden = false;
+    els.resultExamCount.textContent = `Das war deine ${examStats.count}. Prüfungssimulation`;
   } else {
     els.resultPassBadge.hidden = true;
+    els.resultExamCount.hidden = true;
   }
 }
 

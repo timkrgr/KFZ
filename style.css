@@ -1337,6 +1337,12 @@ html, body {
 .result-pass-badge.pass { background: var(--right-bg); color: var(--right); }
 .result-pass-badge.fail { background: var(--wrong-bg); color: var(--wrong); }
 
+.result-exam-count {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .result-line {
   font-size: 1rem;
   color: var(--muted);
