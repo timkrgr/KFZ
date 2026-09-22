@@ -1,4 +1,4 @@
-const APP_VERSION = "v54";
+const APP_VERSION = "v55";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -489,8 +489,9 @@ async function loadCards({ silent = false } = {}) {
     const data = await res.json();
     const prevCount = allCards.length;
     allCards = data.cards || [];
-    renderHome();
-    renderStats();
+    safeCall(renderHome, "Home");
+    safeCall(renderStats, "Statistik");
+    safeCall(renderExplainList, "Erklärungen");
     if (!els.studyView.hidden && sessionMode === "topic") buildDeck();
     if (!silent && prevCount && allCards.length !== prevCount) {
       showToast(`Karten aktualisiert (${allCards.length} insgesamt)`);
@@ -503,8 +504,9 @@ async function loadCards({ silent = false } = {}) {
       const cached = localStorage.getItem("kfz_cards_cache");
       if (cached) {
         allCards = JSON.parse(cached).cards || [];
-        renderHome();
-        renderStats();
+        safeCall(renderHome, "Home");
+        safeCall(renderStats, "Statistik");
+        safeCall(renderExplainList, "Erklärungen");
       }
     }
     return;
