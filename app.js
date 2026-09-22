@@ -1,4 +1,4 @@
-const APP_VERSION = "v55";
+const APP_VERSION = "v56";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -520,11 +520,11 @@ const TAB_ORDER = ["tabHome", "tabStats", "tabExplain", "tabSettings"];
 const ACTIVE_TAB_KEY = "kfz_active_tab_v1";
 let activeTabIndex = 0;
 
-function switchTab(tabId, { remember = true } = {}) {
+function switchTab(tabId, { remember = true, animate = true } = {}) {
   const fromId = TAB_ORDER[activeTabIndex];
   const fromEl = els[fromId];
   const toEl = els[tabId];
-  const isRealSwitch = fromEl && toEl && fromEl !== toEl && !fromEl.hidden;
+  const isRealSwitch = animate && fromEl && toEl && fromEl !== toEl && !fromEl.hidden;
   const direction = TAB_ORDER.indexOf(tabId) > activeTabIndex ? 1 : -1;
 
   activeTabIndex = TAB_ORDER.indexOf(tabId);
@@ -1831,7 +1831,7 @@ if (rememberedProfile) {
   selectProfile(rememberedProfile);
   const rememberedTab = localStorage.getItem(ACTIVE_TAB_KEY);
   if (rememberedTab && TAB_ORDER.includes(rememberedTab)) {
-    switchTab(rememberedTab, { remember: false });
+    switchTab(rememberedTab, { remember: false, animate: false });
   }
 }
 
