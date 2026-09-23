@@ -26,8 +26,14 @@ Nicht nur auswendig lernen – jedes Themengebiet gibt's auch als verständliche
 🔥 Streak & Ränge
 Bleib jeden Tag am Ball und steig vom Azubi zum Obermeister auf.
 
+⚔️ Battle Mode
+Lade einen Freund per Link ein und vergleicht euren Lernfortschritt direkt in der App.
+
 ✅ Merkt sich deinen Fortschritt
-Falsch beantwortete Fragen kommen automatisch häufiger dran, bis sie sitzen. Dein Fortschritt wird gerätübergreifend gesichert (optional mit E-Mail-Konto).
+Falsch beantwortete Fragen kommen automatisch häufiger dran, bis sie sitzen. Dein Fortschritt ist an dein Konto gebunden und übersteht Neuinstallation und Gerätewechsel.
+
+💳 Gratis starten
+10 Fragen pro Kategorie kostenlos. Mit der Vollversion (einmaliger Kauf, kein Abo) schaltest du alle Fragen, den Klausurmodus, Battle Mode, Wiederholungen und alle Erklärungen frei.
 
 📴 Funktioniert offline
 Einmal geladen, lernst du auch ohne Internetverbindung weiter.
@@ -44,15 +50,16 @@ tim.krueger.1307@gmail.com
 https://timkrgr.github.io/KFZ/privacy.html
 
 ## Content Rating (Altersfreigabe-Fragebogen)
-Keine Gewalt, keine Nutzergenerierte Inhalte mit Fremdkontakt, keine Käufe innerhalb der App
-(bis der In-App-Kauf gebaut ist - dann Fragebogen entsprechend anpassen). Erwartete Einstufung:
-PEGI 3 / Everyone.
+Keine Gewalt, keine nutzergenerierten Inhalte mit Fremdkontakt (Battle Mode läuft nur über
+Einladungslinks zwischen bekannten Personen), In-App-Käufe: ja (nicht-verbrauchbar,
+"Vollversion", 7,99 €). Erwartete Einstufung: PEGI 3 / Everyone.
 
 ## Screenshots (noch zu erstellen)
-- Home / Kategorien-Übersicht
+- Home / Kategorien-Übersicht (inkl. Gratis-Hinweis "10 von X kostenlos")
 - Prüfungssimulation
-- Statistik / Battle-Vergleich (falls wieder aktiviert)
+- Battle Mode
 - Erklärungen
+- Vollversion-Freischalt-Screen
 - Streak-Feier-Animation
 
 ## Feature-Grafik (1024×500px)
