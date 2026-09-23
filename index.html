@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="style.css?v=75">
 </head>
 <body>
 <div class="app">
@@ -144,11 +144,17 @@
 
     <div class="battle-card" id="battleCard" hidden>
       <div class="battle-title">⚔️ Battle Mode</div>
-      <div class="battle-sub">Tim vs. Huseyn – wer hat mehr &amp; besser gelernt?</div>
+      <div class="battle-sub">Wer hat mehr &amp; besser gelernt?</div>
       <div class="battle-versus" id="battleVersus"></div>
       <div class="battle-winner" id="battleWinner"></div>
       <div class="streak-versus" id="streakVersus"></div>
       <div class="exam-versus" id="examVersus"></div>
+    </div>
+
+    <div class="battle-card battle-invite-card" id="battleInviteCard">
+      <div class="battle-title">⚔️ Battle Mode</div>
+      <div class="battle-sub">Lade einen Freund ein und vergleicht euren Fortschritt</div>
+      <button type="button" class="btn btn-outline" id="battleInviteGoBtn">👥 Freund einladen</button>
     </div>
 
     <button id="battleTopicsToggle" class="collapse-toggle" type="button" aria-expanded="false" hidden>
@@ -200,6 +206,17 @@
     <div class="settings-group">
       <button id="reloadBtn" class="btn btn-outline">🔄 Neue Karten laden</button>
       <p class="panel-hint">Neue Fragen schickst du wie gewohnt an Claude – sie erscheinen hier, sobald du online bist und auf „Neue Karten laden“ tippst (oder die App neu öffnest).</p>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label">Match-Modus (Battle Mode)</label>
+      <p class="panel-hint" id="matchStatusHint">Lade einen Freund ein, um eure Fortschritte im Battle Mode zu vergleichen.</p>
+      <button type="button" class="btn btn-outline" id="createInviteBtn">👥 Einladungslink erstellen</button>
+      <div id="inviteLinkBox" hidden style="margin-top:10px;">
+        <input type="text" id="inviteLinkInput" class="settings-input" readonly style="margin-bottom:8px;">
+        <button type="button" class="btn btn-outline" id="copyInviteLinkBtn">🔗 Link kopieren</button>
+      </div>
+      <button type="button" class="btn btn-danger" id="unmatchBtn" hidden style="margin-top:8px;">Match auflösen</button>
     </div>
 
     <div class="settings-group">
@@ -371,6 +388,6 @@
   </div>
 </div>
 
-<script src="app.js?v=74"></script>
+<script src="app.js?v=75"></script>
 </body>
 </html>

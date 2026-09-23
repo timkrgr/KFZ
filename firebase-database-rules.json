@@ -2,26 +2,40 @@
   "rules": {
     "progress": {
       "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
+        ".read": "auth != null && (auth.uid === $uid || root.child('shares/'+$uid+'/'+auth.uid).val() === true)",
         ".write": "auth != null && auth.uid === $uid"
       }
     },
     "streak": {
       "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
+        ".read": "auth != null && (auth.uid === $uid || root.child('shares/'+$uid+'/'+auth.uid).val() === true)",
         ".write": "auth != null && auth.uid === $uid"
       }
     },
     "examstats": {
       "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
+        ".read": "auth != null && (auth.uid === $uid || root.child('shares/'+$uid+'/'+auth.uid).val() === true)",
         ".write": "auth != null && auth.uid === $uid"
       }
     },
     "users": {
       "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
+        ".read": "auth != null && (auth.uid === $uid || root.child('shares/'+$uid+'/'+auth.uid).val() === true)",
         ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "shares": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$viewerUid": {
+          ".write": "auth != null && auth.uid === $uid"
+        }
+      }
+    },
+    "invites": {
+      "$code": {
+        ".read": "auth != null",
+        ".write": "auth != null && ((!data.exists() && newData.child('fromUid').val() === auth.uid) || (data.exists() && data.child('fromUid').val() === auth.uid) || (data.exists() && !data.child('redeemedBy').exists() && newData.child('fromUid').val() === data.child('fromUid').val() && newData.child('redeemedBy').val() === auth.uid))"
       }
     },
     ".read": false,

@@ -1,4 +1,4 @@
-const APP_VERSION = "v74";
+const APP_VERSION = "v75";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -32,13 +32,6 @@ const DB_URL = "https://kfz-lernen-default-rtdb.europe-west1.firebasedatabase.ap
 // die Datenbank-Regeln (firebase-database-rules.json), nicht über Geheimhaltung.
 const FIREBASE_API_KEY = "AIzaSyDyAMgh6fvFBo2sfnAFXZP9g4TME7Lv_Xo";
 const CLOUD_SYNC_INTERVAL_MS = 2 * 60 * 1000; // alle 2 Minuten mit der Cloud abgleichen
-
-// Battle Mode brauchte bisher zwei fest bekannte Profile (Tim/Huseyn) mit offenem
-// Lesezugriff auf die Daten des jeweils anderen. Mit echten, öffentlichen Accounts
-// und abgesicherten Firebase-Regeln (jeder darf nur seine eigenen Daten lesen) geht
-// das so nicht mehr - pausiert, bis es ein Einverständnis-System (z. B. Freundescode)
-// gibt. Die Funktionen bleiben erhalten, falls wir das später wieder aufgreifen.
-const BATTLE_MODE_ENABLED = false;
 
 let currentProfile = null; // Firebase-UID des angemeldeten Nutzers
 let currentDisplayName = "";
@@ -170,6 +163,15 @@ const els = {
   battleWinner: document.getElementById("battleWinner"),
   battleTopics: document.getElementById("battleTopics"),
   battleTopicsToggle: document.getElementById("battleTopicsToggle"),
+  battleInviteCard: document.getElementById("battleInviteCard"),
+  battleInviteGoBtn: document.getElementById("battleInviteGoBtn"),
+
+  createInviteBtn: document.getElementById("createInviteBtn"),
+  inviteLinkBox: document.getElementById("inviteLinkBox"),
+  inviteLinkInput: document.getElementById("inviteLinkInput"),
+  copyInviteLinkBtn: document.getElementById("copyInviteLinkBtn"),
+  unmatchBtn: document.getElementById("unmatchBtn"),
+  matchStatusHint: document.getElementById("matchStatusHint"),
 
   statsSummary: document.getElementById("statsSummary"),
   examStatsSummary: document.getElementById("examStatsSummary"),
@@ -276,14 +278,6 @@ function loadStreak() {
   }
 }
 
-function loadProfileStreak(id) {
-  try {
-    return { count: 0, lastClaim: 0, ...JSON.parse(localStorage.getItem(`${STREAK_KEY}_${id}`)) };
-  } catch {
-    return { count: 0, lastClaim: 0 };
-  }
-}
-
 function saveStreak() {
   localStorage.setItem(`${STREAK_KEY}_${currentProfile}`, JSON.stringify(streak));
   pushStreakToCloud();
@@ -385,14 +379,6 @@ function playStreakClaimAnimation() {
 function loadExamStats() {
   try {
     return { count: 0, right: 0, wrong: 0, passed: 0, ...JSON.parse(localStorage.getItem(`${EXAM_STATS_KEY}_${currentProfile}`)) };
-  } catch {
-    return { count: 0, right: 0, wrong: 0, passed: 0 };
-  }
-}
-
-function loadProfileExamStats(id) {
-  try {
-    return { count: 0, right: 0, wrong: 0, passed: 0, ...JSON.parse(localStorage.getItem(`${EXAM_STATS_KEY}_${id}`)) };
   } catch {
     return { count: 0, right: 0, wrong: 0, passed: 0 };
   }
@@ -1009,19 +995,157 @@ function resetAllProgress() {
   showToast("Alle Fragen zurückgesetzt");
 }
 
-// --- Battle Mode (Tim vs. Huseyn) ---
+// --- Battle Mode (Match-Modus über Einladungslinks) ---
+// Zwei Nutzer "matchen" sich per Einladungslink, um ihre Fortschritte zu
+// vergleichen. Technisch: gegenseitiges Einverständnis über die "shares"-
+// Collection in Firebase (jeder erlaubt explizit einer bestimmten anderen
+// UID, seine Daten zu lesen) - die Datenbank-Regeln lassen Lesezugriff auf
+// fremde Daten nur zu, wenn so ein Eintrag existiert.
 
-function loadProfileProgress(id) {
+const MATCH_PARTNER_KEY = "kfz_match_partner_v1";
+const MY_INVITE_CODE_KEY = "kfz_my_invite_code_v1";
+let partnerCache = null; // { uid, name, progress, streak, examStats }
+
+function loadMatchPartnerUid() {
+  if (!currentProfile) return null;
+  return localStorage.getItem(`${MATCH_PARTNER_KEY}_${currentProfile}`) || null;
+}
+
+function saveMatchPartnerUid(uid) {
+  localStorage.setItem(`${MATCH_PARTNER_KEY}_${currentProfile}`, uid);
+}
+
+function clearMatchPartnerUidLocal() {
+  localStorage.removeItem(`${MATCH_PARTNER_KEY}_${currentProfile}`);
+}
+
+function generateInviteCode() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // ohne 0/O und 1/I, leicht zu verwechseln
+  let code = "";
+  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
+async function createInviteLink() {
+  const token = await getValidIdToken();
+  if (!token) throw new Error("Nicht angemeldet");
+  const code = generateInviteCode();
+  const res = await fetch(`${DB_URL}/invites/${code}.json?auth=${token}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ fromUid: currentProfile, fromName: currentDisplayName, createdAt: Date.now() }),
+  });
+  if (!res.ok) throw new Error("Einladung konnte nicht erstellt werden");
+  localStorage.setItem(`${MY_INVITE_CODE_KEY}_${currentProfile}`, code);
+  return `${location.origin}${location.pathname}?invite=${code}`;
+}
+
+async function redeemInvite(code) {
+  const token = await getValidIdToken();
+  if (!token) return;
   try {
-    const parsed = JSON.parse(localStorage.getItem(`${STORAGE_KEY}_${id}`));
-    return { known: parsed?.known || {}, hard: parsed?.hard || {} };
+    const res = await fetch(`${DB_URL}/invites/${code}.json?auth=${token}`);
+    if (!res.ok) { showToast("⚠️ Einladung nicht gefunden"); return; }
+    const invite = await res.json();
+    if (!invite || !invite.fromUid) { showToast("⚠️ Einladungslink ist ungültig"); return; }
+    if (invite.fromUid === currentProfile) { showToast("Das ist dein eigener Einladungslink 🙂"); return; }
+    if (invite.redeemedBy && invite.redeemedBy !== currentProfile) {
+      showToast("⚠️ Diese Einladung wurde schon eingelöst");
+      return;
+    }
+
+    // Ich erlaube dem Einladenden, meine Daten zu sehen.
+    await fetch(`${DB_URL}/shares/${currentProfile}/${invite.fromUid}.json?auth=${token}`, {
+      method: "PUT", headers: { "Content-Type": "application/json" }, body: "true",
+    });
+    // Einladung als eingelöst markieren, damit der Einladende die Gegenseite freischalten kann.
+    await fetch(`${DB_URL}/invites/${code}.json?auth=${token}`, {
+      method: "PATCH", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ redeemedBy: currentProfile }),
+    });
+
+    partnerCache = null;
+    saveMatchPartnerUid(invite.fromUid);
+    showToast(`🤝 Mit ${invite.fromName || "deinem Freund"} gematcht!`, 3000);
+    renderStats();
+    renderSettingsMatchStatus();
   } catch {
-    return { known: {}, hard: {} };
+    showToast("⚠️ Einladung konnte nicht eingelöst werden");
   }
 }
 
-function profileStats(id, cardsSubset) {
-  const prog = loadProfileProgress(id);
+// Prüft, ob die eigene erstellte Einladung inzwischen von jemandem eingelöst
+// wurde, und schaltet dann die Gegenseite frei (beide "shares"-Einträge
+// müssen existieren, damit beide Seiten den anderen sehen können).
+async function reconcileMyInvite() {
+  const myCode = localStorage.getItem(`${MY_INVITE_CODE_KEY}_${currentProfile}`);
+  if (!myCode) return;
+  try {
+    const token = await getValidIdToken();
+    if (!token) return;
+    const res = await fetch(`${DB_URL}/invites/${myCode}.json?auth=${token}`);
+    if (!res.ok) return;
+    const invite = await res.json();
+    if (!invite || !invite.redeemedBy) return;
+    const partnerUid = invite.redeemedBy;
+    if (loadMatchPartnerUid() === partnerUid) return; // schon erledigt
+
+    await fetch(`${DB_URL}/shares/${currentProfile}/${partnerUid}.json?auth=${token}`, {
+      method: "PUT", headers: { "Content-Type": "application/json" }, body: "true",
+    });
+    partnerCache = null;
+    saveMatchPartnerUid(partnerUid);
+    showToast("🤝 Match bestätigt!", 3000);
+    renderStats();
+    renderSettingsMatchStatus();
+  } catch {
+    // Offline oder ähnliches - beim nächsten Sync erneut versuchen.
+  }
+}
+
+async function unmatchPartner() {
+  const partnerUid = loadMatchPartnerUid();
+  if (!partnerUid) return;
+  if (!confirm("Match wirklich auflösen? Dein Freund kann deine Daten danach nicht mehr sehen.")) return;
+  try {
+    const token = await getValidIdToken();
+    if (token) {
+      await fetch(`${DB_URL}/shares/${currentProfile}/${partnerUid}.json?auth=${token}`, { method: "DELETE" });
+    }
+  } catch {
+    // Lokal trennen wir trotzdem, Cloud-Seite holt das beim nächsten Sync nach.
+  }
+  clearMatchPartnerUidLocal();
+  localStorage.removeItem(`${MY_INVITE_CODE_KEY}_${currentProfile}`);
+  partnerCache = null;
+  renderStats();
+  renderSettingsMatchStatus();
+  showToast("Match aufgelöst");
+}
+
+async function fetchPartnerData(uid) {
+  const token = await getValidIdToken();
+  if (!token) return null;
+  const [progRes, streakRes, examRes, userRes] = await Promise.all([
+    fetch(`${DB_URL}/progress/${uid}.json?auth=${token}`),
+    fetch(`${DB_URL}/streak/${uid}.json?auth=${token}`),
+    fetch(`${DB_URL}/examstats/${uid}.json?auth=${token}`),
+    fetch(`${DB_URL}/users/${uid}.json?auth=${token}`),
+  ]);
+  if (!progRes.ok) return null; // (noch) keine Freigabe von der anderen Seite
+  const [progData, streakData, examData, userData] = await Promise.all([
+    progRes.json(), streakRes.ok ? streakRes.json() : null, examRes.ok ? examRes.json() : null, userRes.ok ? userRes.json() : null,
+  ]);
+  return {
+    uid,
+    name: userData?.displayName || "Freund",
+    progress: { known: progData?.known || {}, hard: progData?.hard || {} },
+    streak: { count: 0, lastClaim: 0, ...(streakData || {}) },
+    examStats: { count: 0, right: 0, wrong: 0, passed: 0, ...(examData || {}) },
+  };
+}
+
+function statsFor(prog, cardsSubset) {
   const known = cardsSubset.filter((c) => prog.known[c.id]).length;
   const hard = cardsSubset.filter((c) => prog.hard[c.id]).length;
   const total = cardsSubset.length;
@@ -1029,14 +1153,14 @@ function profileStats(id, cardsSubset) {
   return { known, hard, total, pct };
 }
 
-function battleSideHtml(id, stats, isWinner) {
+function battleSideHtml(name, stats, isWinner) {
   return `
     <div class="battle-side">
       <div class="battle-avatar">
         ${isWinner ? '<span class="battle-crown">👑</span>' : ""}
-        <img src="${PROFILES[id].avatar}" alt="${escapeHtml(PROFILES[id].name)}">
+        ${avatarInitialsHtml(name, name, "battle-avatar-initial")}
       </div>
-      <div class="battle-name">${escapeHtml(PROFILES[id].name)}</div>
+      <div class="battle-name">${escapeHtml(name)}</div>
       <div class="battle-pct">${stats.pct}%</div>
       <div class="battle-detail">${stats.known} richtig · ${stats.hard} falsch</div>
     </div>
@@ -1044,43 +1168,56 @@ function battleSideHtml(id, stats, isWinner) {
 }
 
 function renderBattle() {
-  if (els.battleCard) els.battleCard.hidden = !BATTLE_MODE_ENABLED;
-  if (els.battleTopicsToggle) els.battleTopicsToggle.hidden = !BATTLE_MODE_ENABLED;
-  if (!BATTLE_MODE_ENABLED) return;
+  const partnerUid = loadMatchPartnerUid();
+  if (els.battleCard) els.battleCard.hidden = !partnerUid;
+  if (els.battleTopicsToggle) els.battleTopicsToggle.hidden = !partnerUid;
+  if (els.battleInviteCard) els.battleInviteCard.hidden = !!partnerUid;
+  if (!partnerUid) return;
 
-  const ids = Object.keys(PROFILES);
-  if (ids.length < 2) return;
-  const [a, b] = ids;
-  const statsA = profileStats(a, allCards);
-  const statsB = profileStats(b, allCards);
+  if (partnerCache && partnerCache.uid === partnerUid) {
+    renderBattleUI(partnerCache);
+    return;
+  }
+  fetchPartnerData(partnerUid).then((data) => {
+    if (!data) return;
+    partnerCache = data;
+    renderBattleUI(data);
+  }).catch(() => {});
+}
 
-  const winnerId = statsA.pct === statsB.pct ? null : (statsA.pct > statsB.pct ? a : b);
+function renderBattleUI(partner) {
+  const statsA = statsFor(progress, allCards);
+  const statsB = statsFor(partner.progress, allCards);
+  const winner = statsA.pct === statsB.pct ? null : (statsA.pct > statsB.pct ? "me" : "partner");
 
   els.battleVersus.innerHTML =
-    battleSideHtml(a, statsA, winnerId === a) +
+    battleSideHtml(currentDisplayName, statsA, winner === "me") +
     '<div class="battle-vs">VS</div>' +
-    battleSideHtml(b, statsB, winnerId === b);
+    battleSideHtml(partner.name, statsB, winner === "partner");
 
   if (!statsA.total) {
     els.battleWinner.className = "battle-winner tie";
     els.battleWinner.textContent = "Noch keine Karten zum Vergleichen";
-  } else if (winnerId === null) {
+  } else if (winner === null) {
     els.battleWinner.className = "battle-winner tie";
     els.battleWinner.textContent = `🤝 Unentschieden – beide bei ${statsA.pct}%`;
   } else {
-    const winnerStats = winnerId === a ? statsA : statsB;
-    const loserStats = winnerId === a ? statsB : statsA;
+    const winnerName = winner === "me" ? currentDisplayName : partner.name;
+    const winnerStats = winner === "me" ? statsA : statsB;
+    const loserStats = winner === "me" ? statsB : statsA;
     els.battleWinner.className = "battle-winner";
-    els.battleWinner.textContent = `🏆 ${PROFILES[winnerId].name} führt mit ${winnerStats.pct}% (vs. ${loserStats.pct}%)`;
+    els.battleWinner.textContent = `🏆 ${escapeHtml(winnerName)} führt mit ${winnerStats.pct}% (vs. ${loserStats.pct}%)`;
   }
 
   if (els.streakVersus) {
-    els.streakVersus.innerHTML = ids.map((id) => {
-      const s = loadProfileStreak(id);
+    els.streakVersus.innerHTML = [
+      { name: currentDisplayName, s: streak },
+      { name: partner.name, s: partner.streak },
+    ].map(({ name, s }) => {
       const rank = rankForStreak(s.count);
       return `
         <div class="streak-versus-item${s.count > 0 ? " has-streak" : ""}">
-          <div class="streak-versus-main"><span class="streak-versus-flame">🔥</span>${escapeHtml(PROFILES[id].name)}: ${s.count}</div>
+          <div class="streak-versus-main"><span class="streak-versus-flame">🔥</span>${escapeHtml(name)}: ${s.count}</div>
           <div class="streak-versus-rank">${rank.icon} ${rank.title}</div>
         </div>
       `;
@@ -1088,39 +1225,49 @@ function renderBattle() {
   }
 
   if (els.examVersus) {
-    els.examVersus.innerHTML = ids.map((id) => {
-      const es = loadProfileExamStats(id);
-      return `
-        <div class="exam-versus-item">
-          <span class="exam-versus-name">🎓 ${escapeHtml(PROFILES[id].name)}</span>
-          <span class="exam-versus-detail">${es.count} Prüfungen · ${es.passed} bestanden · ${es.right} ✓ · ${es.wrong} ✗</span>
-        </div>
-      `;
-    }).join("");
+    els.examVersus.innerHTML = [
+      { name: currentDisplayName, es: examStats },
+      { name: partner.name, es: partner.examStats },
+    ].map(({ name, es }) => `
+      <div class="exam-versus-item">
+        <span class="exam-versus-name">🎓 ${escapeHtml(name)}</span>
+        <span class="exam-versus-detail">${es.count} Prüfungen · ${es.passed} bestanden · ${es.right} ✓ · ${es.wrong} ✗</span>
+      </div>
+    `).join("");
   }
 
   els.battleTopics.innerHTML = "";
   categories().forEach((cat) => {
     const cardsInCat = allCards.filter((c) => (c.category || "Allgemein") === cat);
-    const sA = profileStats(a, cardsInCat);
-    const sB = profileStats(b, cardsInCat);
+    const sA = statsFor(progress, cardsInCat);
+    const sB = statsFor(partner.progress, cardsInCat);
     const row = document.createElement("div");
     row.className = "battle-topic-row";
     row.innerHTML = `
       <div class="battle-topic-name">${escapeHtml(cat)}</div>
       <div class="battle-bar-line">
-        <span class="battle-bar-name">${escapeHtml(PROFILES[a].name)}</span>
-        <div class="battle-bar-track"><div class="battle-bar-fill" style="width:${sA.pct}%;background:${PROFILES[a].color}"></div></div>
+        <span class="battle-bar-name">${escapeHtml(currentDisplayName)}</span>
+        <div class="battle-bar-track"><div class="battle-bar-fill" style="width:${sA.pct}%;background:var(--accent)"></div></div>
         <span class="battle-bar-pct">${sA.pct}%</span>
       </div>
       <div class="battle-bar-line">
-        <span class="battle-bar-name">${escapeHtml(PROFILES[b].name)}</span>
-        <div class="battle-bar-track"><div class="battle-bar-fill" style="width:${sB.pct}%;background:${PROFILES[b].color}"></div></div>
+        <span class="battle-bar-name">${escapeHtml(partner.name)}</span>
+        <div class="battle-bar-track"><div class="battle-bar-fill" style="width:${sB.pct}%;background:var(--merk)"></div></div>
         <span class="battle-bar-pct">${sB.pct}%</span>
       </div>
     `;
     els.battleTopics.appendChild(row);
   });
+}
+
+function renderSettingsMatchStatus() {
+  const partnerUid = loadMatchPartnerUid();
+  if (els.unmatchBtn) els.unmatchBtn.hidden = !partnerUid;
+  if (els.matchStatusHint) {
+    els.matchStatusHint.textContent = partnerUid
+      ? "Du bist gematcht - im Battle Mode (Statistik-Tab) seht ihr euren Vergleich."
+      : "Lade einen Freund ein, um eure Fortschritte im Battle Mode zu vergleichen.";
+  }
 }
 
 // --- Statistik ---
@@ -2236,6 +2383,35 @@ els.importFileInput.addEventListener("change", async () => {
   showToast("Backup wiederhergestellt");
 });
 
+// --- Match-Modus (Battle Mode) - Einladungslink erstellen/verwalten ---
+
+els.createInviteBtn?.addEventListener("click", async () => {
+  try {
+    const link = await createInviteLink();
+    els.inviteLinkInput.value = link;
+    els.inviteLinkBox.hidden = false;
+    if (navigator.share) {
+      navigator.share({ title: "OKTAN Lernen", text: "Lern mit mir zusammen für die Kfz-Abschlussprüfung!", url: link }).catch(() => {});
+    }
+  } catch (e) {
+    showToast(`⚠️ ${e.message || "Einladung konnte nicht erstellt werden"}`, 4000);
+  }
+});
+
+els.copyInviteLinkBtn?.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(els.inviteLinkInput.value);
+    showToast("Link kopiert");
+  } catch {
+    els.inviteLinkInput.select();
+    showToast("Zum Kopieren markiert – jetzt manuell kopieren");
+  }
+});
+
+els.unmatchBtn?.addEventListener("click", unmatchPartner);
+
+els.battleInviteGoBtn?.addEventListener("click", () => switchTab("tabSettings"));
+
 // --- Konto sichern (optional: E-Mail/Passwort an das anonyme Konto binden) ---
 
 function renderAccountSecureStatus() {
@@ -2364,6 +2540,17 @@ function enterApp(session, name) {
   safeCall(renderStreak, "Streak");
   startCloudSync();
   maybeResumeStudySession();
+
+  renderSettingsMatchStatus();
+  reconcileMyInvite();
+  maybeRedeemPendingInvite();
+}
+
+function maybeRedeemPendingInvite() {
+  const code = new URLSearchParams(location.search).get("invite");
+  if (!code) return;
+  history.replaceState(null, "", location.pathname);
+  redeemInvite(code);
 }
 
 async function startOnboarding(name) {
@@ -2569,6 +2756,7 @@ document.addEventListener("visibilitychange", () => {
     if (currentProfile) {
       syncFromCloud();
       renderStreak();
+      reconcileMyInvite();
     }
   }
 });
