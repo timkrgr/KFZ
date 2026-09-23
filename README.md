@@ -74,3 +74,25 @@ der Projekt-Inhaber machen kann:
    bei Firebase bewusst öffentlich/clientseitig sichtbar (steht in jeder
    Firebase-Web-App im Quellcode) und wird durch die Datenbank-Regeln
    oben abgesichert, nicht durch Geheimhaltung.
+
+## Android-Release (Play Store) bauen
+
+Der eigentliche Build läuft über GitHub Actions (`.github/workflows/android-release.yml`),
+da ein Android-Build ein Android-SDK braucht, das hier nicht verfügbar ist - genau wie
+bei iOS/Xcode. Einmalig einzurichten, in den Repo-Settings → Secrets and variables → Actions:
+
+- `ANDROID_KEYSTORE_BASE64` – Inhalt von `oktan-release.keystore` (siehe unten) base64-kodiert:
+  `base64 -w0 oktan-release.keystore` (Linux) bzw. `base64 -i oktan-release.keystore` (Mac)
+- `ANDROID_KEYSTORE_PASSWORD` – Store-Passwort aus den dir zugeschickten Keystore-Zugangsdaten
+- `ANDROID_KEY_ALIAS` – `oktan`
+- `ANDROID_KEY_PASSWORD` – identisch zum Store-Passwort (PKCS12-Format erzwingt das)
+
+**Der Keystore selbst (`oktan-release.keystore`) und die Passwörter sind NICHT im Repo** -
+die wurden dir separat als Datei geschickt. Sicher aufbewahren (z. B. Passwort-Manager)!
+Ohne diese Datei kann die App im Play Store nie wieder aktualisiert werden. Für lokale
+Builds: `android/key.properties` aus `android/key.properties.example` anlegen (bereits in
+`.gitignore`, wird nie eingecheckt).
+
+Danach in GitHub unter Actions → "Android Release Build" → "Run workflow" auslösen; das
+fertige, signierte `.aab` steht danach als Download am Workflow-Lauf bereit und kann direkt
+in die Play Console hochgeladen werden.

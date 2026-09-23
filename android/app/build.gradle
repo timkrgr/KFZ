@@ -1,5 +1,22 @@
 apply plugin: 'com.android.application'
 
+// Release-Signing: entweder aus android/key.properties (lokal, nicht eingecheckt,
+// siehe key.properties.example) oder aus Umgebungsvariablen (GitHub-Actions-CI,
+// aus Secrets gesetzt). Ohne beides baut "release" einfach unsigniert weiter -
+// bricht also nirgends, wo die Keystore-Daten fehlen.
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+def hasKeystoreProperties = keystorePropertiesFile.exists()
+if (hasKeystoreProperties) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+def ksStoreFile = hasKeystoreProperties ? keystoreProperties['storeFile'] : System.getenv("ANDROID_KEYSTORE_PATH")
+def ksStorePassword = hasKeystoreProperties ? keystoreProperties['storePassword'] : System.getenv("ANDROID_KEYSTORE_PASSWORD")
+def ksKeyAlias = hasKeystoreProperties ? keystoreProperties['keyAlias'] : System.getenv("ANDROID_KEY_ALIAS")
+def ksKeyPassword = hasKeystoreProperties ? keystoreProperties['keyPassword'] : System.getenv("ANDROID_KEY_PASSWORD")
+def canSignRelease = ksStoreFile != null && ksStorePassword != null
+
 android {
     namespace = "com.timkrgr.oktan"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -16,10 +33,23 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        if (canSignRelease) {
+            release {
+                storeFile rootProject.file(ksStoreFile)
+                storePassword ksStorePassword
+                keyAlias ksKeyAlias
+                keyPassword ksKeyPassword
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (canSignRelease) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 }

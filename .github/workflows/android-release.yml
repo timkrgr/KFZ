@@ -1,0 +1,66 @@
+name: Android Release Build
+
+# Baut ein signiertes Android App Bundle (.aab), das direkt in die Play Console
+# hochgeladen werden kann. Manuell auslösbar (kein eigener Mac/Android-SDK
+# nötig - läuft komplett auf einem von GitHub bereitgestellten Runner).
+#
+# Setup (einmalig, in den Repo-Einstellungen -> Secrets and variables -> Actions):
+#   ANDROID_KEYSTORE_BASE64   - `base64 -i oktan-release.keystore | pbcopy` (oder base64 -w0 unter Linux)
+#   ANDROID_KEYSTORE_PASSWORD - Store-Passwort aus credentials.txt
+#   ANDROID_KEY_ALIAS         - "oktan"
+#   ANDROID_KEY_PASSWORD      - Key-Passwort aus credentials.txt (identisch zum Store-Passwort)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Java einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Android SDK einrichten
+        uses: android-actions/setup-android@v3
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Web-Assets bauen und in native Projekte synchronisieren
+        run: npm run sync
+
+      - name: Signing-Keystore aus Secret wiederherstellen
+        working-directory: android
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > oktan-release.keystore
+
+      - name: Android App Bundle bauen (signiert)
+        working-directory: android
+        env:
+          ANDROID_KEYSTORE_PATH: oktan-release.keystore
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: ./gradlew bundleRelease
+
+      - name: Signing-Keystore wieder entfernen
+        if: always()
+        working-directory: android
+        run: rm -f oktan-release.keystore
+
+      - name: App Bundle als Download bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: oktan-release-aab
+          path: android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 30

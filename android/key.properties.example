@@ -1,0 +1,4 @@
+storeFile=oktan-release.keystore
+storePassword=REPLACE_MICH
+keyAlias=oktan
+keyPassword=REPLACE_MICH
