@@ -38,7 +38,7 @@ Keine Werbung. Kein Tracking. Einfach eine ehrliche Lern-App fürs Bestehen der 
 Bildung
 
 ## Kontakt-E-Mail
-[DEINE-KONTAKT-EMAIL]
+tim.krueger.1307@gmail.com
 
 ## Datenschutzerklärung-URL
 https://timkrgr.github.io/KFZ/privacy.html
