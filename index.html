@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=76">
+<link rel="stylesheet" href="style.css?v=77">
 </head>
 <body>
 <div class="app">
@@ -80,7 +80,7 @@
       <div class="hero-left">
         <span class="hero-icon">⚡</span>
         <div>
-          <div class="hero-title">Jetzt üben</div>
+          <div class="hero-title">Jetzt üben <span class="lock-badge" id="heroLockBadge" hidden>🔒</span></div>
           <div class="hero-sub">Alle Themen, gemischt</div>
         </div>
       </div>
@@ -105,7 +105,7 @@
       <div class="exam-left">
         <span class="exam-icon">🎓</span>
         <div>
-          <div class="exam-title">Prüfungssimulation</div>
+          <div class="exam-title">Prüfungssimulation <span class="lock-badge" id="examLockBadge" hidden>🔒</span></div>
           <div class="exam-sub">40 zufällige Fragen aus allen Kategorien</div>
         </div>
       </div>
@@ -121,7 +121,7 @@
       </button>
       <button id="merkBtn" class="mini-card mini-merk">
         <span class="mini-icon">❌</span>
-        <span class="mini-title">Falsche Fragen</span>
+        <span class="mini-title">Falsche Fragen <span class="lock-badge" id="merkLockBadge" hidden>🔒</span></span>
         <span class="mini-sub"><span id="merkCount">0</span> falsch</span>
       </button>
     </div>
@@ -142,33 +142,44 @@
       <h1 class="page-title" id="bigTitleStats">Statistik</h1>
     </header>
 
-    <div class="battle-card" id="battleCard" hidden>
-      <div class="battle-title">⚔️ Battle Mode</div>
-      <div class="battle-sub">Wer hat mehr &amp; besser gelernt?</div>
-      <div class="battle-versus" id="battleVersus"></div>
-      <div class="battle-winner" id="battleWinner"></div>
-      <div class="streak-versus" id="streakVersus"></div>
-      <div class="exam-versus" id="examVersus"></div>
+    <div class="stats-content-wrap" id="statsContentWrap">
+      <div class="stats-content" id="statsContent">
+        <div class="battle-card" id="battleCard" hidden>
+          <div class="battle-title">⚔️ Battle Mode</div>
+          <div class="battle-sub">Wer hat mehr &amp; besser gelernt?</div>
+          <div class="battle-versus" id="battleVersus"></div>
+          <div class="battle-winner" id="battleWinner"></div>
+          <div class="streak-versus" id="streakVersus"></div>
+          <div class="exam-versus" id="examVersus"></div>
+        </div>
+
+        <div class="battle-card battle-invite-card" id="battleInviteCard">
+          <div class="battle-title">⚔️ Battle Mode</div>
+          <div class="battle-sub">Lade einen Freund ein und vergleicht euren Fortschritt</div>
+          <button type="button" class="btn btn-outline" id="battleInviteGoBtn">👥 Freund einladen</button>
+        </div>
+
+        <button id="battleTopicsToggle" class="collapse-toggle" type="button" aria-expanded="false" hidden>
+          <span>Themen im Vergleich</span>
+          <span class="collapse-chevron">▾</span>
+        </button>
+        <div id="battleTopics" class="battle-topics" hidden></div>
+
+        <h2 class="section-title">Meine Statistik</h2>
+        <div class="stats-summary" id="statsSummary"></div>
+        <h2 class="section-title">Meine Prüfungen</h2>
+        <div class="stats-summary" id="examStatsSummary"></div>
+        <h2 class="section-title">Meine Themen</h2>
+        <div id="statsList" class="stats-list"></div>
+      </div>
+      <div class="stats-lock-overlay" id="statsLockOverlay" hidden>
+        <div class="stats-lock-card">
+          <div class="stats-lock-title">🔒 Sichtbar nur mit Vollversion</div>
+          <p class="stats-lock-sub">Über 300 Fragen, alle Themen, Battle Mode und deine komplette Statistik warten in der Vollversion.</p>
+          <button type="button" class="btn" id="statsUnlockBtn">Vollversion freischalten – 7,99 €</button>
+        </div>
+      </div>
     </div>
-
-    <div class="battle-card battle-invite-card" id="battleInviteCard">
-      <div class="battle-title">⚔️ Battle Mode</div>
-      <div class="battle-sub">Lade einen Freund ein und vergleicht euren Fortschritt</div>
-      <button type="button" class="btn btn-outline" id="battleInviteGoBtn">👥 Freund einladen</button>
-    </div>
-
-    <button id="battleTopicsToggle" class="collapse-toggle" type="button" aria-expanded="false" hidden>
-      <span>Themen im Vergleich</span>
-      <span class="collapse-chevron">▾</span>
-    </button>
-    <div id="battleTopics" class="battle-topics" hidden></div>
-
-    <h2 class="section-title">Meine Statistik</h2>
-    <div class="stats-summary" id="statsSummary"></div>
-    <h2 class="section-title">Meine Prüfungen</h2>
-    <div class="stats-summary" id="examStatsSummary"></div>
-    <h2 class="section-title">Meine Themen</h2>
-    <div id="statsList" class="stats-list"></div>
   </section>
 
   <!-- ===== TAB: Erklärungen ===== -->
@@ -201,6 +212,13 @@
         <button type="button" class="btn" id="renameProfileSaveBtn">Speichern</button>
       </div>
       <p class="panel-hint">Jeder hat seinen eigenen Fortschritt auf diesem Gerät. Beim Profilwechsel wird nichts überschrieben – du kannst jederzeit zurückwechseln.</p>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label">Vollversion</label>
+      <p class="panel-hint" id="premiumStatusHint">Kostenlos: 10 Fragen pro Kategorie. Mit der Vollversion (7,99 €, einmalig) bekommst du alle Fragen, Battle Mode, Wiederholungen und alle Erklärungen.</p>
+      <button type="button" class="btn" id="buyPremiumBtn">⭐ Vollversion freischalten – 7,99 €</button>
+      <button type="button" class="btn btn-outline" id="restorePremiumBtn" style="margin-top:8px;">Käufe wiederherstellen</button>
     </div>
 
     <div class="settings-group">
@@ -355,6 +373,12 @@
       <div class="result-pass-badge" id="resultPassBadge" hidden></div>
       <p class="result-exam-count" id="resultExamCount" hidden></p>
       <p class="result-line"><span id="resultRight">0</span> richtig · <span id="resultWrong">0</span> falsch</p>
+      <div class="result-premium-upsell locked-card" id="resultPremiumUpsell" hidden>
+        <div class="locked-card-icon">🔒</div>
+        <div class="locked-card-title">Das waren die 10 Gratis-Fragen</div>
+        <p class="locked-card-sub">Über 300 Fragen aus allen Kategorien, Battle Mode, Wiederholungen und Klausursimulation warten in der Vollversion.</p>
+        <button type="button" class="btn" id="resultUnlockBtn">Vollversion freischalten – 7,99 €</button>
+      </div>
       <div class="result-actions">
         <button id="resultRepeatBtn" class="btn">🔁 Nochmal</button>
         <button id="resultHomeBtn" class="btn btn-outline">Fertig</button>
@@ -372,7 +396,17 @@
     <div class="study-header">
       <button id="explainBackBtn" class="back-btn">← Erklärungen</button>
     </div>
-    <div id="explainContent" class="explain-content"></div>
+    <div class="explain-content-wrap">
+      <div id="explainContent" class="explain-content"></div>
+      <div id="explainUnlockOverlay" class="explain-unlock-overlay" hidden>
+        <div class="explain-unlock-fade"></div>
+        <div class="explain-unlock-card">
+          <div class="explain-unlock-title">🔒 Vollständige Erklärung</div>
+          <p class="explain-unlock-sub">Mit der Vollversion (7,99 €, einmalig) siehst du alle Erklärungen komplett.</p>
+          <button type="button" class="btn" id="explainUnlockBtn">Vollversion freischalten</button>
+        </div>
+      </div>
+    </div>
   </section>
 
   <div id="toast" class="toast" hidden></div>
@@ -388,6 +422,6 @@
   </div>
 </div>
 
-<script src="app.js?v=76"></script>
+<script src="app.js?v=77"></script>
 </body>
 </html>

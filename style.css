@@ -1872,3 +1872,130 @@ body {
   z-index: 60;
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
+
+/* --- Vollversion / Freemium-Paywall --- */
+.lock-badge {
+  font-size: 0.75em;
+  opacity: 0.85;
+}
+
+.topic-free-hint {
+  font-size: 0.72rem;
+  color: var(--accent-2);
+  margin-top: 2px;
+}
+
+.stats-content-wrap {
+  position: relative;
+}
+
+.stats-content.stats-blurred {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.stats-lock-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.stats-lock-overlay .stats-lock-card {
+  pointer-events: auto;
+}
+
+.stats-lock-card {
+  background: var(--surface-2);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+.stats-lock-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.stats-lock-sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.explain-content-wrap {
+  position: relative;
+}
+
+.explain-content.explain-locked {
+  max-height: 340px;
+  overflow: hidden;
+}
+
+.explain-unlock-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 30px 16px 20px;
+}
+
+.explain-unlock-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, var(--bg) 75%);
+}
+
+.explain-unlock-card {
+  position: relative;
+  text-align: center;
+  max-width: 320px;
+}
+
+.explain-unlock-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.explain-unlock-sub {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.locked-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  gap: 10px;
+}
+
+.locked-card-icon { font-size: 2.5rem; }
+.locked-card-title { font-size: 1.15rem; font-weight: 800; }
+.locked-card-sub {
+  font-size: 0.88rem;
+  color: var(--muted);
+  max-width: 280px;
+  line-height: 1.45;
+}

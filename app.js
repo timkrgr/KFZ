@@ -1,4 +1,4 @@
-const APP_VERSION = "v76";
+const APP_VERSION = "v77";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -32,6 +32,10 @@ const DB_URL = "https://kfz-lernen-default-rtdb.europe-west1.firebasedatabase.ap
 // die Datenbank-Regeln (firebase-database-rules.json), nicht über Geheimhaltung.
 const FIREBASE_API_KEY = "AIzaSyDyAMgh6fvFBo2sfnAFXZP9g4TME7Lv_Xo";
 const CLOUD_SYNC_INTERVAL_MS = 2 * 60 * 1000; // alle 2 Minuten mit der Cloud abgleichen
+
+const PREMIUM_KEY = "kfz_premium_v1";
+const FREE_CARD_LIMIT = 10; // Anzahl spielbarer Karten pro Kategorie ohne Vollversion
+const PREMIUM_PRICE_LABEL = "7,99 €";
 
 let currentProfile = null; // Firebase-UID des angemeldeten Nutzers
 let currentDisplayName = "";
@@ -136,14 +140,19 @@ const els = {
   explainView: document.getElementById("explainView"),
   explainBackBtn: document.getElementById("explainBackBtn"),
   explainContent: document.getElementById("explainContent"),
+  explainUnlockOverlay: document.getElementById("explainUnlockOverlay"),
+  explainUnlockBtn: document.getElementById("explainUnlockBtn"),
 
   examCountdownText: document.getElementById("examCountdownText"),
   heroBtn: document.getElementById("heroBtn"),
   heroRingFill: document.getElementById("heroRingFill"),
   heroRingPct: document.getElementById("heroRingPct"),
   heroResetAllBtn: document.getElementById("heroResetAllBtn"),
+  heroLockBadge: document.getElementById("heroLockBadge"),
   merkBtn: document.getElementById("merkBtn"),
   merkCount: document.getElementById("merkCount"),
+  merkLockBadge: document.getElementById("merkLockBadge"),
+  examLockBadge: document.getElementById("examLockBadge"),
   topicList: document.getElementById("topicList"),
   noTopics: document.getElementById("noTopics"),
 
@@ -176,6 +185,13 @@ const els = {
   statsSummary: document.getElementById("statsSummary"),
   examStatsSummary: document.getElementById("examStatsSummary"),
   statsList: document.getElementById("statsList"),
+  statsContent: document.getElementById("statsContent"),
+  statsLockOverlay: document.getElementById("statsLockOverlay"),
+  statsUnlockBtn: document.getElementById("statsUnlockBtn"),
+
+  premiumStatusHint: document.getElementById("premiumStatusHint"),
+  buyPremiumBtn: document.getElementById("buyPremiumBtn"),
+  restorePremiumBtn: document.getElementById("restorePremiumBtn"),
 
   reloadBtn: document.getElementById("reloadBtn"),
   resetBtn: document.getElementById("resetBtn"),
@@ -221,6 +237,8 @@ const els = {
   resultExamCount: document.getElementById("resultExamCount"),
   resultRepeatBtn: document.getElementById("resultRepeatBtn"),
   resultHomeBtn: document.getElementById("resultHomeBtn"),
+  resultPremiumUpsell: document.getElementById("resultPremiumUpsell"),
+  resultUnlockBtn: document.getElementById("resultUnlockBtn"),
 
   examBtn: document.getElementById("examBtn"),
 
@@ -250,6 +268,7 @@ let simRemaining = 0;
 let progress = { known: {}, hard: {} };
 let streak = { count: 0, lastClaim: 0 };
 let examStats = { count: 0, right: 0, wrong: 0, passed: 0 };
+let isPremium = false;
 
 function loadProgress() {
   try {
@@ -387,6 +406,91 @@ function loadExamStats() {
 function saveExamStats() {
   localStorage.setItem(`${EXAM_STATS_KEY}_${currentProfile}`, JSON.stringify(examStats));
   pushExamStatsToCloud();
+}
+
+// --- Vollversion (einmaliger Kauf, kein Abo) ---
+// Kostenlos: FREE_CARD_LIMIT Karten pro Kategorie, kein Battle Mode, kein
+// Wiederholen falscher Fragen, kein Klausurmodus, Erklärungen nur angeschnitten.
+// Der Kauf ist ein einmaliges Feld am Konto (users/{uid}.premium) - synct über
+// alle Geräte. purchasePremium() ist ein Platzhalter, bis die App im App Store
+// ist und an den nativen In-App-Kauf (StoreKit) angebunden wird.
+
+function loadPremium() {
+  return localStorage.getItem(`${PREMIUM_KEY}_${currentProfile}`) === "1";
+}
+
+function savePremium() {
+  localStorage.setItem(`${PREMIUM_KEY}_${currentProfile}`, isPremium ? "1" : "0");
+  if (isPremium) pushPremiumToCloud();
+}
+
+async function pushPremiumToCloud() {
+  try {
+    const token = await getValidIdToken();
+    if (!token) return;
+    await fetch(`${DB_URL}/users/${currentProfile}.json?auth=${token}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ premium: true }),
+    });
+  } catch {
+    // Lokal ist der Kauf gespeichert; der nächste Sync holt das nach.
+  }
+}
+
+async function syncPremiumFromCloud() {
+  if (!currentProfile || isPremium) return; // einmal freigeschaltet, bleibt freigeschaltet
+  try {
+    const token = await getValidIdToken();
+    if (!token) return;
+    const res = await fetch(`${DB_URL}/users/${currentProfile}.json?auth=${token}&ts=${Date.now()}`, { cache: "no-store" });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data?.premium) {
+      isPremium = true;
+      savePremium();
+      safeCall(renderHome, "Home");
+      safeCall(renderStats, "Statistik");
+      safeCall(renderPremiumStatus, "Vollversion-Status");
+    }
+  } catch {
+    // Offline - der nächste Sync versucht es erneut.
+  }
+}
+
+function freeExplanationSnippet(text) {
+  if (!text) return "";
+  const cutAt = 90;
+  if (text.length <= cutAt) return text;
+  return `${text.slice(0, cutAt).trimEnd()}… 🔒 Vollständige Erklärung in der Vollversion`;
+}
+
+function requiresPremium(featureLabel) {
+  if (isPremium) return true;
+  showToast(`🔒 ${featureLabel} ist Teil der Vollversion (${PREMIUM_PRICE_LABEL})`, 3500);
+  switchTab("tabSettings");
+  return false;
+}
+
+async function purchasePremium() {
+  // TODO: sobald die App im App Store ist, hier den nativen In-App-Kauf
+  // (StoreKit über cordova-plugin-purchase) auslösen statt dieses Platzhalters.
+  showToast("Der Kauf ist bald verfügbar – die App ist noch nicht im App Store.", 4000);
+}
+
+async function restorePurchases() {
+  await syncPremiumFromCloud();
+  showToast(isPremium ? "✅ Vollversion wiederhergestellt" : "Kein vorheriger Kauf gefunden");
+}
+
+function renderPremiumStatus() {
+  if (els.premiumStatusHint) {
+    els.premiumStatusHint.textContent = isPremium
+      ? "✅ Vollversion aktiv – danke für deinen Kauf! Du hast Zugriff auf alle Fragen, Battle Mode, Wiederholungen und Erklärungen."
+      : `Kostenlos: ${FREE_CARD_LIMIT} Fragen pro Kategorie. Mit der Vollversion (${PREMIUM_PRICE_LABEL}, einmalig) bekommst du alle Fragen, Battle Mode, Wiederholungen und alle Erklärungen.`;
+  }
+  if (els.buyPremiumBtn) els.buyPremiumBtn.hidden = isPremium;
+  if (els.restorePremiumBtn) els.restorePremiumBtn.hidden = isPremium;
 }
 
 // --- Firebase Auth (anonyme Konten, optional per E-Mail gesichert) ---
@@ -899,6 +1003,9 @@ function renderHome() {
   els.merkCount.textContent = hardCount;
   els.merkBtn.hidden = total === 0;
   els.examBtn.hidden = total === 0;
+  if (els.heroLockBadge) els.heroLockBadge.hidden = isPremium;
+  if (els.examLockBadge) els.examLockBadge.hidden = isPremium;
+  if (els.merkLockBadge) els.merkLockBadge.hidden = isPremium;
 
   const cats = categories();
   els.noTopics.hidden = cats.length > 0;
@@ -923,6 +1030,7 @@ function renderHome() {
         <div class="topic-info">
           <div class="topic-name">${escapeHtml(cat)}</div>
           <div class="topic-count">${knownInCat} von ${totalInCat} beherrscht</div>
+          ${!isPremium && totalInCat > FREE_CARD_LIMIT ? `<div class="topic-free-hint">🔒 ${FREE_CARD_LIMIT} von ${totalInCat} kostenlos spielbar</div>` : ""}
         </div>
       </div>
       <div class="topic-progress-row">
@@ -1048,6 +1156,7 @@ async function createInviteLink() {
 }
 
 async function redeemInvite(code) {
+  if (!requiresPremium("Battle Mode")) return;
   const token = await getValidIdToken();
   if (!token) return;
   try {
@@ -1281,6 +1390,9 @@ function renderSettingsMatchStatus() {
 
 function renderStats() {
   renderBattle();
+
+  if (els.statsContent) els.statsContent.classList.toggle("stats-blurred", !isPremium);
+  if (els.statsLockOverlay) els.statsLockOverlay.hidden = isPremium;
 
   const total = allCards.length;
   const known = allCards.filter((c) => progress.known[c.id]).length;
@@ -1817,6 +1929,8 @@ function openExplain(cat) {
   const html = EXPLANATIONS[cat];
   if (!html) return;
   els.explainContent.innerHTML = html;
+  els.explainContent.classList.toggle("explain-locked", !isPremium);
+  if (els.explainUnlockOverlay) els.explainUnlockOverlay.hidden = isPremium;
   els.explainView.hidden = false;
   els.explainContent.scrollTop = 0;
 }
@@ -1872,6 +1986,7 @@ function maybeResumeStudySession() {
 
   const saved = loadStudySession();
   if (!saved || !saved.deckIds || !saved.deckIds.length) return;
+  if (!isPremium && (saved.filter === "hard" || saved.topic === ALL_TOPIC)) { clearStudySession(); return; }
 
   const rehydratedDeck = saved.deckIds.map((id) => allCards.find((c) => c.id === id)).filter(Boolean);
   if (!rehydratedDeck.length) { clearStudySession(); return; }
@@ -1892,6 +2007,8 @@ function maybeResumeStudySession() {
 }
 
 function openTopic(topic, filter) {
+  if (filter === "hard" && !requiresPremium("Falsche Fragen üben")) return;
+  if (topic === ALL_TOPIC && filter === "all" && !requiresPremium("Alle Themen zusammen lernen")) return;
   sessionMode = "topic";
   currentTopic = topic;
   currentFilter = filter;
@@ -1907,6 +2024,13 @@ function buildDeck() {
   const categoryCards = allCards.filter(
     (c) => currentTopic === ALL_TOPIC || (c.category || "Allgemein") === currentTopic
   );
+  // Gratis-Version: nur FREE_CARD_LIMIT zufällige (aber pro Nutzer/Kategorie
+  // stabile) Karten pro Kategorie spielbar (openTopic() blockiert "hard"-Filter
+  // und ALL_TOPIC vorher schon für Free-User, hier landen also nur normale
+  // Einzel-Kategorie-Sessions).
+  const availableCards = isPremium
+    ? categoryCards
+    : seededShuffled(categoryCards, `${currentProfile}_${currentTopic}`).slice(0, FREE_CARD_LIMIT);
 
   let pool;
   if (currentFilter === "hard") {
@@ -1921,14 +2045,14 @@ function buildDeck() {
     // Karte nur einmal pro Durchlauf, sonst könnte dieselbe Frage im selben
     // Durchlauf mehrfach drankommen, sogar nachdem man sie schon richtig
     // beantwortet hat.
-    const unseen = categoryCards.filter((c) => cardState(c.id) === "new");
-    const hard = categoryCards.filter((c) => cardState(c.id) === "hard");
-    const known = categoryCards.filter((c) => cardState(c.id) === "known");
+    const unseen = availableCards.filter((c) => cardState(c.id) === "new");
+    const hard = availableCards.filter((c) => cardState(c.id) === "hard");
+    const known = availableCards.filter((c) => cardState(c.id) === "known");
 
     pool = unseen.length > 0
       ? shuffled(unseen).concat(shuffled(hard))
       : shuffled(hard).concat(shuffled(known));
-    if (pool.length === 0) pool = categoryCards;
+    if (pool.length === 0) pool = availableCards;
   }
 
   deck = pool;
@@ -2002,7 +2126,7 @@ function renderMcCard(card) {
   els.mcCategoryTag.textContent = card.category || "Allgemein";
   els.mcQuestionText.textContent = card.question;
   els.mcExplain.hidden = true;
-  els.mcExplainText.textContent = card.answer || "";
+  els.mcExplainText.textContent = isPremium ? (card.answer || "") : freeExplanationSnippet(card.answer);
   els.mcArea.classList.remove("has-explain");
   els.mcNextBar.hidden = true;
 
@@ -2169,6 +2293,24 @@ function shuffled(arr) {
   return copy;
 }
 
+// Deterministisch "zufällig" gemischt (gleicher Seed -> gleiche Reihenfolge) -
+// damit die 10 Gratis-Karten pro Kategorie für einen Nutzer stabil bleiben,
+// statt bei jedem Öffnen eine andere Auswahl zu zeigen.
+function seededShuffled(arr, seedStr) {
+  let seed = 0;
+  for (let i = 0; i < seedStr.length; i++) seed = (seed * 31 + seedStr.charCodeAt(i)) >>> 0;
+  const rand = () => {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    return seed / 4294967296;
+  };
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 let lastSimFixedCount = null; // merkt sich eine feste Fragenzahl (z. B. die 40er-Prüfungssimulation) fürs Wiederholen
 let currentExamTotal = 0; // Gesamtzahl der Fragen der laufenden Prüfungssimulation (für die 75%-Bestehensgrenze)
 
@@ -2199,6 +2341,7 @@ function buildBalancedExamPool(count) {
 
 function startSimulation(fixedCount) {
   if (!allCards.length) return;
+  if (!requiresPremium("Der Klausurmodus")) return;
   sessionMode = "simulation";
   sessionResults = { right: 0, wrong: 0 };
   lastSimFixedCount = fixedCount || null;
@@ -2284,6 +2427,10 @@ function showResult(right, wrong) {
     if (els.resultPassBadge) els.resultPassBadge.hidden = true;
     if (els.resultExamCount) els.resultExamCount.hidden = true;
   }
+
+  if (els.resultPremiumUpsell) {
+    els.resultPremiumUpsell.hidden = isPremium || sessionEndKind !== "topic";
+  }
 }
 
 function endSimulation() {
@@ -2318,6 +2465,7 @@ els.resultRepeatBtn.addEventListener("click", () => {
 });
 
 els.resultHomeBtn.addEventListener("click", goHome);
+els.resultUnlockBtn?.addEventListener("click", purchasePremium);
 
 // --- Einstellungen ---
 
@@ -2393,6 +2541,7 @@ els.importFileInput.addEventListener("change", async () => {
 // --- Match-Modus (Battle Mode) - Einladungslink erstellen/verwalten ---
 
 els.createInviteBtn?.addEventListener("click", async () => {
+  if (!requiresPremium("Battle Mode")) return;
   try {
     const link = await createInviteLink();
     els.inviteLinkInput.value = link;
@@ -2418,6 +2567,11 @@ els.copyInviteLinkBtn?.addEventListener("click", async () => {
 els.unmatchBtn?.addEventListener("click", unmatchPartner);
 
 els.battleInviteGoBtn?.addEventListener("click", () => switchTab("tabSettings"));
+
+els.buyPremiumBtn?.addEventListener("click", purchasePremium);
+els.restorePremiumBtn?.addEventListener("click", restorePurchases);
+els.statsUnlockBtn?.addEventListener("click", purchasePremium);
+els.explainUnlockBtn?.addEventListener("click", () => switchTab("tabSettings"));
 
 // --- Konto sichern (optional: E-Mail/Passwort an das anonyme Konto binden) ---
 
@@ -2481,7 +2635,7 @@ async function pushDisplayNameToCloud(uid, name) {
     const token = await getValidIdToken();
     if (!token) return;
     await fetch(`${DB_URL}/users/${uid}.json?auth=${token}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ displayName: name }),
     });
@@ -2537,9 +2691,11 @@ function enterApp(session, name) {
   progress = loadProgress();
   streak = loadStreak();
   examStats = loadExamStats();
+  isPremium = loadPremium();
 
   updateProfileBadges();
   renderAccountSecureStatus();
+  renderPremiumStatus();
   els.profileGate.hidden = true;
 
   safeCall(renderHome, "Home");
@@ -2551,6 +2707,7 @@ function enterApp(session, name) {
   renderSettingsMatchStatus();
   reconcileMyInvite();
   maybeRedeemPendingInvite();
+  syncPremiumFromCloud();
 }
 
 function maybeRedeemPendingInvite() {
