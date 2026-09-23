@@ -186,6 +186,11 @@ body {
   font-size: 0.85rem;
   font-weight: 700;
   margin-bottom: 12px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
 }
 
 .exam-countdown-icon { display: flex; flex-shrink: 0; }
@@ -1877,6 +1882,50 @@ body {
 .lock-badge {
   font-size: 0.75em;
   opacity: 0.85;
+}
+
+.lock-badge-lg {
+  font-size: 1.35em;
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.4));
+}
+
+/* --- Google/Apple/E-Mail Login --- */
+.oauth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.14);
+  margin-bottom: 10px;
+}
+
+.oauth-btn .oauth-icon {
+  flex-shrink: 0;
+}
+
+.onboard-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin: 16px 0 12px;
+}
+
+.onboard-divider::before,
+.onboard-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+}
+
+.onboard-divider span {
+  padding: 0 10px;
 }
 
 .topic-free-hint {

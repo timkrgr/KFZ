@@ -1,9 +1,9 @@
-const APP_VERSION = "v77";
+const APP_VERSION = "v78";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
 const EXAM_PASS_PCT = 75; // ab dieser Prozentzahl gilt eine Prüfungssimulation als bestanden
-const FINAL_EXAM_DATE = new Date(2026, 11, 12); // Termin der echten Abschlussprüfung (Monat 0-basiert: 11 = Dezember)
+const EXAM_DATE_KEY = "kfz_exam_date_v1"; // individueller Prüfungstermin pro Nutzer (Vollversion)
 const STREAK_MIN_GAP_MS = 24 * 60 * 60 * 1000; // frühestens 24h nach dem letzten Abholen wieder abholbar
 const STREAK_GRACE_MS = 48 * 60 * 60 * 1000; // innerhalb 48h nach dem letzten Abholen zählt die Streak weiter, sonst reißt sie ab
 
@@ -37,8 +37,17 @@ const PREMIUM_KEY = "kfz_premium_v1";
 const FREE_CARD_LIMIT = 10; // Anzahl spielbarer Karten pro Kategorie ohne Vollversion
 const PREMIUM_PRICE_LABEL = "7,99 €";
 
+// Google/Apple-Anmeldung (Pflicht-Login). Beide Werte sind öffentliche Client-
+// IDs, kein Geheimnis. GOOGLE_WEB_CLIENT_ID: Firebase Console -> Authentication
+// -> Sign-in-Methode -> Google aktivieren -> "Web-SDK-Konfiguration" -> Web-
+// Client-ID kopieren. APPLE_SERVICES_ID: erst möglich, sobald das Apple
+// Developer Program läuft (Services ID + "Sign in with Apple" konfiguriert).
+const GOOGLE_WEB_CLIENT_ID = "";
+const APPLE_SERVICES_ID = "";
+
 let currentProfile = null; // Firebase-UID des angemeldeten Nutzers
 let currentDisplayName = "";
+let pendingSecureSession = null; // gesetzt, während der Pflicht-"Konto sichern"-Screen offen ist
 
 // Handgezeichnete SVG-Icons statt generischer Emojis, damit jede Kategorie
 // ein thematisch passendes, gut erkennbares Symbol bekommt (z. B. eine
@@ -115,7 +124,11 @@ const els = {
   onboardSub: document.getElementById("onboardSub"),
   onboardNameStep: document.getElementById("onboardNameStep"),
   onboardNameInput: document.getElementById("onboardNameInput"),
+  onboardEmailInput: document.getElementById("onboardEmailInput"),
+  onboardPasswordInput: document.getElementById("onboardPasswordInput"),
   onboardStartBtn: document.getElementById("onboardStartBtn"),
+  googleSignInBtn: document.getElementById("googleSignInBtn"),
+  appleSignInBtn: document.getElementById("appleSignInBtn"),
   showSignInBtn: document.getElementById("showSignInBtn"),
   onboardBackToChooserBtn: document.getElementById("onboardBackToChooserBtn"),
   onboardSignInStep: document.getElementById("onboardSignInStep"),
@@ -123,6 +136,13 @@ const els = {
   signInPasswordInput: document.getElementById("signInPasswordInput"),
   signInSubmitBtn: document.getElementById("signInSubmitBtn"),
   showNameStepBtn: document.getElementById("showNameStepBtn"),
+
+  accountSecureGate: document.getElementById("accountSecureGate"),
+  secureGoogleBtn: document.getElementById("secureGoogleBtn"),
+  secureAppleBtn: document.getElementById("secureAppleBtn"),
+  secureGateEmailInput: document.getElementById("secureGateEmailInput"),
+  secureGatePasswordInput: document.getElementById("secureGatePasswordInput"),
+  secureGateSubmitBtn: document.getElementById("secureGateSubmitBtn"),
 
   accountSecureForm: document.getElementById("accountSecureForm"),
   accountSecureHint: document.getElementById("accountSecureHint"),
@@ -143,7 +163,15 @@ const els = {
   explainUnlockOverlay: document.getElementById("explainUnlockOverlay"),
   explainUnlockBtn: document.getElementById("explainUnlockBtn"),
 
+  examCountdown: document.getElementById("examCountdown"),
   examCountdownText: document.getElementById("examCountdownText"),
+  examCountdownLockBadge: document.getElementById("examCountdownLockBadge"),
+  examDateLockBadge: document.getElementById("examDateLockBadge"),
+  examDateHint: document.getElementById("examDateHint"),
+  examDateForm: document.getElementById("examDateForm"),
+  examDateInput: document.getElementById("examDateInput"),
+  saveExamDateBtn: document.getElementById("saveExamDateBtn"),
+  examDateUnlockBtn: document.getElementById("examDateUnlockBtn"),
   heroBtn: document.getElementById("heroBtn"),
   heroRingFill: document.getElementById("heroRingFill"),
   heroRingPct: document.getElementById("heroRingPct"),
@@ -491,6 +519,7 @@ function renderPremiumStatus() {
   }
   if (els.buyPremiumBtn) els.buyPremiumBtn.hidden = isPremium;
   if (els.restorePremiumBtn) els.restorePremiumBtn.hidden = isPremium;
+  renderExamDateSettings();
 }
 
 // --- Firebase Auth (anonyme Konten, optional per E-Mail gesichert) ---
@@ -538,6 +567,8 @@ function mapAuthError(code) {
     INVALID_ID_TOKEN: "Sitzung abgelaufen - bitte App neu öffnen.",
     USER_DISABLED: "Dieses Konto wurde deaktiviert.",
     CONFIGURATION_NOT_FOUND: "Firebase-Projekt ist nicht richtig eingerichtet (Authentication fehlt).",
+    FEDERATED_USER_ID_ALREADY_LINKED: "Dieses Google-/Apple-Konto ist schon mit einem anderen Profil verknüpft. Bitte über \"Schon ein Konto? Anmelden\" einloggen statt zu sichern.",
+    EMAIL_EXISTS_DIFFERENT_CREDENTIAL: "Zu dieser E-Mail existiert schon ein Konto mit einer anderen Anmeldemethode.",
   };
   // Unbekannte Codes trotzdem im Klartext zeigen statt sie zu verschlucken -
   // damit sich ein neuer Fehlerfall sofort diagnostizieren lässt.
@@ -569,7 +600,94 @@ async function refreshSession(session) {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(mapAuthError(data.error?.message));
-  return saveAuthSession(sessionFromAuthResponse(data));
+  const refreshed = sessionFromAuthResponse(data);
+  // securedVia/securedEmail stehen nicht in der Refresh-Antwort - ohne diese
+  // Übernahme würde der Pflicht-"Konto sichern"-Screen nach jedem Token-
+  // Refresh fälschlich wieder für bereits gesicherte Konten auftauchen.
+  if (session.securedVia) refreshed.securedVia = session.securedVia;
+  if (session.securedEmail) refreshed.securedEmail = session.securedEmail;
+  return saveAuthSession(refreshed);
+}
+
+// Google/Apple/E-Mail laufen bei Firebase alle über denselben Federated-
+// Identity-Endpunkt. Mit idToken der aktuellen (anonymen) Sitzung wird die
+// neue Anmeldung an das bestehende Konto verlinkt statt ein neues zu erstellen.
+async function signInWithIdp(providerId, tokenParam, { linkToUid } = {}) {
+  const body = {
+    postBody: `${tokenParam}&providerId=${providerId}`,
+    requestUri: `${location.origin}${location.pathname}`,
+    returnSecureToken: true,
+  };
+  if (linkToUid) body.idToken = linkToUid;
+  const data = await identityToolkitRequest("signInWithIdp", body);
+  const session = saveAuthSession(sessionFromAuthResponse(data));
+  session.securedVia = providerId;
+  saveAuthSession(session);
+  const name = data.displayName || loadDisplayName(session.uid) || "Du";
+  saveDisplayName(session.uid, name);
+  return { session, name };
+}
+
+async function completeIdpSignIn(providerId, tokenParam) {
+  try {
+    if (pendingSecureSession) {
+      const { session } = await signInWithIdp(providerId, tokenParam, { linkToUid: pendingSecureSession.idToken });
+      rememberIdentity(session, currentDisplayName);
+      pendingSecureSession = null;
+      if (els.accountSecureGate) els.accountSecureGate.hidden = true;
+      showToast("✅ Konto gesichert");
+      renderAccountSecureStatus();
+    } else {
+      const { session, name } = await signInWithIdp(providerId, tokenParam);
+      enterApp(session, name);
+      pushDisplayNameToCloud(session.uid, name);
+    }
+  } catch (e) {
+    showToast(`⚠️ ${e.message || "Anmeldung fehlgeschlagen"}`, 4000);
+  }
+}
+
+function handleGoogleSignIn() {
+  if (!GOOGLE_WEB_CLIENT_ID) {
+    showToast("Google-Anmeldung ist noch nicht eingerichtet.", 4000);
+    return;
+  }
+  if (!window.google?.accounts?.oauth2) {
+    showToast("Google-Login konnte nicht geladen werden (offline?)", 4000);
+    return;
+  }
+  google.accounts.oauth2.initTokenClient({
+    client_id: GOOGLE_WEB_CLIENT_ID,
+    scope: "email profile",
+    callback: (resp) => {
+      if (!resp?.access_token) return;
+      completeIdpSignIn("google.com", `access_token=${resp.access_token}`);
+    },
+  }).requestAccessToken();
+}
+
+async function handleAppleSignIn() {
+  if (!APPLE_SERVICES_ID) {
+    showToast("Apple-Anmeldung ist noch nicht eingerichtet.", 4000);
+    return;
+  }
+  if (!window.AppleID) {
+    showToast("Apple-Login konnte nicht geladen werden (offline?)", 4000);
+    return;
+  }
+  try {
+    AppleID.auth.init({
+      clientId: APPLE_SERVICES_ID,
+      scope: "name email",
+      redirectURI: `${location.origin}${location.pathname}`,
+      usePopup: true,
+    });
+    const res = await AppleID.auth.signIn();
+    await completeIdpSignIn("apple.com", `id_token=${res.authorization.id_token}`);
+  } catch (e) {
+    if (e?.error === "popup_closed_by_user") return;
+    showToast(`⚠️ ${e.message || "Apple-Anmeldung fehlgeschlagen"}`, 4000);
+  }
 }
 
 async function getValidIdToken() {
@@ -970,20 +1088,65 @@ function cardState(id) {
   return "new";
 }
 
+// Der Prüfungstermin ist individuell (jeder Azubi hat ein anderes Datum),
+// deshalb kein fester Stichtag mehr - der Nutzer trägt ihn selbst ein
+// (Vollversion, siehe Einstellungen).
+function loadExamDate() {
+  const raw = localStorage.getItem(`${EXAM_DATE_KEY}_${currentProfile}`);
+  if (!raw) return null;
+  const d = new Date(raw);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function saveExamDate(dateStr) {
+  if (dateStr) localStorage.setItem(`${EXAM_DATE_KEY}_${currentProfile}`, dateStr);
+  else localStorage.removeItem(`${EXAM_DATE_KEY}_${currentProfile}`);
+}
+
 function renderExamCountdown() {
   if (!els.examCountdownText) return;
+
+  if (!isPremium) {
+    els.examCountdownText.textContent = "Prüfungstermin nur mit Vollversion";
+    if (els.examCountdownLockBadge) els.examCountdownLockBadge.hidden = false;
+    return;
+  }
+  if (els.examCountdownLockBadge) els.examCountdownLockBadge.hidden = true;
+
+  const examDate = loadExamDate();
+  if (!examDate) {
+    els.examCountdownText.textContent = "Trag deinen Prüfungstermin in den Einstellungen ein";
+    return;
+  }
+
   const now = new Date();
   const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const days = Math.round((FINAL_EXAM_DATE - todayMidnight) / (1000 * 60 * 60 * 24));
+  const target = new Date(examDate.getFullYear(), examDate.getMonth(), examDate.getDate());
+  const days = Math.round((target - todayMidnight) / (1000 * 60 * 60 * 24));
 
   if (days > 1) {
-    els.examCountdownText.textContent = `Noch ${days} Tage bis zur Abschlussprüfung`;
+    els.examCountdownText.textContent = `Noch ${days} Tage bis zur Prüfung`;
   } else if (days === 1) {
-    els.examCountdownText.textContent = "Noch 1 Tag bis zur Abschlussprüfung";
+    els.examCountdownText.textContent = "Noch 1 Tag bis zur Prüfung";
   } else if (days === 0) {
-    els.examCountdownText.textContent = "Heute ist die Abschlussprüfung – viel Erfolg! 🍀";
+    els.examCountdownText.textContent = "Heute ist die Prüfung – viel Erfolg! 🍀";
   } else {
-    els.examCountdownText.textContent = "Die Abschlussprüfung ist vorbei";
+    els.examCountdownText.textContent = "Die Prüfung ist vorbei";
+  }
+}
+
+function renderExamDateSettings() {
+  if (els.examDateLockBadge) els.examDateLockBadge.hidden = isPremium;
+  if (els.examDateForm) els.examDateForm.hidden = !isPremium;
+  if (els.examDateUnlockBtn) els.examDateUnlockBtn.hidden = isPremium;
+  if (els.examDateHint) {
+    els.examDateHint.textContent = isPremium
+      ? "Trag den Termin deiner Abschlussprüfung ein, um den Countdown auf der Startseite zu sehen."
+      : "Nur mit der Vollversion verfügbar.";
+  }
+  if (els.examDateInput) {
+    const d = loadExamDate();
+    els.examDateInput.value = d ? d.toISOString().slice(0, 10) : "";
   }
 }
 
@@ -2573,15 +2736,27 @@ els.restorePremiumBtn?.addEventListener("click", restorePurchases);
 els.statsUnlockBtn?.addEventListener("click", purchasePremium);
 els.explainUnlockBtn?.addEventListener("click", () => switchTab("tabSettings"));
 
+els.examCountdown?.addEventListener("click", () => switchTab("tabSettings"));
+els.saveExamDateBtn?.addEventListener("click", () => {
+  const val = els.examDateInput.value;
+  saveExamDate(val || null);
+  renderExamCountdown();
+  showToast(val ? "✅ Prüfungstermin gespeichert" : "Prüfungstermin entfernt");
+});
+els.examDateUnlockBtn?.addEventListener("click", purchasePremium);
+
 // --- Konto sichern (optional: E-Mail/Passwort an das anonyme Konto binden) ---
 
 function renderAccountSecureStatus() {
   const session = loadAuthSession();
-  const secured = !!session?.securedEmail;
+  const secured = !!session?.securedVia;
   if (els.accountSecureForm) els.accountSecureForm.hidden = secured;
   if (els.accountSecureHint) {
+    const via = session?.securedVia === "google.com" ? "Google"
+      : session?.securedVia === "apple.com" ? "Apple"
+      : session?.securedEmail || "E-Mail";
     els.accountSecureHint.textContent = secured
-      ? `✅ Gesichert mit ${session.securedEmail} – dein Fortschritt übersteht Neuinstallation & Gerätewechsel.`
+      ? `✅ Gesichert mit ${via} – dein Fortschritt übersteht Neuinstallation & Gerätewechsel.`
       : "Optional: Mit E-Mail & Passwort bleibt dein Fortschritt erhalten, falls du die App neu installierst oder das Gerät wechselst.";
   }
 }
@@ -2592,6 +2767,7 @@ els.secureAccountBtn?.addEventListener("click", async () => {
   if (!email || !password) { showToast("Bitte E-Mail und Passwort eingeben"); return; }
   try {
     const session = await linkEmailPassword(email, password);
+    session.securedVia = "email";
     session.securedEmail = email;
     saveAuthSession(session);
     rememberIdentity(session, currentDisplayName);
@@ -2656,7 +2832,13 @@ function loadKnownIdentities() {
 // jedem Login neu, da Firebase ihn beim Erneuern gelegentlich rotiert.
 function rememberIdentity(session, name) {
   const list = loadKnownIdentities().filter((x) => x.uid !== session.uid);
-  list.unshift({ uid: session.uid, name, refreshToken: session.refreshToken });
+  list.unshift({
+    uid: session.uid,
+    name,
+    refreshToken: session.refreshToken,
+    securedVia: session.securedVia,
+    securedEmail: session.securedEmail,
+  });
   localStorage.setItem(KNOWN_IDENTITIES_KEY, JSON.stringify(list.slice(0, 6)));
 }
 
@@ -2698,6 +2880,15 @@ function enterApp(session, name) {
   renderPremiumStatus();
   els.profileGate.hidden = true;
 
+  // Pflicht-Login: ein noch nicht gesichertes (anonymes) Konto darf die App
+  // nicht nutzen, ohne sich mit Google/Apple/E-Mail anzumelden - sonst geht
+  // der Fortschritt bei Neuinstallation/Gerätewechsel verloren.
+  if (!session.securedVia) {
+    showAccountSecureGate(session);
+  } else if (els.accountSecureGate) {
+    els.accountSecureGate.hidden = true;
+  }
+
   safeCall(renderHome, "Home");
   safeCall(renderStats, "Statistik");
   safeCall(renderStreak, "Streak");
@@ -2717,16 +2908,26 @@ function maybeRedeemPendingInvite() {
   redeemInvite(code);
 }
 
-async function startOnboarding(name) {
+function showAccountSecureGate(session) {
+  pendingSecureSession = session;
+  if (els.accountSecureGate) els.accountSecureGate.hidden = false;
+}
+
+async function startOnboarding(name, email, password) {
   const trimmed = (name || "").trim();
   if (!trimmed) { showToast("Bitte einen Namen eingeben"); return; }
+  if (!email || !password) { showToast("Bitte E-Mail und Passwort eingeben"); return; }
   try {
-    const session = await signUpAnonymously();
+    const data = await identityToolkitRequest("signUp", { email, password, returnSecureToken: true });
+    const session = saveAuthSession(sessionFromAuthResponse(data));
+    session.securedVia = "email";
+    session.securedEmail = email;
+    saveAuthSession(session);
     saveDisplayName(session.uid, trimmed);
     enterApp(session, trimmed);
     pushDisplayNameToCloud(session.uid, trimmed);
   } catch (e) {
-    showToast(`⚠️ ${e.message || "Anmeldung fehlgeschlagen"}`, 4000);
+    showToast(`⚠️ ${e.message || "Registrierung fehlgeschlagen"}`, 4000);
   }
 }
 
@@ -2734,6 +2935,7 @@ async function startSignIn(email, password) {
   if (!email || !password) { showToast("Bitte E-Mail und Passwort eingeben"); return; }
   try {
     const session = await signInWithEmailPassword(email, password);
+    session.securedVia = "email";
     session.securedEmail = email;
     saveAuthSession(session);
 
@@ -2756,7 +2958,11 @@ async function startSignIn(email, password) {
 
 async function switchToKnownIdentity(entry) {
   try {
-    const session = await refreshSession({ refreshToken: entry.refreshToken });
+    const session = await refreshSession({
+      refreshToken: entry.refreshToken,
+      securedVia: entry.securedVia,
+      securedEmail: entry.securedEmail,
+    });
     enterApp(session, entry.name);
   } catch (e) {
     showToast(`⚠️ ${e.message || "Wechsel fehlgeschlagen"}`, 4000);
@@ -2836,8 +3042,33 @@ function switchProfilePrompt() {
 
 els.streakBtn.addEventListener("click", claimStreak);
 
-els.onboardStartBtn.addEventListener("click", () => startOnboarding(els.onboardNameInput.value));
-els.onboardNameInput.addEventListener("keydown", (e) => { if (e.key === "Enter") startOnboarding(els.onboardNameInput.value); });
+const startOnboardingFromForm = () => startOnboarding(els.onboardNameInput.value, els.onboardEmailInput.value.trim(), els.onboardPasswordInput.value);
+els.onboardStartBtn.addEventListener("click", startOnboardingFromForm);
+els.onboardPasswordInput?.addEventListener("keydown", (e) => { if (e.key === "Enter") startOnboardingFromForm(); });
+
+els.googleSignInBtn?.addEventListener("click", handleGoogleSignIn);
+els.appleSignInBtn?.addEventListener("click", handleAppleSignIn);
+els.secureGoogleBtn?.addEventListener("click", handleGoogleSignIn);
+els.secureAppleBtn?.addEventListener("click", handleAppleSignIn);
+
+els.secureGateSubmitBtn?.addEventListener("click", async () => {
+  const email = els.secureGateEmailInput.value.trim();
+  const password = els.secureGatePasswordInput.value;
+  if (!email || !password) { showToast("Bitte E-Mail und Passwort eingeben"); return; }
+  try {
+    const session = await linkEmailPassword(email, password);
+    session.securedVia = "email";
+    session.securedEmail = email;
+    saveAuthSession(session);
+    rememberIdentity(session, currentDisplayName);
+    pendingSecureSession = null;
+    if (els.accountSecureGate) els.accountSecureGate.hidden = true;
+    showToast("✅ Konto gesichert");
+    renderAccountSecureStatus();
+  } catch (e) {
+    showToast(`⚠️ ${e.message || "Konto konnte nicht gesichert werden"}`, 4000);
+  }
+});
 
 els.showSignInBtn.addEventListener("click", () => {
   els.onboardNameStep.hidden = true;

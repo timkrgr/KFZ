@@ -12,7 +12,9 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=77">
+<link rel="stylesheet" href="style.css?v=78">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js" async defer></script>
 </head>
 <body>
 <div class="app">
@@ -35,9 +37,20 @@
       <p class="profile-gate-sub" id="onboardSub">Damit dein Fortschritt dir gehört</p>
 
       <div id="onboardNameStep">
+        <button type="button" class="btn oauth-btn oauth-google" id="googleSignInBtn">
+          <svg class="oauth-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.47c-.28 1.5-1.13 2.77-2.4 3.62v3h3.87c2.27-2.09 3.58-5.17 3.58-8.81z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.08 7.95-2.92l-3.87-3c-1.08.72-2.45 1.15-4.08 1.15-3.13 0-5.78-2.11-6.73-4.96H1.27v3.11C3.25 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54v-3.1H1.27a12 12 0 0 0 0 10.75l4-3.11z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.27 6.63l4 3.1C6.22 6.87 8.87 4.75 12 4.75z"/></svg>
+          Mit Google anmelden
+        </button>
+        <button type="button" class="btn oauth-btn oauth-apple" id="appleSignInBtn">
+          <svg class="oauth-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.415 2.19-1.24 3.03-.995 1.02-2.19 1.61-3.49 1.51-.14-1.1.42-2.24 1.24-3.06.86-.88 2.32-1.5 3.49-1.48zM20.6 17.14c-.53 1.22-1.15 2.35-1.87 3.4-.99 1.44-2.02 2.87-3.58 2.9-1.5.04-1.99-.92-3.7-.92-1.72 0-2.26.9-3.68.96-1.53.06-2.68-1.53-3.68-2.96-2.01-2.92-3.55-8.24-1.48-11.85 1.03-1.79 2.87-2.92 4.87-2.96 1.47-.03 2.85.99 3.75.99.89 0 2.57-1.22 4.33-1.04.74.03 2.82.3 4.15 2.24-.11.07-2.48 1.45-2.46 4.32.03 3.44 3.01 4.59 3.35 4.93z"/></svg>
+          Mit Apple anmelden
+        </button>
+        <div class="onboard-divider"><span>oder mit E-Mail</span></div>
         <input type="text" id="onboardNameInput" class="settings-input profile-gate-input" placeholder="Dein Name" maxlength="24" autocomplete="given-name">
-        <button type="button" class="btn profile-gate-start" id="onboardStartBtn">Los geht's</button>
-        <button type="button" class="profile-gate-link" id="showSignInBtn">Schon ein gesichertes Konto? Anmelden</button>
+        <input type="email" id="onboardEmailInput" class="settings-input profile-gate-input" placeholder="E-Mail" autocomplete="email">
+        <input type="password" id="onboardPasswordInput" class="settings-input profile-gate-input" placeholder="Passwort (mind. 6 Zeichen)" autocomplete="new-password">
+        <button type="button" class="btn profile-gate-start" id="onboardStartBtn">Konto erstellen</button>
+        <button type="button" class="profile-gate-link" id="showSignInBtn">Schon ein Konto? Anmelden</button>
         <button type="button" class="profile-gate-link" id="onboardBackToChooserBtn" hidden>← Zurück zur Auswahl</button>
       </div>
 
@@ -48,7 +61,31 @@
         <button type="button" class="profile-gate-link" id="showNameStepBtn">← Zurück</button>
       </div>
 
-      <p class="profile-gate-hint">Kein Account nötig – du kannst später in den Einstellungen optional ein Konto sichern (E-Mail), um deinen Fortschritt geräteübergreifend zu behalten.</p>
+      <p class="profile-gate-hint">Mit Google, Apple oder E-Mail meldest du dich sicher an – so bleibt dein Fortschritt auch bei Neuinstallation oder Gerätewechsel erhalten.</p>
+    </div>
+  </div>
+
+  <!-- ===== Pflicht-Screen: bestehendes anonymes Konto sichern ===== -->
+  <div id="accountSecureGate" class="profile-gate" hidden>
+    <div class="profile-gate-inner">
+      <img class="brand-badge brand-badge-lg" src="icons/logo-round.png" alt="OKTAN">
+      <h1 class="profile-gate-title">Sichere jetzt dein Konto</h1>
+      <p class="profile-gate-sub">Damit dein Fortschritt nicht verloren geht, brauchen wir eine sichere Anmeldung.</p>
+
+      <button type="button" class="btn oauth-btn oauth-google" id="secureGoogleBtn">
+        <svg class="oauth-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.47c-.28 1.5-1.13 2.77-2.4 3.62v3h3.87c2.27-2.09 3.58-5.17 3.58-8.81z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.08 7.95-2.92l-3.87-3c-1.08.72-2.45 1.15-4.08 1.15-3.13 0-5.78-2.11-6.73-4.96H1.27v3.11C3.25 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54v-3.1H1.27a12 12 0 0 0 0 10.75l4-3.11z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.27 6.63l4 3.1C6.22 6.87 8.87 4.75 12 4.75z"/></svg>
+        Mit Google sichern
+      </button>
+      <button type="button" class="btn oauth-btn oauth-apple" id="secureAppleBtn">
+        <svg class="oauth-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.415 2.19-1.24 3.03-.995 1.02-2.19 1.61-3.49 1.51-.14-1.1.42-2.24 1.24-3.06.86-.88 2.32-1.5 3.49-1.48zM20.6 17.14c-.53 1.22-1.15 2.35-1.87 3.4-.99 1.44-2.02 2.87-3.58 2.9-1.5.04-1.99-.92-3.7-.92-1.72 0-2.26.9-3.68.96-1.53.06-2.68-1.53-3.68-2.96-2.01-2.92-3.55-8.24-1.48-11.85 1.03-1.79 2.87-2.92 4.87-2.96 1.47-.03 2.85.99 3.75.99.89 0 2.57-1.22 4.33-1.04.74.03 2.82.3 4.15 2.24-.11.07-2.48 1.45-2.46 4.32.03 3.44 3.01 4.59 3.35 4.93z"/></svg>
+        Mit Apple sichern
+      </button>
+      <div class="onboard-divider"><span>oder mit E-Mail</span></div>
+      <input type="email" id="secureGateEmailInput" class="settings-input profile-gate-input" placeholder="E-Mail" autocomplete="email">
+      <input type="password" id="secureGatePasswordInput" class="settings-input profile-gate-input" placeholder="Passwort (mind. 6 Zeichen)" autocomplete="new-password">
+      <button type="button" class="btn profile-gate-start" id="secureGateSubmitBtn">Konto sichern</button>
+
+      <p class="profile-gate-hint">Dein bisheriger Fortschritt bleibt erhalten – wir verknüpfen ihn nur mit deiner Anmeldung.</p>
     </div>
   </div>
 
@@ -64,7 +101,7 @@
       <h1 class="page-title" id="bigTitleHome">Kategorien</h1>
     </header>
 
-    <div class="exam-countdown" id="examCountdown">
+    <button type="button" class="exam-countdown" id="examCountdown">
       <span class="exam-countdown-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="5" width="18" height="16" rx="2"/>
@@ -74,13 +111,14 @@
         </svg>
       </span>
       <span class="exam-countdown-text" id="examCountdownText">–</span>
-    </div>
+      <span class="lock-badge lock-badge-lg" id="examCountdownLockBadge" hidden>🔒</span>
+    </button>
 
     <button id="heroBtn" class="hero-card">
       <div class="hero-left">
         <span class="hero-icon">⚡</span>
         <div>
-          <div class="hero-title">Jetzt üben <span class="lock-badge" id="heroLockBadge" hidden>🔒</span></div>
+          <div class="hero-title">Jetzt üben <span class="lock-badge lock-badge-lg" id="heroLockBadge" hidden>🔒</span></div>
           <div class="hero-sub">Alle Themen, gemischt</div>
         </div>
       </div>
@@ -105,7 +143,7 @@
       <div class="exam-left">
         <span class="exam-icon">🎓</span>
         <div>
-          <div class="exam-title">Prüfungssimulation <span class="lock-badge" id="examLockBadge" hidden>🔒</span></div>
+          <div class="exam-title">Prüfungssimulation <span class="lock-badge lock-badge-lg" id="examLockBadge" hidden>🔒</span></div>
           <div class="exam-sub">40 zufällige Fragen aus allen Kategorien</div>
         </div>
       </div>
@@ -121,7 +159,7 @@
       </button>
       <button id="merkBtn" class="mini-card mini-merk">
         <span class="mini-icon">❌</span>
-        <span class="mini-title">Falsche Fragen <span class="lock-badge" id="merkLockBadge" hidden>🔒</span></span>
+        <span class="mini-title">Falsche Fragen <span class="lock-badge lock-badge-lg" id="merkLockBadge" hidden>🔒</span></span>
         <span class="mini-sub"><span id="merkCount">0</span> falsch</span>
       </button>
     </div>
@@ -212,6 +250,16 @@
         <button type="button" class="btn" id="renameProfileSaveBtn">Speichern</button>
       </div>
       <p class="panel-hint">Jeder hat seinen eigenen Fortschritt auf diesem Gerät. Beim Profilwechsel wird nichts überschrieben – du kannst jederzeit zurückwechseln.</p>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label">Prüfungstermin <span class="lock-badge lock-badge-lg" id="examDateLockBadge" hidden>🔒</span></label>
+      <p class="panel-hint" id="examDateHint">Trag den Termin deiner Abschlussprüfung ein, um den Countdown auf der Startseite zu sehen.</p>
+      <div id="examDateForm">
+        <input type="date" id="examDateInput" class="settings-input">
+        <button type="button" class="btn btn-outline" id="saveExamDateBtn" style="margin-top:8px;">Speichern</button>
+      </div>
+      <button type="button" class="btn" id="examDateUnlockBtn" hidden>Vollversion freischalten – 7,99 €</button>
     </div>
 
     <div class="settings-group">
@@ -422,6 +470,6 @@
   </div>
 </div>
 
-<script src="app.js?v=77"></script>
+<script src="app.js?v=78"></script>
 </body>
 </html>
