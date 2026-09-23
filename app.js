@@ -1,4 +1,4 @@
-const APP_VERSION = "v84";
+const APP_VERSION = "v85";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -2416,6 +2416,7 @@ function goHome() {
   stopSimTimer();
   if (sessionMode === "topic") clearStudySession();
   els.studyView.hidden = true;
+  els.mcNextBar.hidden = true;
   renderHome();
   renderStats();
 }
