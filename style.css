@@ -1928,6 +1928,17 @@ body {
   padding: 0 10px;
 }
 
+.field-error {
+  color: var(--wrong);
+  background: var(--wrong-bg);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: left;
+  margin: -2px 0 10px;
+}
+
 .topic-free-hint {
   font-size: 0.72rem;
   color: var(--accent-2);

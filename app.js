@@ -1,4 +1,4 @@
-const APP_VERSION = "v79";
+const APP_VERSION = "v80";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -132,8 +132,11 @@ const els = {
   showSignInBtn: document.getElementById("showSignInBtn"),
   onboardBackToChooserBtn: document.getElementById("onboardBackToChooserBtn"),
   onboardSignInStep: document.getElementById("onboardSignInStep"),
+  googleSignInBtnLogin: document.getElementById("googleSignInBtnLogin"),
+  appleSignInBtnLogin: document.getElementById("appleSignInBtnLogin"),
   signInEmailInput: document.getElementById("signInEmailInput"),
   signInPasswordInput: document.getElementById("signInPasswordInput"),
+  signInError: document.getElementById("signInError"),
   signInSubmitBtn: document.getElementById("signInSubmitBtn"),
   showNameStepBtn: document.getElementById("showNameStepBtn"),
 
@@ -2932,6 +2935,7 @@ async function startOnboarding(name, email, password) {
 }
 
 async function startSignIn(email, password) {
+  if (els.signInError) els.signInError.hidden = true;
   if (!email || !password) { showToast("Bitte E-Mail und Passwort eingeben"); return; }
   try {
     const session = await signInWithEmailPassword(email, password);
@@ -2952,7 +2956,12 @@ async function startSignIn(email, password) {
     }
     enterApp(session, name);
   } catch (e) {
-    showToast(`⚠️ ${e.message || "Anmeldung fehlgeschlagen"}`, 4000);
+    const message = e.message || "Anmeldung fehlgeschlagen";
+    if (els.signInError) {
+      els.signInError.textContent = `⚠️ ${message}`;
+      els.signInError.hidden = false;
+    }
+    showToast(`⚠️ ${message}`, 4000);
   }
 }
 
@@ -3048,6 +3057,8 @@ els.onboardPasswordInput?.addEventListener("keydown", (e) => { if (e.key === "En
 
 els.googleSignInBtn?.addEventListener("click", handleGoogleSignIn);
 els.appleSignInBtn?.addEventListener("click", handleAppleSignIn);
+els.googleSignInBtnLogin?.addEventListener("click", handleGoogleSignIn);
+els.appleSignInBtnLogin?.addEventListener("click", handleAppleSignIn);
 els.secureGoogleBtn?.addEventListener("click", handleGoogleSignIn);
 els.secureAppleBtn?.addEventListener("click", handleAppleSignIn);
 
@@ -3073,12 +3084,14 @@ els.secureGateSubmitBtn?.addEventListener("click", async () => {
 els.showSignInBtn.addEventListener("click", () => {
   els.onboardNameStep.hidden = true;
   els.onboardSignInStep.hidden = false;
+  if (els.signInError) els.signInError.hidden = true;
   els.onboardTitle.textContent = "Willkommen zurück";
-  els.onboardSub.textContent = "Melde dich mit deinem gesicherten Konto an";
+  els.onboardSub.textContent = "Melde dich mit deinem Konto an";
 });
 els.showNameStepBtn.addEventListener("click", () => {
   els.onboardSignInStep.hidden = true;
   els.onboardNameStep.hidden = false;
+  if (els.signInError) els.signInError.hidden = true;
   els.onboardTitle.textContent = "Wie heißt du?";
   els.onboardSub.textContent = "Vollgas in die Abschlussprüfung 🏁";
 });
