@@ -1,4 +1,4 @@
-const APP_VERSION = "v80";
+const APP_VERSION = "v81";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -145,7 +145,9 @@ const els = {
   secureAppleBtn: document.getElementById("secureAppleBtn"),
   secureGateEmailInput: document.getElementById("secureGateEmailInput"),
   secureGatePasswordInput: document.getElementById("secureGatePasswordInput"),
+  secureGateError: document.getElementById("secureGateError"),
   secureGateSubmitBtn: document.getElementById("secureGateSubmitBtn"),
+  secureGateSignInBtn: document.getElementById("secureGateSignInBtn"),
 
   accountSecureForm: document.getElementById("accountSecureForm"),
   accountSecureHint: document.getElementById("accountSecureHint"),
@@ -558,7 +560,7 @@ function sessionFromAuthResponse(data) {
 
 function mapAuthError(code) {
   const map = {
-    EMAIL_EXISTS: "Diese E-Mail wird schon verwendet.",
+    EMAIL_EXISTS: "Diese E-Mail wird schon verwendet. Nutze stattdessen den \"Anmelden\"-Button.",
     INVALID_EMAIL: "Ungültige E-Mail-Adresse.",
     WEAK_PASSWORD: "Passwort ist zu schwach (mind. 6 Zeichen).",
     EMAIL_NOT_FOUND: "Kein Konto mit dieser E-Mail gefunden.",
@@ -3063,6 +3065,7 @@ els.secureGoogleBtn?.addEventListener("click", handleGoogleSignIn);
 els.secureAppleBtn?.addEventListener("click", handleAppleSignIn);
 
 els.secureGateSubmitBtn?.addEventListener("click", async () => {
+  if (els.secureGateError) els.secureGateError.hidden = true;
   const email = els.secureGateEmailInput.value.trim();
   const password = els.secureGatePasswordInput.value;
   if (!email || !password) { showToast("Bitte E-Mail und Passwort eingeben"); return; }
@@ -3077,8 +3080,30 @@ els.secureGateSubmitBtn?.addEventListener("click", async () => {
     showToast("✅ Konto gesichert");
     renderAccountSecureStatus();
   } catch (e) {
-    showToast(`⚠️ ${e.message || "Konto konnte nicht gesichert werden"}`, 4000);
+    const message = e.message || "Konto konnte nicht gesichert werden";
+    if (els.secureGateError) {
+      els.secureGateError.textContent = `⚠️ ${message}`;
+      els.secureGateError.hidden = false;
+    }
+    showToast(`⚠️ ${message}`, 4000);
   }
+});
+
+// Escape-Hatch: falls schon ein echtes Konto existiert (z. B. auf einem
+// anderen Gerät registriert), führt "Sichern" (= Verknüpfen mit diesem
+// anonymen Profil) ins Leere - hier geht's stattdessen zum normalen
+// Anmelden-Schritt, der das bestehende Konto lädt.
+els.secureGateSignInBtn?.addEventListener("click", () => {
+  const typedEmail = els.secureGateEmailInput.value.trim();
+  pendingSecureSession = null;
+  if (els.accountSecureGate) els.accountSecureGate.hidden = true;
+  els.onboardNameStep.hidden = true;
+  els.onboardSignInStep.hidden = false;
+  if (els.signInError) els.signInError.hidden = true;
+  if (typedEmail) els.signInEmailInput.value = typedEmail;
+  els.onboardTitle.textContent = "Willkommen zurück";
+  els.onboardSub.textContent = "Melde dich mit deinem Konto an";
+  els.profileGate.hidden = false;
 });
 
 els.showSignInBtn.addEventListener("click", () => {

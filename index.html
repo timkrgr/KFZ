@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=80">
+<link rel="stylesheet" href="style.css?v=81">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js" async defer></script>
 </head>
@@ -93,7 +93,11 @@
       <div class="onboard-divider"><span>oder mit E-Mail</span></div>
       <input type="email" id="secureGateEmailInput" class="settings-input profile-gate-input" placeholder="E-Mail" autocomplete="email">
       <input type="password" id="secureGatePasswordInput" class="settings-input profile-gate-input" placeholder="Passwort (mind. 6 Zeichen)" autocomplete="new-password">
-      <button type="button" class="btn profile-gate-start" id="secureGateSubmitBtn">Konto sichern</button>
+      <p class="field-error" id="secureGateError" hidden></p>
+      <button type="button" class="btn btn-outline" id="secureGateSubmitBtn">Konto sichern</button>
+
+      <div class="onboard-divider"><span>hast du schon ein Konto?</span></div>
+      <button type="button" class="btn profile-gate-start" id="secureGateSignInBtn">Anmelden</button>
 
       <p class="profile-gate-hint">Dein bisheriger Fortschritt bleibt erhalten – wir verknüpfen ihn nur mit deiner Anmeldung.</p>
     </div>
@@ -480,6 +484,6 @@
   </div>
 </div>
 
-<script src="app.js?v=80"></script>
+<script src="app.js?v=81"></script>
 </body>
 </html>
