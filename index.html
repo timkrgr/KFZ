@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/favicon.png">
-<link rel="stylesheet" href="style.css?v=81">
+<link rel="stylesheet" href="style.css?v=82">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js" async defer></script>
 </head>
@@ -291,12 +291,19 @@
     <div class="settings-group">
       <label class="settings-label">Match-Modus (Battle Mode)</label>
       <p class="panel-hint" id="matchStatusHint">Lade einen Freund ein, um eure Fortschritte im Battle Mode zu vergleichen.</p>
-      <button type="button" class="btn btn-outline" id="createInviteBtn">👥 Einladungslink erstellen</button>
-      <div id="inviteLinkBox" hidden style="margin-top:10px;">
-        <input type="text" id="inviteLinkInput" class="settings-input" readonly style="margin-bottom:8px;">
-        <button type="button" class="btn btn-outline" id="copyInviteLinkBtn">🔗 Link kopieren</button>
+      <div class="match-content-wrap" id="matchContentWrap">
+        <div class="match-content" id="matchContent">
+          <button type="button" class="btn btn-outline" id="createInviteBtn">👥 Einladungslink erstellen</button>
+          <div id="inviteLinkBox" hidden style="margin-top:10px;">
+            <input type="text" id="inviteLinkInput" class="settings-input" readonly style="margin-bottom:8px;">
+            <button type="button" class="btn btn-outline" id="copyInviteLinkBtn">🔗 Link kopieren</button>
+          </div>
+          <button type="button" class="btn btn-danger" id="unmatchBtn" hidden style="margin-top:8px;">Match auflösen</button>
+        </div>
+        <div class="match-lock-overlay" id="matchLockOverlay" hidden>
+          <button type="button" class="btn" id="matchUnlockBtn">🔒 Vollversion freischalten</button>
+        </div>
       </div>
-      <button type="button" class="btn btn-danger" id="unmatchBtn" hidden style="margin-top:8px;">Match auflösen</button>
     </div>
 
     <div class="settings-group">
@@ -461,7 +468,6 @@
     <div class="explain-content-wrap">
       <div id="explainContent" class="explain-content"></div>
       <div id="explainUnlockOverlay" class="explain-unlock-overlay" hidden>
-        <div class="explain-unlock-fade"></div>
         <div class="explain-unlock-card">
           <div class="explain-unlock-title">🔒 Vollständige Erklärung</div>
           <p class="explain-unlock-sub">Mit der Vollversion (7,99 €, einmalig) siehst du alle Erklärungen komplett.</p>
@@ -484,6 +490,6 @@
   </div>
 </div>
 
-<script src="app.js?v=81"></script>
+<script src="app.js?v=82"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const APP_VERSION = "v81";
+const APP_VERSION = "v82";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -214,6 +214,9 @@ const els = {
   copyInviteLinkBtn: document.getElementById("copyInviteLinkBtn"),
   unmatchBtn: document.getElementById("unmatchBtn"),
   matchStatusHint: document.getElementById("matchStatusHint"),
+  matchContent: document.getElementById("matchContent"),
+  matchLockOverlay: document.getElementById("matchLockOverlay"),
+  matchUnlockBtn: document.getElementById("matchUnlockBtn"),
 
   statsSummary: document.getElementById("statsSummary"),
   examStatsSummary: document.getElementById("examStatsSummary"),
@@ -525,6 +528,7 @@ function renderPremiumStatus() {
   if (els.buyPremiumBtn) els.buyPremiumBtn.hidden = isPremium;
   if (els.restorePremiumBtn) els.restorePremiumBtn.hidden = isPremium;
   renderExamDateSettings();
+  renderSettingsMatchStatus();
 }
 
 // --- Firebase Auth (anonyme Konten, optional per E-Mail gesichert) ---
@@ -1552,6 +1556,8 @@ function renderSettingsMatchStatus() {
       ? "Du bist gematcht - im Battle Mode (Statistik-Tab) seht ihr euren Vergleich."
       : "Lade einen Freund ein, um eure Fortschritte im Battle Mode zu vergleichen.";
   }
+  if (els.matchContent) els.matchContent.classList.toggle("match-blurred", !isPremium);
+  if (els.matchLockOverlay) els.matchLockOverlay.hidden = isPremium;
 }
 
 // --- Statistik ---
@@ -2742,6 +2748,7 @@ els.statsUnlockBtn?.addEventListener("click", purchasePremium);
 els.explainUnlockBtn?.addEventListener("click", () => switchTab("tabSettings"));
 
 els.examCountdown?.addEventListener("click", () => switchTab("tabSettings"));
+els.matchUnlockBtn?.addEventListener("click", purchasePremium);
 els.saveExamDateBtn?.addEventListener("click", () => {
   const val = els.examDateInput.value;
   saveExamDate(val || null);
