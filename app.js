@@ -1,4 +1,4 @@
-const APP_VERSION = "v85";
+const APP_VERSION = "v86";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -360,7 +360,26 @@ function claimStreak() {
   const newRank = rankForStreak(streak.count);
   const isRankUp = newRank.title !== oldRank.title;
   playStreakCelebration(streak.count, newRank, isRankUp);
-  if (isRankUp) showToast(`${newRank.icon} Aufstieg! Du bist jetzt ${newRank.title}!`, 4000);
+  if (isRankUp) {
+    showToast(`${newRank.icon} Aufstieg! Du bist jetzt ${newRank.title}!`, 4000);
+    setTimeout(() => maybeSuggestBattleInvite(), 4200);
+  }
+}
+
+// --- Battle-Mode-Erinnerung ---
+// Sanfter Hinweis auf den Battle Mode zu einem guten Moment (Rangaufstieg),
+// aber nur solange noch kein Freund verknüpft ist und nicht zu oft - soll
+// motivieren, nicht nerven.
+const BATTLE_SUGGEST_KEY = "kfz_battle_suggest_v1";
+const BATTLE_SUGGEST_MIN_GAP_MS = 14 * 24 * 60 * 60 * 1000; // frühestens alle 14 Tage erneut anzeigen
+
+function maybeSuggestBattleInvite() {
+  if (loadMatchPartnerUid()) return; // schon gematcht - kein Hinweis nötig
+  const key = `${BATTLE_SUGGEST_KEY}_${currentProfile}`;
+  const lastShown = Number(localStorage.getItem(key) || 0);
+  if (Date.now() - lastShown < BATTLE_SUGGEST_MIN_GAP_MS) return;
+  localStorage.setItem(key, String(Date.now()));
+  showToast("⚔️ Stark! Lade einen Freund zum Battle Mode ein (Einstellungen) und vergleicht euren Fortschritt.", 5000);
 }
 
 let streakCelebrationTimer = null;
@@ -517,6 +536,29 @@ async function purchasePremium() {
 async function restorePurchases() {
   await syncPremiumFromCloud();
   showToast(isPremium ? "✅ Vollversion wiederhergestellt" : "Kein vorheriger Kauf gefunden");
+}
+
+// --- App-Store-Bewertung ---
+// Fragt an einem guten Moment (bestandene Prüfungssimulation) über den
+// nativen System-Dialog nach einer Bewertung. Nur auf iOS/Android sinnvoll
+// (StoreKit/Play Core), auf Web gibt es keinen solchen Dialog. iOS/Android
+// entscheiden selbst, ob der Dialog überhaupt angezeigt wird (Systemlimit,
+// z. B. max. ein paar Mal pro Jahr) - wir fragen deshalb bewusst nur
+// gelegentlich an, nicht bei jeder bestandenen Prüfung.
+const REVIEW_PROMPT_KEY = "kfz_review_prompt_v1";
+const REVIEW_PROMPT_MIN_GAP_MS = 60 * 24 * 60 * 60 * 1000; // frühestens alle 60 Tage erneut anfragen
+
+async function maybeRequestAppReview() {
+  if (!window.Capacitor || !Capacitor.isNativePlatform()) return;
+  const key = `${REVIEW_PROMPT_KEY}_${currentProfile}`;
+  const lastAsked = Number(localStorage.getItem(key) || 0);
+  if (Date.now() - lastAsked < REVIEW_PROMPT_MIN_GAP_MS) return;
+  try {
+    await Capacitor.Plugins.InAppReview.requestReview();
+    localStorage.setItem(key, String(Date.now()));
+  } catch {
+    // Auf Web oder falls das Plugin (noch) nicht verfügbar ist, einfach ignorieren.
+  }
 }
 
 function renderPremiumStatus() {
@@ -2593,6 +2635,7 @@ function showResult(right, wrong) {
       els.resultPassBadge.textContent = passed
         ? `✅ Bestanden (${examPct}% von ${currentExamTotal} Fragen)`
         : `❌ Nicht bestanden (${examPct}% von ${currentExamTotal} Fragen, ${EXAM_PASS_PCT}% nötig)`;
+      if (passed) maybeRequestAppReview();
     }
     if (els.resultExamCount) {
       els.resultExamCount.hidden = false;

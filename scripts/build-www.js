@@ -10,7 +10,7 @@ const ROOT = path.join(__dirname, "..");
 const WWW = path.join(ROOT, "www");
 
 const FILES = ["index.html", "app.js", "style.css", "sw.js", "manifest.json", "cards.json"];
-const DIRS = ["icons"];
+const DIRS = ["icons", "vendor"];
 
 function copyDir(src, dest) {
   fs.mkdirSync(dest, { recursive: true });

@@ -1,16 +1,21 @@
-const CACHE_VERSION = "v85";
+const CACHE_VERSION = "v86";
 const CACHE_NAME = `kfz-karteikarten-${CACHE_VERSION}`;
 
+// Bei jeder CACHE_VERSION-Erhoehung auch die ?v=NN-Strings unten anpassen,
+// damit sie zu den Query-Strings in index.html passen - sonst verfehlt der
+// Cache-Lookup die aktuell geladene URL und app.js/style.css laufen ungecacht.
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./style.css?v=82",
-  "./app.js?v=82",
+  "./style.css?v=86",
+  "./app.js?v=86",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
   "./icons/logo-round.png",
+  "./vendor/capacitor-core.js",
+  "./vendor/capacitor-in-app-review.js",
 ];
 
 self.addEventListener("install", (event) => {
