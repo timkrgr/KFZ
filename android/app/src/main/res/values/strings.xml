@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">OKTAN Lernen</string>
-    <string name="title_activity_main">OKTAN Lernen</string>
+    <string name="app_name">VOLLGAS</string>
+    <string name="title_activity_main">VOLLGAS</string>
     <string name="package_name">com.timkrgr.oktan</string>
     <string name="custom_url_scheme">com.timkrgr.oktan</string>
 </resources>

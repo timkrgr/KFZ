@@ -1,4 +1,4 @@
-const APP_VERSION = "v78";
+const APP_VERSION = "v79";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -2710,7 +2710,7 @@ els.createInviteBtn?.addEventListener("click", async () => {
     els.inviteLinkInput.value = link;
     els.inviteLinkBox.hidden = false;
     if (navigator.share) {
-      navigator.share({ title: "OKTAN Lernen", text: "Lern mit mir zusammen für die Kfz-Abschlussprüfung!", url: link }).catch(() => {});
+      navigator.share({ title: "VOLLGAS", text: "Lern mit mir zusammen für die Kfz-Abschlussprüfung – Vollgas in die Prüfung! 🏁", url: link }).catch(() => {});
     }
   } catch (e) {
     showToast(`⚠️ ${e.message || "Einladung konnte nicht erstellt werden"}`, 4000);
@@ -3003,7 +3003,7 @@ function showOnboardingScreen() {
   els.onboardNameStep.hidden = false;
   els.onboardSignInStep.hidden = true;
   els.onboardTitle.textContent = "Wie heißt du?";
-  els.onboardSub.textContent = "Damit dein Fortschritt dir gehört";
+  els.onboardSub.textContent = "Vollgas in die Abschlussprüfung 🏁";
   els.onboardBackToChooserBtn.hidden = loadKnownIdentities().length === 0;
   els.profileChooser.hidden = true;
   els.profileOnboard.hidden = false;
@@ -3080,7 +3080,7 @@ els.showNameStepBtn.addEventListener("click", () => {
   els.onboardSignInStep.hidden = true;
   els.onboardNameStep.hidden = false;
   els.onboardTitle.textContent = "Wie heißt du?";
-  els.onboardSub.textContent = "Damit dein Fortschritt dir gehört";
+  els.onboardSub.textContent = "Vollgas in die Abschlussprüfung 🏁";
 });
 els.signInSubmitBtn.addEventListener("click", () => startSignIn(els.signInEmailInput.value.trim(), els.signInPasswordInput.value));
 

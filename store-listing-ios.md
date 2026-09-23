@@ -1,20 +1,20 @@
-# App-Store-Connect-Eintrag (Entwurf) – OKTAN Lernen
+# App-Store-Connect-Eintrag (Entwurf) – VOLLGAS
 
 Nur eine Textvorlage zum Reinkopieren in App Store Connect, kein Teil der App selbst.
 Wird erst relevant, sobald das Apple Developer Program aktiv ist.
 
 ## App-Name (max. 30 Zeichen)
-OKTAN Lernen
+VOLLGAS
 
 ## Untertitel / Subtitle (max. 30 Zeichen)
-Kfz-Prüfung Karteikarten
+Vollgas in die Prüfung
 
 ## Werbetext / Promotional Text (max. 170 Zeichen, jederzeit ohne Review änderbar)
 Über 300 Fragen für deine Kfz-Mechatroniker-Abschlussprüfung. Gratis starten, Vollversion für alle Fragen, Battle Mode & Klausursimulation freischalten.
 
 ## Beschreibung (max. 4000 Zeichen)
 
-OKTAN Lernen ist die Karteikarten-App für deine Kfz-Mechatroniker-Abschlussprüfung – von einem Azubi für Azubis gemacht.
+VOLLGAS ist die Karteikarten-App für deine Kfz-Mechatroniker-Abschlussprüfung – von einem Azubi für Azubis gemacht.
 
 🔧 Über 300 Fragen aus allen Prüfungsbereichen
 Bremsanlage, Motor, Elektrik & Elektronik, Fahrwerk, Hochvolt, Klimaanlage, Kraftübertragung, Motormanagement & Abgasnachbehandlung, Bus-Systeme & Diagnose – alle Themen, die in der Abschlussprüfung drankommen.

@@ -1,6 +1,6 @@
-# KFZ Karteikarten
+# VOLLGAS
 
-Persönliche Lern-App für die Kfz-Abschlussprüfung. Läuft als installierbare Web-App (PWA) direkt vom iPhone-Homescreen, auch offline.
+Vollgas in die Abschlussprüfung – Lern-App für die Kfz-Mechatroniker-Abschlussprüfung. Läuft als installierbare Web-App (PWA) direkt vom iPhone-Homescreen, auch offline.
 
 ## Nutzung
 

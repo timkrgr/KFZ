@@ -1,9 +1,9 @@
-# Play-Store-Eintrag (Entwurf) – OKTAN Lernen
+# Play-Store-Eintrag (Entwurf) – VOLLGAS
 
 Nur eine Textvorlage zum Reinkopieren in die Play Console, kein Teil der App selbst.
 
 ## App-Name
-OKTAN Lernen
+VOLLGAS
 
 ## Kurzbeschreibung (max. 80 Zeichen)
 Karteikarten-App für die Kfz-Mechatroniker-Abschlussprüfung
@@ -12,7 +12,7 @@ Karteikarten-App für die Kfz-Mechatroniker-Abschlussprüfung
 
 ## Vollständige Beschreibung (max. 4000 Zeichen)
 
-OKTAN Lernen ist die Karteikarten-App für deine Kfz-Mechatroniker-Abschlussprüfung – von einem Azubi für Azubis gemacht.
+VOLLGAS ist die Karteikarten-App für deine Kfz-Mechatroniker-Abschlussprüfung – von einem Azubi für Azubis gemacht.
 
 🔧 348+ Fragen aus allen Prüfungsbereichen
 Bremsanlage, Motor, Elektrik & Elektronik, Fahrwerk, Hochvolt, Klimaanlage, Kraftübertragung, Motormanagement & Abgasnachbehandlung, Bus-Systeme & Diagnose – alle Themen, die in der Abschlussprüfung drankommen.
@@ -63,5 +63,5 @@ Einladungslinks zwischen bekannten Personen), In-App-Käufe: ja (nicht-verbrauch
 - Streak-Feier-Animation
 
 ## Feature-Grafik (1024×500px)
-Noch zu gestalten – Vorschlag: dunkler Hintergrund, OKTAN-Logo mittig, Tagline
-"Deine Abschlussprüfung. Vorbereitet."
+Noch zu gestalten – Vorschlag: dunkler Hintergrund, VOLLGAS-Logo mittig, Tagline
+"Vollgas in die Abschlussprüfung"

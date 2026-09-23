@@ -1,7 +1,7 @@
 {
-  "name": "KFZ Karteikarten",
-  "short_name": "KFZ Karten",
-  "description": "Eigene Karteikarten zur Vorbereitung auf die Kfz-Abschlussprüfung",
+  "name": "VOLLGAS",
+  "short_name": "VOLLGAS",
+  "description": "Vollgas in die Abschlussprüfung – Karteikarten für die Kfz-Mechatroniker-Prüfung",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
