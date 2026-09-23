@@ -1,0 +1,146 @@
+name: iOS Release Build
+
+# Baut eine signierte iOS-App (.ipa), die zu App Store Connect hochgeladen
+# werden kann. Manuell auslösbar, läuft komplett auf einem von GitHub
+# bereitgestellten Mac-Runner (kein eigener Mac nötig).
+#
+# Voraussetzung: ein aktives Apple Developer Program ($99/Jahr). Erst danach
+# lassen sich die folgenden Secrets erzeugen (Repo-Einstellungen -> Secrets
+# and variables -> Actions):
+#
+#   IOS_CERTIFICATE_BASE64        - Distribution-Zertifikat aus dem Schlüsselbund als
+#                                    .p12 exportieren, dann `base64 -i cert.p12 | pbcopy`
+#   IOS_CERTIFICATE_PASSWORD      - Passwort, das beim .p12-Export vergeben wurde
+#   IOS_PROVISIONING_PROFILE_BASE64 - App-Store-Provisioning-Profil (.mobileprovision)
+#                                    aus dem Apple Developer Portal, `base64 -i profile.mobileprovision | pbcopy`
+#   IOS_PROVISIONING_PROFILE_NAME - genauer Name des Profils (wie im Portal angezeigt)
+#   IOS_TEAM_ID                   - Apple Developer Team-ID (Account -> Membership)
+#   KEYCHAIN_PASSWORD             - frei wählbares Passwort für den temporären CI-Schlüsselbund
+#
+# Optional, für den automatischen Upload zu App Store Connect (sonst wird nur
+# die .ipa als Download bereitgestellt und muss manuell mit Transporter/
+# Xcode hochgeladen werden):
+#
+#   APP_STORE_CONNECT_KEY_ID      - Key-ID aus App Store Connect -> Nutzer und Zugriff -> Schlüssel
+#   APP_STORE_CONNECT_ISSUER_ID   - Issuer-ID von derselben Seite
+#   APP_STORE_CONNECT_API_KEY_BASE64 - die heruntergeladene AuthKey_XXXXX.p8-Datei, `base64 -i AuthKey_XXXXX.p8 | pbcopy`
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Web-Assets bauen und in native Projekte synchronisieren
+        run: npm run sync
+
+      - name: Swift-Package-Abhängigkeiten auflösen
+        working-directory: ios/App
+        run: xcodebuild -resolvePackageDependencies -project App.xcodeproj -scheme App
+
+      - name: Temporären Schlüsselbund anlegen und Zertifikat importieren
+        env:
+          IOS_CERTIFICATE_BASE64: ${{ secrets.IOS_CERTIFICATE_BASE64 }}
+          IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          security create-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
+          security set-keychain-settings -lut 21600 build.keychain
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
+          echo "$IOS_CERTIFICATE_BASE64" | base64 -d > certificate.p12
+          security import certificate.p12 -k build.keychain -P "$IOS_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" build.keychain
+          security list-keychains -d user -s build.keychain login.keychain
+          rm -f certificate.p12
+
+      - name: Provisioning-Profil installieren
+        env:
+          IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "$IOS_PROVISIONING_PROFILE_BASE64" | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
+
+      - name: ExportOptions.plist erzeugen
+        env:
+          IOS_TEAM_ID: ${{ secrets.IOS_TEAM_ID }}
+          IOS_PROVISIONING_PROFILE_NAME: ${{ secrets.IOS_PROVISIONING_PROFILE_NAME }}
+        run: |
+          cat > ExportOptions.plist <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store-connect</string>
+            <key>teamID</key>
+            <string>${IOS_TEAM_ID}</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.timkrgr.oktan</key>
+              <string>${IOS_PROVISIONING_PROFILE_NAME}</string>
+            </dict>
+          </dict>
+          </plist>
+          PLIST
+
+      - name: Archiv bauen
+        working-directory: ios/App
+        env:
+          IOS_TEAM_ID: ${{ secrets.IOS_TEAM_ID }}
+          IOS_PROVISIONING_PROFILE_NAME: ${{ secrets.IOS_PROVISIONING_PROFILE_NAME }}
+        run: |
+          xcodebuild -project App.xcodeproj \
+            -scheme App \
+            -configuration Release \
+            -archivePath $RUNNER_TEMP/App.xcarchive \
+            -destination "generic/platform=iOS" \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM="$IOS_TEAM_ID" \
+            PROVISIONING_PROFILE_SPECIFIER="$IOS_PROVISIONING_PROFILE_NAME" \
+            archive
+
+      - name: .ipa exportieren
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath $RUNNER_TEMP/App.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath $RUNNER_TEMP/export
+
+      - name: Schlüsselbund wieder entfernen
+        if: always()
+        run: security delete-keychain build.keychain || true
+
+      - name: .ipa als Download bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: oktan-release-ipa
+          path: ${{ runner.temp }}/export/*.ipa
+          retention-days: 30
+
+      - name: Zu App Store Connect hochladen
+        if: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 != '' }}
+        env:
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
+        run: |
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "$APP_STORE_CONNECT_API_KEY_BASE64" | base64 -d > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
+          IPA_PATH=$(ls "${{ runner.temp }}"/export/*.ipa)
+          xcrun altool --upload-app -f "$IPA_PATH" -t ios \
+            --apiKey "$APP_STORE_CONNECT_KEY_ID" \
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"
