@@ -1,6 +1,6 @@
 {
-  "version": 11,
-  "updated": "2026-09-21",
+  "version": 12,
+  "updated": "2026-09-23",
   "cards": [
     {
       "id": "motor-01",
@@ -4525,6 +4525,1202 @@
       ],
       "correct": 0,
       "answer": "Klemme 30 ist der dauerhaft an die Batterie angeschlossene Hauptstromanschluss des Anlassers. Klemme 50 kommt vom Zündschloss (Startstellung) und aktiviert den Magnetschalter mit dem vergleichsweise geringen Steuerstrom."
+    },
+    {
+      "question": "Wie werden Altöle unterschiedlicher Herkunft im Betrieb gesammelt?",
+      "options": [
+        "Altöle bekannter und unbekannter Herkunft werden getrennt in eigenen Behältern gesammelt",
+        "Alle Altöle werden gemeinsam in einem Behälter gesammelt, da die Entsorgung identisch ist",
+        "Nur Altöl bekannter Herkunft muss gesammelt werden, der Rest darf über den Restmüll entsorgt werden",
+        "Altöl darf mit Kühlflüssigkeit gemischt gesammelt werden, um Behälter zu sparen"
+      ],
+      "correct": 0,
+      "answer": "Altöl bekannter Herkunft (z. B. reines Motoröl aus einem Ölwechsel) und Altöl unbekannter Herkunft (z. B. Ölwannen-Reste, vermischte Altöle) müssen getrennt gesammelt werden, weil nur Altöl bekannter Herkunft ohne Weiteres wieder aufbereitet werden kann.",
+      "id": "umwelt-01",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Warum gilt ein gebrauchter Ölfilter als gefährlicher Abfall?",
+      "options": [
+        "Weil er aus einem besonders seltenen Rohstoff besteht",
+        "Weil er nicht überwachungsbedürftige Reststoffe enthält",
+        "Weil er mit Altöl getränkt ist und dieses beim Recycling austreten kann",
+        "Weil er ausschließlich aus Kunststoff besteht, der sich nicht trennen lässt"
+      ],
+      "correct": 2,
+      "answer": "Ein gebrauchter Ölfilter ist mit Altöl getränkt und wird deshalb als besonders überwachungsbedürftiger Abfall getrennt gesammelt, statt einfach im Hausmüll oder Schrott zu landen.",
+      "id": "umwelt-02",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Welche Fahrzeugteile zählen typischerweise zu den nicht verwertbaren Sonderabfällen in der Kfz-Werkstatt?",
+      "options": [
+        "Saubere Blechkarosserieteile ohne Anhaftungen",
+        "Bremsflüssigkeit, Kühlerfrostschutz und ölverunreinigte Betriebsstoffe",
+        "Gebrauchte, aber intakte Reifen mit ausreichender Profiltiefe",
+        "Ausgebaute, funktionsfähige Aggregate zur Wiederverwendung"
+      ],
+      "correct": 1,
+      "answer": "Verbrauchte, verunreinigte Flüssigkeiten wie Bremsflüssigkeit oder Kühlerfrostschutz gelten als nicht verwertbare Sonderabfälle und müssen fachgerecht entsorgt werden, da sie umwelt- und gesundheitsschädliche Bestandteile enthalten.",
+      "id": "umwelt-03",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Was versteht man unter Reststoffen im Sinne des Kreislaufwirtschaftsgesetzes?",
+      "options": [
+        "Stoffe, die grundsätzlich nicht wiederverwertet werden dürfen",
+        "Stoffe, die einer Nachweispflicht unterliegen, aber wiederverwertet werden können",
+        "Ausschließlich Stoffe, die als Hausmüll entsorgt werden",
+        "Nur Stoffe, die im Straßenverkehr als Gefahrgut gekennzeichnet sind"
+      ],
+      "correct": 1,
+      "answer": "Reststoffe unterliegen einer Nachweispflicht, können aber im Gegensatz zu Sonderabfällen weiterverwertet werden, z. B. Altpapier oder Altreifen mit ausreichendem Profil.",
+      "id": "umwelt-04",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Welche Gefahrstoff-Kennzeichnung ist für Dieselkraftstoff und viele Kaltreiniger typisch?",
+      "options": [
+        "Leicht entzündlich und korrosionsfördernd",
+        "Explosiv und krebserregend",
+        "Ätzend und radioaktiv",
+        "Giftig und stark oxidierend"
+      ],
+      "correct": 0,
+      "answer": "Viele im Kfz-Betrieb verwendete Kraft- und Reinigungsstoffe wie Dieselkraftstoff oder Kaltreiniger sind (leicht) entzündlich und teils korrosionsfördernd; entsprechende Warnhinweise und Lagerbedingungen sind zu beachten.",
+      "id": "umwelt-05",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Wozu dient das Regenerierventil an einem Aktivkohlebehälter (Tankentlüftung)?",
+      "options": [
+        "Es entwässert das Kraftstoffsystem bei Kondenswasserbildung",
+        "Es führt zum Motor gesteuert Kraftstoffdämpfe zur Verbrennung zu und entlastet so den Aktivkohlebehälter",
+        "Es begrenzt den maximalen Tankdruck bei einem Unfall",
+        "Es kühlt den Kraftstoff bei hohen Außentemperaturen"
+      ],
+      "correct": 1,
+      "answer": "Über das vom Steuergerät angesteuerte Regenerierventil werden im Aktivkohlebehälter zwischengespeicherte Kraftstoffdämpfe kontrolliert dem Ansaugtrakt zugeführt und mitverbrannt, statt unverbrannt in die Atmosphäre zu entweichen.",
+      "id": "umwelt-06",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Wie sollten leicht entzündliche Reinigungsmittel in der Werkstatt gelagert werden?",
+      "options": [
+        "Offen und griffbereit direkt am Arbeitsplatz",
+        "In einem dafür vorgesehenen, gekennzeichneten Sicherheitsschrank getrennt von Zündquellen",
+        "Zusammen mit Lebensmitteln im Pausenraum",
+        "In durchsichtigen, unbeschrifteten Behältern zur besseren Übersicht"
+      ],
+      "correct": 1,
+      "answer": "Leicht entzündliche Stoffe müssen sicher, gekennzeichnet und fern von Zündquellen gelagert werden, in der Praxis meist in einem belüfteten Sicherheitsschrank, um Brand- und Explosionsgefahr zu vermeiden.",
+      "id": "umwelt-07",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Was ist beim Sammeln von Kraftstoffleitungen und Dampfblasenbildung zu beachten?",
+      "options": [
+        "Kraftstoffleitungen sollten möglichst ungeschützt verlegt werden, um sie besser prüfen zu können",
+        "Leitungen sollten mit Gefälle verlegt und an heißen Stellen gegen Wärme isoliert werden",
+        "Dampfblasenbildung wird ausschließlich durch zu niedrigen Tankfüllstand verursacht",
+        "Kraftstoffleitungen dürfen beliebig nah an der Abgasanlage verlegt werden"
+      ],
+      "correct": 1,
+      "answer": "Um Dampfblasenbildung im Kraftstoffsystem zu vermeiden, werden Leitungen mit Gefälle verlegt und an heißen Stellen (z. B. nahe am Motor) thermisch isoliert oder mit Abstand geführt.",
+      "id": "umwelt-08",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Welche Aufgabe hat ein Ölabscheider (Benzin-/Ölabscheider) in einer Kfz-Werkstatt?",
+      "options": [
+        "Er trennt Öl- und Kraftstoffreste aus dem Abwasser, bevor es in die Kanalisation gelangt",
+        "Er filtert ausschließlich Staub aus der Werkstattluft",
+        "Er dient zur Lagerung von frischem Motoröl",
+        "Er entsorgt Altreifen durch thermische Verwertung"
+      ],
+      "correct": 0,
+      "answer": "Ein Ölabscheider trennt öl- und kraftstoffhaltige Verunreinigungen aus dem Werkstattabwasser (z. B. von der Waschanlage oder dem Werkstattboden) ab, damit kein Öl in die Kanalisation und Gewässer gelangt.",
+      "id": "umwelt-09",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Welche persönliche Schutzausrüstung ist beim Umgang mit Bremsenreiniger und Kaltreinigern grundsätzlich zu tragen?",
+      "options": [
+        "Keine, da diese Mittel als ungefährlich gelten",
+        "Nur ein Gehörschutz",
+        "Geeignete Schutzhandschuhe und bei Sprühnebel eine Atem- bzw. Augenschutzausrüstung",
+        "Ausschließlich Sicherheitsschuhe"
+      ],
+      "correct": 2,
+      "answer": "Kaltreiniger und Bremsenreiniger können hautreizende und beim Einatmen gesundheitsschädliche Dämpfe freisetzen, deshalb sind Schutzhandschuhe sowie je nach Anwendung Atem- und Augenschutz erforderlich.",
+      "id": "umwelt-10",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Wie wird ein gebrauchter, aber intakter Katalysator in der Regel entsorgt bzw. verwertet?",
+      "options": [
+        "Er wird als Sondermüll verbrannt",
+        "Er wird über den Restmüll entsorgt, da er aus Keramik besteht",
+        "Er wird als verwertbarer Güterreststoff wegen der enthaltenen Edelmetalle recycelt",
+        "Er darf ohne Einschränkung im Freien gelagert werden"
+      ],
+      "correct": 2,
+      "answer": "Katalysatoren enthalten wertvolle Edelmetalle (u. a. Platin, Palladium, Rhodium) und gelten deshalb als verwertbare Güterreststoffe, die gesondert gesammelt und dem Recycling zugeführt werden.",
+      "id": "umwelt-11",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Was ist beim Umgang mit Airbag-Baugruppen (Gasgeneratoren) aus Arbeitsschutzsicht besonders zu beachten?",
+      "options": [
+        "Sie können problemlos wie normaler Elektroschrott behandelt werden",
+        "Nicht ausgelöste Gasgeneratoren enthalten pyrotechnische Sätze und müssen gesondert und vorsichtig behandelt bzw. fachgerecht entschärft/entsorgt werden",
+        "Sie dürfen zusammen mit Altöl gesammelt werden",
+        "Sie sind komplett ungefährlich, sobald das Steuergerät ausgebaut ist"
+      ],
+      "correct": 1,
+      "answer": "Nicht ausgelöste Airbag-Gasgeneratoren enthalten einen pyrotechnischen Anzündsatz und stellen eine Verletzungsgefahr dar. Sie müssen entsprechend den Herstellervorgaben ausgelöst/entschärft und getrennt als gefährlicher Abfall entsorgt werden.",
+      "id": "umwelt-12",
+      "category": "Umweltschutz & Arbeitsschutz"
+    },
+    {
+      "question": "Was beschreibt das EVA-Prinzip bei der Datenverarbeitung im Steuergerät?",
+      "options": [
+        "Erst Verarbeitung, dann Ausgabe, dann Eingabe der Daten",
+        "Eingabe von Sensordaten, Verarbeitung im Prozessor, Ausgabe an die Aktoren",
+        "Ein Verfahren zur ausschließlichen Fehlerspeicherung",
+        "Eine Methode zur Verschlüsselung von Bus-Nachrichten"
+      ],
+      "correct": 1,
+      "answer": "Das EVA-Prinzip beschreibt den Grundablauf jeder Datenverarbeitung: Eingabe (z. B. Sensorsignale), Verarbeitung (im Mikroprozessor des Steuergeräts) und Ausgabe (Ansteuerung der Aktoren).",
+      "id": "bus-37",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Welche Speicherart verliert ihren Inhalt beim Ausschalten der Spannungsversorgung?",
+      "options": [
+        "ROM",
+        "EPROM",
+        "RAM",
+        "Flash-Speicher des Steuergeräts"
+      ],
+      "correct": 2,
+      "answer": "Der RAM (Random Access Memory) ist ein flüchtiger Arbeitsspeicher, der seinen Inhalt bei Spannungsabfall verliert. ROM, EPROM und Flash-Speicher behalten ihre Daten auch ohne Versorgungsspannung.",
+      "id": "bus-38",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Was versteht man unter einem 'Bus' in der Fahrzeugelektronik allgemein?",
+      "options": [
+        "Ein einzelnes Steuergerät mit besonders hoher Rechenleistung",
+        "Eine gemeinsame Datenleitung, über die mehrere Steuergeräte Nachrichten austauschen",
+        "Eine Sicherung, die mehrere Verbraucher gleichzeitig schützt",
+        "Ein Diagnosegerät zum Auslesen von Fehlercodes"
+      ],
+      "correct": 1,
+      "answer": "Ein Bus-System ist eine gemeinsame Datenleitung (bzw. ein Leitungspaar), über die mehrere Steuergeräte Nachrichten austauschen, statt jedes Signal einzeln zu verdrahten.",
+      "id": "bus-39",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Welchen grundsätzlichen Unterschied gibt es zwischen einer Steuerung und einer Regelung?",
+      "options": [
+        "Eine Steuerung hat einen geschlossenen Wirkungsablauf, eine Regelung einen offenen",
+        "Eine Steuerung hat einen offenen Wirkungsablauf ohne Rückführung, eine Regelung vergleicht die Ausgangsgröße ständig mit einem Sollwert",
+        "Beide Begriffe beschreiben denselben Vorgang, nur mit unterschiedlichen Bauteilen",
+        "Eine Regelung kommt nur bei mechanischen, eine Steuerung nur bei elektronischen Systemen vor"
+      ],
+      "correct": 1,
+      "answer": "Bei einer Steuerung wirkt die Eingangsgröße einmalig auf die Ausgangsgröße, ohne dass diese zurückgeführt wird (offener Wirkungsablauf). Bei einer Regelung wird die Ausgangsgröße (Regelgröße) laufend erfasst und mit dem Sollwert verglichen, um Abweichungen automatisch auszugleichen (geschlossener Regelkreis).",
+      "id": "bus-40",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Welches Bauteil eines Regelkreises vergleicht den Istwert mit dem Sollwert und bildet daraus die Stellgröße?",
+      "options": [
+        "Der Sensor",
+        "Der Regler",
+        "Das Stellglied",
+        "Die Störgröße"
+      ],
+      "correct": 1,
+      "answer": "Der Regler vergleicht laufend den gemessenen Istwert (Regelgröße) mit dem vorgegebenen Sollwert (Führungsgröße) und passt darüber die Stellgröße an, mit der das Stellglied die Regelstrecke beeinflusst.",
+      "id": "bus-41",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Was versteht man in der Regelungstechnik unter einer Störgröße?",
+      "options": [
+        "Den vom Steuergerät vorgegebenen Sollwert",
+        "Eine von außen auf die Regelstrecke einwirkende, unerwünschte Einflussgröße",
+        "Das Ausgangssignal des Reglers an das Stellglied",
+        "Einen dauerhaften Defekt im Steuergerät"
+      ],
+      "correct": 1,
+      "answer": "Eine Störgröße ist eine von außen auf die Regelstrecke wirkende Einflussgröße, die der Regelkreis auszugleichen versucht, z. B. eine wechselnde Außentemperatur bei der Kühlmittelregelung.",
+      "id": "bus-42",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Welches Beispiel aus dem Kfz-Bereich ist ein typischer Regelkreis (kein offener Steuerungsvorgang)?",
+      "options": [
+        "Das einmalige Öffnen der Zentralverriegelung per Fernbedienung",
+        "Die Leerlaufdrehzahlregelung, die die Drehzahl ständig misst und nachstellt",
+        "Das Aufleuchten der Warnlampe bei geöffneter Fahrertür",
+        "Das Blinken des Fahrtrichtungsanzeigers in festem Takt"
+      ],
+      "correct": 1,
+      "answer": "Die Leerlaufdrehzahlregelung erfasst laufend die Ist-Drehzahl und vergleicht sie mit der Solldrehzahl, um bei Abweichung (z. B. durch zusätzliche Verbraucher) automatisch nachzuregeln - ein klassischer geschlossener Regelkreis.",
+      "id": "bus-43",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Wodurch unterscheidet sich ein Bit von einem Byte?",
+      "options": [
+        "Ein Bit ist die kleinste Informationseinheit, ein Byte besteht aus 8 Bit",
+        "Ein Byte ist kleiner als ein Bit",
+        "Bit und Byte bezeichnen dieselbe Informationsmenge",
+        "Ein Bit besteht aus 8 Byte"
+      ],
+      "correct": 0,
+      "answer": "Das Bit ist die kleinste Informationseinheit (0 oder 1) der digitalen Datenverarbeitung. Acht Bit werden zu einem Byte zusammengefasst.",
+      "id": "bus-44",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Welche Peripheriegeräte werden typischerweise dem Diagnose-Arbeitsplatz einer Kfz-Werkstatt zugeordnet?",
+      "options": [
+        "Nur die Tastatur des Diagnosegeräts",
+        "Bildschirm, Drucker und Diagnoseinterface als Ein-/Ausgabegeräte",
+        "Ausschließlich das Motorsteuergerät des Fahrzeugs",
+        "Nur der interne Arbeitsspeicher des Diagnose-PCs"
+      ],
+      "correct": 1,
+      "answer": "Peripheriegeräte sind die an die Systemeinheit angeschlossenen Ein- und Ausgabegeräte, beim Diagnosearbeitsplatz z. B. Bildschirm, Drucker und das Diagnoseinterface zum Fahrzeug.",
+      "id": "bus-45",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Warum wird beim dualen Zahlensystem (Binärsystem) die Basis 2 verwendet?",
+      "options": [
+        "Weil es genau zwei Zustände (0 und 1) gibt, die sich elektronisch leicht als Spannung 'an' oder 'aus' darstellen lassen",
+        "Weil Prozessoren nur mit der Zahl 2 rechnen können",
+        "Weil es historisch aus dem Dezimalsystem abgeleitet wurde",
+        "Weil das Binärsystem genau zehn unterschiedliche Zeichen benötigt"
+      ],
+      "correct": 0,
+      "answer": "Elektronische Schaltungen lassen sich besonders einfach in zwei eindeutigen Zuständen (Spannung liegt an / liegt nicht an) realisieren, was direkt den zwei Ziffern (0 und 1) des Binärsystems entspricht.",
+      "id": "bus-46",
+      "category": "Bus-Systeme & Diagnose"
+    },
+    {
+      "question": "Aus welchem Werkstoff werden Zylinderlaufbuchsen häufig gefertigt und warum?",
+      "options": [
+        "Aus feinkörnigem Grauguss wegen der guten Gleiteigenschaften und Verschleißfestigkeit",
+        "Aus Reinaluminium, da es besonders verschleißfest ist",
+        "Aus Kupfer wegen der hohen Wärmeleitfähigkeit",
+        "Aus Gummi-Metall-Verbund zur Schwingungsdämpfung"
+      ],
+      "correct": 0,
+      "answer": "Zylinderlaufbuchsen werden meist aus feinkörnigem (perlitischem) Grauguss hergestellt, da dieser Werkstoff gute Gleit- und Notlaufeigenschaften sowie hohe Verschleißfestigkeit bietet.",
+      "id": "motor-43",
+      "category": "Motor"
+    },
+    {
+      "question": "Welchen Vorteil bieten nasse Zylinderlaufbuchsen gegenüber trockenen Laufbuchsen?",
+      "options": [
+        "Sie sind grundsätzlich leichter",
+        "Sie werden direkt vom Kühlmittel umspült und dadurch besser gekühlt",
+        "Sie benötigen keine Dichtringe",
+        "Sie müssen nie ausgetauscht werden"
+      ],
+      "correct": 1,
+      "answer": "Nasse Zylinderlaufbuchsen stehen in direktem Kontakt mit dem Kühlmittel, das sie umspült, und werden dadurch effektiver gekühlt als trockene Laufbuchsen, die vom Motorblock umschlossen sind.",
+      "id": "motor-44",
+      "category": "Motor"
+    },
+    {
+      "question": "Welche Aufgabe hat die Kurbelgehäuseentlüftung zusätzlich zum Ableiten von Blow-by-Gasen?",
+      "options": [
+        "Sie erhöht gezielt den Öldruck im Kurbelgehäuse",
+        "Sie verhindert einen Überdruck im Kurbelgehäuse und führt Ölnebel getrennt vom Gas zurück",
+        "Sie kühlt das Motoröl direkt an der Ölwanne",
+        "Sie dient als zusätzlicher Ansaugkanal für die Frischluft im Volllastbetrieb"
+      ],
+      "correct": 1,
+      "answer": "Die Kurbelgehäuseentlüftung verhindert einen schädlichen Überdruck im Kurbelgehäuse, der durch Blow-by-Gase entsteht, und scheidet dabei mitgerissenen Ölnebel ab, der zurück in den Ölkreislauf geführt wird, während die Restgase der Verbrennung zugeführt werden.",
+      "id": "motor-45",
+      "category": "Motor"
+    },
+    {
+      "question": "Welche Ölpumpenbauart wird in modernen Verbrennungsmotoren am häufigsten zur Schmierölförderung eingesetzt?",
+      "options": [
+        "Ausschließlich Kolbenpumpen",
+        "Zahnradpumpen oder Rotorpumpen (Sichelpumpen)",
+        "Membranpumpen",
+        "Kreiselpumpen"
+      ],
+      "correct": 1,
+      "answer": "Zur Druckölschmierung werden meist Zahnradpumpen oder Rotor-/Sichelpumpen eingesetzt, die von der Kurbelwelle angetrieben nach dem Verdrängerprinzip arbeiten.",
+      "id": "motor-46",
+      "category": "Motor"
+    },
+    {
+      "question": "Wozu dient das Überströmventil (Überdruckventil) am Ölfilter?",
+      "options": [
+        "Es öffnet bei stark verschmutztem oder kaltem, zähflüssigem Öl den Bypass, damit die Schmierung nicht abreißt",
+        "Es sperrt bei laufendem Motor grundsätzlich den Ölfluss ab",
+        "Es reguliert ausschließlich die Kühlmitteltemperatur",
+        "Es dient als Rückschlagventil für die Kraftstoffzufuhr"
+      ],
+      "correct": 0,
+      "answer": "Steigt der Druckabfall über den Ölfilter zu stark an (z. B. bei kaltem, zähem Öl oder stark verschmutztem Filterelement), öffnet das Überströmventil einen Bypass, damit weiterhin - dann ungefiltertes - Öl an die Schmierstellen gelangt und die Schmierung nicht abreißt.",
+      "id": "motor-47",
+      "category": "Motor"
+    },
+    {
+      "question": "Welche Aufgabe hat ein Kennfeldthermostat im Unterschied zu einem klassischen Dehnstoffthermostat?",
+      "options": [
+        "Es öffnet unabhängig von der Motorlast immer bei exakt derselben Temperatur",
+        "Es wird zusätzlich elektrisch beheizt und öffnet abhängig vom Motorkennfeld (Last, Drehzahl) früher oder später",
+        "Es ersetzt die Kühlmittelpumpe vollständig",
+        "Es regelt ausschließlich die Innenraumheizung"
+      ],
+      "correct": 1,
+      "answer": "Ein Kennfeldthermostat wird vom Motorsteuergerät zusätzlich elektrisch beheizt und kann dadurch abhängig vom Betriebszustand (Last, Drehzahl) gezielt früher oder später öffnen, um die Motortemperatur optimal an den Betriebspunkt anzupassen - anders als ein rein temperaturabhängiges Dehnstoffthermostat.",
+      "id": "motor-48",
+      "category": "Motor"
+    },
+    {
+      "question": "Warum wird bei manchen Motoren ein Kühlerlüfter über eine Viscokupplung angetrieben?",
+      "options": [
+        "Damit der Lüfter unabhängig von der Kühlmitteltemperatur immer mit maximaler Drehzahl läuft",
+        "Damit die Lüfterdrehzahl temperaturabhängig über die Viskosität eines Silikonöls angepasst wird und nicht unnötig Leistung kostet",
+        "Weil eine Viscokupplung den Lüfter komplett vom Antrieb trennt, sobald der Motor warm ist",
+        "Weil Viscokupplungen ausschließlich bei elektrischen Lüftern verwendet werden"
+      ],
+      "correct": 1,
+      "answer": "Eine Viscokupplung koppelt den Lüfter über ein temperaturabhängig zäher werdendes Silikonöl an den Antrieb. Bei niedrigen Temperaturen läuft der Lüfter mit reduzierter Drehzahl mit, was Antriebsleistung und Geräusch spart, bei Bedarf steigt die Kupplungswirkung und damit die Lüfterdrehzahl.",
+      "id": "motor-49",
+      "category": "Motor"
+    },
+    {
+      "question": "Was bewirkt ein zu großes Ventilspiel bei einem mechanisch (nicht hydraulisch) eingestellten Ventiltrieb?",
+      "options": [
+        "Die Ventile schließen nicht mehr vollständig, wodurch der Verbrennungsraum nicht gasdicht abschließt",
+        "Die Ventile öffnen später und schließen früher, was zu tickenden Geräuschen und Leistungsverlust führen kann",
+        "Der Motor läuft ausschließlich leiser",
+        "Das Ventilspiel hat keinen Einfluss auf die Steuerzeiten"
+      ],
+      "correct": 1,
+      "answer": "Ist das Ventilspiel zu groß, öffnen die Ventile später und schließen früher als vom Nockenprofil vorgesehen - das verändert die Steuerzeiten ungünstig, verursacht typische klackernde Geräusche und kann die Füllung bzw. Leistung verschlechtern.",
+      "id": "motor-50",
+      "category": "Motor"
+    },
+    {
+      "question": "Wodurch unterscheidet sich ein Wastegate-Turbolader grundsätzlich von einem Turbolader mit variabler Turbinengeometrie (VTG)?",
+      "options": [
+        "Beim Wastegate-Lader wird überschüssiger Abgasstrom über ein Ventil an der Turbine vorbeigeleitet, beim VTG-Lader verstellen bewegliche Leitschaufeln den Anströmquerschnitt der Turbine",
+        "Ein VTG-Lader hat grundsätzlich kein Ladedruckregelventil",
+        "Ein Wastegate-Lader kann den Ladedruck über den gesamten Drehzahlbereich stufenlos optimal anpassen",
+        "VTG-Lader werden ausschließlich bei Ottomotoren eingesetzt"
+      ],
+      "correct": 0,
+      "answer": "Beim Wastegate-Lader begrenzt ein Bypassventil den Ladedruck, indem es überschüssigen Abgasstrom an der Turbine vorbeileitet. Ein VTG-Lader passt stattdessen über verstellbare Leitschaufeln den Anströmquerschnitt der Turbine an den Betriebspunkt an und erreicht dadurch über einen weiteren Drehzahlbereich einen optimalen Ladedruckaufbau.",
+      "id": "motor-51",
+      "category": "Motor"
+    },
+    {
+      "question": "Welche Funktion hat ein Ladeluftkühler bei einem aufgeladenen Motor konkret bezüglich der Luftdichte?",
+      "options": [
+        "Er erwärmt die verdichtete Ansaugluft, um die Verbrennung zu beschleunigen",
+        "Er kühlt die durch die Verdichtung erhitzte Ansaugluft ab und erhöht dadurch ihre Dichte, was mehr Sauerstoff pro Hub in den Zylinder bringt",
+        "Er kühlt ausschließlich das Motoröl",
+        "Er ersetzt den herkömmlichen Kühler für das Motorkühlmittel"
+      ],
+      "correct": 1,
+      "answer": "Durch die Verdichtung im Lader erwärmt sich die Ansaugluft und dehnt sich aus, was ihre Dichte verringert. Der Ladeluftkühler kühlt diese Luft wieder ab, erhöht dadurch ihre Dichte und ermöglicht so eine bessere Zylinderfüllung mit mehr Sauerstoff für die Verbrennung.",
+      "id": "motor-52",
+      "category": "Motor"
+    },
+    {
+      "question": "Was versteht man unter dem Verdichtungsverhältnis eines Verbrennungsmotors?",
+      "options": [
+        "Das Verhältnis von Hubraum zu Verbrennungsraum bei OT und UT",
+        "Das Verhältnis von Zylinderdurchmesser zu Hublänge",
+        "Das Verhältnis des Gesamtvolumens (Hub- plus Verdichtungsraum) bei UT zum Verdichtungsraum bei OT",
+        "Das Verhältnis von Ansaugluftmenge zu eingespritzter Kraftstoffmenge"
+      ],
+      "correct": 2,
+      "answer": "Das Verdichtungsverhältnis ist das Verhältnis des Zylindervolumens im unteren Totpunkt (Hubraum plus Verdichtungsraum) zum Volumen im oberen Totpunkt (nur Verdichtungsraum). Dieselmotoren haben wegen der Selbstzündung ein deutlich höheres Verdichtungsverhältnis als Ottomotoren.",
+      "id": "motor-53",
+      "category": "Motor"
+    },
+    {
+      "question": "Woran erkennt man am Kompressionsdruckdiagramm eines Zylinders typischerweise ein undichtes Auslassventil?",
+      "options": [
+        "An einem insgesamt zu hohen Kompressionsdruck in allen Zylindern gleichermaßen",
+        "An einem deutlich zu niedrigen Kompressionsdruck in genau diesem Zylinder bei sonst unauffälligen Werten",
+        "An einer erhöhten Leerlaufdrehzahl",
+        "An einer zu niedrigen Kühlmitteltemperatur"
+      ],
+      "correct": 1,
+      "answer": "Ein undichtes Auslassventil lässt beim Verdichtungstakt Druck entweichen, was sich in einem auffällig zu niedrigen Kompressionsdruck genau dieses einen Zylinders zeigt, während die übrigen Zylinder normale Werte aufweisen.",
+      "id": "motor-54",
+      "category": "Motor"
+    },
+    {
+      "question": "Warum werden Pleuelstangen häufig mit einem Bruchpleuel-Verfahren (Cracken) hergestellt?",
+      "options": [
+        "Weil dadurch das Pleuel deutlich leichter als bei anderen Verfahren wird",
+        "Weil die Bruchflächen von Pleuelstange und Pleueldeckel exakt zueinander passen und so ohne zusätzliche Passhülsen sicher zentriert werden können",
+        "Weil dieses Verfahren ausschließlich bei Aluminiumpleueln angewendet wird",
+        "Weil dadurch auf eine Wärmebehandlung verzichtet werden kann"
+      ],
+      "correct": 1,
+      "answer": "Beim Bruchpleuel-Verfahren wird das Pleuelauge gezielt gebrochen statt gesägt. Die unregelmäßige Bruchstruktur von Pleuelstange und -deckel passt beim Zusammenbau exakt zueinander und sorgt für eine formschlüssige, präzise Zentrierung ohne zusätzliche Passhülsen.",
+      "id": "motor-55",
+      "category": "Motor"
+    },
+    {
+      "question": "Wozu dienen Quetschzonen (Quetschkanten) im Verdichtungsraum eines Ottomotors?",
+      "options": [
+        "Sie verringern gezielt die Verdichtung im Randbereich des Brennraums",
+        "Sie erzeugen beim Verdichtungstakt eine gerichtete Strömung, die das Kraftstoff-Luft-Gemisch besser durchmischt",
+        "Sie dienen ausschließlich der mechanischen Verstärkung des Zylinderkopfes",
+        "Sie verhindern das Eindringen von Kühlmittel in den Brennraum"
+      ],
+      "correct": 1,
+      "answer": "Quetschzonen im Brennraum pressen das Gemisch beim Erreichen des oberen Totpunkts gezielt heraus und erzeugen dadurch eine Verwirbelung (Quetschströmung), die die Gemischbildung verbessert und eine gleichmäßigere, schnellere Verbrennung unterstützt.",
+      "id": "motor-56",
+      "category": "Motor"
+    },
+    {
+      "question": "Welchen Vorteil bietet ein hydraulischer Ventilspielausgleich gegenüber der mechanischen Einstellung per Shim/Plättchen?",
+      "options": [
+        "Er gleicht temperatur- und verschleißbedingte Spieländerungen automatisch aus, sodass kein manuelles Nachstellen nötig ist",
+        "Er funktioniert nur bei kaltem Motor korrekt",
+        "Er erzeugt bewusst ein größeres Ventilspiel für mehr Laufruhe",
+        "Er ersetzt vollständig die Nockenwelle"
+      ],
+      "correct": 0,
+      "answer": "Der hydraulische Ventilspielausgleich nutzt den Öldruck, um Verschleiß- und temperaturbedingte Längenänderungen im Ventiltrieb automatisch auszugleichen. Dadurch bleibt das Ventilspiel praktisch immer bei null, ohne dass ein manuelles Nachstellen (wie bei mechanischen Ausgleichselementen) nötig wäre.",
+      "id": "motor-57",
+      "category": "Motor"
+    },
+    {
+      "question": "Was passiert bei der sogenannten Ventilüberschneidung im Arbeitsspiel eines Viertaktmotors?",
+      "options": [
+        "Beide Ventile eines Zylinders sind kurzzeitig gleichzeitig geöffnet, um Restgase auszuspülen und die Füllung zu verbessern",
+        "Beide Ventile eines Zylinders bleiben während des gesamten Arbeitsspiels geschlossen",
+        "Die Nockenwelle steht für einen Moment vollständig still",
+        "Der Kolben bewegt sich kurzzeitig entgegen der normalen Laufrichtung"
+      ],
+      "correct": 0,
+      "answer": "Bei der Ventilüberschneidung sind gegen Ende des Ausstoßtaktes und zu Beginn des Ansaugtaktes Auslass- und Einlassventil eines Zylinders für kurze Zeit gleichzeitig geöffnet. Das unterstützt das Ausspülen der Restgase und kann die Zylinderfüllung verbessern.",
+      "id": "motor-58",
+      "category": "Motor"
+    },
+    {
+      "question": "Welche Kraftstoffpumpenbauart wird bei modernen Niederdruck-Kraftstoffsystemen im Tank häufig eingesetzt?",
+      "options": [
+        "Kolbenpumpe",
+        "Rollenzellenpumpe",
+        "Zahnstangenpumpe",
+        "Membranpumpe mit Handhebel"
+      ],
+      "correct": 1,
+      "answer": "Im Kraftstofftank werden zur Förderung des Kraftstoffs zum Niederdrucksystem häufig elektrisch angetriebene Rollenzellenpumpen (teils auch Flügelzellenpumpen) eingesetzt, die nach dem Verdrängerprinzip arbeiten.",
+      "id": "mm-43",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Wozu dient der sogenannte Catch-Tank im Kraftstoffbehälter?",
+      "options": [
+        "Er trennt bei Kurvenfahrt die Kraftstoffförderpumpe von der Reservemenge, damit ihr Ansaugbereich nicht trockenfällt",
+        "Er speichert ausschließlich Kraftstoffdämpfe bei heißem Motor",
+        "Er kühlt den Rücklaufkraftstoff vor dem erneuten Einspritzen",
+        "Er dient als zusätzlicher Kraftstofffilter"
+      ],
+      "correct": 0,
+      "answer": "Der Catch-Tank (Schwalltopf) im Kraftstoffbehälter sorgt dafür, dass die Kraftstofffördereinheit auch bei Kurvenfahrt, Beschleunigung oder Bremsung von einer Restmenge Kraftstoff umgeben bleibt und nicht trockenläuft.",
+      "id": "mm-44",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Was unterscheidet die saugrohrdruckgeführte von der luftmassengeführten Benzineinspritzung grundsätzlich?",
+      "options": [
+        "Die saugrohrdruckgeführte Einspritzung ermittelt die Luftmenge über einen Drucksensor im Saugrohr, die luftmassengeführte misst sie direkt mit einem Luftmassenmesser",
+        "Beide Systeme verwenden zwingend denselben Sensor zur Lastermittlung",
+        "Die luftmassengeführte Einspritzung kommt ausschließlich bei Dieselmotoren vor",
+        "Die saugrohrdruckgeführte Einspritzung benötigt keine Drosselklappe"
+      ],
+      "correct": 0,
+      "answer": "Saugrohrdruckgeführte Systeme (z. B. Motronic-Varianten) errechnen die angesaugte Luftmasse indirekt aus Saugrohrdruck, Drehzahl und Temperatur. Luftmassengeführte Systeme (z. B. mit Heißfilm-Luftmassenmesser) messen die tatsächlich angesaugte Luftmasse direkt im Ansaugtrakt.",
+      "id": "mm-45",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Wie unterscheidet sich ein Heißfilm-Luftmassenmesser (HFM) im Wirkprinzip von einem älteren Hitzdraht-Luftmassenmesser?",
+      "options": [
+        "Beide arbeiten nach exakt demselben Prinzip, nur mit unterschiedlichem Gehäuse",
+        "Der HFM misst die Luftmasse über ein beheiztes Sensorelement auf einer Membran, dessen Abkühlung durch den vorbeiströmenden Luftmassenstrom ausgewertet wird",
+        "Der HFM misst ausschließlich die Ansauglufttemperatur, keine Luftmasse",
+        "Der HFM benötigt keine elektrische Versorgung"
+      ],
+      "correct": 1,
+      "answer": "Beim Heißfilm-Luftmassenmesser wird ein dünnes, beheiztes Sensorelement von der angesaugten Luft umströmt und dabei abgekühlt. Aus der zur Aufrechterhaltung der Solltemperatur nötigen Heizleistung wird die Luftmasse bestimmt - ein präziseres, robusteres Nachfolgeprinzip des älteren Hitzdrahtmessers.",
+      "id": "mm-46",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Welchen wesentlichen Vorteil hat eine Breitband-Lambdasonde gegenüber einer Sprung-Lambdasonde?",
+      "options": [
+        "Sie kann nur den Zustand 'fett' oder 'mager' erkennen, dafür aber sehr schnell",
+        "Sie liefert ein stetiges, proportionales Signal über einen weiten Lambda-Bereich und ermöglicht so eine präzisere Gemischregelung, auch außerhalb Lambda = 1",
+        "Sie benötigt keine Betriebstemperatur, um zu funktionieren",
+        "Sie wird ausschließlich vor dem Katalysator eingesetzt und liefert kein auswertbares Signal danach"
+      ],
+      "correct": 1,
+      "answer": "Eine Sprung-Lambdasonde springt sprunghaft zwischen den Zuständen 'fett' und 'mager' nur um Lambda = 1 herum. Eine Breitband-Lambdasonde liefert dagegen ein kontinuierliches, dem tatsächlichen Lambda-Wert proportionales Signal über einen deutlich weiteren Bereich, was z. B. bei Magerkonzept-Motoren eine genauere Gemischregelung erlaubt.",
+      "id": "mm-47",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Was versteht man unter dem Mischungsverhältnis 14,7 : 1 beim Kraftstoff-Luft-Gemisch eines Ottomotors?",
+      "options": [
+        "14,7 kg Luft werden mit 1 kg Kraftstoff für eine vollständige (stöchiometrische) Verbrennung benötigt",
+        "14,7 Liter Kraftstoff werden mit 1 Liter Luft gemischt",
+        "Das Verhältnis gilt ausschließlich für Dieselmotoren",
+        "14,7 kg Kraftstoff werden mit 1 kg Luft benötigt"
+      ],
+      "correct": 0,
+      "answer": "Das stöchiometrische (theoretisch ideale) Kraftstoff-Luft-Verhältnis für Benzin liegt bei etwa 14,7 kg Luft zu 1 kg Kraftstoff (Lambda = 1). Bei diesem Verhältnis kann der Dreiwege-Katalysator am wirkungsvollsten arbeiten.",
+      "id": "mm-48",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Welche Aussage zum Luftverhältnis Lambda ist richtig?",
+      "options": [
+        "Lambda kleiner als 1 bedeutet ein fettes (kraftstoffreiches) Gemisch mit Luftmangel",
+        "Lambda größer als 1 bedeutet grundsätzlich ein nicht zündfähiges Gemisch",
+        "Lambda gleich 1 bedeutet immer Luftüberschuss",
+        "Lambda beschreibt ausschließlich die Kühlmitteltemperatur"
+      ],
+      "correct": 0,
+      "answer": "Lambda kleiner als 1 (z. B. 0,9) bedeutet, dass weniger Luft vorhanden ist, als für die vollständige Verbrennung nötig wäre - ein fettes Gemisch mit Luftmangel. Lambda größer als 1 steht für ein mageres Gemisch mit Luftüberschuss.",
+      "id": "mm-49",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Wodurch wird bei der Benzin-Direkteinspritzung (GDI) der Kraftstoff in den Brennraum eingebracht?",
+      "options": [
+        "Ausschließlich indirekt über das Saugrohr",
+        "Direkt in den Brennraum mit hohem Einspritzdruck, statt ins Saugrohr",
+        "Über eine Vergaserdüse im Ansaugtrakt",
+        "Nur während des Ansaugtaktes über ein separates Saugrohrventil"
+      ],
+      "correct": 1,
+      "answer": "Bei der Benzin-Direkteinspritzung (GDI) wird der Kraftstoff mit hohem Druck direkt in den Brennraum eingespritzt, statt wie bei der Saugrohreinspritzung vor das Einlassventil - das ermöglicht u. a. Schichtladung und einen inneren Kühleffekt durch die Verdunstung im Zylinder.",
+      "id": "mm-50",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Warum kann es bei Benzin-Direkteinspritzern eher zu Ablagerungen an den Einlassventilen kommen als bei Saugrohreinspritzern?",
+      "options": [
+        "Weil bei der Direkteinspritzung kein Kraftstoff mehr über die Einlassventile fließt, der diese sonst 'reinigend' umspült",
+        "Weil Direkteinspritzer grundsätzlich mehr Kraftstoff verbrauchen",
+        "Weil die Einlassventile bei Direkteinspritzern aus einem anderen Werkstoff bestehen",
+        "Weil bei der Direkteinspritzung höhere Kühlmitteltemperaturen herrschen"
+      ],
+      "correct": 0,
+      "answer": "Bei der Saugrohreinspritzung spült der Kraftstoff beim Vorbeiströmen die Einlassventile mit und wirkt dabei reinigend. Bei der Direkteinspritzung entfällt dieser Effekt, sodass sich dort eher Ölkohle- und Ablagerungsrückstände aus der Kurbelgehäuseentlüftung an den Einlassventilen bilden können.",
+      "id": "mm-51",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Welche Aufgabe hat der Kraftstoff-Hochdrucksensor direkt am Common-Rail eines Dieselmotors?",
+      "options": [
+        "Er misst die Kraftstofftemperatur im Tank",
+        "Er erfasst den aktuellen Raildruck als Regelgröße für die Druckregelung des Steuergeräts",
+        "Er ersetzt die Einspritzdüsen an jedem Zylinder",
+        "Er misst ausschließlich den Ladedruck des Turboladers"
+      ],
+      "correct": 1,
+      "answer": "Der Hochdrucksensor am Rail liefert dem Motorsteuergerät den tatsächlichen Kraftstoffdruck im Speicher (Rail) zurück. Dieser Istwert wird mit dem Sollwert verglichen, um über das Druckregelventil bzw. die Zumesseinheit an der Hochdruckpumpe den Raildruck exakt zu regeln.",
+      "id": "mm-52",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Warum werden bei modernen Dieselmotoren häufig mehrere Voreinspritzungen vor der Haupteinspritzung genutzt?",
+      "options": [
+        "Um den Zündverzug zu verkürzen und die Verbrennung weicher, leiser und schadstoffärmer zu gestalten",
+        "Um den Kraftstoffverbrauch bewusst zu erhöhen",
+        "Weil ohne Voreinspritzung die Einspritzdüsen sonst verstopfen würden",
+        "Um ausschließlich den Ladedruck zu regulieren"
+      ],
+      "correct": 0,
+      "answer": "Kleine Voreinspritzmengen vor der Haupteinspritzung sorgen für eine erste, kontrollierte Zündung im Brennraum, verkürzen dadurch den Zündverzug der Haupteinspritzung und führen zu einer weicheren, leiseren und emissionsärmeren Verbrennung (weniger 'Nageln').",
+      "id": "mm-53",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Welche Aufgabe hat die Vorglühanlage mit Glühkerzen bei einem kalten Dieselmotor?",
+      "options": [
+        "Sie erhöht den Kompressionsdruck im Zylinder",
+        "Sie erwärmt den Brennraum vor bzw. während des Kaltstarts, damit die Selbstzündungstemperatur trotz kaltem Motor sicher erreicht wird",
+        "Sie ersetzt dauerhaft die Einspritzdüse",
+        "Sie kühlt den Brennraum bei Volllast"
+      ],
+      "correct": 1,
+      "answer": "Bei kaltem Motor reicht die Verdichtungswärme allein oft nicht aus, um den Kraftstoff sicher und schnell zu zünden. Die Glühkerzen erwärmen den Brennraum zusätzlich, damit der Motor zuverlässig, schnell und mit weniger weißem Rauch anspringt.",
+      "id": "mm-54",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Was ist die Hauptfunktion des Sekundärluftsystems in der Kaltstartphase eines Ottomotors?",
+      "options": [
+        "Es fördert zusätzliche Luft in den Abgastrakt nahe den Auslassventilen, um die Nachverbrennung unverbrannter Kohlenwasserstoffe zu unterstützen und den Katalysator schneller auf Betriebstemperatur zu bringen",
+        "Es kühlt den Turbolader nach dem Abstellen des Motors",
+        "Es erhöht dauerhaft den Ladedruck im Volllastbetrieb",
+        "Es ersetzt die Lambdaregelung in der Warmlaufphase vollständig"
+      ],
+      "correct": 0,
+      "answer": "Das Sekundärluftsystem bläst in der Kaltstartphase zusätzliche Luft in den noch fetten Abgasstrom nahe den Auslassventilen. Die dabei nachverbrennenden Restkohlenwasserstoffe erzeugen Wärme, die den Katalysator schneller auf seine Betriebstemperatur bringt und so die Kaltstartemissionen senkt.",
+      "id": "mm-55",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Wodurch unterscheidet sich ein NOx-Speicherkatalysator grundsätzlich von einem SCR-System?",
+      "options": [
+        "Der NOx-Speicherkatalysator bindet Stickoxide zwischen und baut sie in periodischen Regenerationsphasen mit einem kurzzeitig fetten Gemisch ab, ohne ein Zusatzmedium wie AdBlue zu benötigen",
+        "Beide Systeme benötigen zwingend AdBlue als Reduktionsmittel",
+        "Der NOx-Speicherkatalysator wird ausschließlich bei Ottomotoren mit Saugrohreinspritzung verwendet",
+        "SCR-Systeme benötigen keinerlei Regeneration"
+      ],
+      "correct": 0,
+      "answer": "Ein NOx-Speicherkatalysator speichert Stickoxide bei magerem Betrieb zwischen und baut sie in kurzen, gezielt fett gefahrenen Regenerationsphasen ab - ganz ohne Zusatzmedium. Ein SCR-System reduziert Stickoxide dagegen kontinuierlich mit Hilfe von eingespritztem AdBlue (Harnstofflösung).",
+      "id": "mm-56",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Welche Aufgabe hat die AdBlue-Dosiereinheit in einem SCR-System?",
+      "options": [
+        "Sie dosiert bedarfsgerecht die Harnstofflösung vor den SCR-Katalysator ein, damit dort Stickoxide zu Stickstoff und Wasser reduziert werden können",
+        "Sie führt AdBlue direkt in den Brennraum ein",
+        "Sie ersetzt die Kraftstoffeinspritzung bei niedrigen Temperaturen",
+        "Sie kühlt das Abgas vor dem Partikelfilter"
+      ],
+      "correct": 0,
+      "answer": "Die Dosiereinheit spritzt abhängig von Abgastemperatur, Abgasmasse und gemessener NOx-Konzentration eine genau bemessene Menge AdBlue in den Abgasstrom vor dem SCR-Katalysator ein. Dort zerfällt die Harnstofflösung und reduziert die Stickoxide zu unschädlichem Stickstoff und Wasser.",
+      "id": "mm-57",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Wofür wird der Differenzdrucksensor am Dieselpartikelfilter (DPF) benötigt?",
+      "options": [
+        "Um die Abgastemperatur direkt zu messen",
+        "Um den Druckunterschied vor und nach dem Filter zu erfassen und daraus den Beladungszustand mit Ruß abzuleiten",
+        "Um den Kraftstoffverbrauch zu berechnen",
+        "Um ausschließlich den Ladedruck des Turboladers zu überwachen"
+      ],
+      "correct": 1,
+      "answer": "Der Differenzdrucksensor misst den Druckabfall zwischen Ein- und Auslass des Partikelfilters. Ein steigender Differenzdruck zeigt eine zunehmende Rußbeladung an und dient dem Steuergerät als Kriterium, wann eine aktive Regeneration des Filters eingeleitet werden muss.",
+      "id": "mm-58",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Warum wird bei aufgeladenen Ottomotoren im Volllastbereich häufig ein anfettetes (fetteres) Gemisch gefahren?",
+      "options": [
+        "Um die Motorleistung durch den Verdunstungskühleffekt zu maximieren und Bauteile vor thermischer Überlastung zu schützen",
+        "Um den Kraftstoffverbrauch im Volllastbetrieb zu senken",
+        "Weil im Volllastbereich grundsätzlich kein Sauerstoff mehr zur Verfügung steht",
+        "Um die Lambdasonde vor Verschleiß zu schützen"
+      ],
+      "correct": 0,
+      "answer": "Ein leicht fettes Gemisch im Volllastbereich kühlt durch den Verdunstungseffekt des überschüssigen Kraftstoffs den Brennraum und die Abgastemperatur, was Bauteile wie Turbine und Katalysator vor thermischer Überlastung schützt - auf Kosten eines höheren Kraftstoffverbrauchs.",
+      "id": "mm-59",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Was regeln die Euro-Abgasnormen der EU im Wesentlichen für Kraftfahrzeuge?",
+      "options": [
+        "Ausschließlich die maximale Motorleistung",
+        "Die zulässigen Grenzwerte für Schadstoffemissionen wie CO, HC, NOx und Partikel",
+        "Die maximale Höchstgeschwindigkeit von Neufahrzeugen",
+        "Ausschließlich den Kraftstoffpreis"
+      ],
+      "correct": 1,
+      "answer": "Die Euro-Abgasnormen legen europaweit einheitliche Grenzwerte für Schadstoffemissionen von Kraftfahrzeugen fest, u. a. für Kohlenmonoxid (CO), Kohlenwasserstoffe (HC), Stickoxide (NOx) und Partikelmasse/-anzahl.",
+      "id": "mm-60",
+      "category": "Motormanagement & Abgasnachbehandlung"
+    },
+    {
+      "question": "Welche Achsgetriebe-Bauart wird bei Frontantriebsfahrzeugen mit quer eingebautem Motor meist verwendet?",
+      "options": [
+        "Stirnradachsgetriebe, direkt im Schaltgetriebegehäuse integriert",
+        "Schneckenradachsgetriebe als separates Bauteil hinter dem Getriebe",
+        "Kegelradachsgetriebe mit 90-Grad-Umlenkung wie bei Längsmotoren",
+        "Ausschließlich ein Planetenachsgetriebe ohne Zahnräder"
+      ],
+      "correct": 0,
+      "answer": "Bei quer eingebautem Motor mit Frontantrieb verläuft die Kraft bereits parallel zu den Antriebswellen, sodass keine 90-Grad-Umlenkung nötig ist. Das Achsgetriebe ist deshalb meist als kompaktes Stirnradgetriebe direkt im Schaltgetriebegehäuse integriert.",
+      "id": "kraft-37",
+      "category": "Kraftübertragung"
+    },
+    {
+      "question": "Wozu benötigt ein Fahrzeug mit permanentem Allradantrieb zusätzlich zu den Achsdifferenzialen ein zentrales Ausgleichsgetriebe?",
+      "options": [
+        "Um bei Kurvenfahrt den Drehzahlunterschied zwischen Vorder- und Hinterachse auszugleichen und Verspannungen im Antriebsstrang zu vermeiden",
+        "Um die Motorleistung auf Vorder- und Hinterachse zu verdoppeln",
+        "Um vollständig auf die beiden Achsdifferenziale verzichten zu können",
+        "Um ausschließlich beim Bremsen zu wirken"
+      ],
+      "correct": 0,
+      "answer": "Vorder- und Hinterachse legen bei Kurvenfahrt leicht unterschiedliche Strecken zurück. Ein zentrales Ausgleichsgetriebe (Mitteldifferenzial) gleicht diesen Drehzahlunterschied zwischen den beiden Achsen aus, ähnlich wie ein Achsdifferenzial das zwischen den Rädern einer Achse tut.",
+      "id": "kraft-38",
+      "category": "Kraftübertragung"
+    },
+    {
+      "question": "Wodurch überträgt eine Visco-Kupplung Drehmoment zwischen zwei Wellen unterschiedlicher Drehzahl?",
+      "options": [
+        "Durch mechanischen Formschluss über eine Verzahnung",
+        "Durch eine drehzahlabhängig zäher werdende Silikonflüssigkeit zwischen abwechselnd an- und abtriebsseitigen Lamellen",
+        "Ausschließlich durch ein elektromagnetisches Feld",
+        "Durch trockene Reibbeläge wie bei einer Kupplungsscheibe"
+      ],
+      "correct": 1,
+      "answer": "In der Visco-Kupplung sind Lamellen abwechselnd mit An- und Abtriebswelle verbunden und in Silikonflüssigkeit eingebettet. Bei Drehzahlunterschied erwärmt sich die Flüssigkeit, wird zäher und überträgt dadurch zunehmend Drehmoment zwischen den Wellen.",
+      "id": "kraft-39",
+      "category": "Kraftübertragung"
+    },
+    {
+      "question": "Woraus besteht ein Planetengetriebe grundsätzlich?",
+      "options": [
+        "Aus Sonnenrad, Planetenrädern auf einem Steg und einem umschließenden Hohlrad",
+        "Aus zwei parallel angeordneten Stirnrädern ohne weitere Bauteile",
+        "Ausschließlich aus einer Schneckenwelle und einem Schneckenrad",
+        "Aus einem einzelnen Zahnrad mit veränderlichem Durchmesser"
+      ],
+      "correct": 0,
+      "answer": "Ein Planetengetriebe besteht aus einem zentralen Sonnenrad, mehreren umlaufenden Planetenrädern, die auf einem Steg gelagert sind, und einem außen liegenden Hohlrad. Je nachdem, welches Element fest steht, angetrieben oder abgetrieben wird, ergeben sich unterschiedliche Übersetzungen.",
+      "id": "kraft-40",
+      "category": "Kraftübertragung"
+    },
+    {
+      "question": "Was ist ein Torsen-Differenzial und wodurch unterscheidet es sich von einer Lamellensperre?",
+      "options": [
+        "Es sperrt rein mechanisch über die Selbsthemmung schräg verzahnter Schneckenradpaare, ohne Lamellen oder elektronische Ansteuerung",
+        "Es ist ein rein elektronisch gesteuertes Differenzial ohne mechanische Sperrwirkung",
+        "Es funktioniert ausschließlich mit Silikonflüssigkeit wie eine Visco-Kupplung",
+        "Es kann nur bei stehendem Fahrzeug sperren"
+      ],
+      "correct": 0,
+      "answer": "Ein Torsen-Differenzial (Torque Sensing) nutzt die Selbsthemmung schräg verzahnter Schneckenrad-Zahnradpaare, um bei ungleicher Belastung automatisch mehr Moment zum Rad mit besserer Bodenhaftung zu leiten - rein mechanisch, ohne Lamellenpakete oder elektronische Ansteuerung wie bei einer Haldex-Kupplung.",
+      "id": "kraft-41",
+      "category": "Kraftübertragung"
+    },
+    {
+      "question": "Welche Achsgetriebe-Bauart wird bei Fahrzeugen mit längs eingebautem Motor und Hinterradantrieb typischerweise eingesetzt?",
+      "options": [
+        "Ein Kegelradachsgetriebe mit Tellerrad und Ritzel, das den Kraftfluss um 90 Grad umlenkt",
+        "Ein Stirnradachsgetriebe ohne jede Umlenkung des Kraftflusses",
+        "Ausschließlich ein Planetenachsgetriebe ohne Kegelräder",
+        "Ein Schneckenradachsgetriebe wie bei älteren Nutzfahrzeug-Vorderachsen"
+      ],
+      "correct": 0,
+      "answer": "Bei Längsmotor mit Hinterradantrieb verläuft die Kardanwelle in Fahrzeuglängsrichtung, die Räder drehen sich aber quer dazu. Das Achsgetriebe muss den Kraftfluss deshalb über ein Kegelradpaar (Tellerrad und Ritzel) um 90 Grad umlenken - anders als beim Stirnradachsgetriebe bei Quermotoren.",
+      "id": "kraft-42",
+      "category": "Kraftübertragung"
+    },
+    {
+      "question": "Wozu dient eine Wandlerüberbrückungskupplung (Lock-up-Kupplung) in einem klassischen Automatikgetriebe?",
+      "options": [
+        "Sie überbrückt bei höherer Geschwindigkeit den hydrodynamischen Drehmomentwandler mechanisch und verringert so dessen Schlupfverluste",
+        "Sie ersetzt dauerhaft den Drehmomentwandler beim Anfahren aus dem Stand",
+        "Sie dient ausschließlich der Kühlung des Wandleröls",
+        "Sie sperrt bei Kurvenfahrt automatisch das Achsdifferenzial"
+      ],
+      "correct": 0,
+      "answer": "Der Drehmomentwandler arbeitet hydrodynamisch mit systembedingtem Schlupf, was Kraftstoff kostet. Bei ausreichender Geschwindigkeit schließt die Wandlerüberbrückungskupplung und verbindet Motor und Getriebeeingang mechanisch-formschlüssig, wodurch der Wirkungsgradverlust des Wandlers entfällt.",
+      "id": "kraft-43",
+      "category": "Kraftübertragung"
+    },
+    {
+      "question": "Warum wird für ein Achsgetriebe mit Kegelradpaarung meist ein anderes Getriebeöl vorgeschrieben als für ein Schaltgetriebe?",
+      "options": [
+        "Die Zahnflanken der Kegelräder gleiten unter hohem Druck aneinander ab, weshalb ein Hypoidöl (z. B. API GL-5) mit stärkeren EP-Zusätzen nötig ist als im Schaltgetriebe",
+        "Achsgetriebeöl muss grundsätzlich dünnflüssiger sein als Schaltgetriebeöl",
+        "Es gibt keinen Unterschied, beide Getriebe verwenden immer identisches Öl",
+        "Achsgetriebeöl dient ausschließlich der Kühlung und hat keine Schmierfunktion"
+      ],
+      "correct": 0,
+      "answer": "Bei der Hypoidverzahnung von Kegelradachsgetrieben gleiten die Zahnflanken stark aufeinander ab, was hohe Flächenpressung und Reibung erzeugt. Dafür ist ein Hypoidöl mit hochwirksamen Hochdruck- (EP-) Zusätzen nach API GL-5 erforderlich, während im Schaltgetriebe oft ein milderes GL-4-Öl ausreicht.",
+      "id": "kraft-44",
+      "category": "Kraftübertragung"
+    },
+    {
+      "question": "Wie überträgt eine Kugelumlauflenkung im Unterschied zur Zahnstangenlenkung die Lenkbewegung?",
+      "options": [
+        "Über eine Schneckenwelle mit umlaufenden Kugeln, die eine Lenkmutter verschieben und darüber einen Lenkstockhebel schwenken",
+        "Direkt über eine Zahnstange, die von einem Ritzel linear verschoben wird",
+        "Ausschließlich elektrisch über einen Lenkradmotor ohne mechanische Verbindung",
+        "Über ein Planetengetriebe im Lenkrad selbst"
+      ],
+      "correct": 0,
+      "answer": "Bei der Kugelumlauflenkung läuft eine Schneckenwelle in einer Lenkmutter, wobei umlaufende Kugeln die Reibung verringern. Die axiale Bewegung der Mutter wird über einen Zahnsektor und Lenkstockhebel in eine Schwenkbewegung umgesetzt - anders als bei der direkten Zahnstangenlenkung, die vor allem in Pkw verbaut wird.",
+      "id": "fahrwerk-37",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Was bewirkt eine Servotronic-Funktion bei einer hydraulischen oder elektrischen Servolenkung?",
+      "options": [
+        "Sie passt die Lenkunterstützung geschwindigkeitsabhängig an, sodass bei Parkiergeschwindigkeit viel und bei hohem Tempo wenig Unterstützung gegeben wird",
+        "Sie sperrt die Lenkung oberhalb von 100 km/h vollständig",
+        "Sie ersetzt die Zahnstange durch ein Kugelumlaufsystem",
+        "Sie regelt ausschließlich den Reifendruck in Abhängigkeit der Geschwindigkeit"
+      ],
+      "correct": 0,
+      "answer": "Die Servotronic variiert die Lenkunterstützung in Abhängigkeit von der Fahrgeschwindigkeit: Beim Rangieren wird viel Kraft unterstützt für leichtes Lenken, bei hohem Tempo wird die Unterstützung reduziert, damit die Lenkung direkter und stabiler wirkt.",
+      "id": "fahrwerk-38",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Was ist der grundsätzliche Unterschied zwischen einer Starrachse und einer Einzelradaufhängung?",
+      "options": [
+        "Bei der Starrachse sind beide Räder einer Achse über ein gemeinsames, starres Achsrohr verbunden, bei der Einzelradaufhängung kann sich jedes Rad unabhängig vom anderen bewegen",
+        "Eine Starrachse hat grundsätzlich keine Feder, eine Einzelradaufhängung schon",
+        "Eine Einzelradaufhängung wird ausschließlich bei Lkw eingesetzt",
+        "Bei der Starrachse bewegt sich nur ein Rad, das andere ist fest fixiert"
+      ],
+      "correct": 0,
+      "answer": "Bei der Starrachse sind linkes und rechtes Rad über ein durchgehendes Achsrohr starr miteinander verbunden, sodass sich das Einfedern eines Rades auf das andere auswirkt. Bei der Einzelradaufhängung (z. B. McPherson, Doppelquerlenker) kann jedes Rad unabhängig einfedern, was Fahrkomfort und Straßenkontakt verbessert.",
+      "id": "fahrwerk-39",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Wodurch zeichnet sich eine De-Dion-Achse gegenüber einer klassischen Starrachse aus?",
+      "options": [
+        "Das Achsgetriebe ist karosseriefest angebracht, während ein separates Achsrohr die Räder verbindet und geführt wird - dadurch sinkt die ungefederte Masse gegenüber einer klassischen Starrachse",
+        "Sie besitzt gar kein Differenzial",
+        "Sie ist eine reine Einzelradaufhängung ohne jede Verbindung zwischen den Rädern",
+        "Sie kommt ausschließlich an der Vorderachse zum Einsatz"
+      ],
+      "correct": 0,
+      "answer": "Bei der De-Dion-Achse ist das Achsgetriebe fest am Aufbau montiert statt mit der Achse zu schwingen; ein separates, U-förmiges Achsrohr führt lediglich die Räder. Dadurch sinkt die ungefederte Masse im Vergleich zur klassischen Starrachse, während die Vorteile der starren Spur- und Sturzführung erhalten bleiben.",
+      "id": "fahrwerk-40",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Woran erkennt man typischerweise einen defekten Luftfederbalg an einer Luftfederung?",
+      "options": [
+        "Das Fahrzeug sackt auf der betroffenen Seite spürbar ab, oft hörbar begleitet von einem Zischen austretender Luft",
+        "Der Motor läuft merklich unrunder",
+        "Die Lenkung wird spürbar leichtgängiger",
+        "Die Bremsleistung nimmt sofort deutlich ab"
+      ],
+      "correct": 0,
+      "answer": "Ein defekter, rissiger oder undichter Luftfederbalg kann die Luft nicht mehr halten. Das Fahrzeug sackt auf der betroffenen Seite ab, oft ist beim Stehen ein Zischen der austretenden Luft hörbar, und das Kompressorsystem läuft ungewöhnlich häufig, um den Verlust auszugleichen.",
+      "id": "fahrwerk-41",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Was unterscheidet einen Zweirohr-Gasdruckdämpfer grundsätzlich von einem Einrohr-Gasdruckdämpfer?",
+      "options": [
+        "Der Zweirohrdämpfer besitzt ein zusätzliches Ausgleichsrohr um das Arbeitsrohr, wodurch er unempfindlicher gegen Beschädigung von außen ist, während der Einrohrdämpfer mit höherem Gasdruck arbeitet und dadurch schneller ansprechen kann",
+        "Der Einrohrdämpfer hat grundsätzlich kein Gas, sondern nur Öl",
+        "Der Zweirohrdämpfer wird ausschließlich in Motorrädern verbaut",
+        "Beide Bauarten unterscheiden sich nur in der Farbe des Gehäuses"
+      ],
+      "correct": 0,
+      "answer": "Der Zweirohrdämpfer hat ein Arbeitsrohr mit Kolben, umgeben von einem Ausgleichsrohr als Ölreservoir - das schützt vor äußeren Beschädigungen. Der Einrohrdämpfer trennt Öl und Hochdruckgas nur durch einen Trennkolben in einem einzigen Rohr, wodurch er kompakter baut, besser kühlt und feinfühliger anspricht, aber empfindlicher gegen Beschädigung des Außenrohrs ist.",
+      "id": "fahrwerk-42",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Wofür steht die TWI-Markierung (Tread Wear Indicator) im Reifenprofil?",
+      "options": [
+        "Für kleine Stege im Profilgrund, die bei Erreichen der Mindestprofiltiefe mit der Lauffläche bündig werden und so den Verschleiß sichtbar anzeigen",
+        "Für die Herstellungswoche und das Herstellungsjahr des Reifens",
+        "Für den zulässigen Höchstluftdruck des Reifens",
+        "Für die maximal zulässige Geschwindigkeit des Reifens"
+      ],
+      "correct": 0,
+      "answer": "TWI-Marken sind erhöhte Stege im Profilgrund, meist an mehreren Stellen über den Reifenumfang verteilt und an der Flanke mit einem Dreieck oder 'TWI' gekennzeichnet. Ist die Profiltiefe bis auf das Niveau dieser Stege abgefahren, zeigt das den Verschleiß bis zur gesetzlichen Mindestprofiltiefe an.",
+      "id": "fahrwerk-43",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Welche Funktion hat der sogenannte Hump an einer Felge?",
+      "options": [
+        "Eine Wulst auf dem Felgenhorn, die den Reifenwulst auch bei Druckverlust in Position hält und ein Abspringen von der Felge erschwert",
+        "Ein Ventil zur automatischen Reifendruckkontrolle",
+        "Eine Aussparung zur Gewichtsersparnis der Felge",
+        "Eine Vorrichtung zur Zentrierung der Radmuttern"
+      ],
+      "correct": 0,
+      "answer": "Der Hump ist eine umlaufende Wulst am Felgenhorn. Er verhindert, dass der Reifenwulst bei geringem Luftdruck oder in Kurven seitlich über das Felgenhorn rutscht, was sonst zu plötzlichem Druckverlust oder Abspringen des Reifens führen könnte.",
+      "id": "fahrwerk-44",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Was geben Load-Index und Speed-Index auf der Reifenflanke (z. B. '91 V') an?",
+      "options": [
+        "Die maximal zulässige Tragfähigkeit je Reifen und die zugelassene Höchstgeschwindigkeit",
+        "Ausschließlich das Herstellungsdatum des Reifens",
+        "Die genaue Profiltiefe im Neuzustand",
+        "Den empfohlenen Fülldruck des Reifens in bar"
+      ],
+      "correct": 0,
+      "answer": "Der Load-Index (z. B. 91) codiert die maximale Tragfähigkeit pro Reifen in kg über eine Tabelle, der Speed-Index (z. B. V) die zulässige Höchstgeschwindigkeit. Beide Werte müssen mindestens den Fahrzeugpapieren entsprechen, damit der Reifen zulässig ist.",
+      "id": "fahrwerk-45",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Aus welchen Hauptbestandteilen besteht der Aufbau eines modernen Gürtelreifens?",
+      "options": [
+        "Karkasse als tragendes Gerüst, darüber der Gürtel (meist Stahlcord) zur Stabilisierung der Lauffläche, sowie die Laufflächen-Gummimischung",
+        "Ausschließlich aus einer einzigen homogenen Gummischicht ohne weitere Lagen",
+        "Aus einem massiven Vollgummikern ohne Luftkammer",
+        "Aus Karkasse und Gürtel, wobei der Gürtel aus Baumwollgewebe besteht"
+      ],
+      "correct": 0,
+      "answer": "Die Karkasse aus Cordfäden bildet das tragende Gerüst des Reifens und hält den Luftdruck. Der darüberliegende Gürtel, meist aus Stahlcordlagen, stabilisiert die Lauffläche und sorgt für Formstabilität und Laufruhe. Die Laufflächen-Gummimischung bildet den eigentlichen Kontakt zur Fahrbahn.",
+      "id": "fahrwerk-46",
+      "category": "Fahrwerk"
+    },
+    {
+      "question": "Welche Funktion hat das Zentralventil im Kolben eines modernen Tandemhauptzylinders?",
+      "options": [
+        "Es verbindet in der Grundstellung den Druckraum mit dem Ausgleichsbehälter und schließt erst beim Pedaltritt, sodass Volumenausdehnung der Bremsflüssigkeit ausgeglichen werden kann",
+        "Es erzeugt den eigentlichen Bremsdruck unabhängig vom Pedaltritt",
+        "Es verstärkt ausschließlich die Bremskraft wie ein Unterdruckverstärker",
+        "Es dient nur der Entlüftung der Bremsanlage"
+      ],
+      "correct": 0,
+      "answer": "Das Zentralventil im Hauptzylinderkolben hält in Ruhestellung eine Verbindung zum drucklosen Ausgleichsbehälter offen, damit sich die Bremsflüssigkeit bei Temperaturschwankungen ausdehnen kann, ohne Druck aufzubauen. Erst beim Pedaltritt schließt das Ventil, sodass der Kolben Druck in den nachgeschalteten Bremskreis aufbauen kann.",
+      "id": "bremse-39",
+      "category": "Bremsanlage"
+    },
+    {
+      "question": "Was kennzeichnet eine diagonale Bremskreisaufteilung (X-Aufteilung) im Vergleich zur Schwarz-Weiß-Aufteilung (II-Aufteilung)?",
+      "options": [
+        "Jeder Bremskreis wirkt auf ein Vorderrad und das diagonal gegenüberliegende Hinterrad, sodass bei Ausfall eines Kreises noch je ein Vorder- und ein Hinterrad gebremst wird",
+        "Ein Bremskreis wirkt ausschließlich auf beide Vorderräder, der andere auf beide Hinterräder",
+        "Beide Bremskreise wirken immer nur auf ein einzelnes Rad",
+        "Es gibt bei dieser Aufteilung grundsätzlich nur einen einzigen Bremskreis"
+      ],
+      "correct": 0,
+      "answer": "Bei der X-Aufteilung (häufig bei Frontantrieblern) bremst jeder der beiden Kreise ein Vorderrad und das diagonal gegenüberliegende Hinterrad. Fällt ein Kreis aus, bleibt an jeder Fahrzeugseite eine Bremswirkung erhalten, was gegenüber der reinen Vorderachse/Hinterachse-Aufteilung (II-Aufteilung) eine gleichmäßigere Restbremswirkung und Fahrstabilität sichert.",
+      "id": "bremse-40",
+      "category": "Bremsanlage"
+    },
+    {
+      "question": "Wodurch entsteht der Selbstverstärkungseffekt bei einer Duo-Servo-Trommelbremse?",
+      "options": [
+        "Die auflaufende Bremsbacke presst sich beim Bremsen zusätzlich gegen die Trommel und überträgt diese Kraft über ein Verbindungsglied auf die zweite Backe, wodurch sich die Bremswirkung gegenüber einer Simplex-Bremse verstärkt",
+        "Ein Elektromotor unterstützt aktiv die Anpresskraft beider Backen",
+        "Die Bremswirkung entsteht ausschließlich durch die Fliehkraft der rotierenden Trommel",
+        "Ein Unterdruckverstärker presst die Backen direkt gegen die Trommel"
+      ],
+      "correct": 0,
+      "answer": "Bei der Duo-Servo-Bremse stützen sich beide Backen über ein Verbindungsglied gegenseitig ab. Die von der Trommel mitgenommene (auflaufende) Backe verstärkt durch ihre Reibkraft zusätzlich die Anpressung der zweiten Backe - dieser Selbstverstärkungseffekt sorgt für hohe Bremswirkung bei geringer Pedalkraft, besonders wichtig für Handbremsanwendungen.",
+      "id": "bremse-41",
+      "category": "Bremsanlage"
+    },
+    {
+      "question": "Wozu dient die automatische Nachstellvorrichtung an einer Trommelbremse?",
+      "options": [
+        "Sie gleicht den Verschleiß der Bremsbeläge automatisch aus und hält so das Lüftspiel zwischen Backen und Trommel konstant",
+        "Sie erhöht bei jeder Bremsung automatisch den Bremsdruck",
+        "Sie dient ausschließlich zur Entlüftung des Radbremszylinders",
+        "Sie ersetzt die Rückstellfedern der Bremsbacken vollständig"
+      ],
+      "correct": 0,
+      "answer": "Mit zunehmendem Belagverschleiß würde der Abstand zwischen Backen und Trommel wachsen, was den Pedalweg vergrößert. Eine automatische Nachstellvorrichtung (z. B. über ein Klinken- oder Zahnradsystem, meist bei Betätigung der Handbremse aktiviert) verkürzt schrittweise das Gestänge oder verstellt den Anschlag, sodass das Lüftspiel konstant klein bleibt.",
+      "id": "bremse-42",
+      "category": "Bremsanlage"
+    },
+    {
+      "question": "Was unterscheidet eine 4-Kanal-ABS-Regelung von einer einfacheren 3-Kanal-Regelung?",
+      "options": [
+        "Beim 4-Kanal-System wird jedes Rad einzeln und unabhängig über einen eigenen Sensor und ein eigenes Regelventil überwacht und geregelt, beim 3-Kanal-System werden die Hinterräder gemeinsam über einen Kanal geregelt",
+        "Das 3-Kanal-System regelt vier Räder, das 4-Kanal-System nur drei",
+        "Ein 4-Kanal-System besitzt keine Raddrehzahlsensoren",
+        "Der Unterschied betrifft ausschließlich die Farbe der Warnleuchte"
+      ],
+      "correct": 0,
+      "answer": "Bei der 4-Kanal-Regelung besitzt jedes der vier Räder einen eigenen Sensor und ein eigenes Regelventil, sodass jedes Rad individuell vor dem Blockieren bewahrt wird. Bei einfacheren 3-Kanal-Systemen (meist ältere Fahrzeuge mit Starrachse hinten) werden beide Hinterräder gemeinsam über ein einziges Ventil geregelt, was etwas weniger präzise ist.",
+      "id": "bremse-43",
+      "category": "Bremsanlage"
+    },
+    {
+      "question": "Wie greift die Antriebsschlupfregelung (ASR) ein, wenn ein angetriebenes Rad beim Beschleunigen durchdreht?",
+      "options": [
+        "Sie reduziert gezielt das Motormoment und/oder bremst das durchdrehende Rad gezielt ab, um die Kraftübertragung auf die Fahrbahn wiederherzustellen",
+        "Sie erhöht kurzzeitig gezielt die Motorleistung auf dem durchdrehenden Rad",
+        "Sie sperrt dauerhaft das Achsdifferenzial mechanisch",
+        "Sie schaltet das Fahrzeug automatisch in den Leerlauf"
+      ],
+      "correct": 0,
+      "answer": "Erkennt die ASR über die Raddrehzahlsensoren, dass ein Antriebsrad im Vergleich zu den anderen Rädern durchdreht, greift sie über eine Reduzierung des Motormoments (z. B. Drosselklappe, Einspritzung, Zündung) und/oder einen gezielten Bremseneingriff am durchdrehenden Rad ein, um wieder Kraftschluss zur Fahrbahn herzustellen.",
+      "id": "bremse-44",
+      "category": "Bremsanlage"
+    },
+    {
+      "question": "Was kennzeichnet ein elektrohydraulisches Bremssystem wie SBC (Sensotronic Brake Control) im Vergleich zu einer klassischen hydraulischen Bremse?",
+      "options": [
+        "Das Bremssteuergerät berechnet den Bremsdruck aus dem Pedalweg und stellt ihn über eine Hydraulikeinheit radindividuell ein, das Pedal ist dabei nicht mehr direkt hydraulisch mit den Radbremsen verbunden",
+        "Es verzichtet vollständig auf Bremsflüssigkeit und arbeitet rein mechanisch",
+        "Es funktioniert ausschließlich bei stehendem Fahrzeug",
+        "Es ersetzt die Bremsbeläge durch elektromagnetische Wirbelstrombremsen"
+      ],
+      "correct": 0,
+      "answer": "Bei SBC erfasst ein Sensor den vom Fahrer ausgeübten Pedalweg, das Steuergerät berechnet daraus den nötigen Bremsdruck und stellt ihn über eine Hochdruck-Hydraulikeinheit radindividuell ein. Das Pedal ist normalerweise hydraulisch entkoppelt (Fahrer spürt ein simuliertes Pedalgefühl); nur bei Systemausfall wird eine direkte hydraulische Rückfallebene aktiv.",
+      "id": "bremse-45",
+      "category": "Bremsanlage"
+    },
+    {
+      "question": "Wie überträgt ein einteiliger Faustsattel (Schwimmsattel-Bauweise) die Anpresskraft auf beide Bremsbeläge?",
+      "options": [
+        "Der Kolben presst nur den kolbenseitigen Belag direkt an, während der Sattel selbst verschiebbar gelagert ist und dadurch den gegenüberliegenden Belag über die Sattelreaktionskraft an die Scheibe zieht",
+        "Zwei unabhängige Kolben pressen beide Beläge gleichzeitig von jeder Seite direkt an",
+        "Die Anpresskraft entsteht ausschließlich durch die Fliehkraft der rotierenden Scheibe",
+        "Ein Seilzug überträgt die Kraft mechanisch auf den äußeren Belag"
+      ],
+      "correct": 0,
+      "answer": "Beim Faustsattel presst der hydraulische Kolben nur den innenliegenden Belag direkt gegen die Scheibe. Da der gesamte Sattel auf Führungsbolzen verschiebbar gelagert ist, wird er durch die Reaktionskraft in die Gegenrichtung gezogen und presst dadurch den außenliegenden Belag ebenfalls gegen die Scheibe - mit nur einem Kolben werden so beide Seiten angepresst.",
+      "id": "bremse-46",
+      "category": "Bremsanlage"
+    },
+    {
+      "question": "Wofür wird eine Z-Diode (Zenerdiode) in der Kfz-Elektronik typischerweise eingesetzt?",
+      "options": [
+        "Als Spannungsbegrenzer bzw. Referenzspannungsquelle, da sie ab einer bestimmten Sperrspannung (Zenerspannung) definiert leitend wird, ohne beschädigt zu werden",
+        "Ausschließlich zur Umwandlung von Gleichspannung in Wechselspannung",
+        "Als mechanischer Schalter ohne elektrische Funktion",
+        "Zur Speicherung elektrischer Energie wie ein Kondensator"
+      ],
+      "correct": 0,
+      "answer": "Im Gegensatz zu einer normalen Diode wird eine Z-Diode in Sperrrichtung ab einer definierten Zenerspannung kontrolliert leitend, ohne zerstört zu werden. Dadurch lässt sich eine Spannung auf einen festen Wert begrenzen bzw. eine stabile Referenzspannung erzeugen, z. B. in Spannungsreglern.",
+      "id": "elektrik-61",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Wie funktioniert eine Fotodiode im Grundprinzip, wie sie z. B. in Optokopplern eingesetzt wird?",
+      "options": [
+        "Einfallendes Licht erzeugt am pn-Übergang freie Ladungsträger, wodurch die Diode in Sperrrichtung einen lichtabhängigen Strom leitet",
+        "Sie wandelt elektrischen Strom direkt in Licht um wie eine LED",
+        "Sie funktioniert nur bei angelegter Wechselspannung",
+        "Sie sperrt vollständig, sobald Licht auf sie fällt"
+      ],
+      "correct": 0,
+      "answer": "Trifft Licht auf den pn-Übergang einer Fotodiode, werden dort zusätzliche Elektron-Loch-Paare erzeugt. In Sperrrichtung betrieben führt das zu einem messbaren, lichtabhängigen Sperrstrom. In einem Optokoppler wird damit ein Signal potentialgetrennt von einer sendenden LED auf der einen Seite zu einem Empfänger auf der anderen Seite übertragen.",
+      "id": "elektrik-62",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Wodurch entsteht das Licht bei einer Leuchtdiode (LED) auf physikalischer Ebene?",
+      "options": [
+        "Durch Rekombination von Elektronen und Löchern am pn-Übergang in Durchlassrichtung, wobei die freiwerdende Energie als Licht abgestrahlt wird",
+        "Durch Erhitzen eines Glühdrahtes wie bei einer klassischen Glühlampe",
+        "Durch einen elektrischen Lichtbogen zwischen zwei Elektroden",
+        "Durch mechanische Reibung im Halbleiterkristall"
+      ],
+      "correct": 0,
+      "answer": "Wird eine LED in Durchlassrichtung betrieben, rekombinieren am pn-Übergang Elektronen und Löcher. Die dabei freiwerdende Energie wird - anders als bei einer normalen Diode, wo sie als Wärme abgeht - bei der LED größtenteils als Licht einer für das Halbleitermaterial charakteristischen Wellenlänge abgestrahlt.",
+      "id": "elektrik-63",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Was ist der sogenannte Halogenkreisprozess, der einer Halogen-Glühlampe eine längere Lebensdauer als einer klassischen Glühlampe verschafft?",
+      "options": [
+        "Verdampftes Wolfram verbindet sich im Füllgas mit dem beigemischten Halogen und lagert sich bei hoher Temperatur wieder am Glühwendel ab, statt sich am Glaskolben abzusetzen",
+        "Das Halogengas kühlt den Glühdraht aktiv, sodass er nie heiß wird",
+        "Das Halogen ersetzt vollständig den Glühdraht durch ein Halbleiterelement",
+        "Der Kreisprozess beschreibt den Stromfluss durch die Lampenfassung"
+      ],
+      "correct": 0,
+      "answer": "Bei hoher Betriebstemperatur verdampft etwas Wolfram vom Glühdraht. Im Halogenkreisprozess verbindet es sich mit dem beigemischten Halogengas (z. B. Iod oder Brom) und wird bei ausreichender Kolbentemperatur wieder zum Glühdraht zurücktransportiert und dort abgeschieden - statt sich wie bei einer normalen Glühlampe am Glaskolben als Schwärzung abzusetzen. Das verlängert die Lebensdauer und erhält die Lichtausbeute.",
+      "id": "elektrik-64",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Was unterscheidet einen Freiflächenreflektor von einem klassischen Parabolreflektor im Scheinwerfer?",
+      "options": [
+        "Der Freiflächenreflektor besteht aus vielen einzelnen, unterschiedlich geformten Facetten, die das Licht gezielt zu einem gesetzlich vorgeschriebenen Lichtbild bündeln, ohne dass dafür eine strukturierte Streuscheibe nötig ist",
+        "Der Parabolreflektor kommt ausschließlich bei LED-Scheinwerfern zum Einsatz",
+        "Ein Freiflächenreflektor besitzt keinerlei Reflexionsfläche",
+        "Beide Bauarten unterscheiden sich nur in der verwendeten Lampenfassung"
+      ],
+      "correct": 0,
+      "answer": "Der klassische Parabolreflektor bündelt das Licht der Lampe gleichmäßig parallel und benötigt eine strukturierte Streuscheibe, um daraus das vorgeschriebene Lichtbild zu formen. Der Freiflächenreflektor besteht aus vielen einzeln berechneten Facetten, die das Licht direkt gezielt lenken - dadurch kann die Streuscheibe klar bleiben.",
+      "id": "elektrik-65",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Was ist der Unterschied zwischen einer manuellen und einer dynamischen Leuchtweitenregelung?",
+      "options": [
+        "Die manuelle Regelung stellt der Fahrer über einen Schalter fest je nach Beladung ein, die dynamische Regelung passt die Scheinwerferneigung automatisch und kontinuierlich anhand von Nickbewegungen über Achssensoren an",
+        "Beide Systeme funktionieren technisch identisch, nur der Name unterscheidet sich",
+        "Die dynamische Leuchtweitenregelung wird ausschließlich manuell über das Lenkrad bedient",
+        "Die manuelle Regelung funktioniert nur bei stehendem Fahrzeug"
+      ],
+      "correct": 0,
+      "answer": "Bei der manuellen Leuchtweitenregelung stellt der Fahrer die Neigung über einen Drehschalter grob entsprechend der Fahrzeugbeladung ein. Die dynamische Leuchtweitenregelung erfasst über Sensoren an Vorder- und Hinterachse laufend die Karosserieneigung (z. B. beim Bremsen oder Beladen) und korrigiert die Scheinwerferneigung automatisch in Echtzeit, um Blendung entgegenzukommender Fahrzeuge zu vermeiden.",
+      "id": "elektrik-66",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Was beschreibt der Schließwinkel bei einer klassischen kontaktgesteuerten (mechanischen) Zündanlage?",
+      "options": [
+        "Den Winkel der Nockenwellendrehung, über den der Unterbrecherkontakt geschlossen ist und dadurch Strom durch die Primärwicklung der Zündspule fließen kann",
+        "Den Winkel zwischen Zündkerze und Kolben im oberen Totpunkt",
+        "Den Öffnungswinkel der Drosselklappe bei Volllast",
+        "Den Winkel, um den die Nockenwelle gegenüber der Kurbelwelle versetzt ist"
+      ],
+      "correct": 0,
+      "answer": "Der Schließwinkel gibt an, über welchen Drehwinkel des Unterbrechernockens der Kontakt geschlossen bleibt, sodass Strom durch die Zündspulen-Primärwicklung fließen und sich ein Magnetfeld aufbauen kann. Ein zu kleiner Schließwinkel führt zu unvollständigem Stromaufbau und damit zu einem schwachen Zündfunken.",
+      "id": "elektrik-67",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Welche Aufgabe hat der Klopfsensor im Motorsteuerungssystem?",
+      "options": [
+        "Er erfasst über Körperschallschwingungen unkontrollierte Verbrennungen (Klopfen) im Motorblock, woraufhin das Steuergerät den Zündzeitpunkt zurücknimmt, um Motorschäden zu vermeiden",
+        "Er misst direkt die Kraftstoffqualität im Tank",
+        "Er steuert ausschließlich die Kühlmitteltemperatur",
+        "Er ersetzt den Lambdasensor bei der Gemischregelung"
+      ],
+      "correct": 0,
+      "answer": "Der Klopfsensor ist meist ein piezoelektrischer Körperschallsensor am Motorblock. Erkennt er die charakteristischen hochfrequenten Schwingungen einer klopfenden (unkontrollierten) Verbrennung, verstellt das Steuergerät den Zündzeitpunkt für den betroffenen Zylinder in Richtung 'spät', bis das Klopfen aufhört - so wird der Motor vor Schäden durch Klopfen geschützt, während er möglichst nah an der optimalen Zündeinstellung betrieben werden kann.",
+      "id": "elektrik-68",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Was kennzeichnet eine vollelektronische Zündanlage ohne mechanischen Zündverteiler (z. B. mit Einzelfunken- oder Doppelfunkenspulen)?",
+      "options": [
+        "Der Zündzeitpunkt und die Zylinderzuordnung werden komplett vom Steuergerät anhand von Sensorsignalen berechnet, ohne dass ein mechanisch rotierender Verteiler den Hochspannungsimpuls verteilt",
+        "Sie besitzt keinerlei Zündspule mehr",
+        "Sie funktioniert ausschließlich bei Dieselmotoren",
+        "Sie benötigt zwingend einen Unterbrecherkontakt wie ältere Systeme"
+      ],
+      "correct": 0,
+      "answer": "Bei vollelektronischen (verteilerlosen) Zündanlagen entfällt der mechanisch rotierende Zündverteiler. Stattdessen berechnet das Motorsteuergerät den Zündzeitpunkt aus Sensorsignalen (Kurbelwelle, Nockenwelle) und steuert direkt für jeden Zylinder eine eigene Zündspule (Einzelfunkenspule) oder je eine Spule für zwei Zylinder (Doppelfunkenspule/ruhende Verteilung) an.",
+      "id": "elektrik-69",
+      "category": "Elektrik & Elektronik"
+    },
+    {
+      "question": "Was versteht man unter 'Motronic' im Zusammenhang mit der Motorsteuerung?",
+      "options": [
+        "Ein integriertes Motormanagementsystem, das Zündung und Kraftstoffeinspritzung gemeinsam über ein einziges Steuergerät regelt, statt sie getrennt anzusteuern",
+        "Eine reine Bezeichnung für den Anlassermotor",
+        "Ein System, das ausschließlich die Klimaanlage regelt",
+        "Eine spezielle Bauart des Bremskraftverstärkers"
+      ],
+      "correct": 0,
+      "answer": "Motronic bezeichnet ein von Bosch entwickeltes integriertes Motormanagementsystem, das Zündungssteuerung und Kraftstoffeinspritzung in einem gemeinsamen Steuergerät zusammenfasst. Dadurch können beide Systeme optimal aufeinander abgestimmt werden, statt wie früher als getrennte Zünd- und Einspritzanlagen unabhängig voneinander zu arbeiten.",
+      "id": "elektrik-70",
+      "category": "Elektrik & Elektronik"
     }
   ]
 }
