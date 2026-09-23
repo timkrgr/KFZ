@@ -1,4 +1,4 @@
-const APP_VERSION = "v75";
+const APP_VERSION = "v76";
 const STORAGE_KEY = "kfz_progress_v1";
 const STREAK_KEY = "kfz_streak_v1";
 const EXAM_STATS_KEY = "kfz_exam_stats_v1";
@@ -1035,7 +1035,14 @@ async function createInviteLink() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ fromUid: currentProfile, fromName: currentDisplayName, createdAt: Date.now() }),
   });
-  if (!res.ok) throw new Error("Einladung konnte nicht erstellt werden");
+  if (!res.ok) {
+    let detail = "";
+    try {
+      const errBody = await res.json();
+      detail = errBody?.error || "";
+    } catch {}
+    throw new Error(`Einladung fehlgeschlagen (${res.status}${detail ? ": " + detail : ""})`);
+  }
   localStorage.setItem(`${MY_INVITE_CODE_KEY}_${currentProfile}`, code);
   return `${location.origin}${location.pathname}?invite=${code}`;
 }
